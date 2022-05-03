@@ -10,22 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stddef.h>
+#include "libft.h"
+#include <stdio.h>
 
-static int	ft_get_size(int *n)
+static int	ft_get_size(int n)
 {
 	int	count;
-	int	nb;
 
-	if (*n < 0)
-		*n *= -1;
 	count = 1;
-	nb = *n;
-	while (nb / 10)
+	while (n / 10)
 	{
 		count++;
-		nb /= 10;
+		n /= 10;
 	}
 	return (count);
 }
@@ -50,30 +46,51 @@ static void	rev(char **tab)
 	}
 }
 
-static void	init_value(int *i, int *sign)
+static void	init_value(int *i, int *sign, int *nb, int *len)
 {
 	*i = 0;
-	*sign = 0;
+	*len = ft_get_size(*nb);
+	if (*nb < 0)
+	{
+		*sign = 1;
+		*nb *= -1;
+	}
+	else
+		*sign = 0;
 }
+
+static void	min_tab(char **tab)
+{
+	char	*temp;
+	int		i;
+
+	temp = "-2147483648";
+	*tab = (char *)malloc(12);
+	i = 0;
+	while (i < 12)
+	{
+		(*tab)[i] = temp[i];
+		i++;
+	}
+}	
 
 char	*ft_itoa(int n)
 {
 	char	*tab;
 	int		i;
 	int		sign;
+	int		len;
 
-	init_value(&i, &sign);
-	if (n < 0)
-		sign = 1;
+	init_value(&i, &sign, &n, &len);
 	if (n == -2147483648)
 	{
-		tab = "-2147483648";
+		min_tab(&tab);
 		return (tab);
 	}
-	tab = (char *)malloc(ft_get_size(&n) + sign + 1);
+	tab = (char *)malloc(len + sign + 1);
 	if (!tab)
 		return (NULL);
-	while (n)
+	while (i < len)
 	{
 		tab[i++] = n % 10 + '0';
 		n /= 10;
@@ -84,11 +101,13 @@ char	*ft_itoa(int n)
 	rev(&tab);
 	return (tab);
 }
+
 /*
 #include <stdio.h>
 
 int main()
 {
-printf("%s", ft_itoa(-147364));
+printf("%s", ft_itoa(0));
 return (0);
-}*/
+}
+*/

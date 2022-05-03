@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stddef.h>
+#include "libft.h"
 
 static int	ft_get_size(char const *s, char c)
 {

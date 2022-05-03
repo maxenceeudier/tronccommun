@@ -1,49 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 14:41:31 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 14:42:07 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/03 16:22:39 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/03 16:23:43 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (dst[i])
-		i++;
-	j = 0;
-	while (j + i < dstsize - 1 && src[j] && dstsize)
+	if (lst)
 	{
-		dst[i + j] = src[j];
-		j++;
+		new->next = *lst;
+		*lst = new;
 	}
-	dst[i + j] = 0;
-	while (src[j])
-		j++;
-	if (dstsize < i)
-		return (dstsize + j);
-	return (j + i);
 }
 /*
 #include <stdio.h>
 
+t_list  *ft_lstnew(void *content)
+{
+t_list  *new;
+
+new = (t_list *)malloc(sizeof(t_list));
+if (!new)
+return (NULL);
+new->content = content;
+new->next = NULL;
+return (new);
+}
+
 int main()
 {
-char    s1[100] = "1234";
-char    s2[100] = "ABCD";
-int     rslt;
-
-rslt = ft_strlcat(s1, s2, 2);
-printf("retour = %d", rslt);
-printf("\ndst = %s", s1);
+t_list *lst = ft_lstnew("salut");
+ft_lstadd_front(&lst, ft_lstnew("hey !"));
+ft_lstadd_front(&lst, ft_lstnew("ho"));
+while (lst)
+{
+printf("%s\n", (char *)lst->content);
+lst = lst->next;
+}
 return (0);
 }*/

@@ -12,21 +12,6 @@
 
 #include "libft.h"
 
-static int	ft_isdigit(int c)
-{
-	if ((unsigned char)c >= '0' && (unsigned char)c <= '9')
-		return (1);
-	return (0);
-}
-
-static int	ft_isalpha(int c)
-{
-	if (((unsigned char)c >= 'a' && (unsigned char)c <= 'z')
-		|| ((unsigned char)c >= 'A' && (unsigned char)c <= 'Z'))
-		return (1);
-	return (0);
-}
-
 int	ft_isalnum(int c)
 {
 	if (ft_isalpha(c) || ft_isdigit(c))

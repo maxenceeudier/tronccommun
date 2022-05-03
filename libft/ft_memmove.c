@@ -10,36 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
-	char	*temp;
+	int	i;
 
-	temp = (char *)malloc(sizeof(char) * (len + 1));
-	i = 0;
-	while (i < len && ((char *)src)[i])
+	if (dst > src)
 	{
-		temp[i] = ((char *)src)[i];
-		i++;
+		i = (int)len - 1;
+		while (i >= 0)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i--;
+		}
 	}
-	if (!((char *)src)[i])
-		temp[i] = 0;
-	i = 0;
-	while (i < len)
+	else
 	{
-		((char *)dst)[i] = temp[i];
-		i++;
+		i = 0;
+		while (i < (int)len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
 	}
 	return (dst);
 }
-// int main ()
-// {
-//   char str[] = "memmove can be very useful......";
-//   ft_memmove (str+20,str+15,11);
-//   puts (str);
-//   return 0;
-// }
+
+/*
+int main ()
+{
+ char str[] = "memmove can be very useful.....";
+ ft_memmove (str+20,str+15,11);
+ puts (str);  return 0; 
+}
+*/

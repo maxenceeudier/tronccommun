@@ -10,29 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;
 
+	if (!dst)
+		return (NULL);
 	i = 0;
-	while (i < n && ((char *)src)[i])
+	while (i < n)
 	{
 		((char *)dst)[i] = ((char *)src)[i];
 		i++;
 	}
-	if (!((char *)src)[i])
-		((char *)dst)[i] = 0;
 	return (dst);
 }
-// #include <stdio.h>
 
-// int main(void)
-// {
-//     char src[50] = "GeeksForGeeks is for programming geeks.";
-//     char dst[50] = "coucou";
-//     printf("\nBefore memcpy(): %s\n", dst);
-//     ft_memcpy(dst, src, 3);
-//     printf("\nAfter memcpy(): %s\n", dst);
-// }
+/*
+#include <stdio.h>
+
+int main(void)
+{
+    char src[] = "bbbbbb";
+    char dst[] = "AAA";
+	printf("\nBefore memcpy(): %s\n", dst);
+    ft_memcpy(dst, src, 2);
+    printf("\nAfter memcpy(): %s\n", dst);
+}
+*/

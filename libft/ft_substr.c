@@ -10,19 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
+#include "libft.h"
+
+static size_t	get_size(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	size_t			size;
+
+	size = 0;
+	i = start;
+	while (s[i])
+	{
+		i++;
+		size++;
+	}
+	if (size > len)
+		return (len);
+	else
+		return (size);
+}	
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*new;
 	size_t	i;
+	size_t	size;
 
+	if (start > ft_strlen(s))
+	{
+		new = (char *)malloc(1);
+		new[0] = 0;
+		return (new);
+	}
+	size = get_size(s, start, len);
 	i = 0;
-	new = (char *)malloc(len);
+	new = (char *)malloc(size + 1);
 	if (!new)
 		return (NULL);
-	while (s[start] && i < len - 1 && len)
+	while (s[start] && i < size)
 	{
 		new[i] = s[start];
 		start++;
@@ -37,6 +62,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 int main()
 {
 char s[]= "salut mec ca marche ou pas ?";
-printf("%s", ft_substr(s, 6, 4));
+printf("%s", ft_substr(s, 100, 4));
 return (0);
 }*/

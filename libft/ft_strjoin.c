@@ -10,38 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
-
-static size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-static char	*ft_strdup(const char *s1)
-{
-	char	*dup;
-	int		i;
-
-	if (!s1)
-		return (NULL);
-	dup = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		dup[i] = s1[i];
-		i++;
-	}
-	dup[i] = 0;
-	return (dup);
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

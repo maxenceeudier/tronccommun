@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 16:02:07 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 16:05:46 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/03 16:29:19 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/03 16:31:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	char	*dup;
-	int		i;
-
-	if (!s1)
-		return (NULL);
-	dup = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (s1[i])
+	if (!del)
+		return ;
+	if (lst)
 	{
-		dup[i] = s1[i];
-		i++;
+		(*del)(lst->content);
+		free(lst);
 	}
-	dup[i] = 0;
-	return (dup);
 }
 /*
-#include <stdio.h>
-
-int main() {
-
-const char * original = "The original string.";
-char * copy = ft_strdup( original );
-printf( "%s\n", copy );
-free( copy );
-
-return (0);
-}*/
+   int main()
+   {
+   t_list *lst = ft_lstnew("salut");
+   ft_lstadd_back(&lst, ft_lstnew("hey !"));
+   ft_lstadd_back(&lst, ft_lstnew("ho"));
+   ft_lstdelone(lst->next, &del);
+   while (lst)
+   {
+   printf("%s\n", (char *)lst->content);
+   lst = lst->next;
+   }
+   return (0);
+   }*/

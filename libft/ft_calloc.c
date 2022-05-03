@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
@@ -24,20 +23,21 @@ void	*ft_calloc(size_t count, size_t size)
 	i = 0;
 	while (i < size * count)
 	{
-		((char *)adrs)[i] = 0;
+		*(char *)(adrs + i) = 0;
 		i++;
 	}
 	return (adrs);
 }
 
 /*
-#include <stdio.h>          
+#include <stdio.h>  
+#include <stdint.h>       
 #include <stdlib.h>
 
 int main() {
 
 int i;
-int * pointer = (int *) ft_calloc( 10, sizeof(int) );
+int * pointer =  ft_calloc(6, 6);
 
 for (i=0; i<10; i++ ) {
 printf( "%d ", pointer[i] );
@@ -46,4 +46,5 @@ printf( "\n" );
 free( pointer );
 
 return 0;
-}*/
+}
+*/

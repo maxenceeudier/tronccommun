@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 16:02:07 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 16:05:46 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/03 16:14:58 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/03 16:15:50 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstnew(void *content)
 {
-	char	*dup;
-	int		i;
+	t_list	*new;
 
-	if (!s1)
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
 		return (NULL);
-	dup = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		dup[i] = s1[i];
-		i++;
-	}
-	dup[i] = 0;
-	return (dup);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }
-/*
-#include <stdio.h>
-
-int main() {
-
-const char * original = "The original string.";
-char * copy = ft_strdup( original );
-printf( "%s\n", copy );
-free( copy );
-
-return (0);
-}*/
