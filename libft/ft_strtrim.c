@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:18:16 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 17:41:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/04 13:50:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		count_end;
 	char	*trim;
 
+	if (!s1 || !set)
+		return (NULL);
 	count_start = get_count_start(s1, set);
 	count_end = get_count_end(s1, set);
 	trim = ft_substr(s1, count_start,

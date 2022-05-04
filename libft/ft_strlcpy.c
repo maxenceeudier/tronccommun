@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:46:55 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 14:50:30 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/04 13:46:27 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strlcpy(char *dst, const char *src, size_t len)
 	size_t	i;
 
 	i = 0;
+	if (!dst || !src)
+		return (0);
 	while (src[i] && i < len - 1 && len)
 	{
 		dst[i] = src[i];

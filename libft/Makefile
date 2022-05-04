@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meudier <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/02 18:02:03 by meudier           #+#    #+#              #
-#    Updated: 2022/05/02 18:13:36 by meudier          ###   ########.fr        #
+#    Updated: 2022/05/04 08:01:58 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,15 @@ ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
 OBJ = $(SRC:.c=.o)
 
-SRC_BONUS = $(wildcard ft_lst*)
+SRC_BONUS = ft_lstnew.c \
+    ft_lstadd_front.c \
+    ft_lstsize.c \
+    ft_lstlast.c \
+    ft_lstadd_back.c \
+    ft_lstdelone.c \
+    ft_lstclear.c \
+    ft_lstiter.c \
+    ft_lstmap.c
 
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 

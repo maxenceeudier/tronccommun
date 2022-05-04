@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:36:20 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 14:37:04 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/04 13:54:34 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	if (!dst)
 		return (NULL);
 	i = 0;
-	while (i < n)
+	while (i < n && src)
 	{
 		((char *)dst)[i] = ((char *)src)[i];
 		i++;

@@ -6,7 +6,7 @@
 /*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 15:59:47 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 16:01:18 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/04 08:15:44 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*adrs;
+	char	*adrs;
 	size_t	i;
 
-	adrs = (void *)malloc(size * count);
+	if (size * count == SIZE_MAX * SIZE_MAX)
+		return (NULL);
+	adrs = (char *)malloc(size * count);
 	if (!adrs)
 		return (NULL);
 	i = 0;
 	while (i < size * count)
 	{
-		*(char *)(adrs + i) = 0;
+		adrs[i] = 0;
 		i++;
 	}
-	return (adrs);
+	return ((void *)adrs);
 }
 
 /*
