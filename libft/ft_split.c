@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 17:43:15 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/02 17:45:29 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/04 14:29:09 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ static char	*ft_get_word(int *index, char *s, char c)
 	return (word);
 }
 
+static char	**clear_tab(char ***tab)
+{
+	int		i;
+
+	i = 0;
+	while ((*tab)[i])
+		free((*tab)[i++]);
+	free (*tab);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -65,6 +76,8 @@ char	**ft_split(char const *s, char c)
 	int		size;
 	char	**tab;
 
+	if (!s)
+		return (NULL);
 	size = ft_get_size(s, c);
 	tab = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!tab)
@@ -74,6 +87,8 @@ char	**ft_split(char const *s, char c)
 	while (i < size)
 	{
 		tab[i] = ft_get_word(&j, (char *)s, c);
+		if (!tab[i])
+			return (clear_tab(&tab));
 		i++;
 	}
 	tab[i] = 0;

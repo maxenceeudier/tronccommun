@@ -6,13 +6,13 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:42:21 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/04 10:11:37 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/05 14:15:18 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 42
 #endif
 
 
@@ -21,71 +21,85 @@ static int     there_is_newline(char *str)
     int     i;
 
     i = 0;
-    while (str[i])
+    while (str && str[i])
         if (str[i++] == '\n')
             return (1);
     return 0;
 }
 
-static int    ft_get_line_and_str(char **line, char **str)
+static char    *ft_get_line_and_str(char **str)
 {
     int     i;
     int     len;
-    char    *temp;
+    char    *line;
 
-    temp = *str;
     len = 0;
     while ((*str)[len] != '\n' && (*str)[len])
         len++;
-    *line = (char *)malloc(len + 2);
-    if (!*line)
-        return (0);
+    if ((*str)[len] == '\n')
+        len++;
+    line = (char *)malloc(sizeof(char) * len + 1);
+    if (!line)
+        return (NULL);
     i = 0;
-    while (i < len && temp[i])
+    while (i < len && (*str)[i])
     {
-        (*line)[i] = temp[i];
+        line[i] = (*str)[i];
         i++;
     }
-    if (len)
-        (*line)[i++] = '\n';
-    (*line)[i] = 0;
+    line[i] = 0;
     i = 0;
-    while (temp[++len])
-        (*str)[i++] = temp[len];
+    while ((*str)[len])
+        (*str)[i++] = (*str)[len++];
     (*str)[i] = 0;
-    return (1);
+    return (line);
 }
+
+static char    *no_leaks(char **str, char *buffer)
+{
+    char    *temp;
+
+    free (buffer);
+    if (*str && ft_strlen(*str))
+    {
+        temp = *str;
+        *str = NULL;
+        return (temp);
+    }
+    return (NULL);
+}
+
 
 char    *get_next_line(int fd)
 {
-    char        buffer[BUFFER_SIZE + 1];
+    char        *buffer;
     static char *str = NULL;
-    char        *temp;
     int         rtr;
     char        *line;
+    char        *temp;
 
     rtr = BUFFER_SIZE;
-    if (fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
-        rtr = -1;
+    buffer = malloc(BUFFER_SIZE + 1);
+    if (!buffer || fd < 0 || fd > 1023 || BUFFER_SIZE <= 0)
+        return (no_leaks(&str, buffer));
     while (rtr > 0)
     {
         rtr = read(fd , buffer, BUFFER_SIZE);
         if (rtr == - 1)
-            break ;
+            return (no_leaks(&str, buffer));
         buffer[rtr] = 0;
-        
+        if (!ft_strlen(buffer) && !rtr && !there_is_newline(str))
+            return (no_leaks(&str, buffer));
         temp = str;
         str = ft_strjoin(temp, buffer);
+        free (temp);
         if (there_is_newline(str))
             break ;
     }
-    if (rtr < 0)
-        return (NULL);
-    if (!ft_get_line_and_str(&line, &str))
-    {
-        str = NULL;
-        return (NULL);
-    }
+    line = ft_get_line_and_str(&str);
+    if (!line)
+        return (no_leaks(&str, buffer));
+    free (buffer);
     return (line);
 }
 /*
@@ -97,15 +111,14 @@ int main()
     char    *line3;
 
     fd = open("./text", O_RDONLY);
-    line1 = get_next_line(1000);
+    line1 = get_next_line(fd);
     line2 = get_next_line(fd);
-    get_next_line(fd);
-    get_next_line(fd);
+    //get_next_line(fd);
+    //get_next_line(fd);
     // get_next_line2(fd);
     // get_next_line2(fd);
     line3 = get_next_line(fd);
     
     printf("%s%s%s",line1,line2,line3);
     return (0);
-
 }*/

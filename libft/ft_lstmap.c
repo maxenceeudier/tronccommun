@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:34:10 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/03 16:37:28 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/04 14:19:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*rslt;
+	t_list	*new;
+	t_list	*begin;
 
+	begin = lst;
 	if (!f || !del || !lst)
 		return (NULL);
 	rslt = ft_lstnew((*f)(lst->content));
@@ -50,7 +53,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	lst = lst->next;
 	while (lst)
 	{
-		ft_lstadd_back(&rslt, ft_lstnew((*f)(lst->content)));
+		new = ft_lstnew((*f)(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&begin, &free);
+			return (NULL);
+		}
+		ft_lstadd_back(&rslt, new);
 		lst = lst->next;
 	}
 	return (rslt);
