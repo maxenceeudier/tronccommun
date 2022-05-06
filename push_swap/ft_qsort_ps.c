@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:38:58 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 17:06:03 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/06 18:16:15 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    ft_qsort_a(t_list **lsta, t_list **lstb)
     while (ft_lstsize(*lsta) > 2 && !lst_is_croissant(*lsta))
     {
         get_mid_and_chunck(*lsta, &mid, &chunk);
-        while (ft_lstsize(*lstb) != chunk && ft_lstsize(*lsta) > 2)
+        while (ft_lstsize(*lstb) != chunk && ft_lstsize(*lsta) > 2  && !lst_is_croissant(*lsta))
         {
             if ((*lsta)->data < mid)
                 pb(lsta, lstb);
@@ -38,6 +38,8 @@ void    ft_qsort_a(t_list **lsta, t_list **lstb)
             }
             if (ft_lstsize(*lstb) >= 2 && (*lstb)->data < (*lstb)->next->data && (*lsta)->data < (*lsta)->next->data)
                 sb(lstb);
+            else if (ft_lstsize(*lstb) >= 2 && (*lsta)->data > (*lsta)->next->data && (*lstb)->data > (*lstb)->next->data)
+                sa(lsta);
             else if ((*lsta)->data > (*lsta)->next->data && *lstb && (*lstb)->next && (*lstb)->data < (*lstb)->next->data)
                 ss(lsta,lstb); 
         }
@@ -57,9 +59,9 @@ void    ft_qsort_b(t_list **lsta, t_list **lstb)
     while (ft_lstsize(*lstb) > 2 && !lst_is_decroissant(*lstb))
     {
         get_mid_and_chunck_b(*lstb, &mid, &chunk);
-        while (ft_lstsize(*lsta) != chunk && ft_lstsize(*lstb) > 2)
+        while (ft_lstsize(*lsta) != chunk && ft_lstsize(*lstb) > 2 && !lst_is_decroissant(*lstb))
         {
-            if ((*lstb)->data >= mid)
+            if ((*lstb)->data >= mid && !lst_is_croissant(*lsta))
                 pa(lstb, lsta);
             else
             {
@@ -73,6 +75,8 @@ void    ft_qsort_b(t_list **lsta, t_list **lstb)
             }
             if (ft_lstsize(*lstb) >= 2 && (*lsta)->data > (*lsta)->next->data && (*lstb)->data > (*lstb)->next->data)
                 sa(lsta);
+            else if (ft_lstsize(*lstb) >= 2 && (*lstb)->data < (*lstb)->next->data && (*lsta)->data < (*lsta)->next->data)
+                sb(lstb);
             else if (ft_lstsize(*lstb) >= 2 && (*lstb)->data < (*lstb)->next->data && (*lsta)->data > (*lsta)->next->data)
                 ss(lsta,lstb);
         }
