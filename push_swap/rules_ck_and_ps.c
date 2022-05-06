@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rules_c_and_p.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/06 08:28:33 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/06 08:28:45 by meudier          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "list.h"
-#include <unistd.h>
 
 void    ft_lstadd_back(t_list **lst, t_list *new)
 {
@@ -69,59 +80,4 @@ void    lst_rotate_rev(t_list **lst)
         *lst = last->next;
         last->next = NULL;
     }
-}
-
-void    pa(t_list **lstb, t_list **lsta)
-{
-    lst_push(lstb, lsta);
-    write (1, "pa\n", 3);
-}
-
-void    pb(t_list **lsta, t_list **lstb)
-{
-    lst_push(lsta, lstb);
-    write (1, "pb\n", 3);
-}
-
-void    ra(t_list **lsta)
-{
-    lst_rotate(lsta);
-    write (1, "ra\n", 3);
-}
-
-void    rb(t_list **lstb)
-{
-    lst_rotate(lstb);
-    write (1, "rb\n", 3);
-}
-
-void    rra(t_list **lsta)
-{
-    lst_rotate_rev(lsta);
-    write (1, "rra\n", 4);
-}
-
-void    rrb(t_list **lstb)
-{
-    lst_rotate_rev(lstb);
-    write (1, "rrb\n", 4);
-}
-
-void    sa(t_list **lsta)
-{
-    lst_swap(lsta);
-    write (1, "sa\n", 3);
-}
-
-void    sb(t_list **lstb)
-{
-    lst_swap(lstb);
-    write (1, "sb\n", 3);
-}
-
-void    ss(t_list **lsta, t_list **lstb)
-{
-    lst_swap(lstb);
-    lst_swap(lsta);
-    write (1, "ss\n", 3);
 }

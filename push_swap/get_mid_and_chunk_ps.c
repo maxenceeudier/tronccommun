@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_mid_and_chunk_ps.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/06 08:39:13 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/06 09:21:18 by meudier          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "list.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void    get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
 {
@@ -28,7 +38,7 @@ void    get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
     {
         if (temp[i] < *mid)
             len++;
-            i++;
+        i++; 
     }
     *chunk += len;
     free(temp);
@@ -60,7 +70,7 @@ void    get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk)
     {
         if (temp[i] >= *mid)
             len++;
-            i++;
+        i++;
     }
     *chunk += len;
     free(temp);

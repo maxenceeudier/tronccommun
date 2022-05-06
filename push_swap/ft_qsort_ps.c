@@ -1,6 +1,16 @@
-#include "list.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_qsort_ps.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/06 08:38:58 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/06 09:22:18 by meudier          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "list.h"
 
 void    ft_qsort_a(t_list **lsta, t_list **lstb)
 {
@@ -66,7 +76,6 @@ void    ft_qsort_b(t_list **lsta, t_list **lstb)
             else if (ft_lstsize(*lstb) >= 2 && (*lstb)->data < (*lstb)->next->data && (*lsta)->data > (*lsta)->next->data)
                 ss(lsta,lstb);
         }
-        
     }
     if (!lst_is_decroissant(*lstb))
         sb(lstb);
@@ -91,27 +100,9 @@ int main(int ac, char **av)
         write (2, "Error\n", 6);
         return (0);
     }
-    int i = 0;
     while (!(lst_is_croissant(lsta) && !lstb))
     {
         ft_qsort_a(&lsta, &lstb);
         ft_qsort_b(&lsta, &lstb);   
     }
-    printf("\n\n");
-    t_list *last = lsta;
-    while (last)
-    {
-        printf("%d\n",last->data);
-        last = last->next;
-    }
-    printf("----\n");
-    
-    t_list *lstbb = lstb;
-    while (lstbb)
-    {
-        printf("%d\n",(lstbb)->data);
-        lstbb = (lstbb)->next;
-    }
-
-  
 }
