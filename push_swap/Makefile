@@ -6,7 +6,7 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/06 08:40:51 by meudier           #+#    #+#              #
-#    Updated: 2022/05/06 09:18:05 by meudier          ###   ########.fr        #
+#    Updated: 2022/05/06 14:14:07 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,11 @@ all: $(NAME)
 %o: %c
 	$(CC) -c $< -o $^
 
-$(NAME): $(OBJ_CK) $(OBJ_PS)
-	$(CC) $(OBJ_CK) -o checker
+$(NAME): $(OBJ_PS)
 	$(CC) $(OBJ_PS) -o push_swap
+	
+bonus: $(OBJ_CK)
+	$(CC) $(OBJ_CK) -o checker
 
 clean: 
 	rm -f $(OBJ_CK) $(OBJ_PS)

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:39:42 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 10:37:09 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/06 15:35:40 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int     check(t_list *lst)
 {
+    if (!lst)
+        return (0);
     while (lst->next)
     {
         if (lst->data > lst->next->data)

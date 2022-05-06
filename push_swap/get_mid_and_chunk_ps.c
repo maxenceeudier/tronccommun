@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:39:13 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 09:21:18 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/06 16:43:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
     int     len;
 
     size = ft_lstsize(lst);
-    temp = (int *)malloc(size);
+    temp = (int *)malloc(size * sizeof(int));
     if (!temp)
         return ;
     i = 0;
@@ -52,7 +52,7 @@ void    get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk)
     int     len;
 
     size = ft_lstsize(lst);
-    temp = (int *)malloc(size);
+    temp = (int *)malloc(size * sizeof(int));
     if (!temp)
         return ;
     i = 0;

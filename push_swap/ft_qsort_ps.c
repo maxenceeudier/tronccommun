@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:38:58 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 09:22:18 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/06 17:06:03 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    ft_qsort_a(t_list **lsta, t_list **lstb)
     while (ft_lstsize(*lsta) > 2 && !lst_is_croissant(*lsta))
     {
         get_mid_and_chunck(*lsta, &mid, &chunk);
-        while (ft_lstsize(*lstb) != chunk)
+        while (ft_lstsize(*lstb) != chunk && ft_lstsize(*lsta) > 2)
         {
             if ((*lsta)->data < mid)
                 pb(lsta, lstb);
@@ -38,8 +38,8 @@ void    ft_qsort_a(t_list **lsta, t_list **lstb)
             }
             if (ft_lstsize(*lstb) >= 2 && (*lstb)->data < (*lstb)->next->data && (*lsta)->data < (*lsta)->next->data)
                 sb(lstb);
-            else if ((*lsta)->data > (*lsta)->next->data && *lstb && (*lstb)->data < (*lstb)->next->data)
-                ss(lsta,lstb);
+            else if ((*lsta)->data > (*lsta)->next->data && *lstb && (*lstb)->next && (*lstb)->data < (*lstb)->next->data)
+                ss(lsta,lstb); 
         }
     }
     if (!lst_is_croissant(*lsta))
@@ -57,7 +57,7 @@ void    ft_qsort_b(t_list **lsta, t_list **lstb)
     while (ft_lstsize(*lstb) > 2 && !lst_is_decroissant(*lstb))
     {
         get_mid_and_chunck_b(*lstb, &mid, &chunk);
-        while (ft_lstsize(*lsta) != chunk)
+        while (ft_lstsize(*lsta) != chunk && ft_lstsize(*lstb) > 2)
         {
             if ((*lstb)->data >= mid)
                 pa(lstb, lsta);
@@ -103,6 +103,7 @@ int main(int ac, char **av)
     while (!(lst_is_croissant(lsta) && !lstb))
     {
         ft_qsort_a(&lsta, &lstb);
-        ft_qsort_b(&lsta, &lstb);   
+        ft_qsort_b(&lsta, &lstb);
     }
+    return (0);
 }

@@ -25,23 +25,46 @@ void    push_back(t_list **lst, int data)
     last->next = create_elem(data);
 }
 
+static void    *get_lst(int ac, char *num, int *index, t_list **lst)
+{
+    int     i;
+
+    if (ac > 2)
+        i = 1;
+    else
+        i = 0;
+    if (*index == i)
+        *lst = create_elem(ft_atoi(num));
+    else
+        push_back(lst, ft_atoi(num));
+    if (!ft_isdigit(num))
+        return (NULL);
+    (*index)++;
+    return ("ok");
+}
+
 t_list *init_list(int ac, char **av)
 {
     int     i;
     t_list  *lst;
+    char    **tab_value;
 
-    if (ac >1)
+    if (ac > 2)
     {
         i = 1;
         while (i < ac)
-        {
-            if (i == 1)
-                lst = create_elem(ft_atoi(av[1]));
-            else
-                push_back(&lst, ft_atoi(av[i]));
-            if (!ft_isdigit(av[i]))
+            if (!get_lst(ac, av[i], &i, &lst))
                 return (NULL);
-            i++;
+        return (lst);
+    }
+    if (ac == 2)
+    {
+        tab_value = ft_split(av[1], ' ');
+        i = 0;
+        while (tab_value[i])
+        {
+            if (!get_lst(ac, tab_value[i], &i, &lst))
+                return (NULL);
         }
         return (lst);
     }
