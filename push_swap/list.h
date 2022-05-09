@@ -38,5 +38,11 @@ void    lst_push(t_list **lst1, t_list **lst2);
 void    lst_swap(t_list **lst);
 void    lst_rotate(t_list **lst);
 void    lst_rotate_rev(t_list **lst);
+void    ft_qsort_a(t_list **lsta, t_list **lstb);
+void    ft_qsort_b(t_list **lsta, t_list **lstb);
+int     is_all_zero(t_list *lst, int j);
+int     equal_to_i_exist(t_list *lst, int i, int j);
+void    radix_a(t_list **lsta, t_list **lstb, int j);
+void    radix_b(t_list **lsta, t_list **lstb, int j);
 
 #endif

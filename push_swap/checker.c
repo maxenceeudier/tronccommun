@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:39:42 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 15:35:40 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/09 11:33:34 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,22 @@ int main(int ac, char **av)
         write (2, "Error\n", 6);
         return (0);
     }
+
+
+    /*t_list *lst_a = lsta;
+    while (lst_a)
+    {
+        printf("%d\n", lst_a->data);
+        lst_a = lst_a->next;
+    }
+    printf("\n-------\n");
+    t_list *lst_b = lstb;
+    while (lst_b)
+    {
+        printf("%d\n", lst_b->data);
+        lst_b = lst_b->next;
+    }*/
+    
     if (check(lsta) && !lstb)
         write (1, "OK", 2);
     else
