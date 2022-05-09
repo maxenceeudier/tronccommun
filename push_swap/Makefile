@@ -27,7 +27,7 @@ NAME = push_swap
 all: $(NAME)
 
 %o: %c
-	$(CC) -c $< -o $^
+	$(CC) -o $@ -c $<
 
 $(NAME): $(OBJ_PS)
 	$(CC) $(OBJ_PS) -o push_swap
