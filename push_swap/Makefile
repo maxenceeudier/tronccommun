@@ -6,7 +6,7 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/06 08:40:51 by meudier           #+#    #+#              #
-#    Updated: 2022/05/09 12:39:56 by meudier          ###   ########.fr        #
+#    Updated: 2022/05/10 13:05:01 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC_CK = checker.c get_rules_ck.c init_list.c rules_ck_and_ps.c \
 
 OBJ_CK = $(SRC_CK:.c=.o)
 
-SRC_PS = push_swap.c ft_qsort_ps.c radix.c get_mid_and_chunk_ps.c init_list.c rules_ck_and_ps.c \
+SRC_PS = push_swap.c sort_short.c radix.c init_list.c rules_ck_and_ps.c \
 	rules_ps_a.c rules_ps_b.c utils_ps.c utils.c
 
 OBJ_PS = $(SRC_PS:.c=.o)
@@ -27,7 +27,7 @@ NAME = push_swap
 all: $(NAME)
 
 %o: %c
-	$(CC) -o $@ -c $<
+	$(CC) -c $< -o $^
 
 $(NAME): $(OBJ_PS)
 	$(CC) $(OBJ_PS) -o push_swap

@@ -9,9 +9,9 @@
         ""
       ],
       "stopAtEntry": true,
-      "cwd": "/Users/maxenceeudier/Desktop/42/tronccommun/push_swap",
+      "cwd": "/Users/maxenceeudier/Desktop/42/prepa/push_swap",
       "environment": [],
-      "program": "/Users/maxenceeudier/Desktop/42/tronccommun/push_swap/build/Debug/outDebug",
+      "program": "/Users/maxenceeudier/Desktop/42/prepa/push_swap/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "externalConsole": false

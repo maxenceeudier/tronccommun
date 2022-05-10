@@ -6,12 +6,12 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:40:04 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 14:09:54 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/10 10:16:40 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 100096
 
 char    **get_rules(void)
 {

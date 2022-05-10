@@ -44,5 +44,6 @@ int     is_all_zero(t_list *lst, int j);
 int     equal_to_i_exist(t_list *lst, int i, int j);
 void    radix_a(t_list **lsta, t_list **lstb, int j);
 void    radix_b(t_list **lsta, t_list **lstb, int j);
+void      sort_short(t_list **lsta, t_list **lstb);
 
 #endif
