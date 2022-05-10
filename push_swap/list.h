@@ -45,5 +45,7 @@ int     equal_to_i_exist(t_list *lst, int i, int j);
 void    radix_a(t_list **lsta, t_list **lstb, int j);
 void    radix_b(t_list **lsta, t_list **lstb, int j);
 void      sort_short(t_list **lsta, t_list **lstb);
+void    rr(t_list **lsta, t_list **lstb);
+void    rrr(t_list **lsta, t_list **lstb);
 
 #endif

@@ -96,16 +96,12 @@ void    radix_a(t_list **lsta, t_list **lstb, int j)
     int     k;
 
     i = 0;
-    while (i <= 9)
+    while (i <= 9 && !lst_is_croissant(*lsta))
     {
         while (equal_to_i_exist(*lsta, i, j) && !lst_is_croissant(*lsta))
         {
             if (is_the_smallest(*lsta, i, j, (*lsta)->data))
-            {
-                pb (lsta, lstb);
-                if ((*lstb)->next && (*lstb)->data % (10 * j) < (*lstb)->next->data % (10 * j))
-                    sb(lstb);
-            }  
+                pb (lsta, lstb); 
             else
             {
                 k = fast_way_to_smallest(*lsta, i, j);
@@ -138,18 +134,13 @@ void    radix_b(t_list **lsta, t_list **lstb, int j)
     int     i;
     int     k;
 
-    i = 9;
-    while (i >= 0 && *lstb && !(lst_is_decroissant(*lstb) && !*lsta))
+    i = 0;
+    while (i <= 9 && *lstb && !lst_is_decroissant(*lstb))
     {
-        while (equal_to_i_exist(*lstb, i, j) && *lstb && !(lst_is_decroissant(*lstb) && !*lsta))
+        while (equal_to_i_exist(*lstb, i, j) && *lstb && !(lst_is_decroissant(*lstb)))
         {
             if (is_the_bigger(*lstb, i, j, (*lstb)->data))
-            {
                 pa(lstb, lsta);
-                if ((*lsta)->data % (10 * j) > (*lsta)->next->data % (10 * j))
-                    sa(lsta);
-            }
-                
             else
             {
                 k = fast_way_to_bigger(*lstb, i, j);
@@ -171,7 +162,7 @@ void    radix_b(t_list **lsta, t_list **lstb, int j)
                 }
             }     
         }
-        i--;
+        i++;
     }
     i = ft_lstsize(*lstb);
     if (*lstb && lst_is_decroissant(*lstb))
@@ -179,8 +170,6 @@ void    radix_b(t_list **lsta, t_list **lstb, int j)
         while (i >= 0)
         {
             pa(lstb, lsta);
-            if ((*lsta)->data % (10 * j) > (*lsta)->next->data % (10 * j))
-                    sa(lsta);
             i--;
         }
     }
