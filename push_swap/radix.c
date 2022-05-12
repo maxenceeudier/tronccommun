@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:01:54 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/10 17:09:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/12 11:15:06 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,84 +21,6 @@ int	is_all_zero(t_list *lst, int j)
 		lst = lst->next;
 	}
 	return (1);
-}
-
-int	equal_to_i_exist(t_list *lst, int i, int j)
-{
-	int	count;
-
-	count = 0;
-	while (lst)
-	{
-		if ((lst->data % (10 * j)) / j == i)
-			count++;
-		lst = lst->next;
-	}
-	return (count);
-}
-
-int	is_the_smallest(t_list *lst, int i, int j, int data)
-{
-	while (lst)
-	{
-		if ((lst->data % (10 * j)) / j == i)
-			if (lst->data % (10 * j) < data % (10 * j))
-				return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
-
-int	is_the_bigger(t_list *lst, int i, int j, int data)
-{
-	while (lst)
-	{
-		if ((lst->data % (10 * j)) / j == i)
-			if (lst->data % (10 * j) > data % (10 * j))
-				return (0);
-		lst = lst->next;
-	}
-	return (1);
-}
-
-int	fast_way_to_smallest(t_list *lst, int i, int j)
-{
-	int	count;
-	int	other_way;
-	int	len;
-
-	count = 0;
-	len = ft_lstsize(lst);
-	while (lst && !is_the_smallest(lst, i, j, lst->data))
-	{
-		count++;
-		lst = lst->next;
-	}
-	other_way = len - count;
-	if (count <= other_way)
-		return (count);
-	else
-		return (-1 * (other_way));
-}
-
-int	fast_way_to_bigger(t_list *lst, int i, int j)
-{
-	int	count;
-	int	other_way;
-	int	len;
-
-	count = 0;
-	len = ft_lstsize(lst);
-	while (lst && !is_the_bigger(lst, i, j, lst->data))
-	{
-		count++;
-		lst = lst->next;
-	}
-	other_way = len - count;
-	if (count <= other_way)
-		return (count);
-	else
-		return (-1 * (other_way));
 }
 
 void	radix_a(t_list **lsta, t_list **lstb, int j)
@@ -185,5 +107,20 @@ void	radix_b(t_list **lsta, t_list **lstb, int j)
 			pa(lstb, lsta);
 			i--;
 		}
+	}
+}
+
+void	radix(t_list **lsta, t_list **lstb)
+{
+	int		j;
+
+	j = 1;
+	while (!(*lsta && is_all_zero(*lsta, j)
+			&& lst_is_croissant(*lsta) && !*lstb) && j < 10000000)
+	{
+		radix_a (lsta, lstb, j);
+		j *= 10;
+		radix_b (lsta, lstb, j);
+		j *= 10;
 	}
 }

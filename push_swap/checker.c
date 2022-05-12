@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:39:42 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/10 16:47:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/12 10:44:52 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check(t_list *lst)
 			return (0);
 		lst = lst->next;
 	}
-	retugrn (1);
+	return (1);
 }
 
 int	main(int ac, char **av)

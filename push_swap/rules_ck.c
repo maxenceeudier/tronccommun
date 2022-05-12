@@ -6,89 +6,84 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:29:14 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/06 10:36:46 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/12 10:53:22 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-int    ft_lst_swap(char *rule, t_list **lsta, t_list **lstb)
+int	ft_lst_swap(char *rule, t_list **lsta, t_list **lstb)
 {
-    if (rule[1] == 'a' && !rule[2])
-        lst_swap(lsta);
-    else if (rule[1] == 'b' && !rule[2])
-        lst_swap(lstb);
-    else if (rule[1] == 's' && !rule[2])
-    {
-        lst_swap(lstb);
-        lst_swap(lsta);
-    }
-    else
-        return (0);
-    return (1);
+	if (rule[1] == 'a' && !rule[2])
+		lst_swap(lsta);
+	else if (rule[1] == 'b' && !rule[2])
+		lst_swap(lstb);
+	else if (rule[1] == 's' && !rule[2])
+	{
+		lst_swap(lstb);
+		lst_swap(lsta);
+	}
+	else
+		return (0);
+	return (1);
 }
 
-int    ft_lst_rotate(char *rule, t_list **lsta, t_list **lstb)
+int	ft_lst_rotate(char *rule, t_list **lsta, t_list **lstb)
 {
-    if (rule[1] == 'a' && !rule[2])
-        lst_rotate(lsta);
-    else if (rule[1] == 'b' && !rule[2])
-        lst_rotate(lstb);
-    else if (rule[1] == 'r' && !rule[2])
-    {
-        lst_rotate(lstb);
-        lst_rotate(lsta);
-    }
-    else if (rule[1] == 'r' && rule[2] && !rule[3])
-    {
-        if (rule[2] == 'a')
-            lst_rotate_rev(lsta);
-        else if (rule[2] == 'b')
-            lst_rotate_rev(lstb);
-        else if (rule[2] == 'r')
-        {
-            lst_rotate_rev(lstb);
-            lst_rotate_rev(lsta);
-        }
-        else
-            return (0);
-    }
-    else
-        return (0);
-    return (1);
+	if (rule[1] == 'a' && !rule[2])
+		lst_rotate(lsta);
+	else if (rule[1] == 'b' && !rule[2])
+		lst_rotate(lstb);
+	else if (rule[1] == 'r' && !rule[2])
+	{
+		lst_rotate(lstb);
+		lst_rotate(lsta);
+	}
+	else if (rule[1] == 'r' && rule[2] == 'a' && !rule[3])
+		lst_rotate_rev(lsta);
+	else if (rule[1] == 'r' && rule[2] == 'b' && !rule[3])
+		lst_rotate_rev(lstb);
+	else if (rule[1] == 'r' && rule[2] == 'r' && !rule[3])
+	{
+		lst_rotate_rev(lstb);
+		lst_rotate_rev(lsta);
+	}
+	else
+		return (0);
+	return (1);
 }
 
-int     ft_lst_push(char *rule, t_list **lsta, t_list **lstb)
+int	ft_lst_push(char *rule, t_list **lsta, t_list **lstb)
 {
-    if (rule[1] == 'a' && !rule[2])
-        lst_push(lstb, lsta);
-    else if (rule[1] == 'b' && !rule[2])
-        lst_push(lsta, lstb);
-    else
-        return (0);
-    return (1);
+	if (rule[1] == 'a' && !rule[2])
+		lst_push(lstb, lsta);
+	else if (rule[1] == 'b' && !rule[2])
+		lst_push(lsta, lstb);
+	else
+		return (0);
+	return (1);
 }
 
-int     appli_rules(char **rules, t_list **lsta, t_list **lstb)
+int	appli_rules(char **rules, t_list **lsta, t_list **lstb)
 {
-    int     i;
+	int	i;
 
-    i = 0;
-    while (rules[i])
-    {
-        if (rules[i][0] == 's')
-            if (!ft_lst_swap(rules[i], lsta, lstb))
-                return (0);
-        if (rules[i][0] == 'r')
-            if (!ft_lst_rotate(rules[i], lsta, lstb))
-                return (0);
-        if (rules[i][0] == 'p')
-            if (!ft_lst_push(rules[i], lsta, lstb))
-                return (0);
-        if (rules[i][0] != 'p' && rules[i][0] != 'r'
-            && rules[i][0] != 's')
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (rules[i])
+	{
+		if (rules[i][0] == 's')
+			if (!ft_lst_swap(rules[i], lsta, lstb))
+				return (0);
+		if (rules[i][0] == 'r')
+			if (!ft_lst_rotate(rules[i], lsta, lstb))
+				return (0);
+		if (rules[i][0] == 'p')
+			if (!ft_lst_push(rules[i], lsta, lstb))
+				return (0);
+		if (rules[i][0] != 'p' && rules[i][0] != 'r'
+				&& rules[i][0] != 's')
+			return (0);
+		i++;
+	}
+	return (1);
 }
