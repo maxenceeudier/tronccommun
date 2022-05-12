@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:35:04 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 14:39:11 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:00:27 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,13 @@ int		is_the_smallest(t_list *lst, int i, int j, int data);
 int		is_the_bigger(t_list *lst, int i, int j, int data);
 int		fast_way_to_smallest(t_list *lst, int i, int j);
 int		fast_way_to_bigger(t_list *lst, int i, int j);
-void    q_sort_a(t_list **lsta, t_list **lstb);
+void	q_sort_a(t_list **lsta, t_list **lstb);
 void	q_sort_b(t_list **lsta, t_list **lstb);
 void	get_tab(t_list *lst, int **tab);
-int	the_smallest_exist(t_list *lst, int x);
-int	fast_way_to_smaller(t_list *lst, int x);
-void    q_sort_bb(t_list **lsta, t_list **lstb);
+int		the_smallest_exist(t_list *lst, int x);
+int		fast_way_to_smaller(t_list *lst, int x);
+void	q_sort_bb(t_list **lsta, t_list **lstb);
+void	get_mid_and_chunck(t_list *lst, int *mid, int *chunk);
+void	get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk);
 
 #endif

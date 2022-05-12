@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:26:25 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 13:45:01 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/12 15:59:54 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	fast_way_to_smaller(t_list *lst, int x)
 void	sort_short_heart(t_list **lsta, t_list **lstb, int x)
 {
 	int		k;
-	
+
 	while (the_smallest_exist(*lsta, x)
 		&& !lst_is_croissant(*lsta))
 	{

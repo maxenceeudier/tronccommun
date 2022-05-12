@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 08:18:25 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 14:58:53 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:01:34 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	main(int ac, char **av)
 		q_sort_a(&lsta, &lstb);
 		q_sort_b(&lsta, &lstb);
 	}
-	//radix(&lsta, &lstb);
 	return (0);
 }
+
 /*
  ***-----affiche les stacks -----***
-
+ radix(&lsta, &lstb);
  t_list *lst_a = lsta;
  while (lst_a)
  {
@@ -55,4 +55,3 @@ int	main(int ac, char **av)
  lst_b = lst_b->next;
  }
  */
-
