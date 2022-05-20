@@ -6,7 +6,7 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 15:52:00 by meudier           #+#    #+#              #
-#    Updated: 2022/05/20 13:32:56 by meudier          ###   ########.fr        #
+#    Updated: 2022/05/20 17:35:42 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc -Wall -Wextra -Werror
 
 NAME = so_long
 
-SRC = main.c
+SRC = main.c utils.c
 
 OBJ = $(SRC:.c=.o)
 
