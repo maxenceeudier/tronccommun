@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meudier <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 15:52:00 by meudier           #+#    #+#              #
-#    Updated: 2022/05/18 16:11:58 by meudier          ###   ########.fr        #
+#    Updated: 2022/05/20 13:32:56 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ all: $(NAME)
 	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) -g3 -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
