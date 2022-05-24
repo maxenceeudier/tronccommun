@@ -6,13 +6,13 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:42:21 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/23 16:07:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/24 13:44:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 100
 #endif
 
 static int	there_is_newline(char *str)

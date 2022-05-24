@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:23:49 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/23 18:40:13 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/24 16:37:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int    count_num_of_data_map(char c, int *nb_of_one, t_data_map *map)
         map->num_of_p++;
     else if (c == 'E')
         map->num_of_e++;
-    else if (c != '0')
+    else if (c != '0' && c != 'N')
         return (0);
     return (1);
 }
@@ -103,7 +103,8 @@ int free_and_close(char *line, int fd)
 {
     if (line)
         free(line);
-    close (fd);
+    if (fd >= 0)
+        close (fd);
     return (0);
 }
 
@@ -157,7 +158,7 @@ int    get_data(t_data_map *map, char **line, int fd, int *i)
             if (!get_others_lines(line, fd))
                 break ;
         if (!line_is_ok(*line, map, *i))
-            return (free_and_close(*line, fd));
+            return (0);
         (*i)++;
     }
     return (1);
@@ -170,8 +171,8 @@ int get_data_map(char **av, t_data_map *map)
     int         fd;
 
     fd =  init_map(map, &i, &line, av[1]);
-    if (!get_data(map, &line, fd, &i))
-        return (0);
+    if (fd == -1 || !get_data(map, &line, fd, &i))
+        return (free_and_close(line, fd));
     if (map->last != i - 1 || map->first != 0 || map->num_of_c < 1
         || map->num_of_e < 1 || map->num_of_p != 1)
         return (free_and_close(line, fd));      
@@ -187,23 +188,24 @@ int    get_map(t_vars *vars, int ac, char **av)
     t_data_map  map;
     char        buffer[BUFFER_SIZE];
 
-    if (!get_data_map(av, &map))
-        return (0);
     fd = open(av[1], O_RDONLY);
-    if (ac != 2 || !is_good_extension(av[1]) || !fd )
+    if (ac != 2 || !is_good_extension(av[1]) || fd == -1
+        || !get_data_map(av, &map))
         return (free_and_close(NULL, fd));
     rtr = read(fd, buffer, BUFFER_SIZE);
     if (rtr == -1)
-        return (0);
+        return (free_and_close(NULL, fd));
     buffer[rtr] = 0;
     vars->map.map = ft_split(buffer, '\n');
     if (!vars->map.map)
-        return (0);
+        return (free_and_close(NULL, fd));
     vars->map.num_col = map.width;
 	vars->map.num_row = map.heigth;
+    vars->map.num_of_c = map.num_of_c;
+    close(fd);
     return (1);
 }
-/*    
+/*
 #include <stdio.h> 
 int main (int ac, char **av)
 {
@@ -212,7 +214,15 @@ int main (int ac, char **av)
 
     i = 0;
     if (!get_map(&vars, ac, av))
+    {
         write (2, "error\n", 6);
+        return (0);
+    }
+        
     while ((vars.map.map)[i])
         printf("%s\n", (vars.map.map)[i++]);
+    i = 0;
+    while ((vars.map.map)[i])
+        free ((vars.map.map)[i++]);
+    free (vars.map.map);
 }*/

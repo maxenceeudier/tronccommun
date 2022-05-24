@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:30:42 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/23 18:18:22 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:00:51 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_map
 	int		num_col;
 	int		num_row;
 	int		size_total;
+	int		num_of_c;
 }	t_map;
 
 typedef struct s_pos
@@ -46,12 +47,16 @@ typedef struct	s_vars
 	t_image	img;
 	t_image	background;
 	t_image obstacle;
+	t_image	key;
+	t_image	door;
+	t_image	fire;
 	t_map	map;
 	t_pos	pos;
 	int		width;
 	int		heigth;
 	int		i;
 	int		j;
+	int		nb_of_mouv;
 }				t_vars;
 
 typedef struct s_data_map
@@ -67,5 +72,8 @@ typedef struct s_data_map
 
 char	**ft_split(char const *s, char c);
 int     get_map(t_vars *vars, int ac, char **av);
+void	free_tab(t_vars *vars);
+int		is_rip(char *str);
+void	print_background(t_vars *vars);
 
 #endif
