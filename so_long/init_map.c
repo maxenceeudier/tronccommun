@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_ps_a.c                                       :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 08:30:38 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 09:25:21 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/25 14:32:12 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/25 15:02:01 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include "get_next_line.h"
+#include "ft.h"
 
-void	pa(t_list **lstb, t_list **lsta)
+int	init_map(t_data_map *map, int *i, char **line, char *file)
 {
-	lst_push(lstb, lsta);
-	write (1, "pa\n", 3);
-}
+	int	fd;
 
-void	ra(t_list **lsta)
-{
-	lst_rotate(lsta);
-	write (1, "ra\n", 3);
-}
-
-void	rra(t_list **lsta)
-{
-	lst_rotate_rev(lsta);
-	write (1, "rra\n", 4);
-}
-
-void	sa(t_list **lsta)
-{
-	lst_swap(lsta);
-	write (1, "sa\n", 3);
+	fd = open (file, O_RDONLY);
+	*i = 0;
+	*line = "first";
+	map->last = 0;
+	map->first = 1;
+	map->num_of_c = 0;
+	map->num_of_p = 0;
+	map->num_of_e = 0;
+	map->width = 0;
+	map->heigth = 0;
+	return (fd);
 }

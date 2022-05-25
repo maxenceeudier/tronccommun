@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_a_b.c                                        :+:      :+:    :+:   */
+/*   rules_ps_a.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 09:19:31 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 09:19:55 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/06 08:30:38 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/17 16:52:12 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-void	rr(t_list **lsta, t_list **lstb)
+void	pa(t_list **lstb, t_list **lsta)
 {
-	lst_rotate(lstb);
-	lst_rotate(lsta);
-	write (1, "rr\n", 3);
+	lst_push(lstb, lsta);
+	write (1, "pa\n", 3);
 }
 
-void	rrr(t_list **lsta, t_list **lstb)
+void	ra(t_list **lsta)
 {
-	lst_rotate_rev(lstb);
+	lst_rotate(lsta);
+	write (1, "ra\n", 3);
+}
+
+void	rra(t_list **lsta)
+{
 	lst_rotate_rev(lsta);
-	write (1, "rrb\n", 4);
+	write (1, "rra\n", 4);
+}
+
+void	sa(t_list **lsta)
+{
+	lst_swap(lsta);
+	write (1, "sa\n", 3);
 }

@@ -6,11 +6,30 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 08:18:25 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 16:01:34 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:23:02 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
+
+void	super_short(t_list **lsta)
+{
+	while (!lst_is_croissant(*lsta))
+	{
+		if ((*lsta)->next && (*lsta)->data > (*lsta)->next->data)
+			sa(lsta);
+		else
+			rra(lsta);
+	}
+}
+
+void	sort_medium_and_big(t_list **lsta, t_list **lstb)
+{
+	q_sort_a(lsta, lstb);
+	q_sort_bb(lsta, lstb);
+	q_sort_a(lsta, lstb);
+	q_sort_b(lsta, lstb);
+}
 
 int	main(int ac, char **av)
 {
@@ -20,21 +39,21 @@ int	main(int ac, char **av)
 
 	lstb = NULL;
 	lsta = init_list(ac, av);
-	len = ft_lstsize(lsta);
-	if (!lsta)
+	if (!lsta || !check_doublon(lsta))
 	{
-		write (2, "Error\n", 6);
+		if (ac > 1)
+			write (2, "Error\n", 6);
+		clear (&lsta, &lstb, NULL);
 		return (0);
 	}
-	if (len <= 10)
+	len = ft_lstsize(lsta);
+	if (len <= 3)
+		super_short(&lsta);
+	else if (len <= 10)
 		sort_short(&lsta, &lstb);
 	else
-	{
-		q_sort_a(&lsta, &lstb);
-		q_sort_bb(&lsta, &lstb);
-		q_sort_a(&lsta, &lstb);
-		q_sort_b(&lsta, &lstb);
-	}
+		sort_medium_and_big(&lsta, &lstb);
+	clear(&lsta, &lstb, NULL);
 	return (0);
 }
 

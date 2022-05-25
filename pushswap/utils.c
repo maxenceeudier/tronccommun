@@ -6,18 +6,20 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:34:59 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 09:32:20 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/18 08:55:38 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int	i;
-	int	nb;
-	int	sign;
+	int			i;
+	long long	nb;
+	int			sign;
 
+	if (!str)
+		return (0);
 	i = 0;
 	nb = 0;
 	sign = 1;
@@ -43,12 +45,16 @@ int	ft_isdigit(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9') && str[i] != '-')
-			return (0);
+	if (!str)
+		return (0);
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	}
+	if (!str[i])
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i])
+		return (0);
 	return (1);
 }
 
@@ -59,7 +65,7 @@ static int	ft_get_size(char const *s, char c)
 
 	count = 0;
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		while (s[i] == c && s[i])
 			i++;
@@ -79,6 +85,8 @@ static char	*ft_get_word(int *index, char *s, char c)
 	int		len;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	len = 0;
 	while (s[*index] == c && s[*index])
 		(*index)++;
@@ -105,6 +113,8 @@ char	**ft_split(char const *s, char c)
 	int		size;
 	char	**tab;
 
+	if (!s)
+		return (NULL);
 	size = ft_get_size(s, c);
 	tab = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!tab)
@@ -114,6 +124,11 @@ char	**ft_split(char const *s, char c)
 	while (i < size)
 	{
 		tab[i] = ft_get_word(&j, (char *)s, c);
+		if (!tab[i])
+		{
+			clear_tab(tab);
+			return (NULL);
+		}
 		i++;
 	}
 	tab[i] = 0;

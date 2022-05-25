@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:39:42 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 10:44:52 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/17 14:38:47 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int	check(t_list *lst)
 	return (1);
 }
 
+int	error(int ac, t_list **lsta, t_list **lstb)
+{
+	clear(lsta, lstb, NULL);
+	if (ac > 1)
+		write (2, "Error\n", 6);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_list	*lsta;
@@ -33,20 +41,15 @@ int	main(int ac, char **av)
 
 	lstb = NULL;
 	lsta = init_list(ac, av);
-	if (!lsta)
-	{
-		write (2, "Error\n", 6);
-		return (0);
-	}
+	if (!lsta || !check_doublon(lsta))
+		return (error(ac, &lsta, &lstb));
 	rules = get_rules();
-	if (!appli_rules(rules, &lsta, &lstb))
-	{
-		write (2, "Error\n", 6);
-		return (0);
-	}
+	if (!rules || !appli_rules(rules, &lsta, &lstb))
+		return (error(ac, &lsta, &lstb));
 	if (check(lsta) && !lstb)
-		write (1, "OK", 2);
+		write (1, "OK\n", 3);
 	else
-		write (1, "KO", 2);
+		write (1, "KO\n", 3);
+	clear(&lsta, &lstb, rules);
 	return (1);
 }

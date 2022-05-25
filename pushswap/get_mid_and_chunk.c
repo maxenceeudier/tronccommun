@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:53:46 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 16:03:26 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:26:26 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	get_len_b(int *temp, int mid, int size)
 	return (len);
 }
 
-void	get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
+int	get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
 {
 	int	size;
 	int	*temp;
@@ -54,7 +54,7 @@ void	get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
 	size = ft_lstsize(lst);
 	temp = (int *)malloc(size * sizeof(int));
 	if (!temp)
-		return ;
+		return (0);
 	i = 0;
 	while (lst)
 	{
@@ -67,9 +67,10 @@ void	get_mid_and_chunck(t_list *lst, int *mid, int *chunk)
 	len = get_len(temp, *mid, size);
 	*chunk += len;
 	free(temp);
+	return (1);
 }
 
-void	get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk)
+int	get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk)
 {
 	int	size;
 	int	*temp;
@@ -79,7 +80,7 @@ void	get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk)
 	size = ft_lstsize(lst);
 	temp = (int *)malloc(size * sizeof(int));
 	if (!temp)
-		return ;
+		return (0);
 	i = 0;
 	while (lst)
 	{
@@ -92,4 +93,5 @@ void	get_mid_and_chunck_b(t_list *lst, int *mid, int *chunk)
 	len = get_len_b(temp, *mid, size);
 	*chunk += len;
 	free(temp);
+	return (1);
 }

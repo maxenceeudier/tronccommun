@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_rules_ck.c                                     :+:      :+:    :+:   */
+/*   get_pos_link.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 08:40:04 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/10 16:50:06 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/25 14:15:03 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/25 16:30:28 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-#define BUFFER_SIZE 100096
+#include "ft.h"
 
-char	**get_rules(void)
+void	get_pos(t_vars *vars)
 {
-	char	**rules;
-	char	buffer[BUFFER_SIZE];
-	int		rtr;
-	int		i;
+	int	i;
 
-	rtr = read (0, buffer, 1);
 	i = 0;
-	while (rtr > 0 && i < BUFFER_SIZE)
+	while (i < vars->map.size_total)
 	{
+		if (vars->map.map[i / vars->map.num_col][i % vars->map.num_col] == 'P')
+		{
+			vars->pos.x = i % vars->map.num_col * vars->ob.img_width;
+			vars->pos.y = i / vars->map.num_col * vars->ob.img_height;
+			break ;
+		}
 		i++;
-		rtr = read (0, buffer + i, 1);
 	}
-	buffer[i] = 0;
-	rules = ft_split(buffer, '\n');
-	return (rules);
 }

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:42:21 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/24 13:44:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/25 14:59:33 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static char	*ft_get_line_and_str(char **str)
 	len = 0;
 	while ((*str)[len] != '\n' && (*str)[len])
 		len++;
-	//if ((*str)[len] == '\n')
 	len++;
 	line = (char *)malloc(sizeof(char) * len + 1);
 	if (!line)
@@ -113,23 +112,3 @@ char	*get_next_line(int fd)
 	free (buffer);
 	return (line);
 }
-
-/* int main()
-   {
-   int     fd;
-   char    *line1;
-   char    *line2;
-   char    *line3;
-
-   fd = open("./text", O_RDONLY);
-   line1 = get_next_line(0);
-   line2 = get_next_line(0);
-//get_next_line(fd);
-//get_next_line(fd);
-// get_next_line2(fd);
-// get_next_line2(fd);
-line3 = get_next_line(0);
-
-printf("%s%s%s",line1,line2,line3);
-return (0);
-}*/

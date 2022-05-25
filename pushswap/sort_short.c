@@ -6,30 +6,11 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 09:26:25 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 15:59:54 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:53:09 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
-
-void	get_tab(t_list *lst, int **tab)
-{
-	int	size;
-	int	i;
-
-	size = ft_lstsize(lst);
-	*tab = (int *)malloc(size * sizeof(int));
-	if (!*tab)
-		return ;
-	i = 0;
-	while (lst)
-	{
-		(*tab)[i] = lst->data;
-		lst = lst->next;
-		i++;
-	}
-	ft_sort(tab, i);
-}
 
 int	the_smallest_exist(t_list *lst, int x)
 {
@@ -73,12 +54,10 @@ void	sort_short_heart(t_list **lsta, t_list **lstb, int x)
 {
 	int		k;
 
-	while (the_smallest_exist(*lsta, x)
+	while (*lsta && the_smallest_exist(*lsta, x)
 		&& !lst_is_croissant(*lsta))
 	{
-		if ((*lsta)->data > (*lsta)->next->data)
-			sa(lsta);
-		else if ((*lsta)->data == x)
+		if ((*lsta)->data == x)
 			pb (lsta, lstb);
 		else
 		{
@@ -114,4 +93,5 @@ void	sort_short(t_list **lsta, t_list **lstb)
 		while (i++ < size)
 			pa(lstb, lsta);
 	}
+	free(tab);
 }

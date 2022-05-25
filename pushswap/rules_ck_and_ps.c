@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 08:28:33 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/12 09:22:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/17 16:50:50 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	t_list	*last;
 
 	last = *lst;
+	if (!last)
+		return ;
 	while (last->next)
 		last = last->next;
 	last->next = new;
@@ -27,7 +29,7 @@ void	lst_push(t_list **lst1, t_list **lst2)
 	t_list	*temp;
 
 	temp = *lst1;
-	if (!*lst2)
+	if (!*lst2 && *lst1)
 	{
 		*lst2 = *lst1;
 		*lst1 = (*lst1)->next;
