@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_lines.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 14:37:38 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/30 08:28:47 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/03 17:21:57 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/31 14:27:26 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
-#include "ft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	get_first_line(t_data_map *map, char **line, int fd)
-{
-	*line = get_next_line(fd);
-	if (!*line)
-		return (free_and_close(NULL, fd));
-	map->width = ft_strlen(*line);
-	return (1);
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
 
-int	get_others_lines(char **line, int fd)
-{
-	char	*temp;
+int	ft_printf(const char *str, ...);
+int	ft_putstr(char *str);
+int	ft_putnbr_fd(int n, int fd);
+int	ft_putnbr_u(unsigned int n);
+int	ft_putchar(int c);
+int	ft_putadrs(void *adrs);
+int	ft_puthexa(unsigned int nb);
+int	ft_puthexa_maj(unsigned int nb);
 
-	temp = *line;
-	*line = get_next_line(fd);
-	free (temp);
-	if (!*line)
-		return (0);
-	return (1);
-}
+#endif

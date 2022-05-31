@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   check_line_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 11:19:31 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/30 12:42:41 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/25 14:36:07 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/30 12:45:38 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
-#include "ft.h"
+#include "../get_next_line/get_next_line.h"
+#include "../ft_printf/ft_printf.h"
+#include "../ft.h"
 
 int	count_num_of_data_map(char c, int *nb_of_one, t_data_map *map)
 {
@@ -24,7 +24,7 @@ int	count_num_of_data_map(char c, int *nb_of_one, t_data_map *map)
 		map->num_of_p++;
 	else if (c == 'E')
 		map->num_of_e++;
-	else if (c != '0')
+	else if (c != '0' && c != 'N')
 	{
 		ft_printf("Error\nThere is a %c in the map\n", c);
 		return (0);

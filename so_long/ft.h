@@ -6,13 +6,13 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 17:30:42 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/25 17:07:19 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/30 14:27:19 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_H
 # define FR_H
-# define SPEED 30
+# define SPEED 10
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -60,6 +60,7 @@ typedef struct s_vars
 	int		i;
 	int		j;
 	int		nb_of_mouv;
+	int		succes;
 }	t_vars;
 
 typedef struct s_data_map

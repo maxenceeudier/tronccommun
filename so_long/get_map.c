@@ -6,11 +6,12 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 13:23:49 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/25 14:58:53 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/30 12:56:28 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line/get_next_line.h"
+#include "ft_printf/ft_printf.h"
 #include "ft.h"
 #define BUFFER_SIZE 10000
 
@@ -51,12 +52,27 @@ int	get_data_map(char **av, t_data_map *map)
 	fd = init_map(map, &i, &line, av[1]);
 	if (fd == -1 || !get_data(map, &line, fd, &i))
 		return (free_and_close(line, fd));
-	if (map->last != i - 1 || map->first != 0 || map->num_of_c < 1
-		|| map->num_of_e < 1 || map->num_of_p != 1)
+	if (map->last != i - 1 || map->first != 0)
+	{
+		ft_printf("Error\nthe border of the map is not close\n");
 		return (free_and_close(line, fd));
+	}
+	if (map->num_of_c < 1
+		|| map->num_of_e < 1 || map->num_of_p != 1)
+	{
+		ft_printf("Error\nIt's missing a 'P', a 'C' or a 'E' in the map\n");
+		return (free_and_close(line, fd));
+	}
 	map->heigth = i;
 	free_and_close(line, fd);
 	return (1);
+}
+
+void	init_vars_map(t_vars *vars, t_data_map map)
+{
+	vars->map.num_col = map.width;
+	vars->map.num_row = map.heigth;
+	vars->map.num_of_c = map.num_of_c;
 }
 
 int	get_map(t_vars *vars, int ac, char **av)
@@ -69,7 +85,13 @@ int	get_map(t_vars *vars, int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (ac != 2 || !is_good_extension(av[1]) || fd == -1
 		|| !get_data_map(av, &map))
+	{
+		if (ac != 2)
+			ft_printf("Error\nThe number of arg must be 2\n");
+		else
+			ft_printf("Error\nImpossible to open the file\n");
 		return (free_and_close(NULL, fd));
+	}	
 	rtr = read(fd, buffer, BUFFER_SIZE);
 	if (rtr == -1)
 		return (free_and_close(NULL, fd));
@@ -77,11 +99,7 @@ int	get_map(t_vars *vars, int ac, char **av)
 	vars->map.map = ft_split(buffer, '\n');
 	if (!vars->map.map)
 		return (free_and_close(NULL, fd));
-	if (map.width > 40 || map.heigth > 21)
-		return (free_and_close(NULL, fd));
-	vars->map.num_col = map.width;
-	vars->map.num_row = map.heigth;
-	vars->map.num_of_c = map.num_of_c;
+	init_vars_map(vars, map);
 	close(fd);
 	return (1);
 }

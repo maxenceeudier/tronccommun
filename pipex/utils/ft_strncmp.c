@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 14:32:12 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/30 12:33:40 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/02 15:40:07 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/31 14:42:01 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
-#include "ft.h"
+#include "../pipex.h"
 
-int	init_map(t_data_map *map, int *i, char **line, char *file)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	fd;
+	size_t	i;
 
-	fd = open (file, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_printf("Error\ni can't open the file");
+	if (!n || !s1 || !s2)
 		return (0);
-	}
-	*i = 0;
-	*line = "first";
-	map->last = 0;
-	map->first = 1;
-	map->num_of_c = 0;
-	map->num_of_p = 0;
-	map->num_of_e = 0;
-	map->width = 0;
-	map->heigth = 0;
-	return (fd);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && i < n - 1)
+		i++;
+	return (s1[i] - s2[i]);
 }

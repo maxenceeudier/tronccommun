@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_image.c                                      :+:      :+:    :+:   */
+/*   print_image_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 11:08:50 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/30 11:39:23 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/25 14:02:02 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/30 11:31:47 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../ft.h"
 
 void	create_img(t_vars *vars)
 {
@@ -32,6 +32,9 @@ void	create_img(t_vars *vars)
 	i = &vars->d.img_width;
 	j = &vars->d.img_height;
 	vars->d.img = mlx_xpm_file_to_image(vars->mlx, vars->d.img_path, i, j);
+	i = &vars->f.img_width;
+	j = &vars->f.img_height;
+	vars->f.img = mlx_xpm_file_to_image(vars->mlx, vars->f.img_path, i, j);
 }
 
 void	print_background(t_vars *vars)
@@ -90,6 +93,8 @@ void	print_decord(t_vars *vars)
 			print_assets_whith_bg(vars, i, x, vars->d.img);
 		else if ((vars->map.map)[i / x][i % x] == 'P')
 			print_assets_whith_bg(vars, i, x, vars->img.img);
+		else if ((vars->map.map)[i / x][i % x] == 'N')
+			print_assets_whith_bg(vars, i, x, vars->f.img);
 		else if ((vars->map.map)[i / x][i % x] == '0')
 			print_assets(vars, i, x, vars->bg.img);
 	}

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_fire.c                                       :+:      :+:    :+:   */
+/*   print_fire_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 17:02:12 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/25 17:24:58 by meudier          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:31:43 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "../ft.h"
 
 void	mlx_put_img_to_win(t_vars *vars, int i, int x, int add)
 {
@@ -24,26 +24,31 @@ void	mlx_put_img_to_win(t_vars *vars, int i, int x, int add)
 
 void	put_fire(int i, int x, int *j, t_vars *vars)
 {
-	if (*j >= 0 && *j <= SPEED * 4)
-		mlx_put_img_to_win(vars, i, x, 0);
-	else if (*j > SPEED * 4
+	static int	clear = 0;
+
+	clear ++;
+	if (*j > SPEED * 4
 		&& *j <= SPEED * 8 && (vars->map.map)[i / x + 1][i % x] == '0')
 	{
 		(vars->map.map)[i / x][i % x] = '0';
 		(vars->map.map)[i / x + 1][i % x] = 'N';
-		mlx_put_img_to_win(vars, i, x, 1);
+		if (!clear)
+			mlx_clear_window(vars->mlx, vars->win);
+		clear++;
 	}
 	else if (*j > SPEED * 8
 		&& *j <= SPEED * 12 && (vars->map.map)[i / x - 1][i % x] == '0')
 	{
 		(vars->map.map)[i / x][i % x] = '0';
 		(vars->map.map)[i / x - 1][i % x] = 'N';
-		mlx_put_img_to_win(vars, i, x, -1);
+		if (clear == 1)
+			mlx_clear_window(vars->mlx, vars->win);
 	}
-	else if (*j <= SPEED * 12)
-		mlx_put_img_to_win(vars, i, x, 0);
 	else if (*j > SPEED * 12)
+	{
 		*j = 0;
+		clear = 0;
+	}
 }
 
 void	print_fire(t_vars *vars)

@@ -1,46 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_extension.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 14:33:54 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/30 12:36:11 by meudier          ###   ########.fr       */
+/*   Created: 2022/05/02 16:02:07 by meudier           #+#    #+#             */
+/*   Updated: 2022/05/31 15:08:59 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
-#include "ft.h"
+#include "../pipex.h"
 
-int	extension_is_good(char *str)
+char	*ft_strdup(const char *s1)
 {
-	char	*ext;
+	char	*dup;
 	int		i;
 
+	if (!s1)
+		return (NULL);
+	dup = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!dup)
+		return (NULL);
 	i = 0;
-	ext = ".ber";
-	while (str[i] == ext[i])
+	while (s1[i])
 	{
-		if (ext[i] == 0)
-			return (1);
+		dup[i] = s1[i];
 		i++;
 	}
-	return (0);
-}
-
-int	is_good_extension(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (extension_is_good(str + i))
-			return (1);
-		i++;
-	}
-	printf("Error\nthe extention of the map is wrong\n");
-	return (0);
+	dup[i] = 0;
+	return (dup);
 }
