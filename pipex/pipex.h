@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:37:46 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 14:34:18 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/02 16:45:06 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ int		create_process(t_fds *fd, t_exec *vars);
 void	close_all_fd(int num_of_process, t_fds *fd);
 int		get_file_fd(t_fds *files, char **av, int ac);
 int		**get_pipes(int num_of_process);
-void	dup_fd(int i, int num_of_process, t_fds *fd);
+int		dup_fd(int i, int num_of_process, t_fds *fd);
 int		get_path_and_arg(t_exec *vars, int i);
 int		init_fd_pid(int num_of_process, t_fds *fd, t_exec *vars, int **pids);
-int		no_leaks(int *pids, t_exec *vars);
 
 #endif

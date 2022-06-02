@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 14:56:07 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/02 16:40:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	get_path_and_arg(t_exec *vars, int i)
 	if (access(vars->cmd_path, F_OK | X_OK) == -1)
 	{
 		ft_printf("The cmd %s do not exist\n", vars->cmd_path);
-		free(vars->cmd);
+		
+		free_tab(vars->cmd);
 		return (0);
 	}
 	vars->arg = vars->cmd;
