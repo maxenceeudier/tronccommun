@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tab.c                                         :+:      :+:    :+:   */
+/*   close_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 14:09:39 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 09:52:04 by meudier          ###   ########.fr       */
+/*   Created: 2022/06/01 14:37:30 by meudier           #+#    #+#             */
+/*   Updated: 2022/06/02 14:09:06 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	free_tab(char **tab)
+void	close_all_fd(int num_of_process, t_fds *fd)
 {
-	int	i;
+	int	j;
 
-	if (!tab)
-		return (0);
-	i = 0;
-	while (tab[i])
+	close(fd->in_file);
+	close(fd->out_file);
+	j = 0;
+	while (j < num_of_process + 1)
 	{
-		free (tab[i]);
-		i++;
-	}	
-	free(tab);
-	return (0);
-}
-
-int	free_tab_int(int **tab, int size)
-{
-	int	i;
-
-	if (!tab)
-		return (0);
-	i = 0;
-	while (i < size)
-		free (tab[i++]);
-	free(tab);
-	return (0);
+		close(fd->pipes[j][0]);
+		close(fd->pipes[j][1]);
+		j++;
+	}
 }

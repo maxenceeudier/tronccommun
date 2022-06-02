@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_all.c                                        :+:      :+:    :+:   */
+/*   dup_fd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 14:37:30 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/01 17:24:54 by meudier          ###   ########.fr       */
+/*   Created: 2022/06/02 09:57:17 by meudier           #+#    #+#             */
+/*   Updated: 2022/06/02 14:15:11 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-void    close_all_fd(int **pipes, int num_of_process, int in_file, int out_file)
-{
-    int j;
+#include "../pipex.h"
 
-    close(in_file);
-    close(out_file);
-    j = 0;
-    while (j < num_of_process + 1)
-    {
-        close(pipes[j][0]);
-        close(pipes[j][1]);
-        j++;
-    }
+void	dup_fd(int i, int num_of_process, t_fds *fd)
+{
+	if (i == 0)
+		dup2(fd->in_file, STDIN_FILENO);
+	else
+		dup2(fd->pipes[i + 1][0], STDIN_FILENO);
+	if (i == num_of_process - 1)
+		dup2(fd->out_file, STDOUT_FILENO);
+	else
+		dup2(fd->pipes[i + 2][1], STDOUT_FILENO);
 }

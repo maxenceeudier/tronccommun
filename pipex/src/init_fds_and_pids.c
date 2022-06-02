@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tab.c                                         :+:      :+:    :+:   */
+/*   init_fds_and_pids.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 14:09:39 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 09:52:04 by meudier          ###   ########.fr       */
+/*   Created: 2022/06/02 11:17:00 by meudier           #+#    #+#             */
+/*   Updated: 2022/06/02 14:56:26 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	free_tab(char **tab)
+int	init_fd_pid(int num_of_process, t_fds *fd, t_exec *vars, int **pids)
 {
-	int	i;
-
-	if (!tab)
-		return (0);
-	i = 0;
-	while (tab[i])
+	if (!get_file_fd(fd, vars->av, num_of_process + 3))
 	{
-		free (tab[i]);
-		i++;
-	}	
-	free(tab);
-	return (0);
-}
-
-int	free_tab_int(int **tab, int size)
-{
-	int	i;
-
-	if (!tab)
+		ft_printf("Error to open file");
 		return (0);
-	i = 0;
-	while (i < size)
-		free (tab[i++]);
-	free(tab);
-	return (0);
+	}
+	*pids = (int *)calloc(sizeof(int), num_of_process + 1);
+	if (!*pids)
+	{
+		ft_printf("Error pids");
+		return (0);
+	}
+	return (1);
 }
