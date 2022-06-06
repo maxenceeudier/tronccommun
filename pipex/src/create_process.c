@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:34:48 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 16:44:32 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/06 16:21:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	no_leaks(int *pids, t_exec *vars, t_fds *fd)
 {
 	free(pids);
 	free_tab_int(fd->pipes, vars->num_of_process + 1);
-	free(vars->cmd_path);
+	if (vars->cmd_path)
+		free(vars->cmd_path);
 	return (0);
 }
 
@@ -30,9 +31,11 @@ void	exec_cmd(t_exec *vars, int *pids, t_fds *fd, int i)
 		exit(no_leaks(pids, vars, fd));
 	}
 	close_all_fd(vars->num_of_process, fd);
-	free(pids);
 	execve(vars->cmd_path, vars->arg, NULL);
-	ft_printf("Eroor exec\n");
+	write_error(vars->cmd[0]);
+	free_tab(vars->cmd);
+	free(pids);
+	free_tab_int(fd->pipes, vars->num_of_process + 1);
 	exit(0);
 }
 

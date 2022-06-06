@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 11:17:00 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 14:56:26 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/03 11:46:58 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 int	init_fd_pid(int num_of_process, t_fds *fd, t_exec *vars, int **pids)
 {
 	if (!get_file_fd(fd, vars->av, num_of_process + 3))
-	{
-		ft_printf("Error to open file");
 		return (0);
-	}
 	*pids = (int *)calloc(sizeof(int), num_of_process + 1);
 	if (!*pids)
 	{
-		ft_printf("Error pids");
+		ft_printf("Error fork()");
 		return (0);
 	}
 	return (1);

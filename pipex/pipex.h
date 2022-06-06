@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:37:46 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 16:45:06 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/06 15:21:17 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*get_next_line(int fd);
 int		ft_printf(const char *str, ...);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_bs(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 int		free_tab(char **tab);
 int		free_tab_int(int **tab, int size);
@@ -56,5 +57,6 @@ int		**get_pipes(int num_of_process);
 int		dup_fd(int i, int num_of_process, t_fds *fd);
 int		get_path_and_arg(t_exec *vars, int i);
 int		init_fd_pid(int num_of_process, t_fds *fd, t_exec *vars, int **pids);
+void	write_error(char *cmd);
 
 #endif

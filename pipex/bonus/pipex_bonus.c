@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 14:59:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/02 15:00:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/03 11:44:28 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int	main(int ac, char **av, char **env)
 		return (free_tab_int(fd.pipes, vars.num_of_process + 1));
 	}
 	if (!create_process(&fd, &vars))
-	{
-		ft_printf("\nError of execution of process\n");
 		return (free_tab_int(fd.pipes, vars.num_of_process + 1));
-	}
 	free_tab_int(fd.pipes, vars.num_of_process + 1);
 	return (0);
 }
