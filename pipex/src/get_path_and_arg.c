@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/06 17:04:03 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/07 07:14:24 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void	write_error(char *cmd)
 	char	*temp1;
 	char	*temp2;
 
-	temp1 = ft_strjoin("pipex: command not find: ", cmd);
+	temp1 = ft_strjoin("pipex: command not found: ", cmd);
 	temp2 = ft_strjoin(temp1, "\n");
 	free(temp1);
-	write (2, temp2, 28 + ft_strlen(cmd));
+	write (2, temp2, 29 + ft_strlen(cmd));
 	free(temp2);
 }
 
@@ -84,7 +84,7 @@ int	get_path_and_arg(t_exec *vars, int i)
 {
 	if (!get_path(vars, i))
 	{
-		if (i)
+		if (i || (!i && fd->in_file >= 0))
 			write_error(vars->cmd[0]);
 		free_tab(vars->cmd);
 		return (0);

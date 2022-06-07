@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 14:34:48 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/06 16:21:30 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/07 06:51:05 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	exec_cmd(t_exec *vars, int *pids, t_fds *fd, int i)
 	if (!dup_fd(i, vars->num_of_process, fd))
 	{
 		free_tab(vars->arg);
+		vars->cmd_path = NULL;
 		exit(no_leaks(pids, vars, fd));
 	}
 	close_all_fd(vars->num_of_process, fd);
