@@ -6,20 +6,21 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 09:24:50 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/08 09:30:01 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/09 15:25:50 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void    free_tab(void **tab)
+int	free_tab(void **tab)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(tab[i])
-    {
-        free(tab[i++]);
-    }
-    free(tab);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i++]);
+	}
+	free(tab);
+	return (0);
 }

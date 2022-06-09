@@ -2,7 +2,8 @@ CC = gcc -g -Wall -Wextra -Werror -pthread
 
 NAME = philo
 
-SRC = src/philo.c utils/ft_atoi.c utils/free_tab.c
+SRC = src/philo.c utils/ft_atoi.c utils/free_tab.c src/time.c \
+	src/get_all_data.c src/routine.c src/print.c src/thread.c
 
 OBJ = $(SRC:.c=.o)
 
