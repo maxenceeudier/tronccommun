@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:05:17 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/09 16:17:57 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/10 16:41:02 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	main(int ac, char **av)
 	data.print = &print;
 	get_data(&data, ac, av);
 	if ((ac != 5 && ac != 6))
-		return (error_msg("wrong num og args\n"));
-	if (data.num_of_philos < 2)
+		return (error_msg("wrong num of args"));
+	if (data.num_of_philos < 1)
 		return (error_msg("the philosophers must be two to eat"));
 	pthread_mutex_init(data.print, NULL);
 	get_philos_and_forks(&philos, &forks, &data);
-	create_thread(philos, &data);
-	join_tread(philos, &data, forks);
+	create_thread(philos, &data, &data.nurse);
+	join_tread(philos, &data, forks, data.nurse);
 	pthread_mutex_destroy(data.print);
 	free_tab((void **)philos);
 	free(forks);

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:17:28 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/09 16:19:34 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/10 15:54:42 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	t_state			state;
 	t_time			time;
 	int				num_of_meal;
+	int				nb_of_meal;
 	int				nb;
 	pthread_t		thread;
 	pthread_mutex_t	*print;
@@ -50,21 +51,29 @@ typedef struct s_data
 	char			**av;
 	int				ac;
 	int				num_of_philos;
+	pthread_t		nurse;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	**forks;
 }	t_data;
+
+typedef struct s_check
+{
+	t_philo	**philos;
+}	t_check;
 
 int		free_tab(void **tab);
 int		ft_atoi(const char *str);
 int		get_timestamp(t_philo *philo);
 int		timestamp(void);
-void	wait(int time, t_philo *philo);
+int		wait(int time, t_philo *philo);
 int		get_philos_and_forks(t_philo ***philos, \
 pthread_mutex_t **forks, t_data *data);
 void	*routine(void *arg);
 int		print_msg(t_philo *philo, char *str, int state);
-int		create_thread(t_philo **philos, t_data *data);
-int		join_tread(t_philo **philos, t_data *data, pthread_mutex_t	*forks);
+int		create_thread(t_philo **philos, t_data *data, pthread_t *nurse);
+int		join_tread(t_philo **philos, t_data *data, \
+pthread_mutex_t	*forks, pthread_t nurse);
 int		error_msg(char *str);
+void	*check(void *arg);
 
 #endif

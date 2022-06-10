@@ -1,9 +1,10 @@
-CC = gcc -g -Wall -Wextra -Werror -pthread
+CC = gcc -Wall -Wextra -Werror -pthread -g
 
 NAME = philo
 
 SRC = src/philo.c utils/ft_atoi.c utils/free_tab.c src/time.c \
-	src/get_all_data.c src/routine.c src/print.c src/thread.c
+	src/get_all_data.c src/routine.c src/print.c src/thread.c \
+	src/check.c
 
 OBJ = $(SRC:.c=.o)
 

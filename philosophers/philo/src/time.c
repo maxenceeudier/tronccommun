@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:30:36 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/09 15:38:36 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/10 15:49:29 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	timestamp(void)
 	return ((int)time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	wait(int time, t_philo *philo)
+int	wait(int time, t_philo *philo)
 {
 	int	i;
 
@@ -42,7 +42,8 @@ void	wait(int time, t_philo *philo)
 	while (!*philo->state.die)
 	{
 		if (timestamp() - i >= time)
-			break ;
-		usleep(50);
+			return (1);
+		usleep(100);
 	}
+	return (1);
 }
