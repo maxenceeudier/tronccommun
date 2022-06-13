@@ -6,42 +6,42 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:17:29 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/10 16:11:44 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/13 16:20:32 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	create_thread(t_philo **philos, t_data *data, pthread_t *nurse)
+int	create_thread(t_philo_data *philo_data, pthread_t *checker)
 {
 	int			i;
-	t_check		tab;
 
-	tab.philos = philos;
 	i = 0;
-	pthread_create(nurse, NULL, &check, &tab);
-	while (i < data->num_of_philos)
+	pthread_create(checker, NULL, &check, philo_data->philos);
+	while (i < philo_data->nb)
 	{
-		if (pthread_create(&(philos[i]->thread), NULL, &routine, philos[i]))
+		if (pthread_create(&(philo_data->philos[i].thread), \
+		NULL, &routine, &philo_data->philos[i]))
 			return (error_msg("failed to create thread"));
 		i++;
 	}
 	return (1);
 }
 
-int	join_tread(t_philo **philos, t_data *data, \
-pthread_mutex_t	*forks, pthread_t nurse)
+int	join_tread(t_philo_data *philo_data, pthread_t checker)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->num_of_philos)
+	while (i < philo_data->nb)
 	{
-		if (pthread_join(philos[i]->thread, NULL))
+		if (pthread_join(philo_data->philos[i].thread, NULL))
 			return (0);
-		pthread_mutex_destroy(forks + i);
 		i++;
 	}
-	pthread_join(nurse, NULL);
+	pthread_join(checker, NULL);
+	i = 0;
+	while (i < philo_data->nb)
+		pthread_mutex_destroy(philo_data->forks + i++);
 	return (1);
 }

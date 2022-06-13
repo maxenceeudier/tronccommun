@@ -6,46 +6,66 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:05:17 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/10 16:41:02 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/13 16:18:18 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	get_data(t_data *data, int ac, char **av)
+void	get_data(t_philo_data *philo_data, int ac, char **av)
 {
-	data->av = av;
-	data->ac = ac;
-	data->num_of_philos = ft_atoi(av[1]);
+	if (ac == 6)
+		philo_data->nb_of_meal = (int)ft_atoi(av[5]);
+	else
+		philo_data->nb_of_meal = 0;
+	philo_data->die = 0;
+	philo_data->nb = ft_atoi(av[1]);
+	gettimeofday(&philo_data->time.start, NULL);
+	philo_data->time.eat = (int)ft_atoi(av[3]);
+	philo_data->time.sleep = (int)ft_atoi(av[4]);
+	philo_data->time.die = (int)ft_atoi(av[2]);
 }
 
 int	error_msg(char *str)
 {
-	printf("Error : %s\n", str);
-	return (0);
+	write (2, str, 19);
+	return (1);
+}
+
+int	check_error(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
+	{
+		if (ft_atoi(av[i]) < 0 || !ft_isdigit(av[i]))
+			return (0);
+		if (i == 1 && ft_atoi(av[i]) == 0)
+			return (0);
+		if (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < INT_MIN)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	main(int ac, char **av)
 {
-	t_philo			**philos;
-	t_data			data;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
-	int				die;
+	t_philo_data	philo_data;
+	pthread_t		checker;
 
-	data.die = &die;
-	data.print = &print;
-	get_data(&data, ac, av);
-	if ((ac != 5 && ac != 6))
-		return (error_msg("wrong num of args"));
-	if (data.num_of_philos < 1)
-		return (error_msg("the philosophers must be two to eat"));
-	pthread_mutex_init(data.print, NULL);
-	get_philos_and_forks(&philos, &forks, &data);
-	create_thread(philos, &data, &data.nurse);
-	join_tread(philos, &data, forks, data.nurse);
-	pthread_mutex_destroy(data.print);
-	free_tab((void **)philos);
-	free(forks);
+	if ((ac != 5 && ac != 6) || !check_error(ac, av))
+		return (error_msg("Error: wrong args.\n"));
+	pthread_mutex_init(&philo_data.print, NULL);
+	pthread_mutex_init(&philo_data.check_meal, NULL);
+	get_data(&philo_data, ac, av);
+	get_philos_and_forks(&philo_data);
+	create_thread(&philo_data, &checker);
+	join_tread(&philo_data, checker);
+	pthread_mutex_destroy(&philo_data.print);
+	pthread_mutex_destroy(&philo_data.check_meal);
+	free(philo_data.philos);
+	free(philo_data.forks);
 	return (0);
 }

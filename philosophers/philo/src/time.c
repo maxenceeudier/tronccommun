@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:30:36 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/10 15:49:29 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/13 16:24:26 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	get_timestamp(t_philo *philo)
 	m = 1000;
 	gettimeofday(&time, NULL);
 	now = (int)(time.tv_sec * m + time.tv_usec / m);
-	start = (int)(philo->time.start.tv_sec * m + philo->time.start.tv_usec / m);
+	start = (int)(philo->philo_data->time.start.tv_sec * m + \
+	philo->philo_data->time.start.tv_usec / m);
 	return (now - start);
 }
 
@@ -39,7 +40,7 @@ int	wait(int time, t_philo *philo)
 	int	i;
 
 	i = timestamp();
-	while (!*philo->state.die)
+	while (!philo->philo_data->die)
 	{
 		if (timestamp() - i >= time)
 			return (1);
