@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
+#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 09:36:17 by meudier           #+#    #+#              #
-#    Updated: 2022/06/28 07:23:25 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/06/28 12:46:04 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = minishell
 
 SRC = utils/ft_strjoin.c utils/ft_split.c main.c \
 	utils/ft_strdup.c utils/ft_strlen.c utils/ft_strcmp.c \
-	utils/ft_split_lexer.c
+	utils/ft_split_lexer.c get_pipe.c
 	
 OBJ = $(SRC:.c=.o)
 
