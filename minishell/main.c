@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:55:05 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/27 16:22:40 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/28 08:21:06 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ t_lexer	*lexer(char *line)
 
 	i = 0;
 	lst = NULL;
-	words = ft_split(line, ' ');
+	words = ft_split_lexer(line);
 	while (words[i])
 	{
-		if (strcmp(words[i], "|") == 0)
+		if (ft_strcmp(words[i], "|") == 0)
 			push(&lst, words[i], PIPE);
-		else if (strcmp(words[i], "<") == 0)
+		else if (ft_strcmp(words[i], "<") == 0)
 			push(&lst, words[i], REDIR_IN);
-		else if (strcmp(words[i], ">") == 0)
+		else if (ft_strcmp(words[i], ">") == 0)
 			push(&lst, words[i], REDIR_IN);
-		else if (strcmp(words[i], ">>") == 0)
+		else if (ft_strcmp(words[i], ">>") == 0)
 			push(&lst, words[i], REDIR_OUT_APPEND);
-		else if (strcmp(words[i], "<<") == 0)
+		else if (ft_strcmp(words[i], "<<") == 0)
 			push(&lst, words[i], HERDOC);
 		else
 			push(&lst, words[i], WRD);
@@ -111,6 +111,6 @@ int	main()
 		}
 		free(line);
 	}
-	rl_clear_history();
+	clear_history();
 	return (0);
 }	
