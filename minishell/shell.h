@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:32:02 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/28 13:05:53 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:21:18 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,17 @@ typedef struct s_lexer
     struct s_lexer  *next;
 }   t_lexer;
 
+typedef struct s_in
+{
+    int stdin;
+    struct s_in *next;
+}   t_in;
+
 typedef struct s_parser
 {
     char            *cmd;
     char            **arg;
-    int             stdin;
+    t_in             *stdin;
     int             stdout;
     struct s_parser  *prev;
     struct s_parser  *next;
@@ -59,5 +65,23 @@ int     ft_strcmp(const char *s1, const char *s2);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split_lexer(char const *s);
 int	    **get_pipes(t_lexer *lexer, int *num_of_process);
+
+void	close_std(t_parser *parser);
+void	close_pipes(int **pipes, int num_of_process);
+
+t_lexer	*lexer(char *line);
+int	    get_num_of_arg(t_lexer *lexer);
+void	push_lexer(t_lexer **lst, char *word, int TYPE);
+void	lst_clear_lexer(t_lexer *lexer);
+
+void	push_in(t_in **stdin, int data);
+void	init_parser(t_parser *new);
+void	push_parser(t_parser **parser, t_lexer **lexer, int in, int out, int **pipes, int num_of_process);
+t_parser	*parser(t_lexer *lexer, int **pipes, int num_of_process);
+void	lst_clear_parser(t_parser *parser);
+
+int get_num_of_process(t_lexer *lexer);
+int	**get_pipes(t_lexer *lexer, int *num_of_process);
+int	is_not_a_pipe(int fd, int **pipes, int num_of_process);
 
 #endif

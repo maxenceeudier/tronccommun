@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
+#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 09:36:17 by meudier           #+#    #+#              #
-#    Updated: 2022/06/28 12:46:04 by meudier          ###   ########.fr        #
+#    Updated: 2022/06/29 18:22:11 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ CC = gcc -Wall -Wextra -Werror -g
 
 NAME = minishell
 
-SRC = utils/ft_strjoin.c utils/ft_split.c main.c \
+SRC = utils/ft_strjoin.c utils/ft_split.c src/main.c \
 	utils/ft_strdup.c utils/ft_strlen.c utils/ft_strcmp.c \
-	utils/ft_split_lexer.c get_pipe.c
+	utils/ft_split_lexer.c src/pipe.c src/parser.c src/lexer.c \
+	src/close.c
 	
 OBJ = $(SRC:.c=.o)
 

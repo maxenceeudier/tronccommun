@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pipe.c                                         :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 12:39:27 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/28 15:26:42 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:14:03 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "../shell.h"
 
 int get_num_of_process(t_lexer *lexer)
 {
@@ -34,7 +34,7 @@ int	**get_pipes(t_lexer *lexer, int *num_of_process)
 	int	**pipes;
     
     *num_of_process = get_num_of_process(lexer);
-	pipes = (int **)calloc(sizeof(int *), (*num_of_process));
+	pipes = (int **)malloc(sizeof(int *) * (*num_of_process));
 	if (!pipes || *num_of_process == 1)
 		return (0);
 	i = 0;
@@ -53,4 +53,18 @@ int	**get_pipes(t_lexer *lexer, int *num_of_process)
 		i++;
 	}
 	return (pipes);
+}
+
+int	is_not_a_pipe(int fd, int **pipes, int num_of_process)
+{
+	int	i;
+
+	i = 0;
+	while (pipes && i < num_of_process)
+	{
+		if (fd == pipes[i][0] || fd == pipes[i][1])
+			return (0);
+		i++;
+	}
+	return (1);
 }
