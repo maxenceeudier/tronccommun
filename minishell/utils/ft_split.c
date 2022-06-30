@@ -58,7 +58,7 @@ static char	*ft_get_word(int *index, char *s, char c)
 	return (word);
 }
 
-static char	**clear_tab(char ***tab)
+static char	**clear_arr(char ***tab)
 {
 	int		i;
 
@@ -88,7 +88,7 @@ char	**ft_split(char const *s, char c)
 	{
 		tab[i] = ft_get_word(&j, (char *)s, c);
 		if (!tab[i])
-			return (clear_tab(&tab));
+			return (clear_arr(&tab));
 		i++;
 	}
 	tab[i] = 0;

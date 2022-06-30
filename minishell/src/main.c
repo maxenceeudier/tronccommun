@@ -73,22 +73,22 @@ int	main()
 }	
 
 /****** print lexer *******/
-			/*while (lst_lexer)
-			{
-				char *type;
-				if (lst_lexer->type == 0)
-					type = "PIPE";
-				else if (lst_lexer->type == 1)
-					type = "REDIR_OUT";
-				else if (lst_lexer->type == 2)
-				type = "REDIR_IN";
-				else if (lst_lexer->type == 3)
-					type = "REDIR_OUT_APPEND";
-				else if (lst_lexer->type == 4)
-					type = "HERDOC";
-				else if (lst_lexer->type == 5)
-					type = "WRD";
-				printf("%s, type %s\n", lst_lexer->data, type);
+/*while (lst_lexer)
+{
+	char *type;
+	if (lst_lexer->type == 0)
+		type = "PIPE";
+	else if (lst_lexer->type == 1)
+		type = "REDIR_OUT";
+	else if (lst_lexer->type == 2)
+	type = "REDIR_IN";
+	else if (lst_lexer->type == 3)
+		type = "REDIR_OUT_APPEND";
+	else if (lst_lexer->type == 4)
+		type = "HERDOC";
+	else if (lst_lexer->type == 5)
+		type = "WRD";
+	printf("%s, type %s\n", lst_lexer->data, type);
 
-				lst_lexer = lst_lexer->next;
-			}*/
+	lst_lexer = lst_lexer->next;
+}*/
