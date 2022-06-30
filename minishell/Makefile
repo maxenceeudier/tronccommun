@@ -16,8 +16,8 @@ NAME = minishell
 
 SRC = utils/ft_strjoin.c utils/ft_split.c src/main.c \
 	utils/ft_strdup.c utils/ft_strlen.c utils/ft_strcmp.c \
-	utils/ft_split_lexer.c src/pipe.c src/parser.c src/lexer.c \
-	src/close.c
+	src/ft_split_lexer.c src/pipe.c src/parser.c src/lexer.c \
+	src/close.c utils/ft_calloc.c src/cpy.c
 	
 OBJ = $(SRC:.c=.o)
 

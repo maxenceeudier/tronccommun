@@ -33,19 +33,30 @@ void	close_std(t_parser *parser)
 	}
 }
 
-void	close_pipes(int **pipes, int num_of_process)
+int	free_tab_int(int **tab, int size)
+{
+	int	i;
+
+	if (!tab)
+		return (0);
+	i = 0;
+	while (i < size)
+		free (tab[i++]);
+	free(tab);
+	return (0);
+}
+
+void	close_pipes(t_pipe_info *pipe_info)
 {
 	int	i;
 
 	i = 0;
-	printf("pipes: ");
-	while (pipes && i < num_of_process)
+	while (pipe_info->pipes && i < pipe_info->num_of_process)
 	{
-		printf("%d, %d\n", pipes[i][0], pipes[i][1]);
-		close(pipes[i][0]);
-		close(pipes[i][1]);
-		free(pipes[i]);
+		close(pipe_info->pipes[i][0]);
+		close(pipe_info->pipes[i][1]);
+		free(pipe_info->pipes[i]);
 		i++;
 	}
-	free(pipes);
+	free(pipe_info->pipes);
 }

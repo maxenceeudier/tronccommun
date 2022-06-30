@@ -37,6 +37,7 @@ t_lexer	*lexer(char *line)
 			push_lexer(&lst, words[i], WRD);
 		i++;
 	}
+	clear_tab(words);
 	return (lst);
 }
 
@@ -60,10 +61,10 @@ void	push_lexer(t_lexer **lst, char *word, int TYPE)
 	t_lexer *new;
 	t_lexer	*last;
 	
-	new = (t_lexer *)malloc(sizeof(t_lexer *) * 2 + sizeof(char *) + sizeof(int));
+	new = (t_lexer *)malloc(sizeof(t_lexer));
 	if (!new)
-		return ;
-	new->data = word;
+		exit (1);
+	new->data = cpy(word);
 	new->type = TYPE;
 	new->prev = NULL;
 	new->next = NULL;
@@ -85,13 +86,17 @@ void	push_lexer(t_lexer **lst, char *word, int TYPE)
 void	lst_clear_lexer(t_lexer *lexer)
 {
 	t_lexer *temp;
+	t_lexer	*last;
 
-	while (lexer)
+	last = lexer;
+	while (last)
 	{
-		temp = lexer;
-		lexer = lexer->next;
+		temp = last;
+		last = last->next;
+		free(temp->data);
 		temp->data = NULL;
 		temp->type = 0;
 		free(temp);
+		temp = NULL;
 	}
 }

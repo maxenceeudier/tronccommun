@@ -34,22 +34,26 @@ int	**get_pipes(t_lexer *lexer, int *num_of_process)
 	int	**pipes;
     
     *num_of_process = get_num_of_process(lexer);
-	pipes = (int **)malloc(sizeof(int *) * (*num_of_process));
+	pipes = (int **)calloc(sizeof(int *), (*num_of_process));
 	if (!pipes || *num_of_process == 1)
+	{
+		if (*num_of_process == 1)
+			free(pipes);
 		return (0);
+	}
 	i = 0;
 	while (i < *num_of_process)
 	{
-		pipes[i] = (int *)malloc(sizeof(int) * 2);
+		pipes[i] = (int *)calloc(sizeof(int), 2);
 		if (!pipes[i])
-			return (0);
+			exit (1);
 		i++;
 	}
 	i = 0;
 	while (i < *num_of_process)
 	{
 		if (pipe(pipes[i]) == -1)
-			return (0);
+			exit (2);
 		i++;
 	}
 	return (pipes);

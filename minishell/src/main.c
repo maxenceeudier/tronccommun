@@ -19,8 +19,7 @@ int	main()
 	char		*prompt;
 	t_lexer		*lst_lexer;
 	t_parser	*lst_parser;
-	int			num_of_process;
-	int			**pipes;
+	t_pipe_info	pipe_info;
 	
 	while (1)
 	{
@@ -30,12 +29,18 @@ int	main()
 		free(buf);
 		free(prompt);
 		if (!line)
-			break;
+			return (1);
 		if (*line)
 		{
 			lst_lexer = lexer(line);
-			pipes = get_pipes(lst_lexer, &num_of_process);
-			lst_parser = parser(lst_lexer, pipes, num_of_process);
+			if (ft_strcmp(lst_lexer->data, "exit") == 0)
+			{
+				free(line);
+				lst_clear_lexer(lst_lexer);
+				break ;
+			}
+			pipe_info.pipes = get_pipes(lst_lexer, &(pipe_info.num_of_process));
+			lst_parser = parser(lst_lexer, &pipe_info);
 			t_parser *temp = lst_parser;
 			t_in	*temp_in;
 			while (temp)
@@ -56,7 +61,7 @@ int	main()
 				temp = temp->next;
 			}
 			add_history(line);
-			close_pipes(pipes, num_of_process);
+			close_pipes(&pipe_info);
 			close_std(lst_parser);
 			lst_clear_parser(lst_parser);
 			lst_clear_lexer(lst_lexer);

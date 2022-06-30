@@ -121,14 +121,14 @@ static char	*ft_get_word(int *index, char *s)
 	return (word);
 }
 
-static char	**clear_tab(char ***tab)
+char	**clear_tab(char **tab)
 {
 	int		i;
 
 	i = 0;
-	while ((*tab)[i])
-		free((*tab)[i++]);
-	free (*tab);
+	while ((tab)[i])
+		free((tab)[i++]);
+	free (tab);
 	return (NULL);
 }
 
@@ -151,21 +151,9 @@ char	**ft_split_lexer(char const *s)
 	{
 		tab[i] = ft_get_word(&j, (char *)s);
 		if (!tab[i])
-			return (clear_tab(&tab));
+			return (clear_tab(tab));
 		i++;
 	}
 	tab[i] = 0;
 	return (tab);
 }
-/*
-int main()
-{
-    char **tab;
-    
-    tab = ft_split_lexer("  >> hello<<123 'holla | mec' | ");
-    int i = 0;
-    while (tab[i])
-    {
-        printf("%s\n", tab[i++]);
-    }
-}*/
