@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:05 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/06/29 18:09:57 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/01 17:18:43 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_lexer	*lexer(char *line)
 			push_lexer(&lst, words[i], REDIR_OUT_APPEND);
 		else if (ft_strcmp(words[i], "<<") == 0)
 			push_lexer(&lst, words[i], HERDOC);
+		else if (ft_strcmp(words[i], "") == 0)
+			push_lexer(&lst, words[i], EMPTY);
 		else
 			push_lexer(&lst, words[i], WRD);
 		i++;

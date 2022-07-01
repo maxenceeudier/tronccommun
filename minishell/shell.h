@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:32:02 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/29 18:21:18 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/01 17:02:48 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ enum type
     REDIR_IN,
     REDIR_OUT_APPEND,
     HERDOC,
-    WRD
+    WRD,
+    EMPTY
 };
 
 typedef struct s_lexer
@@ -60,6 +61,7 @@ typedef struct s_parser
 {
     char            *cmd;
     char            **arg;
+    char            **env;
     t_in             *stdin;
     int             stdout;
     struct s_parser  *prev;
@@ -84,9 +86,9 @@ void	push_lexer(t_lexer **lst, char *word, int TYPE);
 void	lst_clear_lexer(t_lexer *lexer);
 
 void	push_in(t_in **stdin, int data);
-void	init_parser(t_parser *new);
-void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info);
-t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info);
+void	init_parser(t_parser *new, char **env);
+void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info, char **env);
+t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info, char **env);
 void	lst_clear_parser(t_parser *parser);
 
 int get_num_of_process(t_lexer *lexer);
@@ -97,4 +99,9 @@ char	**clear_tab(char **tab);
 void	*ft_calloc(size_t count, size_t size);
 
 char	*cpy(const char *src);
+
+int	get_cmdpath(t_parser *parser, char **cmd_path, int i);
+int	execute(t_parser *parser, t_pipe_info *pipe_info);
+char	*ft_strjoin_bs(char const *s1, char const *s2);
+void	write_error(char *cmd);
 #endif

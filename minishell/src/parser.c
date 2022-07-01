@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:05:26 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/06/29 18:14:28 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/01 17:29:37 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	push_in(t_in **stdin, int data)
 	}
 }
 
-void	init_parser(t_parser *new)
+void	init_parser(t_parser *new, char **env)
 {
 	new->cmd = NULL;
 	new->stdin = NULL;
+	new->env = env;
 	new->stdout = 1;
 	new->next = NULL;
 	new->prev = NULL;
@@ -64,8 +65,9 @@ char	*get_arg(char *str)
 
 void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 {
-	int	temp;
-	int	i;
+	int		temp;
+	int		i;
+	t_in	*last_in;
 
 	temp = 0;
 	while ((*lexer) && (*lexer)->type != PIPE)
@@ -73,6 +75,11 @@ void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 		if ((*lexer)->type == REDIR_IN && (*lexer)->next)
 		{
 			push_in(&((*new)->stdin) , open((*lexer)->next->data, O_RDONLY));
+			last_in = (*new)->stdin;
+			while (last_in->next)
+				last_in = last_in->next;
+			if (last_in->stdin < 0)
+				perror((*lexer)->next->data);
 			(*lexer) = (*lexer)->next->next;
 		}
 		else if ((*lexer)->type == WRD)
@@ -82,11 +89,10 @@ void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 			if (pipe_info->out && (*new)->stdout == 1)
 				(*new)->stdout = pipe_info->out;
 			(*new)->cmd = (*lexer)->data;
-			(*lexer) = (*lexer)->next;
-			i = 0;
 			(*new)->arg = ft_calloc(sizeof(char *), (get_num_of_arg(*lexer) + 1));
 			if (!(*new)->arg)
 				exit (1);
+			i = 0;
 			while ((*lexer) && (*lexer)->type == WRD)
 			{
 				(*new)->arg[i++] = get_arg((*lexer)->data);
@@ -99,7 +105,9 @@ void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 			if ((*lexer)->next->type == WRD)
 			{
 				temp = (*new)->stdout;
-				(*new)->stdout = open((*lexer)->next->data, O_RDONLY | O_TRUNC | O_CREAT, 0777);
+				(*new)->stdout = open((*lexer)->next->data, O_WRONLY | O_TRUNC | O_CREAT, 0777);
+				if ((*new)->stdout < 0)
+					perror((*lexer)->next->data);
 				if (temp != 1 && is_not_a_pipe(temp, pipe_info->pipes, pipe_info->num_of_process))
 					close(temp);
 				(*lexer) = (*lexer)->next->next;
@@ -112,7 +120,9 @@ void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 			if ((*lexer)->next->type == WRD)
 			{	
 				temp = (*new)->stdout;
-				(*new)->stdout = open((*lexer)->next->data, O_RDONLY | O_APPEND | O_CREAT, 0777);
+				(*new)->stdout = open((*lexer)->next->data, O_WRONLY | O_APPEND | O_CREAT, 0777);
+				if ((*new)->stdout < 0)
+					perror((*lexer)->next->data);
 				if (temp != 1 && is_not_a_pipe(temp, pipe_info->pipes, pipe_info->num_of_process))
 					close(temp);
 				(*lexer) = (*lexer)->next->next;
@@ -125,11 +135,12 @@ void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 			push_in(&((*new)->stdin) , -2);
 			(*lexer) = (*lexer)->next->next;
 		}
-
+		else if ((*lexer)->type == EMPTY)
+			(*lexer) = (*lexer)->next;
 	}
 }
 
-void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info)
+void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info, char **env)
 {
 	t_parser	*new;
 	t_parser	*last;
@@ -137,7 +148,7 @@ void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info)
 	new = (t_parser *)ft_calloc(sizeof(t_parser), 1);
 	if (!new)
 		exit (1);
-	init_parser(new);
+	init_parser(new, env);
 	create_new(&new, lexer, pipe_info);
 	if (!*parser)
 	{
@@ -154,7 +165,7 @@ void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info)
 	}
 }
 
-t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info)
+t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info, char **env)
 {
 	t_parser	*parser;
 	int			j;
@@ -174,7 +185,7 @@ t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info)
 			else
 				pipe_info->out = 0;
 			j++;
-			push_parser(&parser, &lexer, pipe_info);
+			push_parser(&parser, &lexer, pipe_info, env);
 		}	
 		else
 			lexer = lexer->next;

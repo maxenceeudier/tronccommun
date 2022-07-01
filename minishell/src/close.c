@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:13:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/06/29 18:14:35 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/01 15:14:28 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	close_std(t_parser *parser)
 		last_in = last->stdin;
 		while (last_in)
 		{
-			if (last_in != 0)
+			if (last_in->stdin != 0)
 				close (last_in->stdin);
 			last_in = last_in->next;
 		}

@@ -6,7 +6,7 @@
 #    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 09:36:17 by meudier           #+#    #+#              #
-#    Updated: 2022/06/29 18:22:11 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/07/01 14:40:14 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = minishell
 SRC = utils/ft_strjoin.c utils/ft_split.c src/main.c \
 	utils/ft_strdup.c utils/ft_strlen.c utils/ft_strcmp.c \
 	src/ft_split_lexer.c src/pipe.c src/parser.c src/lexer.c \
-	src/close.c utils/ft_calloc.c src/cpy.c
+	src/close.c utils/ft_calloc.c src/cpy.c src/execute.c \
+	src/get_cmdpath.c
 	
 OBJ = $(SRC:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path_and_arg.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/06/07 07:14:24 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/01 15:56:55 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	get_path_and_arg(t_exec *vars, int i)
 {
 	if (!get_path(vars, i))
 	{
-		if (i || (!i && fd->in_file >= 0))
+		if (i || (!i)) // manque condition si infile >= 0
 			write_error(vars->cmd[0]);
 		free_tab(vars->cmd);
 		return (0);
