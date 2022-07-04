@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 10:41:17 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/01 16:31:59 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/04 09:30:14 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,18 @@ int	no_leaks(int *pids, char *cmd_path, t_pipe_info *pipe_info, t_parser *parser
 	free(pids);
 	if (cmd_path)
 		free(cmd_path);
-    close_pipes(pipe_info);
+	if (pipe_info->pipes)
+    	close_pipes(pipe_info);
 	close_std(parser);
     lst_clear_parser(parser);
 	return (0);
 }
 
-int    dup_fd(t_parser *parser)
+void	init_pid(int num_of_process, int **pids)
 {
-    t_in    *last_in;
-
-    last_in = parser->stdin;
-    if (last_in)
-    {
-        while (last_in->next)
-        {
-            if (last_in->stdin < 0)
-                return (0);
-            last_in = last_in->next;
-        }
-        if (last_in->stdin < 0)
-            return (0);
-        if (last_in->stdin != 0)
-            dup2(last_in->stdin, STDIN_FILENO);
-    }
-    if (parser->stdout != 1)
-        dup2(parser->stdout, STDOUT_FILENO);
-    return (1);
+	*pids = (int *)ft_calloc(sizeof(int), num_of_process + 1);
+	if (!*pids)
+		exit (1);
 }
 
 void	exec_cmd(t_parser *parser,int *pids, t_pipe_info *pipe_info, int i)
@@ -62,17 +47,6 @@ void	exec_cmd(t_parser *parser,int *pids, t_pipe_info *pipe_info, int i)
 	execve(cmd_path, parser->arg, NULL);
 	write_error(parser->cmd);
     exit(no_leaks(pids, cmd_path, pipe_info, parser));
-}
-
-int	init_pid(int num_of_process, int **pids)
-{
-	*pids = (int *)calloc(sizeof(int), num_of_process + 1);
-	if (!*pids)
-	{
-		printf("Error fork()");
-		return (0);
-	}
-	return (1);
 }
 
 int	execute(t_parser *parser, t_pipe_info *pipe_info)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:13:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/01 15:14:28 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/04 08:16:27 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void	close_pipes(t_pipe_info *pipe_info)
 		i++;
 	}
 	free(pipe_info->pipes);
+	pipe_info->pipes = NULL;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:32:02 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/01 17:02:48 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/04 09:55:11 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include <readline/history.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <sys/wait.h>
 
 enum type
 {
@@ -68,40 +68,41 @@ typedef struct s_parser
     struct s_parser  *next;
 }   t_parser;
 
-char	*ft_strjoin(char const *s1, char const *s2);
-char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s1);
-int     ft_strlen(const char *str);
-int     ft_strcmp(const char *s1, const char *s2);
-int     ft_strncmp(const char *s1, const char *s2, size_t n);
-char	**ft_split_lexer(char const *s);
-int	    **get_pipes(t_lexer *lexer, int *num_of_process);
-
-void	close_std(t_parser *parser);
-void	close_pipes(t_pipe_info *pipe_info);
-
-t_lexer	*lexer(char *line);
-int	    get_num_of_arg(t_lexer *lexer);
-void	push_lexer(t_lexer **lst, char *word, int TYPE);
-void	lst_clear_lexer(t_lexer *lexer);
-
-void	push_in(t_in **stdin, int data);
-void	init_parser(t_parser *new, char **env);
-void	push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info, char **env);
+char*		ft_strjoin(char const *s1, char const *s2);
+char		**ft_split(char const *s, char c);
+char		*ft_strdup(const char *s1);
+int			ft_strlen(const char *str);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		**ft_split_lexer(char const *s);
+int			**get_pipes(t_lexer *lexer, int *num_of_process);
+void		close_std(t_parser *parser);
+void		close_pipes(t_pipe_info *pipe_info);
+t_lexer		*lexer(char *line);
+int			get_num_of_arg(t_lexer *lexer);
+void		push_lexer(t_lexer **lst, char *word, int TYPE);
+void		lst_clear_lexer(t_lexer *lexer);
+void		push_in(t_in **stdin, int data);
+void		init_parser(t_parser *new, char **env);
+void		push_parser(t_parser **parser, t_lexer **lexer, t_pipe_info *pipe_info, char **env);
 t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info, char **env);
-void	lst_clear_parser(t_parser *parser);
+void		lst_clear_parser(t_parser *parser);
+int			get_num_of_process(t_lexer *lexer);
+int			**get_pipes(t_lexer *lexer, int *num_of_process);
+int			is_not_a_pipe(int fd, int **pipes, int num_of_process);
+char		**clear_tab(char **tab);
+void		*ft_calloc(size_t count, size_t size);
+char		*cpy(const char *src);
+int			get_cmdpath(t_parser *parser, char **cmd_path, int i);
+int			execute(t_parser *parser, t_pipe_info *pipe_info);
+char		*ft_strjoin_bs(char const *s1, char const *s2);
+void		write_error(char *cmd);
+int			dup_fd(t_parser *parser);
+int			isMeta(char c, char *meta);
+int 		ft_get_size_2(int j, int *i, const char *s, char *meta);
+int			ft_get_size_1(char const *s);
+int			ft_get_word_2(int j, int *len, char *s, char *meta);
+char		*ft_get_word_1(int *index, char *s);
+void		write_error(char *cmd);
 
-int get_num_of_process(t_lexer *lexer);
-int	**get_pipes(t_lexer *lexer, int *num_of_process);
-int	is_not_a_pipe(int fd, int **pipes, int num_of_process);
-
-char	**clear_tab(char **tab);
-void	*ft_calloc(size_t count, size_t size);
-
-char	*cpy(const char *src);
-
-int	get_cmdpath(t_parser *parser, char **cmd_path, int i);
-int	execute(t_parser *parser, t_pipe_info *pipe_info);
-char	*ft_strjoin_bs(char const *s1, char const *s2);
-void	write_error(char *cmd);
 #endif

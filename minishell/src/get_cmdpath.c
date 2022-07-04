@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmdpath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/01 16:10:54 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/04 09:44:27 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,6 @@ int	all_stdin_pos(t_in *stdin)
 	return (1);
 }
 
-void	write_error(char *cmd)
-{
-	char	*temp1;
-	char	*temp2;
-
-	temp1 = ft_strjoin("pipex: command not found: ", cmd);
-	temp2 = ft_strjoin(temp1, "\n");
-	free(temp1);
-	write (2, temp2, 29 + ft_strlen(cmd));
-	free(temp2);
-}
-
 int	get_cmdpath(t_parser *parser, char **cmd_path, int i)
 {
 	char	**path;
@@ -104,7 +92,8 @@ int	get_cmdpath(t_parser *parser, char **cmd_path, int i)
 		return (0);
 	if (access(*cmd_path, F_OK | X_OK) == -1)
 	{
-		write_error(parser->cmd);
+		if (i || (!i && all_stdin_pos(parser->stdin)))
+			write_error(parser->cmd);
 		return (0);
 	}
 	return (1);

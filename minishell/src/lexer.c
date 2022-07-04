@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:05 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/01 17:18:43 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/04 09:57:08 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../shell.h"
+
+void	cmp_and_push(char **words, t_lexer **lst, int i)
+{
+	if (ft_strcmp(words[i], "|") == 0)
+		push_lexer(lst, words[i], PIPE);
+	else if (ft_strcmp(words[i], "<") == 0)
+		push_lexer(lst, words[i], REDIR_IN);
+	else if (ft_strcmp(words[i], ">") == 0)
+		push_lexer(lst, words[i], REDIR_OUT);
+	else if (ft_strcmp(words[i], ">>") == 0)
+		push_lexer(lst, words[i], REDIR_OUT_APPEND);
+	else if (ft_strcmp(words[i], "<<") == 0)
+		push_lexer(lst, words[i], HERDOC);
+	else if (ft_strcmp(words[i], "") == 0)
+		push_lexer(lst, words[i], EMPTY);
+	else
+		push_lexer(lst, words[i], WRD);
+}
 
 t_lexer	*lexer(char *line)
 {
@@ -22,23 +40,7 @@ t_lexer	*lexer(char *line)
 	lst = NULL;
 	words = ft_split_lexer(line);
 	while (words[i])
-	{
-		if (ft_strcmp(words[i], "|") == 0)
-			push_lexer(&lst, words[i], PIPE);
-		else if (ft_strcmp(words[i], "<") == 0)
-			push_lexer(&lst, words[i], REDIR_IN);
-		else if (ft_strcmp(words[i], ">") == 0)
-			push_lexer(&lst, words[i], REDIR_OUT);
-		else if (ft_strcmp(words[i], ">>") == 0)
-			push_lexer(&lst, words[i], REDIR_OUT_APPEND);
-		else if (ft_strcmp(words[i], "<<") == 0)
-			push_lexer(&lst, words[i], HERDOC);
-		else if (ft_strcmp(words[i], "") == 0)
-			push_lexer(&lst, words[i], EMPTY);
-		else
-			push_lexer(&lst, words[i], WRD);
-		i++;
-	}
+		cmp_and_push(words, &lst, i++);
 	clear_tab(words);
 	return (lst);
 }
