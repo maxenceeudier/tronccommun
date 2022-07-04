@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:55:05 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 09:46:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/04 11:22:20 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	minishell(char *line, char **env)
 int	main(int ac, char **av, char **env)
 {
 	char		*line;
-	
+
 	(void)av;
 	while (1 && ac == 1)
 	{

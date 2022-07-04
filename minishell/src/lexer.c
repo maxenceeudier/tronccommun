@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:05 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/04 09:57:08 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/04 11:26:51 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	get_num_of_arg(t_lexer *lexer)
 
 void	push_lexer(t_lexer **lst, char *word, int TYPE)
 {
-	t_lexer *new;
+	t_lexer	*new;
 	t_lexer	*last;
-	
+
 	new = (t_lexer *)malloc(sizeof(t_lexer));
 	if (!new)
 		exit (1);
@@ -89,7 +89,7 @@ void	push_lexer(t_lexer **lst, char *word, int TYPE)
 
 void	lst_clear_lexer(t_lexer *lexer)
 {
-	t_lexer *temp;
+	t_lexer	*temp;
 	t_lexer	*last;
 
 	last = lexer;

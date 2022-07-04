@@ -6,7 +6,7 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 09:36:17 by meudier           #+#    #+#              #
-#    Updated: 2022/07/04 09:45:28 by meudier          ###   ########.fr        #
+#    Updated: 2022/07/04 10:54:36 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC = utils/ft_strjoin.c utils/ft_split.c src/main.c \
 	src/ft_split_lexer.c src/pipe.c src/parser.c src/lexer.c \
 	src/close.c utils/ft_calloc.c src/cpy.c src/execute.c \
 	src/get_cmdpath.c src/dup.c src/ft_split_lexer_2.c \
-	src/write_error.c
+	src/write_error.c src/parser_action.c src/parser2.c \
+	
 	
 OBJ = $(SRC:.c=.o)
 

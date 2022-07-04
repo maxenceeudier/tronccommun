@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 09:44:27 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/04 11:24:26 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	all_stdin_pos(t_in *stdin)
 int	get_cmdpath(t_parser *parser, char **cmd_path, int i)
 {
 	char	**path;
-	
+
 	if (!get_path(parser, &path))
 	{
 		if (i || (!i && all_stdin_pos(parser->stdin)))

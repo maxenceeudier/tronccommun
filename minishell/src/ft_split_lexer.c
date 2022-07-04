@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 07:02:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/04 09:55:42 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/04 13:01:19 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**clear_tab(char **tab)
 	int		i;
 
 	i = 0;
-	while ((tab)[i])
+	while (tab && (tab)[i])
 		free((tab)[i++]);
 	free (tab);
 	return (NULL);
