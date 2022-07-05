@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:32:02 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 12:14:06 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/05 16:00:28 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <signal.h>
+# include <dirent.h>
 
 enum e_type
 {
@@ -67,6 +69,15 @@ typedef struct s_parser
 	struct s_parser	*prev;
 	struct s_parser	*next;
 }	t_parser;
+
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
+t_env		*g_env;
 
 char		*ft_strjoin(char const *s1, char const *s2);
 char		**ft_split(char const *s, char c);

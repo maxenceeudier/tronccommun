@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmdpath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 11:24:26 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/05 16:05:26 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int	get_path(t_parser *parser, char ***path)
 {
-	int	j;
+	int		j;
+	t_env	*last;
 
 	*path = NULL;
 	if (!parser->cmd || !parser->env)
 		return (0);
 	j = 0;
-	while (parser->env[j] && ft_strncmp(parser->env[j], "PATH", 4))
-		j++;
-	if (parser->env[j])
-		*path = ft_split(parser->env[j] + 5, ':');
+	last = g_env;
+	while (last && ft_strcmp(last->key, "PATH") != 0)
+		last = last->next;
+	if (last)
+		*path = ft_split(last->value, ':');
 	else
 		return (0);
 	if (!*path)
