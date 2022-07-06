@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
+#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 09:36:17 by meudier           #+#    #+#              #
-#    Updated: 2022/07/04 10:54:36 by meudier          ###   ########.fr        #
+#    Updated: 2022/07/05 10:19:28 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,9 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -c $< -o $@
-
+	$(CC) -c $< -o $@ 
 $(NAME): $(OBJ)
-	$(CC) $^ -lreadline -o $@
+	$(CC) $^  -o $@ -lreadline	
 
 clean:
 	rm -rf $(OBJ)

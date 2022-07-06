@@ -6,17 +6,16 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:05:26 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/04 11:05:06 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/06 08:04:11 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../shell.h"
 
-void	init_parser(t_parser *new, char **env)
+void	init_parser(t_parser *new)
 {
 	new->cmd = NULL;
 	new->stdin = NULL;
-	new->env = env;
 	new->stdout = 1;
 	new->next = NULL;
 	new->prev = NULL;
@@ -45,7 +44,7 @@ void	create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info)
 }
 
 void	push_parser(t_parser **parser, t_lexer **lexer, \
-t_pipe_info *pipe_info, char **env)
+t_pipe_info *pipe_info)
 {
 	t_parser	*new;
 	t_parser	*last;
@@ -53,7 +52,7 @@ t_pipe_info *pipe_info, char **env)
 	new = (t_parser *)ft_calloc(sizeof(t_parser), 1);
 	if (!new)
 		exit (1);
-	init_parser(new, env);
+	init_parser(new);
 	create_new(&new, lexer, pipe_info);
 	if (!*parser)
 	{
@@ -70,7 +69,7 @@ t_pipe_info *pipe_info, char **env)
 	}
 }
 
-t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info, char **env)
+t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info)
 {
 	t_parser	*parser;
 	int			j;
@@ -90,7 +89,7 @@ t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info, char **env)
 			else
 				pipe_info->out = 0;
 			j++;
-			push_parser(&parser, &lexer, pipe_info, env);
+			push_parser(&parser, &lexer, pipe_info);
 		}	
 		else
 			lexer = lexer->next;

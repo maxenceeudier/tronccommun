@@ -6,24 +6,25 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 11:24:26 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/06 08:28:23 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../shell.h"
 
-int	get_path(t_parser *parser, char ***path)
+int	get_path(t_parser *parser, char ***path, t_env *envl)
 {
-	int	j;
+	t_env	*last;
 
 	*path = NULL;
-	if (!parser->cmd || !parser->env)
+	if (!parser->cmd)
 		return (0);
-	j = 0;
-	while (parser->env[j] && ft_strncmp(parser->env[j], "PATH", 4))
-		j++;
-	if (parser->env[j])
-		*path = ft_split(parser->env[j] + 5, ':');
+	last = envl;
+	while (last && ft_strcmp(last->key, "PATH") != 0)
+		last = last->next;
+	printf("%s", last->value);
+	if (last)
+		*path = ft_split(last->value, ':');
 	else
 		return (0);
 	if (!*path)
@@ -78,11 +79,12 @@ int	all_stdin_pos(t_in *stdin)
 	return (1);
 }
 
-int	get_cmdpath(t_parser *parser, char **cmd_path, int i)
+int	get_cmdpath(t_parser *parser, char **cmd_path, int i, t_env *envl)
 {
 	char	**path;
 
-	if (!get_path(parser, &path))
+	*cmd_path = NULL;
+	if (!get_path(parser, &path, envl))
 	{
 		if (i || (!i && all_stdin_pos(parser->stdin)))
 			write_error(parser->cmd);

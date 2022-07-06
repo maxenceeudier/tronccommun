@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:32:02 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 14:38:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/06 09:15:55 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <signal.h>
+# include <dirent.h>
 
 enum e_type
 {
@@ -69,6 +70,13 @@ typedef struct s_parser
 	struct s_parser	*next;
 }	t_parser;
 
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
 char		*ft_strjoin(char const *s1, char const *s2);
 char		**ft_split(char const *s, char c);
 char		*ft_strdup(const char *s1);
@@ -84,10 +92,10 @@ int			get_num_of_arg(t_lexer *lexer);
 void		push_lexer(t_lexer **lst, char *word, int TYPE);
 void		lst_clear_lexer(t_lexer *lexer);
 void		push_in(t_in **stdin, int data);
-void		init_parser(t_parser *new, char **env);
+void		init_parser(t_parser *new);
 void		push_parser(t_parser **parser, t_lexer **lexer, \
-t_pipe_info *pipe_info, char **env);
-t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info, char **env);
+t_pipe_info *pipe_info);
+t_parser	*parser(t_lexer *lexer, t_pipe_info *pipe_info);
 void		lst_clear_parser(t_parser *parser);
 int			get_num_of_process(t_lexer *lexer);
 int			**get_pipes(t_lexer *lexer, int *num_of_process);
@@ -95,8 +103,8 @@ int			is_not_a_pipe(int fd, int **pipes, int num_of_process);
 char		**clear_tab(char **tab);
 void		*ft_calloc(size_t count, size_t size);
 char		*cpy(const char *src);
-int			get_cmdpath(t_parser *parser, char **cmd_path, int i);
-int			execute(t_parser *parser, t_pipe_info *pipe_info);
+int			get_cmdpath(t_parser *parser, char **cmd_path, int i, t_env *envl);
+int			execute(t_parser *parser, t_pipe_info *pipe_info, t_env *envl);
 char		*ft_strjoin_bs(char const *s1, char const *s2);
 void		write_error(char *cmd);
 int			dup_fd(t_parser *parser);
@@ -116,5 +124,6 @@ void		create_new(t_parser **new, t_lexer **lexer, t_pipe_info *pipe_info);
 void		lst_clear_parser(t_parser *parser);
 void		push_in(t_in **stdin, int data);
 char		*get_arg(char *str);
+void		lst_clear_envl(t_env *envl);
 
 #endif

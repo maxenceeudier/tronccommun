@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 10:41:17 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/04 11:23:17 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/06 09:42:44 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,45 @@ void	init_pid(int num_of_process, int **pids)
 		exit (1);
 }
 
-void	exec_cmd(t_parser *parser, int *pids, t_pipe_info *pipe_info, int i)
+int	builtin(t_parser *parser, int *built, t_env *envl)
+{
+	t_env	*last;
+	char	*old;
+	DIR	*dir;
+
+	if (ft_strcmp(parser->cmd, "cd") == 0)
+	{
+		*built  = 1;
+		dir = opendir(parser->arg[1]);
+		if (!dir || parser->arg[2])
+		{
+			if (parser->arg[2])
+				write(2, "Error: cd: too many files\n", 27);
+			else
+				perror(parser->arg[1]);
+			return (0);
+		}
+		chdir(parser->arg[1]);
+		closedir(dir);
+		last = envl;
+		while (last && ft_strcmp(last->key, "PWD") != 0)
+			last = last->next;
+		old = last->value;
+		last->value = getcwd(NULL, 0);
+		last = envl;
+		while (last && ft_strcmp(last->key, "OLDPWD") != 0)
+			last = last->next;
+		free(last->value);
+		last->value = old;
+	}
+	return (1);
+}
+
+void	exec_cmd(t_parser *parser, int *pids, t_pipe_info *pipe_info, int i, t_env *envl)
 {
 	char	*cmd_path;
-
-	if (!get_cmdpath(parser, &cmd_path, i))
+	
+	if (!get_cmdpath(parser, &cmd_path, i, envl))
 		exit(no_leaks(pids, cmd_path, pipe_info, parser));
 	if (!dup_fd(parser))
 	{
@@ -50,20 +84,23 @@ void	exec_cmd(t_parser *parser, int *pids, t_pipe_info *pipe_info, int i)
 	exit(no_leaks(pids, cmd_path, pipe_info, parser));
 }
 
-int	execute(t_parser *parser, t_pipe_info *pipe_info)
+int	execute(t_parser *parser, t_pipe_info *pipe_info, t_env *envl)
 {
 	int	*pids;
 	int	i;
+	int	built;
 
+	built = 0;
+	builtin(parser, &built, envl);
 	init_pid(pipe_info->num_of_process, &pids);
 	i = 0;
-	while (i < pipe_info->num_of_process && parser)
+	while (!built && i < pipe_info->num_of_process && parser)
 	{
 		pids[i] = fork();
 		if (pids[i] == -1)
 			return (0);
 		if (pids[i] == 0)
-			exec_cmd(parser, pids, pipe_info, i);
+			exec_cmd(parser, pids, pipe_info, i, envl);
 		parser = parser->next;
 		i++;
 	}

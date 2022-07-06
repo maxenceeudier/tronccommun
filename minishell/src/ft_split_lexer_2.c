@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_lexer_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:39:16 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 13:23:23 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/04 17:43:56 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ft_get_word_2(int j, int *len, char *s, char *meta)
 	{
 		while (*(s + *len + 1) != meta[j] && *(s + *len + 1))
 			(*len)++;
-		if (*(s + *len + 1) != meta[j])
+		if (*(s + *len + 1) == 0 && *(s + *len) != meta[j])
 		{
 			printf("Syntax error: quotes are not close\n");
 			*len = 0;
@@ -126,7 +126,7 @@ char	*ft_get_word_1(int *index, char *s)
 	if (!word)
 		return (NULL);
 	i = 0;
-	if (j >= 3)
+	if (j > 3)
 		(*index)++;
 	while (i < len)
 		word[i++] = s[(*index)++];
