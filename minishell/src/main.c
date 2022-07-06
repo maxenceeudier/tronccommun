@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 07:55:05 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/04 11:22:20 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/04 15:37:15 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,22 @@ void	minishell(char *line, char **env)
 	lst_clear_lexer(lst_lexer);
 }
 
+void	handler_sigint(int sig)
+{
+	(void)sig;	
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char		*line;
-
 	(void)av;
+	//struct sigaction sa;
+	
+	//sa.sa_handler = &handler_sigint;
+	//sigaction(SIGINT, &sa, NULL);
 	while (1 && ac == 1)
 	{
+
 		line = get_line();
 		if (!line)
 			return (1);
