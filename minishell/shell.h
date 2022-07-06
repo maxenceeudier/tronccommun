@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:32:02 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/06 09:15:55 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/06 12:43:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,8 @@ void		lst_clear_parser(t_parser *parser);
 void		push_in(t_in **stdin, int data);
 char		*get_arg(char *str);
 void		lst_clear_envl(t_env *envl);
+t_env		*get_env(char **env);
+void		sig_init(void);
+int			builtin(t_parser *parser, int *built, t_env *envl);
 
 #endif

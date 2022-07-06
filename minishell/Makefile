@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
+#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/27 09:36:17 by meudier           #+#    #+#              #
-#    Updated: 2022/07/05 10:19:28 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/07/06 12:44:10 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = utils/ft_strjoin.c utils/ft_split.c src/main.c \
 	src/close.c utils/ft_calloc.c src/cpy.c src/execute.c \
 	src/get_cmdpath.c src/dup.c src/ft_split_lexer_2.c \
 	src/write_error.c src/parser_action.c src/parser2.c \
+	src/env.c src/sig.c src/builtin.c
 	
 	
 OBJ = $(SRC:.c=.o)

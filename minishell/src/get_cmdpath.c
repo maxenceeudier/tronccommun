@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:40:26 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/06 08:28:23 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/06 11:50:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	get_path(t_parser *parser, char ***path, t_env *envl)
 	last = envl;
 	while (last && ft_strcmp(last->key, "PATH") != 0)
 		last = last->next;
-	printf("%s", last->value);
 	if (last)
 		*path = ft_split(last->value, ':');
 	else
