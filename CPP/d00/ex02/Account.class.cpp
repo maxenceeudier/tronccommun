@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Account.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 11:32:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/12 17:13:42 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:38:57 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.class.hpp"
 #include <iostream>
+#include <ctime>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -167,7 +168,3 @@ void	Account::_displayTimestamp( void )
     std::cout << today->tm_sec;
     std::cout << "] ";
 }
-
-
-
-

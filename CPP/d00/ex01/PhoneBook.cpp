@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:34:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/12 11:04:45 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:22:02 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void    PhoneBook::addContacts(Contact contact)
         i = 0;
         while (i < this->get_nb_of_contact() - 1)
         {
+            (this->contacts[i]).~Contact();
             this->contacts[i] = this->contacts[i + 1];
             i++;
         }

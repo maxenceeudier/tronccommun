@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:54:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 10:09:20 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 15:07:39 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,4 @@ int main()
     std::cout << "value var: " << brain << std::endl;
     std::cout << "value ptr: " << *stringPtr << std::endl;
     std::cout << "value ref: " << stringRef << std::endl;
-    
-    
-    
 }

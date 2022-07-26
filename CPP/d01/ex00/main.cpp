@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 07:51:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 09:06:31 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:54:24 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void    randomChump(std::string name)
 int main()
 {
     Zombie *zomb;
-    zomb = newZombie("max");
-    randomChump("sego");
+    zomb = newZombie("zombie_on_heap");
+    randomChump("zombie_on_stack");
     zomb->announce();
     delete zomb;
     return (0);

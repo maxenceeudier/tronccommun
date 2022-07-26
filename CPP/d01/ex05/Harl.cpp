@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:42:17 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 20:28:07 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 16:26:24 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ void    Harl::complain(std::string level)
         "warning",
         "error"
     };
-    while (i < 4)
+    while (i < 4 && level.c_str())
     {
-        if (level == lev[i])
+        if (level.compare(lev[i]) == 0)
         {
             (this->*f[i])();
             return ;
         }   
         i++;
     }
+    std::cout << "Sorry i don't know this level" << std::endl;
 }

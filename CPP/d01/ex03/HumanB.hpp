@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:46:30 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 12:52:59 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 15:54:23 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

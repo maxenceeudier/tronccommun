@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 17:22:52 by meudier           #+#    #+#             */
-/*   Updated: 2022/05/04 08:52:39 by meudier          ###   ########.fr       */
+/*   Updated: 2022/06/06 12:02:03 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,7 @@ int     nb = 4536;
 char    c = 'a';
 unsigned int big = 3000000000;
 
-ft_printf(" %x ", UINT_MAX);
-printf("\n %x ", UINT_MAX);
 
-
-ft_printf("%% str :  %s, char : %c, number : %d%i, adrs : %p\n\
-unsigned int : %u hexa : %x HEXA : %X.\n\n",test, c, d, u, test, big, big, nb);
-printf("%% str :  %s, char : %c, number : %01d%i, adrs : %p\n\
-unsigned int : %u hexa : %x HEXA : %X.\n",test, c, d, u, test, big, big, nb);
+ft_printf("%s", 45);
 return (0);
 }*/

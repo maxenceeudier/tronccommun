@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:35:10 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/12 10:27:05 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:14:45 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
     PhoneBook();
     ~PhoneBook();
 
-    Contact contacts[8];
+    Contact     contacts[8];
     void        printContatcs(void);
     void        addContacts(Contact contact);
     std::string reduce(std::string str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:33:23 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 12:58:50 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 15:48:12 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,5 @@ void    HumanA::attack()
 {
     std::cout << this->_name << " attacks with their ";
     std::cout << this->_weapon.getType() << std::endl;
-    return ;
-}
-
-void    HumanA::setWeapon(Weapon &weapon)
-{
-    this->_weapon = weapon;
     return ;
 }

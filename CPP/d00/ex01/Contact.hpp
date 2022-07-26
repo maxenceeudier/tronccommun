@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:35:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/11 16:47:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:12:38 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 class Contact
 {
-private:
-    /* data */
 public:
-    Contact(void);
+    Contact();
     ~Contact();
 
     std::string		firstName;

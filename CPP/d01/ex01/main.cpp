@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 07:51:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 09:34:20 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:59:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main()
     Zombie  *horde;
     int i = 0;
 
-    horde = zombieHorde(10, "patric");
+    horde = zombieHorde(10, "patric's horde");
     while (i < 10)
         (horde[i++]).announce();
     delete [] horde;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:33:26 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 12:58:36 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/26 15:47:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ public:
     ~HumanA();
     
     void    attack(void);
-    void    setWeapon(Weapon &weapon);
 };
 
 
