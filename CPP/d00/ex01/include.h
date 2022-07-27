@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:40:18 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 14:07:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/27 18:07:07 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <locale>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
-#include <cstdlib>
 
 #endif

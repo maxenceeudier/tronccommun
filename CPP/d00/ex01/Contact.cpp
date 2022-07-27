@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:35:26 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/12 10:39:22 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/27 18:28:26 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,17 @@ void    Contact::setContact()
     std::getline(std::cin, this->phoneNumber);
     std::cout << std::endl;
     return ;
+}
+
+bool    Contact::isPhoneNum(std::string &str)
+{
+    int i;
+
+    i = 0;
+    if (!str.size() || str.size() != 10)
+        return (false);
+    while (str[i])
+        if (std::isdigit(str[i++]) == 0)
+            return (false);
+    return (true);
 }

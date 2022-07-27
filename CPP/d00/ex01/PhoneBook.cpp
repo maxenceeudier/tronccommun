@@ -6,13 +6,13 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:34:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 14:22:02 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/27 18:05:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include.h"
 
-PhoneBook::PhoneBook() : nb_of_contact(0)
+PhoneBook::PhoneBook()
 {
     return ;
 }
@@ -115,3 +115,5 @@ void    PhoneBook::printContatcs(void)
         std::cout << "WRONG INDEX" << std::endl << std::endl;
     return ;
 }
+
+int PhoneBook::nb_of_contact = 0;

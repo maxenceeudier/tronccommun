@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:34:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/12 11:27:02 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/27 18:35:52 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,24 @@ int main(int ac, char **av)
             exit = 0;
         else if (input.compare("ADD") == 0)
         {
+            std::locale loc;
             Contact contact;
             contact.setContact();
-            repertoire.addContacts(contact);
+            if (!contact.firstName.size() || !contact.lastName.size()
+                || !contact.nickName.size() || !contact.darkestSecret.size())
+            {
+                contact.~Contact();
+                std::cout << "Error: empty input" << std::endl << std::endl;
+            }
+            else if (!Contact::isPhoneNum(contact.phoneNumber))
+            {
+                contact.~Contact();
+                std::cout << "Phone number not conform: ";
+                std::cout << "format accept: num x10";
+                std::cout << std::endl << std::endl;
+            }
+            else
+                repertoire.addContacts(contact);
         } 
         else if (input.compare("SEARCH") == 0)
         {
