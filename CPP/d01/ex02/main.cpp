@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 09:54:40 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 15:07:39 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/28 10:14:44 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int main()
     std::string *stringPtr = &brain;
     std::string &stringRef = brain;
 
-    std::cout << "memory add var: " << &brain << std::endl;
-    std::cout << "memory add ptr: " << stringPtr << std::endl;
-    std::cout << "memory add ref: " << &stringRef << std::endl << std::endl;
+    std::cout << "memory address var: " << &brain << std::endl;
+    std::cout << "memory address ptr: " << stringPtr << std::endl;
+    std::cout << "memory address ref: " << &stringRef << std::endl << std::endl;
     
     std::cout << "value var: " << brain << std::endl;
     std::cout << "value ptr: " << *stringPtr << std::endl;

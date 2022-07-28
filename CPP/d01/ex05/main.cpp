@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:41:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 16:32:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/28 10:53:27 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int main(int ac, char **av)
     if (ac == 2)
         harl.complain(av[1]);
     else
-        std::cout << "Wrong nb of args" << std::endl;
+    {
+        std::cout << "You must indicate one level:" << std::endl;
+        std::cout << "(DEBUG / INFO / WARNING / ERROR)" << std::endl;
+    }
     
     return (0);
 }

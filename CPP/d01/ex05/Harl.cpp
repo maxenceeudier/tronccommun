@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:42:17 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 16:26:24 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/28 10:55:18 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,37 @@ Harl::~Harl()
 
 void    Harl::debug(void)
 {
-    std::cout << "debug msssg" << std::endl;
+    std::cout << "[DEBUG]" << std::endl;
+    std::cout << "I love having extra bacon ";
+    std::cout << "for my 7XL-double-cheese-triple-pickle-specialketchup";
+    std::cout << "burger. I really do!" << std::endl;
     return ;
 }
     
 void    Harl::info(void)
 {
-    std::cout << "info msssg" << std::endl;
+    std::cout << "[INFO]" << std::endl;
+    std::cout << "I cannot believe adding extra bacon costs ";
+    std::cout << "more money. You didn’t put enough bacon in ";
+    std::cout << "my burger! If you did, I wouldn’t be asking ";
+    std::cout << "for more!" << std::endl;
     return ;
 }
 
 void    Harl::warnig(void)
 {
-    std::cout << "warning msssg" << std::endl;
+    std::cout << "[WARNING]" << std::endl;
+    std::cout << "I think I deserve to have some extra bacon for ";
+    std::cout << "free. I’ve been coming for years whereas you started";
+    std::cout << " working here since last month." << std::endl;
     return ;
 }
     
 void    Harl::error(void)
 {
-    std::cout << "error msssg" << std::endl;
+    std::cout << "[ERROR]" << std::endl;
+    std::cout << "This is unacceptable! I want to speak to the ";
+    std::cout << "manager now." << std::endl;
     return ;
 }
 
@@ -59,12 +71,12 @@ void    Harl::complain(std::string level)
         &Harl::error
     };
     std::string lev[4] = {
-        "debug",
-        "info",
-        "warning",
-        "error"
+        "DEBUG",
+        "INFO",
+        "WARNING",
+        "ERROR"
     };
-    while (i < 4 && level.c_str())
+    while (i < 4 && level.data())
     {
         if (level.compare(lev[i]) == 0)
         {

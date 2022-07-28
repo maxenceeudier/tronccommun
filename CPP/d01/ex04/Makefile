@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
+#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/07/13 14:42:24 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/07/28 10:42:21 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = ifs
+NAME = replace
 
 all: $(NAME)
 

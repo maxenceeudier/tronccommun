@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:53:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 15:55:13 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/28 10:24:17 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,28 @@ int main()
         std::cout << std::endl << std::endl;
         Weapon  arme_blanche = Weapon("sabre");
         Weapon  arme_a_feu = Weapon("pistolet");
-        HumanA max("max", arme_blanche);
-        HumanB roland("rody");
+        HumanA zombies("zombies", arme_blanche);
+        HumanB humans("humans");
     
-        max.attack();
-        roland.attack();
+        zombies.attack();
+        humans.attack();
         
-        roland.setWeapon(arme_a_feu);
+        humans.setWeapon(arme_a_feu);
     
-        max.attack();
-        roland.attack();
+        zombies.attack();
+        humans.attack();
 
         arme_a_feu.setType("fusils d'assault");
         arme_blanche.setType("hache");
-    
-        max.attack();
-        roland.attack();
 
-        roland.setWeapon(arme_blanche);
+        zombies.attack();
+        humans.attack();
+
+        humans.setWeapon(arme_blanche);
         arme_blanche.setType("katana");
 
-        max.attack();
-        roland.attack();
+        zombies.attack();
+        humans.attack();
     }
     return (0);
 }

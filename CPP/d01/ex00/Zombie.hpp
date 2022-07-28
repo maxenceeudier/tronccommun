@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 07:52:07 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 09:02:26 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/28 09:59:57 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ class Zombie
         std::string _name;
 };
 
+void    randomChump(std::string name);
+Zombie  *newZombie(std::string name);
 
 #endif

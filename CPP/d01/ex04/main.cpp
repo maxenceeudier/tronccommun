@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:25:41 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 16:13:59 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/28 10:38:59 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int main(int ac, char **av)
         std::string     s1 = av[2];
         std::string     s2 = av[3];
         std::string     buf;
-        std::string     temp;
 
         filename += ".replace";
         if (ifs.fail())
@@ -34,7 +33,7 @@ int main(int ac, char **av)
         std::ofstream   ofs(filename.data(), std::ofstream::out);
         if (ofs.fail())
         {
-            std::cout << "can't open " << filename << std::endl;
+            std::cout << "Permission denied: " << filename << std::endl;
             return (0);
         }  
         while (getline(ifs, buf))
@@ -56,6 +55,6 @@ int main(int ac, char **av)
         ofs.close();  
     }
     else
-        std::cout << "Bad args" << std::endl;
+        std::cout << "Bad args: ./replace <file name> <str occurence> <str to replace>" << std::endl;
     return (0);
 }

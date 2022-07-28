@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 07:51:55 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 09:42:04 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/28 10:08:51 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Zombie::Zombie(std::string name)
 
 Zombie::Zombie()
 {
-   return ;
+    std::cout << "A new Zombie is born." << std::endl;
+    return ;
 }
 
 Zombie::~Zombie()
