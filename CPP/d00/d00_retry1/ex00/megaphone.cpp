@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:41:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/29 12:00:06 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/11 14:56:59 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/07/29 11:14:32 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
 #include <iostream>
+#include <string>
 
 int main(int ac, char **av)
 {
-    Harl    harl;
+    int             i;
+    unsigned long   j;
 
-    if (ac == 2)
-        harl.complain(av[1]);
+    if (ac == 1)
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
     else
-        std::cout << "Wrong nb of args: format : ./harlFilter <LEVEL>" << std::endl;
-    
+    {
+        i = 1;
+        while (i < ac)
+        {
+            std::string str = av[i++];
+            j = 0;
+            while (j < str.size())
+                std::cout << (char)(std::toupper(str[j++]));
+        }
+        std::cout << std::endl;
+    }
     return (0);
 }

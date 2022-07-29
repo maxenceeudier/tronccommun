@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:33:23 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 15:48:12 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/29 13:13:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <iostream>
 
 HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon) {}
-
 HumanA::~HumanA() {}
 
 

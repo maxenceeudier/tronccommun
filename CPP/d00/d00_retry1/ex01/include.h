@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:43:06 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/29 11:56:08 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/11 16:40:18 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/07/27 18:07:07 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP 
-# include <string>
+#ifndef INCLUDE_H
+# define INCLUDE_H
 
-enum type
-{
-    DEBUG_TYPE,
-    INFO_TYPE,
-    WARNING_TYPE,
-    ERROR_TYPE
-};
-
-class Harl
-{
-private:
-    void    debug(void);
-    void    info(void);
-    void    warnig(void);
-    void    error(void);
-public:
-    Harl();
-    ~Harl();
-    
-    void    complain(std::string level);
-};
+#include <string>
+#include <iostream>
+#include <cstdlib>
+#include <locale>
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 #endif

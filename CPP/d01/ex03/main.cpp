@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:53:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/28 10:24:17 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/29 13:28:29 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int main()
 
         zombies.attack();
         humans.attack();
+
     }
     return (0);
 }

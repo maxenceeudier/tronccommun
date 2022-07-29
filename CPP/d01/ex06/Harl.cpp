@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:42:17 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/28 10:57:57 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/29 11:58:44 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ void    Harl::error(void)
 void    Harl::complain(std::string level)
 {
     int i;
+    int level_type;
         
     i = 0;
+    level_type = 0;
     void    (Harl::*f[4])(void) = {
         &Harl::debug,
         &Harl::info,
@@ -77,25 +79,25 @@ void    Harl::complain(std::string level)
         "ERROR"
     };
     
-    while (level.data() && i < 4)
+    while (level.data() && level_type < 4)
     {
-        if (level == lev[i])
+        if (level == lev[level_type])
             break ;
-        i++;
+        level_type++;
     }
     
-    switch (i)
+    switch (level_type)
     {
-        case  0:
+        case  DEBUG_TYPE:
             i = 1;
             break;
-        case 1:
+        case INFO_TYPE:
             i = 2;
             break;
-        case 2:
+        case WARNING_TYPE:
             i = 3;
             break;
-        case 3:
+        case ERROR_TYPE:
             i = 4;
             break;
         default:

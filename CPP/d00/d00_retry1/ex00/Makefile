@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/07/29 12:24:42 by meudier          ###   ########.fr        #
+#    Created: 2022/07/28 09:27:40 by meudier           #+#    #+#              #
+#    Updated: 2022/07/28 09:27:42 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++ -Wall -Wextra -Werror -std=c++98 -g
+CC = c++ -Wall -Wextra -Werror -std=c++98
 
-SRC = Zombie.cpp main.cpp zombieHorde.cpp
+SRC = megaphone.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = zombieHorde
+NAME = megaphone
 
 all: $(NAME)
 

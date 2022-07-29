@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:33:26 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/26 15:47:30 by meudier          ###   ########.fr       */
+/*   Updated: 2022/07/29 13:13:06 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ private:
     Weapon      &_weapon;
 public:
     HumanA(std::string name, Weapon &weapon);
-    ~HumanA();
+    ~HumanA(void);
     
     void    attack(void);
 };

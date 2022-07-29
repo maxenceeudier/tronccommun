@@ -5,18 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/07/29 12:24:42 by meudier          ###   ########.fr        #
+#    Created: 2022/07/28 09:27:06 by meudier           #+#    #+#              #
+#    Updated: 2022/07/28 09:27:09 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
-SRC = Zombie.cpp main.cpp zombieHorde.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = zombieHorde
+NAME = phoneBook
 
 all: $(NAME)
 

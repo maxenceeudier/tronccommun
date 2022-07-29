@@ -5,18 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/07/29 12:24:42 by meudier          ###   ########.fr        #
+#    Created: 2022/07/12 16:55:54 by maxenceeudi       #+#    #+#              #
+#    Updated: 2022/07/28 09:51:10 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++ -Wall -Wextra -Werror -std=c++98 -g
+CC = c++ -Wall -Wextra -Werror -std=c++98
 
-SRC = Zombie.cpp main.cpp zombieHorde.cpp
+SRC = Account.cpp tests.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = zombieHorde
+NAME = account
 
 all: $(NAME)
 

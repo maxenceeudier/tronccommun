@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:43:06 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/29 11:56:08 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/29 13:49:33 by meudier           #+#    #+#             */
+/*   Updated: 2022/07/29 14:04:41 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP 
-# include <string>
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-enum type
+#include <iostream>
+
+class   Fixed
 {
-    DEBUG_TYPE,
-    INFO_TYPE,
-    WARNING_TYPE,
-    ERROR_TYPE
+    private:
+        int                 _nb;
+        static const int    _nbBits;
+    public:
+        Fixed(void);
+        Fixed(Fixed const &cpy);
+        ~Fixed(void);
+        Fixed   &operator=(Fixed const &fixed2);
+
+        int getRawBits(void) const;
+        void setRawBits(int const raw);
 };
 
-class Harl
-{
-private:
-    void    debug(void);
-    void    info(void);
-    void    warnig(void);
-    void    error(void);
-public:
-    Harl();
-    ~Harl();
-    
-    void    complain(std::string level);
-};
 
 #endif

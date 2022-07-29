@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:23:10 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/13 12:33:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/07/29 12:42:40 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "Weapon.hpp"
 
 Weapon::Weapon(std::string type) : _type(type) {}
+
+Weapon::Weapon() {}
 
 Weapon::~Weapon() {}
 

@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:43:06 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/29 11:56:08 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/11 16:35:10 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/07/29 11:35:21 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP 
-# include <string>
+#ifndef PHONE_BOOK_HPP
+# define PHONE_BOOK_HPP
+# include "include.h"
 
-enum type
-{
-    DEBUG_TYPE,
-    INFO_TYPE,
-    WARNING_TYPE,
-    ERROR_TYPE
-};
-
-class Harl
+class PhoneBook
 {
 private:
-    void    debug(void);
-    void    info(void);
-    void    warnig(void);
-    void    error(void);
+    static int  _nbOfContact;
+    std::string reduce(std::string str);
+    Contact     _contacts[8];
 public:
-    Harl();
-    ~Harl();
-    
-    void    complain(std::string level);
+    PhoneBook();
+    ~PhoneBook();
+
+    void        printContatcs(void);
+    void        addContacts(Contact contact);
+    static void set_nb_of_contact(void);
 };
 
 #endif
