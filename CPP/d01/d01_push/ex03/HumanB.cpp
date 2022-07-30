@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 10:23:10 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/30 17:09:51 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/13 10:45:44 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/07/26 15:54:28 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "HumanB.hpp"
 #include <iostream>
-#include "Weapon.hpp"
 
-Weapon::Weapon(std::string type) : _type(type) {}
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL) {}
 
-Weapon::Weapon() {}
+HumanB::~HumanB() {}
 
-Weapon::~Weapon() {}
-
-const std::string  &Weapon::getType(void)
+void    HumanB::attack()
 {
-    return (this->_type);
+    std::cout << this->_name << " attacks with ";
+    if (this->_weapon)
+        std::cout << "their " << this->_weapon->getType() << std::endl;
+    else
+        std::cout << "their arms" << std::endl;
+    return ;
 }
-    
-void    Weapon::setType(std::string type)
+
+void    HumanB::setWeapon(Weapon &weapon)
 {
-    this->_type = type;
+    this->_weapon = &weapon;
     return ;
 }

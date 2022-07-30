@@ -6,17 +6,17 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/07/30 15:26:53 by meudier          ###   ########.fr        #
+#    Updated: 2022/07/26 16:43:16 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
-SRC = Fixed.cpp main.cpp
+SRC = main.cpp Harl.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = fixed
+NAME = harlFilter
 
 all: $(NAME)
 

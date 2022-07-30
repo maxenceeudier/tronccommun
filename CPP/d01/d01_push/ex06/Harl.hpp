@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 10:23:10 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/30 17:09:51 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/13 16:43:06 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/07/29 11:56:08 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Weapon.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP 
+# include <string>
 
-Weapon::Weapon(std::string type) : _type(type) {}
-
-Weapon::Weapon() {}
-
-Weapon::~Weapon() {}
-
-const std::string  &Weapon::getType(void)
+enum type
 {
-    return (this->_type);
-}
+    DEBUG_TYPE,
+    INFO_TYPE,
+    WARNING_TYPE,
+    ERROR_TYPE
+};
+
+class Harl
+{
+private:
+    void    debug(void);
+    void    info(void);
+    void    warnig(void);
+    void    error(void);
+public:
+    Harl();
+    ~Harl();
     
-void    Weapon::setType(std::string type)
-{
-    this->_type = type;
-    return ;
-}
+    void    complain(std::string level);
+};
+
+#endif

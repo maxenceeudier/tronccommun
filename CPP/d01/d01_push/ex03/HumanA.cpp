@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 10:23:10 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/07/30 17:09:51 by meudier          ###   ########.fr       */
+/*   Created: 2022/07/13 10:33:23 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/07/29 13:13:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "HumanA.hpp"
 #include <iostream>
-#include "Weapon.hpp"
 
-Weapon::Weapon(std::string type) : _type(type) {}
+HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon) {}
+HumanA::~HumanA() {}
 
-Weapon::Weapon() {}
 
-Weapon::~Weapon() {}
-
-const std::string  &Weapon::getType(void)
+void    HumanA::attack()
 {
-    return (this->_type);
-}
-    
-void    Weapon::setType(std::string type)
-{
-    this->_type = type;
+    std::cout << this->_name << " attacks with their ";
+    std::cout << this->_weapon.getType() << std::endl;
     return ;
 }

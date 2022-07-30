@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
+#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/07/30 15:26:53 by meudier          ###   ########.fr        #
+#    Updated: 2022/07/13 11:10:38 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
-SRC = Fixed.cpp main.cpp
+SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = fixed
+NAME = fight
 
 all: $(NAME)
 
