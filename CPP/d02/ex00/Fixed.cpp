@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 13:50:16 by meudier           #+#    #+#             */
-/*   Updated: 2022/07/29 14:14:44 by meudier          ###   ########.fr       */
+/*   Updated: 2022/08/01 08:46:19 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int _nbBits = 0;
+const int Fixed::_bitsPartFract = 8;
 
-Fixed::Fixed() : _nb(0)
+Fixed::Fixed() : _nbVirguleFixe(0)
 {
     std::cout << "Default constructeur called" << std::endl;
     return ;
@@ -36,19 +36,19 @@ Fixed::Fixed(Fixed const &cpy)
 Fixed   &Fixed::operator=(Fixed const &fixed2)
 {
     std::cout << "Copy assignement operateur called" << std::endl;
-    this->_nb = fixed2.getRawBits();
+    this->_nbVirguleFixe = fixed2.getRawBits();
     return (*this);
 }
 
 int    Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (this->_nb);
+    return (this->_nbVirguleFixe);
 }
 
 void    Fixed::setRawBits(int const raw)
 {
     std::cout << "setRawBits member function called" << std::endl;
-    this->_nb = raw;
+    this->_nbVirguleFixe = raw;
     return ;
 }
