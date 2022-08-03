@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:45:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/01 18:17:10 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/02 13:01:48 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void    ScavTrap::guardGate(void)
     
     if (this->_guardGateStatus)
     {
-        std::cout << this->_name << "End of Gate Keeper mode !";
+        std::cout << this->_name << " End of Gate Keeper mode !";
         this->_damage /= 2;
         this->_guardGateStatus = 0;
     }
     else
     {
-        std::cout << this->_name << " is in Gate Keeper mode !";
+        std::cout << this->_name << " is in Gate Keeper mode ! (damage * 2 but nrj / 2)";
         this->_damage *= 2;
         this->_guardGateStatus = 1;
     }
@@ -77,7 +77,6 @@ void    ScavTrap::attack(const std::string &target)
 {
     if (this->_nrj)
     {
-        this->_nrj--;
         std::cout << "ScavTrap: ";
         std::cout << this->_name;
         std::cout << " attack " << target;
@@ -87,6 +86,8 @@ void    ScavTrap::attack(const std::string &target)
         {
             this->_nrj /= 2;
         }
+        else
+            this->_nrj--;
         if (this->_nrj == 0)
         {
             std::cout << this->_name;

@@ -6,20 +6,20 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:58:38 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/02 09:22:37 by meudier          ###   ########.fr       */
+/*   Updated: 2022/08/02 16:55:14 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _name("claptrap"), _hit(10), _nrj(10), _damage(0)
+ClapTrap::ClapTrap(void) : _name("A claptrap"), _hit(10), _nrj(10), _damage(0)
 {
     std::cout << "ClapTrap default constructor called. ";
     std::cout << this->_name << " is born."  << std::endl;
     return ;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _nrj(10), _damage(4)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _nrj(10), _damage(0)
 {
     std::cout << "ClapTrap constructor with name called. ";
     std::cout << this->_name << " is born."  << std::endl;
@@ -29,14 +29,14 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hit(10), _nrj(10), _damage(
 ClapTrap::ClapTrap(ClapTrap &cpy)
 {
     std::cout << "ClapTrap cpy constructor called. ";
-    *this = cpy;
     std::cout << this->_name << " is born."  << std::endl;
+    *this = cpy;
     return ;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-        std::cout << this->_name << " is dead" << std::endl;
+        std::cout << "claptrap: " << this->_name << " is dead." << std::endl;
     return ;
 }
 
@@ -54,6 +54,7 @@ void    ClapTrap::attack(const std::string &target)
 {
     if (this->_nrj)
     {
+        std::cout << "ClapTrap: ";
         this->_nrj--;
         std::cout << this->_name;
         std::cout << " attack " << target;
@@ -73,6 +74,7 @@ void    ClapTrap::attack(const std::string &target)
     }
     else
     {
+        std::cout << "ClapTrap: ";
         std::cout << this->_name << " hasn't the energie to attack.";
         std::cout << std::endl;
     }
@@ -142,8 +144,12 @@ unsigned int &ClapTrap::getDamage(void)
     return (this->_damage);
 }
 
-std::string ClapTrap::getName(void)
+std::string     &ClapTrap::getName(void)
 {
-    return (_name);
+    return (this->_name);
 }
 
+unsigned int    &ClapTrap::getNrj(void)
+{
+    return (_nrj);
+}

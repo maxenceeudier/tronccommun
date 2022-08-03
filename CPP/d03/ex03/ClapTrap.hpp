@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:58:11 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/02 09:15:50 by meudier          ###   ########.fr       */
+/*   Updated: 2022/08/02 16:55:06 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ class ClapTrap
         void    beRepaired(unsigned int amount);
 
         unsigned int    &getDamage(void);
-        std::string     getName(void);
+        std::string     &getName(void);
+        unsigned int    &getNrj(void);
         
-    private:
-        std::string   _name;
-        unsigned int        _hit;
-        unsigned int        _nrj;
-        unsigned int        _damage;
+    protected:
+        std::string     _name;
+        unsigned int    _hit;
+        unsigned int    _nrj;
+        unsigned int    _damage;
         ClapTrap(void);
           
 };

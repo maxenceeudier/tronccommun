@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:59:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/01 16:52:48 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/02 09:25:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,40 @@
 
 int main()
 {
-    std::string s = "Sasuke";
-    std::string n = "Naruto";
-    ClapTrap    a(s);
-    ClapTrap    b(n);
+    ClapTrap    a("Sasuke");
+    ClapTrap    b("Naruto");
     ClapTrap    c(a);
     ClapTrap    d = b;
 
-    a.attack(n);
+    a.attack(b.getName());
     b.takeDamage(a.getDamage());
+    
     b.beRepaired(2);
-    b.attack(s);
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
-    b.attack(s);
+    
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
+    
     a.beRepaired(4);
-    a.attack(n);
+    a.attack(b.getName());
     b.takeDamage(a.getDamage());
-    b.attack(s);
+    
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
-    b.attack(s);
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
-    b.attack(s);
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
-    b.beRepaired(-1);
+    b.beRepaired(1);
     b.beRepaired(3);
-    b.attack(s);
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
-    b.attack(s);
+    b.attack(a.getName());
     a.takeDamage(b.getDamage());
-    b.attack(s);
-    a.takeDamage(b.getDamage());
+    b.attack(a.getName());
 
-    c.attack(n);
+    c.attack(d.getName());
     d.takeDamage(c.getDamage());
     
     return (0);

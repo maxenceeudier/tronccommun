@@ -6,17 +6,17 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/08/02 10:12:46 by meudier          ###   ########.fr        #
+#    Updated: 2022/08/02 10:57:44 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++ -Wall -Wextra -Werror -std=c++98 -g
+CC = c++ -Wall -Wextra -Werror -std=c++98 
 
-SRC = ClapTrap.cpp main.cpp FragTrap.cpp
+SRC = ClapTrap.cpp main.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = Fragtrap
+NAME = diamondtrap
 
 all: $(NAME)
 

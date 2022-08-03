@@ -6,17 +6,17 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/08/02 10:12:46 by meudier          ###   ########.fr        #
+#    Updated: 2022/08/03 11:17:47 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++ -Wall -Wextra -Werror -std=c++98 -g
+CC = c++ -Wall -Wextra -Werror -std=c++98
 
-SRC = ClapTrap.cpp main.cpp FragTrap.cpp
+SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = Fragtrap
+NAME = animal
 
 all: $(NAME)
 
