@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:03:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/08 09:51:43 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/08 13:51:05 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,10 @@ std::ostream &operator<<(std::ostream &o, const Form &form)
     return (o);
 }
 
+void          Form::checkExecute(Bureaucrat const &executor) const
+{
+    if (!_sign)
+        throw NoSign();
+    if (executor.getGrade() > _gradeForExec)
+        throw GradeTooLowException();
+}

@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:11:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/08 10:17:05 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/08 13:36:46 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class   Bureaucrat
         Bureaucrat  &decrement(int grade);
 
         void        signForm(Form &form);
+        void        executeForm(Form const &form);
         
         class   GradeTooHighException : public std::exception
         {

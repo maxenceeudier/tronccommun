@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:10:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/08 10:19:00 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/08 13:43:49 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,17 @@ void        Bureaucrat::signForm(Form &form)
         std::cout << " his grade is under " << form.getGradeSign() << std::endl;
     }
     form.beSigned(*this);
+}
+
+void        Bureaucrat::executeForm(Form const &form)
+{
+    if (_grade <= form.getGradeExec())
+        std::cout << _name << " execute " << form.getName() << std::endl;
+    else
+    {
+        std::cout << _name << " couldn't execute ";
+        std::cout << form.getName() << " because ";
+        std::cout << " his grade is under " << form.getGradeSign() << std::endl;
+    }
+    form.execute(*this);
 }

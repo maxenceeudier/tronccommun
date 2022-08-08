@@ -6,134 +6,81 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:26:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/05 16:53:04 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/08 10:27:57 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
     try
     {
-        Bureaucrat  michel("michel", 150);
-    
-        std::cout << michel << std::endl;
-        std::cout << michel-- << std::endl;
-        std::cout << michel << std::endl;
-        std::cout << michel++ << std::endl;
-        std::cout << michel << std::endl;
-    
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << std::endl;
-    
-    try
-    {
-        Bureaucrat  michel("michel", 150);
-    
-        std::cout << michel << std::endl;
-        michel.increment(100);
-        std::cout << michel << std::endl;
-        michel.decrement(50);
-        std::cout << michel << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << std::endl;
-    
-    try
-    {
-         Bureaucrat  michel("michel", 1);
-    
-        std::cout << michel << std::endl;
-        michel.decrement(100);
-        std::cout << michel << std::endl;
-        michel.increment(50);
-        std::cout << michel << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << std::endl;
-    
-    try
-    {
-        Bureaucrat  michel("michel", 1);
-    
-        std::cout << michel << std::endl;
-        michel.increment(100);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << std::endl;
-    
-    try
-    {
-        Bureaucrat  michel("michel", 150);
-    
-        std::cout << michel << std::endl;
-        michel.decrement(100);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << std::endl;
-    
-    try
-    {
-        Bureaucrat  *micheline = new Bureaucrat("micheline", 1);
+        Bureaucrat  patoch("patoch", 50);
+        Form        G12("G12", 20, 1);
         
-        std::cout << *micheline << std::endl;
-        std::cout << (*micheline)++ << std::endl;
+        patoch.signForm(G12);
+        std::cout << G12;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    std::cout << std::endl;
 
     try
     {
-        Bureaucrat  mitch(Bureaucrat("Mitch", 0));
-        std::cout << mitch << std::endl;
+        Bureaucrat  patoch("patoch", 50);
+        Form        G12("G12", 60, 1);
+        
+        patoch.signForm(G12);
+        std::cout << G12;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    std::cout << std::endl;
     
     try
     {
-        Bureaucrat  mitch(Bureaucrat("Mitch", 0));
-        std::cout << mitch << std::endl;
+        Bureaucrat  patoch("patoch", 50);
+        Form        G12("G12", 60, 1);
+        {
+           Form        G13 = G12;
+           std::cout << G13;
+        }
+        patoch.signForm(G12);
+        std::cout << G12;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    std::cout << std::endl;
-    
-    try
-    {
-        Bureaucrat  mutch("Mutch", 151);
-        std::cout << mutch << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    std::cout << std::endl;
 
+    try
+    {
+        Bureaucrat  patoch("patoch", 60);
+        Form        G12("G12", 151, 1);
+        
+        patoch.signForm(G12);
+        std::cout << G12;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    try
+    {
+        Bureaucrat  patoch("patoch", 60);
+        Form        G12("G12", 15, 0);
+        
+        patoch.signForm(G12);
+        std::cout << G12;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     return (0);
 }
