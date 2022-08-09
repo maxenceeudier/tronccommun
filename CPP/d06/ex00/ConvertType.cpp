@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 09:33:15 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/09 11:40:44 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/09 16:42:01 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ float   ConvertType::convertInputToFloat(const std::string input)
     {
         if (input.size() == 3 && input[0] == '\'' && input[2] == '\'')
             return (static_cast<float>(input[1]));
-        else if (input.size() == 1)
+        else if (input.size() == 1 && (input[0] < '0' || input[0] > '9'))
             return (static_cast<float>(input[0]));
         stf = std::stof(input);
     }
@@ -76,8 +76,9 @@ double     ConvertType::toDouble(float nb)
 char     ConvertType::toChar(float nb)
 {
     char    c = static_cast<char>(nb);
-    if (isnan(nb) || nb == std::numeric_limits<char>::infinity()
-        || nb == -std::numeric_limits<char>::infinity())
+
+    if (nb && (isnan(nb) || nb == std::numeric_limits<char>::infinity()
+        || nb == -std::numeric_limits<char>::infinity()))
         throw std::string("impossible");
     if (c < 32 || c > 126)
         throw std::string("Non displayable");
@@ -108,7 +109,6 @@ int    ConvertType::printData(std::string input)
     {
         _typeInt = this->toInt(_typeFloat);
         std::cout << "int: " << _typeInt << std::endl;
-        
     }
     catch(const std::string &e)
     {
