@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:18:11 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/10 13:14:45 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/10 13:36:35 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
     Array<T>(const unsigned int n) : _size(n)
     {
         if (static_cast<int>(n) < 0)
-            throw std::string("overflow error");
+            throw OverflowError();
         _array = new T[n];
     };
     Array<T>(const Array<T> &cpy)
@@ -54,12 +54,19 @@ public:
     T   &operator[](unsigned int index)
     {
         if (index >= _size || index < 0)
-            throw std::string("overflow error");
+            throw OverflowError();
         return (_array[index]);
     }
     unsigned int  size(void)
     {
         return (_size);
+    };
+    class OverflowError : public std::exception
+    {
+        const char *what() const throw()
+        {
+            return ("overflow error");
+        }
     };
 };
 
