@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:36:52 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/11 12:58:02 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/11 15:37:07 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ Span &Span::operator=(const Span &span)
 void    Span::addNumber(int n)
 {
     if (_vector.size() == _maxSize)
-        throw std::out_of_range("span is full.");
+        throw std::out_of_range("span is full. You can't add any numbers.");
     _vector.push_back(n);
 }
 
@@ -76,4 +76,12 @@ int     Span::longestSpan(void)
     if (_vector.size() <= 1)
         throw std::out_of_range("Span have less than 2 value.");
     return (*std::max_element(_vector.begin(), _vector.end()) - *std::min_element(_vector.begin(), _vector.end()));
+}
+
+void    Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if (_vector.size() + (end - begin) > _maxSize)
+        throw std::out_of_range("span is full. You want to add too many numbers");
+    _vector.insert(_vector.end(), begin, end);
+    return ;
 }

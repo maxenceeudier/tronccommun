@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 10:33:01 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/11 13:00:23 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/11 15:44:50 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,52 @@ int main()
         std::cerr << e.what() << '\n';
     }
     std::cout << std::endl << std::endl;
-    
-    
+    try
+    {
+        Span test(10);
+        std::vector<int> tab1(5, 2);
+        std::vector<int> tab2(6, 1);
+        test.addNumbers(tab1.begin(), tab1.end());
+        test.printSpan();
+        test.addNumbers(tab2.begin(), tab2.end());
+        test.printSpan();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << std::endl << std::endl;
+    try
+    {
+        Span test(20);
+        std::vector<int> tab1(10, 4);
+        std::vector<int> tab2(2, 1);
+        test.addNumbers(tab1.begin(), tab1.end());
+        test.addNumbers(tab2.begin(), tab2.end());
+        test.printSpan();
+        std::cout << "shortest span: " << test.shortestSpan() << std::endl;
+        std::cout << "longest span: " << test.longestSpan();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << std::endl << std::endl;
+    try
+    {
+        Span test(20000);
+        std::vector<int> tab1(10000, 4);
+        test.addNumbers(tab1.begin(), tab1.end());
+        test.addNumber(-42);
+        test.printSpan();
+        std::cout << "shortest span: " << test.shortestSpan() << std::endl;
+        std::cout << "longest span: " << test.longestSpan();
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    std::cout << std::endl << std::endl;
     Span    sp = Span(5);
     sp.addNumber(6);
     sp.addNumber(3);
