@@ -6,17 +6,17 @@
 #    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/08/09 10:49:40 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/08/11 10:37:20 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
-SRC = main.cpp ConvertType.cpp
+SRC = main.cpp Span.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = convert
+NAME = span
 
 all: $(NAME)
 
