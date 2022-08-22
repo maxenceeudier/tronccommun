@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ConvertType.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 09:32:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/08/09 11:20:30 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/08/22 22:01:39 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #define CONVERT_TYPE_HPP
 #include <iostream>
 #include <cmath>
+#include <limits>
+#include <string>
+#include <sstream>
 
 class ConvertType
 {
@@ -22,6 +25,7 @@ private:
     int     _typeInt;
     float   _typeFloat;
     double  _typeDouble;
+    int     _intLim;
     
 public:
     ConvertType(void);
@@ -31,7 +35,7 @@ public:
 
     int    printData(std::string input);
     
-    float   convertInputToFloat(const std::string input);
+    float   convertInputToLD(const std::string &input);
     int     toInt(float nb);
     double  toDouble(float nb);
     char    toChar(float nb);    
