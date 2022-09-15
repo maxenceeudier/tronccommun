@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RBTree.hpp                                         :+:      :+:    :+:   */
+/*   swap.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 15:12:41 by maxenceeudi      ###   ########.fr       */
+/*   Created: 2022/09/15 14:55:59 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/09/15 16:00:36 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#ifndef RBTREE_HPP
-# define RBTREE_HPP
+#ifndef SWAP_HPP
+#define SWAP_HPP
 
-class RBTree
+namespace ft
 {
-    public:
-        RBTree(void);
-        RBTree(RBTree const &rbt);
-        ~RBTree(void);
-        RBTree &operator=(RBTree const&rbt);
-    private:
-        Node *_root;
-    
-};
+    template <class T>
+	void swap (T & a, T & b)
+	{
+		T	tmp(a);
+		a = b;
+		b = tmp;
+	}
+}
 
-#endif*/
+#endif

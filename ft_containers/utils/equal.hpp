@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RBTree.hpp                                         :+:      :+:    :+:   */
+/*   equal.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 15:12:41 by maxenceeudi      ###   ########.fr       */
+/*   Created: 2022/09/15 14:21:41 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/09/15 14:57:35 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#ifndef RBTREE_HPP
-# define RBTREE_HPP
+#ifndef EQUAL_HPP
+#define EQUAL_HPP
 
-class RBTree
+namespace ft
 {
-    public:
-        RBTree(void);
-        RBTree(RBTree const &rbt);
-        ~RBTree(void);
-        RBTree &operator=(RBTree const&rbt);
-    private:
-        Node *_root;
-    
-};
+    template <class Iterator1, class Iterator2>
+    bool equal (Iterator1 first1, Iterator1 last1, Iterator2 first2 )
+    {
+    while (first1 != last1) {
+        if (!(*first1 == *first2))
+            return false;
+        ++first1; ++first2;
+    }
+    return true;
+    }
+}
 
-#endif*/
+#endif

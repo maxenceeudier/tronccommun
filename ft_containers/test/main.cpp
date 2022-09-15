@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/15 15:12:52 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/09/15 19:01:25 by maxenceeudi      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <cstdlib>
+#include <string>
+#include "../utils/equal.hpp"
+#include "../utils/is_integral.hpp"
+#include "../utils/Pair.hpp"
+#include "../utils/swap.hpp"
+#include "../utils/Node.hpp"
+
+#include <vector>
+
+using namespace ft;
+
+int main()
+{
+
+    /*----------is_integral-----------------*/
+    std::cout << "is_integral :" << std::endl;
+    std::cout << "int: " << ft::is_integral<int>::value << std::endl;
+    std::cout << "float :" << ft::is_integral<float>::value << std::endl;
+    std::cout << "char: " << ft::is_integral<char>::value << std::endl;
+    std::cout << "char32_t : " << ft::is_integral<char32_t>::value << std::endl;
+    std::cout << "unsigned short int : " << ft::is_integral<unsigned short int>::value << std::endl;
+    std::cout << std::endl << std::endl;
+
+    std::cout << "is_integral :" << std::endl;
+    std::cout << "int: " << std::is_integral<int>::value << std::endl;
+    std::cout << "float :" << std::is_integral<float>::value << std::endl;
+    std::cout << "char: " << std::is_integral<char>::value << std::endl;
+    std::cout << "char32_t : " << std::is_integral<char32_t>::value << std::endl;
+    std::cout << "unsigned short int : " << std::is_integral<unsigned short int>::value << std::endl;
+    std::cout << std::endl << std::endl;
+
+    /*-----------pair-----------------------*/
+    std::cout << "Pair :"       << std::endl;
+    const std::string                   str = "hello";
+    ft::pair<std::string, int>          pri;
+    ft::pair<int, float>                prif(1, 3.33);
+    pri = ft::make_pair(str, -1);
+    ft::pair<std::string, unsigned int> prui(pri);
+    ft::pair<std::string, int>          pri2;
+    pri2 = pri;
+    
+    std::cout << "make_pair : " << pri;
+    std::cout << "cpy : "       << prui;
+    std::cout << "args : "      << prif;
+    std::cout << "== : "        << (pri2 == pri) << std::endl;
+    std::cout << "!= : "        << (pri2 != pri) << std::endl;
+    std::cout << std::endl << std::endl;
+
+    std::cout << "Pair :"       << std::endl;
+    std::pair<std::string, int>          prii2;
+    std::pair<const int, const float>                prif2(1, 3.33);
+    prii2 = std::make_pair(str, -1);
+    std::pair<std::string, unsigned int> prui2(prii2);
+    std::pair<std::string, int>          pri4;
+    pri4 = prii2;
+    
+    std::cout << "make_pair : " << "key = " << prii2.first;
+    std::cout << ", value = " << prii2.second << std::endl;
+    std::cout << "cpy : " << "key = " << prui2.first;
+    std::cout << ", value = " << prui2.second << std::endl;
+    std::cout << "args : " << "key = " << prif2.first;
+    std::cout << ", value = " << prif2.second << std::endl;
+    std::cout << std::endl << std::endl;
+
+    /*-------------equal------------------*/
+    std::vector<int>     vec1(10, 0);
+    std::vector<int>     vec2(vec1);
+    std::vector<int>     vec3(10, 1);
+
+    std::cout << "equal :" << std::endl;
+    std::cout << "eq true: " << ft::equal(vec1.begin(), vec1.end(), vec2.begin());
+    std::cout << std::endl;
+    std::cout << "eq flase: " << ft::equal(vec1.begin(), vec1.end(), vec3.begin());
+    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
+
+    std::cout << "equal :" << std::endl;
+    std::cout << "eq true: " << std::equal(vec1.begin(), vec1.end(), vec2.begin());
+    std::cout << std::endl;
+    std::cout << "eq flase: " << std::equal(vec1.begin(), vec1.end(), vec3.begin());
+    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
+
+
+    /*----------------node-----------------*/
+    const std::string     st("test");
+    ft::pair<std::string, int>    pair(st, 3);
+    Node<std::string, int>    *node = new Node<std::string, int>(pair);
+    std::cout << node->pair;
+    if (node ->color == 0)
+        std::cout << "Black";
+    if (node ->color == 1)
+        std::cout << "Red";
+    std::cout << std::endl;
+    delete node;
+    return (0);
+}
+
