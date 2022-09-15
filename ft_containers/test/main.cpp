@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:12:52 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 19:01:25 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/09/15 19:18:35 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "../utils/Pair.hpp"
 #include "../utils/swap.hpp"
 #include "../utils/Node.hpp"
+#include "../utils/swap.hpp"
 
 #include <vector>
 
@@ -99,13 +100,18 @@ int main()
     const std::string     st("test");
     ft::pair<std::string, int>    pair(st, 3);
     Node<std::string, int>    *node = new Node<std::string, int>(pair);
-    std::cout << node->pair;
-    if (node ->color == 0)
-        std::cout << "Black";
-    if (node ->color == 1)
-        std::cout << "Red";
-    std::cout << std::endl;
+    const std::string     st2("test2");
+    ft::pair<std::string, int>    pair2(st2, 5);
+    Node<std::string, int>    *node2 = new Node<std::string, int>(pair2);
+
+    std::cout << node;
+    node2->color = BLACK;
+    std::cout << node2;
+    ft::swap(node->color, node2->color);
+    std::cout << node;
+    std::cout << node2;
     delete node;
+    delete node2;
     return (0);
 }
 

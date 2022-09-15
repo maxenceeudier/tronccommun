@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 18:50:01 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/09/15 19:17:04 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ namespace ft
             Node                    *left;
             Node                    *right;
     };
+
+    template<typename Tkey, typename Tvalue>
+    std::ostream	&operator<<(std::ostream &o, Node<Tkey, Tvalue> *node)
+    {
+        std::cout << "key = " << node->pair.first \
+        << ", value = " << node->pair.second << " " << std::endl;
+        std::cout << "color : ";
+        if (node->color == BLACK)
+            std::cout << "black";
+        if (node->color == DOUBLE_BLACK)
+            std::cout << "double black";
+        if (node->color == RED)
+            std::cout << "red";
+        std::cout << std::endl;
+        return (o);
+    }
+    
 }
 
 #endif
