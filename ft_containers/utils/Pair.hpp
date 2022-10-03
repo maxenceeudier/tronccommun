@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 18:09:55 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/03 11:55:08 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,18 @@ namespace ft
     bool    operator!=(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
         return (!(pr1 == pr2));
+    }
+
+    template<typename Tkey, typename Tvalue>
+    bool    operator<(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
+    {
+        return ((pr1.key < pr2.key));
+    }
+
+    template<typename Tkey, typename Tvalue>
+    bool    operator>(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
+    {
+        return (pr1.key > pr2.key);
     }
 
     template<typename Tkey, typename Tvalue>

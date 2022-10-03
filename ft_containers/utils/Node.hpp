@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 19:17:04 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/03 11:31:11 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ namespace ft
         DOUBLE_BLACK
     };
     
-    template<typename Tkey, typename Tvalue>
+    template<typename T>
     class Node
     {
         public:
             Node(void){};
-            Node(ft::pair<Tkey, Tvalue> &pair) : pair(pair), color(RED), parent(NULL), left(NULL), right(NULL){};
+            Node(T &data) : data(data), color(RED), parent(NULL), left(NULL), right(NULL){};
             Node(Node const &node)
             {
                 *this = node;
@@ -37,7 +37,7 @@ namespace ft
             ~Node(void){};
             Node &operator=(Node const &node)
             {
-                pair = node.pair;
+                data = node.data;
                 color = node.color;
                 parent = node.parent;
                 left = node.left;
@@ -45,18 +45,17 @@ namespace ft
                 return (*this);
             };
 
-            ft::pair<Tkey, Tvalue>  pair;
-            int                     color;
-            Node                    *parent;
-            Node                    *left;
-            Node                    *right;
+            T       data;
+            int     color;
+            Node    *parent;
+            Node    *left;
+            Node    *right;
     };
 
-    template<typename Tkey, typename Tvalue>
-    std::ostream	&operator<<(std::ostream &o, Node<Tkey, Tvalue> *node)
+    template<typename T>
+    std::ostream	&operator<<(std::ostream &o, Node<T> *node)
     {
-        std::cout << "key = " << node->pair.first \
-        << ", value = " << node->pair.second << " " << std::endl;
+        std::cout << node->data << std::endl;
         std::cout << "color : ";
         if (node->color == BLACK)
             std::cout << "black";
@@ -67,7 +66,6 @@ namespace ft
         std::cout << std::endl;
         return (o);
     }
-    
 }
 
 #endif

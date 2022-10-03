@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:12:52 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 19:18:35 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/03 17:39:57 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "../utils/swap.hpp"
 #include "../utils/Node.hpp"
 #include "../utils/swap.hpp"
-
+#include "../utils/RBTree_impl.hpp"
 #include <vector>
 
 using namespace ft;
@@ -99,10 +99,10 @@ int main()
     /*----------------node-----------------*/
     const std::string     st("test");
     ft::pair<std::string, int>    pair(st, 3);
-    Node<std::string, int>    *node = new Node<std::string, int>(pair);
+    Node<ft::pair<std::string, int> >   *node = new Node<ft::pair<std::string, int> >(pair);
     const std::string     st2("test2");
     ft::pair<std::string, int>    pair2(st2, 5);
-    Node<std::string, int>    *node2 = new Node<std::string, int>(pair2);
+    Node<ft::pair<std::string, int> >   *node2 = new Node<ft::pair<std::string, int> >(pair2);
 
     std::cout << node;
     node2->color = BLACK;
@@ -112,6 +112,23 @@ int main()
     std::cout << node2;
     delete node;
     delete node2;
+    std::cout << std::endl;
+
+
+    /*----------------RBTree-----------------*/
+    ft::RBTree<int> tree;
+    tree.insertValue(4);
+    tree.insertValue(10);
+    tree.insertValue(-6);
+    tree.insertValue(5);
+    tree.insertValue(64);
+    tree.insertValue(-10);
+    tree.insertValue(35);
+    tree.insertValue(264);
+    tree.insertValue(-9);
+    
+    tree.printTree();
+    tree.deleteValue(-10);
+    tree.printTree();
     return (0);
 }
-
