@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:12:52 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/03 17:39:57 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/04 15:33:06 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,20 @@ int main()
     tree.printTree();
     tree.deleteValue(-10);
     tree.printTree();
+
+    std::cout << "cpy :\n";
+    ft::RBTree<int> cpy(tree);
+    cpy.printTree();
+    {
+        ft::RBTree<int> clone;
+        clone = cpy;
+        std::cout << "clone: \n";
+        clone.printTree();
+    }
+    std::cout << "cpy: \n";
+    cpy.printTree();
+    tree.deleteValue(4);
+    tree.printTree();
+    
     return (0);
 }
