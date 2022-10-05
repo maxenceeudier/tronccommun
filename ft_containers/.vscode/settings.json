@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "vector": "cpp",
+        "iosfwd": "cpp",
+        "iterator": "cpp",
+        "string": "cpp",
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "__split_buffer": "cpp",
+        "memory_resource": "cpp",
+        "sstream": "cpp",
+        "unordered_map": "cpp",
+        "memory": "cpp",
+        "__bit_reference": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp"
+    }
+}

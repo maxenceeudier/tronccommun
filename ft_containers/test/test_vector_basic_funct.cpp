@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   equal.hpp                                          :+:      :+:    :+:   */
+/*   test_vector_basic_funct.cpp                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:21:41 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/05 14:39:19 by maxenceeudi      ###   ########.fr       */
+/*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/10/05 10:08:29 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EQUAL_HPP
-#define EQUAL_HPP
+#include "../srcs/vector/basic_function.hpp"
 
-namespace ft
+int test_vector_basic_funct()
 {
-    template <class Iterator1, class Iterator2>
-    bool equal(Iterator1 first1, Iterator1 last1, Iterator2 first2 )
-    {
-        while (first1 != last1)
-        {
-            if (*first1 != *first2)
-                return false;
-            ++first1;
-            ++first2;
-        }
-        return true;
-    }
+    return (0);
 }
-
-#endif

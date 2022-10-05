@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   equal.hpp                                          :+:      :+:    :+:   */
+/*   distance.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:21:41 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/05 14:39:19 by maxenceeudi      ###   ########.fr       */
+/*   Created: 2022/10/05 14:11:41 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/10/05 14:53:38 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EQUAL_HPP
-#define EQUAL_HPP
+#ifndef DISTANCE_HPP
+# define DISTANCE_HPP
 
 namespace ft
 {
-    template <class Iterator1, class Iterator2>
-    bool equal(Iterator1 first1, Iterator1 last1, Iterator2 first2 )
+    
+    template<class InputIterator>
+    typename std::iterator_traits<InputIterator>::difference_type
+    distance (InputIterator first, InputIterator last)
     {
-        while (first1 != last1)
+        typename std::iterator_traits<InputIterator>::difference_type rtn = 0;
+        while (first != last)
         {
-            if (*first1 != *first2)
-                return false;
-            ++first1;
-            ++first2;
+            first++;
+            rtn++;
         }
-        return true;
-    }
+        return (rtn);
+    };
+
 }
 
 #endif

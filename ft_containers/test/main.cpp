@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   equal.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 14:21:41 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/05 14:39:19 by maxenceeudi      ###   ########.fr       */
+/*   Created: 2022/10/05 10:08:41 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/10/05 10:11:31 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EQUAL_HPP
-#define EQUAL_HPP
+#include "test.h"
 
-namespace ft
+int main ()
 {
-    template <class Iterator1, class Iterator2>
-    bool equal(Iterator1 first1, Iterator1 last1, Iterator2 first2 )
-    {
-        while (first1 != last1)
-        {
-            if (*first1 != *first2)
-                return false;
-            ++first1;
-            ++first2;
-        }
-        return true;
-    }
+    test_utils();
+    return (0);
 }
-
-#endif

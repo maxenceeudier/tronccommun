@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   test_utils.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:12:52 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/04 15:33:06 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/05 14:53:09 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 #include "../utils/Node.hpp"
 #include "../utils/swap.hpp"
 #include "../utils/RBTree_impl.hpp"
+#include "../utils/distance.hpp"
 #include <vector>
 
 using namespace ft;
 
-int main()
+int test_utils()
 {
 
     /*----------is_integral-----------------*/
@@ -144,6 +145,12 @@ int main()
     cpy.printTree();
     tree.deleteValue(4);
     tree.printTree();
+    std::cout << std::endl;
+
+    /*--------------distance--------------*/
+    
+    std::vector<int> arr(5, 1);
+    std::cout << ft::distance<std::vector<int>::iterator>(arr.begin(), arr.end());
     
     return (0);
 }
