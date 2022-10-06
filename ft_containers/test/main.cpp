@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:08:41 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/05 10:11:31 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 12:56:42 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int main ()
 {
-    test_utils();
+    test_vector();
     return (0);
 }

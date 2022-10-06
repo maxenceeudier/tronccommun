@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/05 17:23:26 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 13:57:31 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,13 @@ namespace ft
 {
     template <class T, class Allocator>
     vector<T, Allocator>::vector(const Allocator& alloc)\
-    : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr){}
+    : _alloc(alloc), _start(NULL), _end(NULL), _end_capacity(NULL){}
 
     template <class T, class Allocator>
     vector<T, Allocator>::vector(size_type count, const T &value, const Allocator &alloc)\
     : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr)
     {
-        _start = _alloc.allocate(count);
-        _end_capacity = _start + count;
-        _end = _start;
-        while (count--)
-        {
-            _alloc.constuct(_end, value);
-            _end++;
-        }
+        insert(_end, count, value);
     }
     
     template <class T, class Allocator>
@@ -54,7 +47,7 @@ namespace ft
         if (*this == cpy)
             return (*this);
         this->clear();
-        this->insert(_start, cpy.begin(), cpy.end());
+        this->insert(_end, cpy.begin(), cpy.end());
         return (*this);
     }
 
@@ -62,9 +55,9 @@ namespace ft
     void vector<T, Allocator>::assign(size_type count, const T &value)
     {
         this->clear();
-        this->insert(_start, count, value);
+        this->insert(_end, count, value);
     }
 
     template <class T, class Allocator>
-    vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator() const{return (_alloc);}
+    typename vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator() const{return (_alloc);}
 }

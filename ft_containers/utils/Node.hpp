@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/03 11:31:11 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 12:53:00 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ namespace ft
     template<typename T>
     std::ostream	&operator<<(std::ostream &o, Node<T> *node)
     {
-        std::cout << node->data << std::endl;
-        std::cout << "color : ";
+        o << node->data << std::endl;
+        o << "color : ";
         if (node->color == BLACK)
-            std::cout << "black";
+            o << "black";
         if (node->color == DOUBLE_BLACK)
-            std::cout << "double black";
+            o << "double black";
         if (node->color == RED)
-            std::cout << "red";
-        std::cout << std::endl;
+            o << "red";
+        o << std::endl;
         return (o);
     }
 }
