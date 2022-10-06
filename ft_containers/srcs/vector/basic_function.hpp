@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 13:57:31 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 15:51:30 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ namespace ft
     vector<T, Allocator>::vector(size_type count, const T &value, const Allocator &alloc)\
     : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr)
     {
-        insert(_end, count, value);
+        this->insert(_end, count, value);
     }
     
     template <class T, class Allocator>
@@ -44,8 +44,6 @@ namespace ft
     template <class T, class Allocator>  
     vector<T, Allocator>  &vector<T, Allocator>::operator=(const vector &cpy)
     {
-        if (*this == cpy)
-            return (*this);
         this->clear();
         this->insert(_end, cpy.begin(), cpy.end());
         return (*this);

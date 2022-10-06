@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:25:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 14:13:37 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 15:43:58 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ namespace ft
             _end = _start;
             _end_capacity = _start + 1;
         }
-        /*else
+        else
         {
             pointer new_start;
             pointer new_end;
@@ -62,6 +62,6 @@ namespace ft
             _start = new_start;
             _end = new_end;
             _end_capacity = new_end_capacity;
-        }*/
+        }
     }
 }

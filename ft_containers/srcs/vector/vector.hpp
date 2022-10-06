@@ -22,9 +22,9 @@ namespace ft
             typedef typename Allocator::pointer                     pointer;
             typedef typename Allocator::const_pointer               const_pointer;
             typedef typename ft::vectorIterator<value_type>         iterator;
-            typedef std::iterator_traits<const value_type>          const_iterator;
+            //typedef ft::vectorIterator<const value_type>          const_iterator;
             typedef std::reverse_iterator<iterator>                 reverse_iterator;
-            typedef std::reverse_iterator<const_iterator>           const_reverse_iterator;
+            //typedef std::reverse_iterator<const_iterator>           const_reverse_iterator;
 
         private:
             allocator_type  _alloc;
@@ -40,8 +40,8 @@ namespace ft
             explicit vector(size_type count, const T &value = T(), const Allocator &alloc = Allocator());
             //this constructor is declare here because of "enable_if" to make shure inputIt is an itterator
             template <class InputIt>
-            vector(InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<InputIt::input_iter, InputIt>::type = nullptr)
-            : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr){insert(_end, first, last);};
+            vector(InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
+            : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr){this->insert(_end, first, last);};
             vector(const vector &cpy);
             //destructor
             ~vector(void);
@@ -51,7 +51,7 @@ namespace ft
             void assign(size_type count, const T &value);
             //this assign is declare here because of "enable_if" to make shure inputIt is an itterator
             template<class InputIt>
-            void assign(InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = nullptr)
+            void assign(InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
             {
                 this->clear();
                 this->insert(_start, first, last);
@@ -64,7 +64,7 @@ namespace ft
             reference at(size_type pos);
             const_reference at(size_type pos) const;
             //[]
-            reference operator[]( size_type pos );
+            */reference operator[]( size_type pos );/*
             const_reference operator[]( size_type pos ) const;
             //front
             reference front();
@@ -78,11 +78,11 @@ namespace ft
 
             /*-------------iterators----------------*/
             //begin
-            iterator begin();
-            const_iterator begin() const;
+            iterator begin() const;
+            //const_iterator begin() const;
             //end
-            iterator end();
-            const_iterator end() const;
+            iterator end() const;
+            //const_iterator end() const;
             //rbegin
             //reverse_iterator rbegin();
             //const_reverse_iterator rbegin() const;
@@ -107,12 +107,12 @@ namespace ft
             void clear();
             //insert
             //iterator insert( const_iterator pos, const T& value );
-            iterator insert( const_iterator pos, size_type count, const T& value );
+            iterator insert( iterator pos, size_type count, const T& value );
             //this insert is declare here because of "enable_if" to make shure inputIt is an itterator
             template< class InputIt>
-            iterator insert(const_iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = nullptr)
+            iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
             {
-                if (!pos)
+                if (!capacity())
                 {
                     difference_type n = ft::distance(first, last);
                     _start = _alloc.allocate(n);
@@ -120,23 +120,25 @@ namespace ft
                     _end = _start;
                     while (n--)
                     {
-                        _alloc.constuct(_end, *first++);
+                        _alloc.construct(_end, *first++);
                         _end++;
                     }
                 }
-                else if (pos >= _start && pos <= _end_capacity)
+                else if (pos >= _start && pos <= _end)
                 {
-                    vector<T, Allocator>    temp(pos, _end);
+                    vector<T, Allocator>    temp(pos + 1, iterator(_end));
                     int i = 0;
-                    while (i < _end - pos)
+                    int j = 0;
+                    while (i < ft::distance(pos, iterator(_end)))
                     {
                         pop_back();
                         i++;
                     }
                     while (first != last)
                         push_back(*first++);
-                    while (i--)
-                        push_back(*temp++);
+                    while (j < i)
+                        push_back(temp[j++]);
+                        
                 }
                 return (iterator(this->_end));
             };
@@ -154,8 +156,8 @@ namespace ft
     };
 
     template< class T, class Alloc >
-    bool operator==(const std::vector<T,Alloc>& lhs, \
-    const std::vector<T,Alloc>& rhs)
+    bool operator==(const ft::vector<T,Alloc>& lhs, \
+    const ft::vector<T,Alloc>& rhs)
     {
         typename ft::vector<T, Alloc>::iterator itL = lhs.begin();
         typename ft::vector<T, Alloc>::iterator itR = rhs.begin(); 
@@ -190,6 +192,7 @@ namespace ft
         o << *it << " ]\n";
         return (o);
     }
+
 
     /*template< class T, class Alloc >
     bool operator!=( const std::vector<T,Alloc>& lhs,

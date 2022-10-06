@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:21:24 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 14:13:26 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 15:35:16 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,33 @@ namespace ft
     }*/
     
     template <class T, class Allocator>
-    typename vector<T, Allocator>::iterator vector<T, Allocator>::insert(const_iterator pos, size_type n, const T &value )
+    typename vector<T, Allocator>::iterator vector<T, Allocator>::insert(iterator pos, size_type n, const T &value )
     {
-        if (!pos)
+        if (!capacity())
         {
             _start = _alloc.allocate(n);
             _end_capacity = _start + n;
             _end = _start;
             while (n--)
             {
-                _alloc.constuct(_end, value);
+                _alloc.construct(_end, value);
                 _end++;
             }
         }
-        else if (pos >= _start && pos <= _end_capacity)
+        else if (pos >= _start && pos <= _end)
         {
-            ft::vector<T, Allocator>    temp(pos, _end);
+            ft::vector<T, Allocator>    temp(pos, iterator(_end));
             int i = 0;
-            while (i < _end - pos)
+            int j = 0;
+            while (i < ft::distance(pos, iterator(_end)))
             {
                 pop_back();
                 i++;
             }
             while (n--)
                 push_back(value);
-            while (i--)
-                push_back(*temp++);
+            while (j < i)
+                push_back(temp[j++]);
         }
         return (iterator(this->_end));
     }
