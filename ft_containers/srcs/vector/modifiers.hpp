@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:21:24 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 15:35:16 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 17:07:44 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ namespace ft
             ft::vector<T, Allocator>    temp(pos, iterator(_end));
             int i = 0;
             int j = 0;
-            while (i < ft::distance(pos, iterator(_end)))
+            while (i < ft::distance(pos + 1, iterator(_end)))
             {
                 pop_back();
                 i++;

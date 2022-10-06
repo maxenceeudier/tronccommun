@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 16:15:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 17:29:25 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../srcs/vector/iterators.hpp"
 #include "../srcs/vector/modifiers.hpp"
 #include "../srcs/vector/access_elements.hpp"
+#include "../srcs/vector/operators.hpp"
 #include "../srcs/vector/vector.hpp"
 #include <iostream>
 

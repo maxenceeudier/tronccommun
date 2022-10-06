@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:10:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 15:41:59 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/06 17:33:19 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,20 @@
 namespace ft
 {
     template <class T, class Allocator>
-    typename vector<T, Allocator>::iterator  vector<T, Allocator>::begin() const
-    {
-        return (iterator(_start));
-    }
-
-    /*template <class T, class Allocator>
-    typename vector<T, Allocator>::const_iterator  vector<T, Allocator>::begin() const
-    {
-        return (_start);
-    }*/
+    typename vector<T, Allocator>::iterator  vector<T, Allocator>::begin()
+    {return (iterator(_start));}
 
     template <class T, class Allocator>
-    typename vector<T, Allocator>::iterator  vector<T, Allocator>::end() const
-    {
-        return (iterator(_end));
-    }
+    typename vector<T, Allocator>::const_iterator  vector<T, Allocator>::begin() const
+    {return (const_iterator(_start));}
 
-    /*template <class T, class Allocator>
+    template <class T, class Allocator>
+    typename vector<T, Allocator>::iterator  vector<T, Allocator>::end()
+    {return (iterator(_end));}
+
+    template <class T, class Allocator>
     typename vector<T, Allocator>::const_iterator  vector<T, Allocator>::end() const
-    {
-        return (_end);
-    }*/
+    {return (const_iterator(_end));}
 
     /*template <class T, class Allocator>
     typename vector<T, Allocator>::reverse_iterator  vector<T, Allocator>::rbegin()
