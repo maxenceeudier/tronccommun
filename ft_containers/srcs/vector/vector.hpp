@@ -6,6 +6,7 @@
 #include "vector_iterator.hpp"
 #include "../../utils/enable_if.hpp"
 #include "../../utils/distance.hpp"
+#include "../../utils/reverse_iterator.hpp"
 
 namespace ft
 {
@@ -21,10 +22,10 @@ namespace ft
             typedef const value_type&                               const_reference;
             typedef typename Allocator::pointer                     pointer;
             typedef typename Allocator::const_pointer               const_pointer;
-            typedef typename ft::vectorIterator<value_type>         iterator;
-            typedef typename ft::vectorIterator<const value_type>   const_iterator;
-            typedef std::reverse_iterator<iterator>                 reverse_iterator;
-            typedef std::reverse_iterator<const_iterator>           const_reverse_iterator;
+            typedef ft::vectorIterator<value_type>         iterator;
+            typedef ft::vectorIterator<const value_type>   const_iterator;
+            typedef ft::reverse_iterator<iterator>                 reverse_iterator;
+            typedef ft::reverse_iterator<const_iterator>           const_reverse_iterator;
 
         private:
             allocator_type  _alloc;
@@ -110,12 +111,12 @@ namespace ft
             const_iterator end() const;
 
             /*--------rbegin*/
-            //reverse_iterator rbegin();
-            //const_reverse_iterator rbegin() const;
+            reverse_iterator rbegin();
+            const_reverse_iterator rbegin() const;
 
             /*--------rend*/
-            //reverse_iterator rend();
-            //const_reverse_iterator rend() const;
+            reverse_iterator rend();
+            const_reverse_iterator rend() const;
 
 
             /*----------------------------------*/
@@ -147,7 +148,7 @@ namespace ft
 
             /*---------insert*/
             //iterator insert( const_iterator pos, const T& value );
-            iterator insert( iterator pos, size_type count, const T& value );
+            iterator insert(iterator pos, size_type count, const T& value );
 
             /*this insert is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template< class InputIt>
@@ -165,23 +166,26 @@ namespace ft
                         _end++;
                     }
                 }
-                else if (pos >= _start && pos <= _end)
+                else if (pos >= iterator(_start) && pos <= iterator(_end))
                 {
-                    vector<T, Allocator>    temp(pos + 1, iterator(_end));
+                    typename ft::vectorIterator<InputIt>::difference_type  \
+                    distance = ft::distance(pos, this->end());
+                    vector<T, Allocator>    temp(pos, this->end());
                     int i = 0;
                     int j = 0;
-                    while (i < ft::distance(pos, iterator(_end)))
+
+                    while (i < distance)
                     {
                         pop_back();
                         i++;
                     }
-                    while (first != last)
+                    while (first < last)
                         push_back(*first++);
                     while (j < i)
                         push_back(temp[j++]);
                         
                 }
-                return (iterator(this->_end));
+                return (iterator(_end));
             };
 
             /*---------erase*/

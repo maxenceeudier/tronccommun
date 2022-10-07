@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:10:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 17:33:19 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/07 18:10:00 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,27 @@ namespace ft
     typename vector<T, Allocator>::const_iterator  vector<T, Allocator>::end() const
     {return (const_iterator(_end));}
 
-    /*template <class T, class Allocator>
+    template <class T, class Allocator>
     typename vector<T, Allocator>::reverse_iterator  vector<T, Allocator>::rbegin()
     {
-        return (reverse_iterator(--_end));
+        return (--reverse_iterator(_end));
     }
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::const_reverse_iterator  vector<T, Allocator>::rbegin() const
     {
-        return (const_reverse_iterator(--_end));
+        return (this->rbegin());
     }
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::reverse_iterator  vector<T, Allocator>::rend()
     {
-        return (reverse_iterator(--_start));
+        return (--reverse_iterator(_start));
     }
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::const_reverse_iterator  vector<T, Allocator>::rend() const
     {
-        return (const_reverse_iterator(--_start));
-    }*/
+        return (this->rend());
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:38:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 16:53:38 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/07 15:05:04 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,7 @@ namespace ft
 
         virtual ~vectorIterator() {};
 
-        vectorIterator &operator=(vectorIterator const &src) {_ptr = src.get_ptr(); return (*this); };
-
-        // BOOLEANS
-        bool operator ==(vectorIterator const& b) const {return (_ptr == b._ptr);};
-        bool operator !=(vectorIterator const& b) const {return (_ptr != b._ptr);};
-        bool operator >(vectorIterator const& b) const {return (_ptr > b._ptr);};
-        bool operator <(vectorIterator const& b) const {return (_ptr < b._ptr);};
-        bool operator >=(vectorIterator const& b) const {return (_ptr >= b._ptr);};
-        bool operator <=(vectorIterator const& b) const {return (_ptr <= b._ptr);};
+        vectorIterator &operator=(vectorIterator const &src) {_ptr = src.operator->(); return (*this); };
 
         // ARITHMETICS
         vectorIterator operator +(difference_type b) {return (vectorIterator(_ptr + b));}; // a + n
@@ -66,17 +58,38 @@ namespace ft
         const_reference operator*() const {return (*_ptr);};								// *a
         reference operator [](difference_type b) {return (*(_ptr + b));};					// a[]
         const_reference operator [](difference_type b) const {return (*(_ptr + b));};		// a[]
-        pointer get_ptr(){return (_ptr);};											// a->b
-        pointer get_ptr() const {return (_ptr);};											// a->b
+        pointer operator->(){return (_ptr);};											// a->b
+        pointer operator->() const {return (_ptr);};											// a->b
 
         static const bool input_iter = true;
 
         private:
             pointer _ptr;
-
     };
 
-}
+    template< class Iterator1, class Iterator2 >
+    bool operator==( const ft::vectorIterator<Iterator1>& lhs, \
+    const ft::vectorIterator<Iterator2>& rhs ){return (lhs.operator->() == rhs.operator->());};
 
+    template< class Iterator1, class Iterator2 >
+    bool operator>( const ft::vectorIterator<Iterator1>& lhs, \
+    const ft::vectorIterator<Iterator2>& rhs ){return (lhs.operator->() > rhs.operator->());};
+
+    template< class Iterator1, class Iterator2 >
+    bool operator<( const ft::vectorIterator<Iterator1>& lhs, \
+    const ft::vectorIterator<Iterator2>& rhs ){return (lhs.operator->() < rhs.operator->());};
+
+    template< class Iterator1, class Iterator2 >
+    bool operator>=( const ft::vectorIterator<Iterator1>& lhs, \
+    const ft::vectorIterator<Iterator2>& rhs ){return (lhs.operator->() >= rhs.operator->());};
+
+    template< class Iterator1, class Iterator2 >
+    bool operator<=( const ft::vectorIterator<Iterator1>& lhs, \
+    const ft::vectorIterator<Iterator2>& rhs ){return (lhs.operator->() <= rhs.operator->());};
+
+    template< class Iterator1, class Iterator2 >
+    bool operator!=( const ft::vectorIterator<Iterator1>& lhs, \
+    const ft::vectorIterator<Iterator2>& rhs ){return (lhs.operator->() != rhs.operator->());};
+}
 #endif
 
