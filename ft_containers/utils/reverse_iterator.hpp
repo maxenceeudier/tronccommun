@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:11:43 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/07 17:17:00 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/10 10:09:09 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ namespace ft
     class reverse_iterator
     {
         public:
-            typedef Iter                                iterator_type;
-            typedef typename Iter::value_type           value_type;
-            typedef typename Iter::difference_type      difference_type;
-            typedef typename Iter::pointer              pointer;
-            typedef typename Iter::const_pointer        const_pointer;
-            typedef typename Iter::reference            reference;
-            typedef typename Iter::const_reference      const_reference;
+            typedef typename ft::iterator_traits<Iter>::value_type      value_type;
+            typedef typename ft::iterator_traits<Iter>::difference_type difference_type;
+            typedef typename ft::iterator_traits<Iter>::pointer         pointer;
+            typedef typename Iter::const_pointer                        const_pointer;
+            typedef typename ft::iterator_traits<Iter>::reference       reference;
+            typedef typename Iter::const_reference                      const_reference;
 
             
             reverse_iterator(void) {};
@@ -45,10 +44,10 @@ namespace ft
             difference_type operator -(reverse_iterator b) {return (_ptr + b._ptr); }; // a - b
 
             // INCREMENTERS
-            reverse_iterator operator ++() {_ptr--; return (*this);};			// ++a
-            reverse_iterator operator ++(int) {_ptr--; return (reverse_iterator(_ptr - 1));};	// a++
-            reverse_iterator operator --() {_ptr++; return (*this);};			// --a
-            reverse_iterator operator --(int) {_ptr++; return (reverse_iterator(_ptr + 1));};	// a--
+            reverse_iterator operator ++() {--_ptr; return (*this);};			// ++a
+            reverse_iterator operator ++(int) {--_ptr; return (reverse_iterator(_ptr + 1));};	// a++
+            reverse_iterator operator --() {++_ptr; return (*this);};			// --a
+            reverse_iterator operator --(int) {++_ptr; return (reverse_iterator(_ptr - 1));};	// a--
 
             //COMPOUND ASSIGNMENTS
             void operator +=(difference_type b) {_ptr -= b;};	// a += b

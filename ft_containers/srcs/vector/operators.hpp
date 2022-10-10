@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:28:01 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 17:28:45 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/10 11:01:23 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ namespace ft
                 const std::vector<T,Alloc>& rhs );
     
     template< class T, class Alloc >
-    void swap( std::vector<T,Alloc>& lhs,
+    void ft::swap( std::vector<T,Alloc>& lhs,
            std::vector<T,Alloc>& rhs );*/
 }

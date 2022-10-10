@@ -8,6 +8,9 @@
 #include "../../utils/distance.hpp"
 #include "../../utils/reverse_iterator.hpp"
 
+#define RED_COLOR   "\033[31m"
+#define RESET       "\033[0m"
+
 namespace ft
 {
     template <class T, class Allocator = std::allocator<T> >
@@ -22,17 +25,16 @@ namespace ft
             typedef const value_type&                               const_reference;
             typedef typename Allocator::pointer                     pointer;
             typedef typename Allocator::const_pointer               const_pointer;
-            typedef ft::vectorIterator<value_type>         iterator;
-            typedef ft::vectorIterator<const value_type>   const_iterator;
-            typedef ft::reverse_iterator<iterator>                 reverse_iterator;
-            typedef ft::reverse_iterator<const_iterator>           const_reverse_iterator;
+            typedef ft::vectorIterator<value_type>                  iterator;
+            typedef ft::vectorIterator<const value_type>            const_iterator;
+            typedef ft::reverse_iterator<iterator>                  reverse_iterator;
+            typedef ft::reverse_iterator<const_iterator>            const_reverse_iterator;
 
         private:
             allocator_type  _alloc;
             pointer         _start;
             pointer         _end;
             pointer         _end_capacity;
-            void            _double_capacity(void);
 
         public:
 
@@ -48,7 +50,7 @@ namespace ft
             /*this constructor is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template <class InputIt>
             vector (InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
-            : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr) {this->insert(_end, first, last);};
+            : _alloc(alloc), _start(NULL), _end(NULL), _end_capacity(NULL) {this->insert(_end, first, last);};
 
             vector(const vector &cpy);
 
@@ -66,7 +68,7 @@ namespace ft
             void assign(InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
             {
                 this->clear();
-                this->insert(_start, first, last);
+                this->insert(_end, first, last);
             };
 
             /*-----------get_alocator*/
@@ -78,24 +80,24 @@ namespace ft
             /*----------------------------------*/
 
             /*-----------at*/
-            //reference at(size_type pos);
-            //const_reference at(size_type pos) const;
+            reference at(size_type pos);
+            const_reference at(size_type pos) const;
 
             /*-----------operator[]*/
             reference operator[]( size_type pos );
             const_reference operator[]( size_type pos ) const;
 
             /*-----------front*/
-            //reference front();
-            //const_reference front() const;
+            reference front();
+            const_reference front() const;
 
             /*-----------back*/
-            //reference back();
-            //const_reference back() const;
+            reference back();
+            const_reference back() const;
 
             /*-----------data*/
-            //T* data();
-            //const T* data() const;
+            value_type* data();
+            const T* data() const;
 
 
             /*----------------------------------*/
@@ -130,10 +132,10 @@ namespace ft
             size_type size() const;
 
             /*---------max_size*/
-            //size_type max_size() const;
+            size_type max_size() const;
 
             /*---------reserve*/
-            //void reserve(size_type new_cap);
+            void reserve(size_type new_cap);
 
             /*---------capacity*/
             size_type capacity() const;
@@ -147,7 +149,8 @@ namespace ft
             void clear();
 
             /*---------insert*/
-            //iterator insert( const_iterator pos, const T& value );
+            iterator insert( const_iterator pos, const T& value );
+
             iterator insert(iterator pos, size_type count, const T& value );
 
             /*this insert is declare here because of "enable_if" to make shure inputIt is an itterator*/
@@ -162,35 +165,37 @@ namespace ft
                     _end = _start;
                     while (n--)
                     {
-                        _alloc.construct(_end, *first++);
+                        _alloc.construct(_end, *first);
+                        first++;
                         _end++;
                     }
                 }
-                else if (pos >= iterator(_start) && pos <= iterator(_end))
+                if (pos >= iterator(_start) && pos <= iterator(_end))
                 {
-                    typename ft::vectorIterator<InputIt>::difference_type  \
-                    distance = ft::distance(pos, this->end());
+                    difference_type  distance = ft::distance(pos, this->end());
                     vector<T, Allocator>    temp(pos, this->end());
+                    difference_type s = ft::distance(first, last);
                     int i = 0;
                     int j = 0;
-
+                    
+                    if ((capacity() - size()) == 0 )
+                        reserve(capacity() + s);
                     while (i < distance)
                     {
-                        pop_back();
+                        this->pop_back();
                         i++;
                     }
                     while (first < last)
-                        push_back(*first++);
+                        this->push_back(*first++);
                     while (j < i)
-                        push_back(temp[j++]);
-                        
+                        this->push_back(temp[j++]);
                 }
                 return (iterator(_end));
             };
 
             /*---------erase*/
-            //iterator erase( iterator pos );
-            //iterator erase( iterator first, iterator last );
+            iterator erase( iterator pos );
+            iterator erase( iterator first, iterator last );
 
             /*---------push_back*/
             void push_back(const T& value);
@@ -199,12 +204,11 @@ namespace ft
             void pop_back(void);
 
             /*---------resize*/
-            //void resize( size_type count, T value = T() );
+            void resize( size_type count, T value = T() );
 
             /*----------swap*/
-            //void swap(vector& other);
+            void swap(vector& other);
     };
-
 }
 
 #endif

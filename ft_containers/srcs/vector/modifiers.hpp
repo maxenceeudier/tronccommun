@@ -6,19 +6,19 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:21:24 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/07 17:50:37 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/10 18:46:24 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.hpp"
 #include <iostream>
+#include "../../utils/swap.hpp"
+
 namespace ft
 {
-    /*template <class T, class Allocator>
-    vector<T, Allocator>::iterator vector<T, Allocator>::insert(const_iterator pos, const T& value )
-    {
-    
-    }*/
+    template <class T, class Allocator>
+    typename vector<T, Allocator>::iterator vector<T, Allocator>::insert(const_iterator pos, const T& value )
+    {insert(pos, 1, value);}
     
     template <class T, class Allocator>
     typename vector<T, Allocator>::iterator vector<T, Allocator>::insert(iterator pos, size_type n, const T &value )
@@ -36,11 +36,11 @@ namespace ft
         }
         else if (pos >= iterator(_start) && pos <= iterator(_end))
         {
-            typename ft::vectorIterator<vector<T, Allocator>::iterator>::difference_type  \
-            distance = ft::distance(pos, this->end());
+            difference_type distance = ft::distance(pos, this->end());
             ft::vector<T, Allocator>    temp(pos, iterator(_end));
             int i = 0;
             int j = 0;
+
             while (i < distance)
             {
                 pop_back();
@@ -68,8 +68,10 @@ namespace ft
     template <class T, class Allocator>
     void vector<T, Allocator>::push_back(const T &value)
     {
-        if (!_end || _end == _end_capacity)
-            _double_capacity();
+        if (!capacity())
+            reserve(1);
+        else if (_end == _end_capacity)
+            reserve(capacity() * 2);
         _alloc.construct(_end, value);
         _end++;
     }
@@ -81,4 +83,62 @@ namespace ft
         _end--;
     }
     
+    template <class T, class Allocator>
+    typename vector<T, Allocator>::iterator vector<T, Allocator>::erase( iterator pos )
+    {
+        ft::vector<T, Allocator>    temp(pos + 1, this->end());
+        size_type                   n = ft::distance(pos + 1, this->end());
+        size_type                   i = 0;
+        
+        if (pos == this->end())
+            return (pos);
+        while (i < n)
+        {
+            this->pop_back();
+            i++;
+        }
+        this->pop_back();
+        i = 0;
+        while (i < n)
+            this->push_back(temp[i++]);
+        return (pos + 1);
+    }
+    
+    template <class T, class Allocator>
+    typename vector<T, Allocator>::iterator vector<T, Allocator>::erase( iterator first, iterator last )
+    {
+        if (ft::distance(first, last) == 0)
+            return (last);
+
+        iterator temp(first);
+
+		while (temp != last)
+		{
+			erase(first);
+			temp++;
+		}
+		return (first);
+    }
+
+    template <class T, class Allocator>
+    void vector<T, Allocator>::resize(size_type count, T value)
+    {
+        size_type   size = this->size() - count;
+        if (count < this->size())
+        {
+            while (size--)
+                this->pop_back();
+        }
+        else
+        {
+            while (size++)
+                this->push_back(value);
+        } 
+    }
+
+    template <class T, class Alloc>
+    void vector<T, Alloc>::swap(vector<T, Alloc> &other)
+    {
+        ft::swap(*this, other);
+    }
 }

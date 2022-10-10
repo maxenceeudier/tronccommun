@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:25:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 17:32:42 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/10 17:02:04 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,37 @@ namespace ft
     {return (!size() ? true : false);}
 
     template <class T, class Allocator>
-    void    vector<T, Allocator>::_double_capacity(void)
-    {
-        if (!capacity())
-        {
-            _start = _alloc.allocate(1);
-            _end = _start;
-            _end_capacity = _start + 1;
-        }
-        else
-        {
-            pointer new_start;
-            pointer new_end;
-            pointer new_end_capacity;
-            pointer temp = _start;
+    typename vector<T, Allocator>::size_type vector<T, Allocator>::max_size() const
+    {return (_alloc.max_size());}
 
-            new_start = _alloc.allocate(capacity() * 2);
-            new_end_capacity = new_start + capacity() * 2;
-            new_end = new_start;
-            while (temp != _end)
-            {
-                _alloc.construct(new_end, *temp);
-                new_end++;
-                temp++;
-            }
-            this->clear();
-            _alloc.deallocate(_start, capacity());
-            _start = new_start;
-            _end = new_end;
-            _end_capacity = new_end_capacity;
+    template <class T, class Allocator>
+    void vector<T, Allocator>::reserve(size_type new_cap)
+    {
+        if (new_cap > this->max_size())
+        {
+            std::string what = std::to_string(new_cap) + " can't be allocate, it's bigger than max_size (" + std::to_string(max_size()) + ")";
+            throw std::length_error(what);
+        } 
+        if (new_cap <= this->capacity())
+            return ;
+        pointer new_start;
+        pointer new_end;
+        pointer new_end_capacity;
+        pointer temp = _start;
+
+        new_start = _alloc.allocate(new_cap);
+        new_end_capacity = new_start + new_cap;
+        new_end = new_start;
+        while (temp != _end)
+        {
+            _alloc.construct(new_end, *temp);
+            _alloc.destroy(temp);
+            new_end++;
+            temp++;
         }
+        _alloc.deallocate(_start, capacity());
+        _start = new_start;
+        _end = new_end;
+        _end_capacity = new_end_capacity;
     }
 }
