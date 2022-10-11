@@ -7,6 +7,7 @@
 #include "../../utils/enable_if.hpp"
 #include "../../utils/distance.hpp"
 #include "../../utils/reverse_iterator.hpp"
+#include "../../utils/swap.hpp"
 
 #define RED_COLOR   "\033[31m"
 #define RESET       "\033[0m"
@@ -149,7 +150,7 @@ namespace ft
             void clear();
 
             /*---------insert*/
-            iterator insert( const_iterator pos, const T& value );
+            iterator insert(iterator pos, const T& value );
 
             iterator insert(iterator pos, size_type count, const T& value );
 
@@ -173,22 +174,24 @@ namespace ft
                 if (pos >= iterator(_start) && pos <= iterator(_end))
                 {
                     difference_type  distance = ft::distance(pos, this->end());
-                    vector<T, Allocator>    temp(pos, this->end());
-                    difference_type s = ft::distance(first, last);
+                    vector<T, Allocator>    temp1(first, last);
+                    vector<T, Allocator>    temp2(pos, this->end());
                     int i = 0;
                     int j = 0;
                     
-                    if ((capacity() - size()) == 0 )
-                        reserve(capacity() + s);
+                    i = 0;
                     while (i < distance)
                     {
                         this->pop_back();
                         i++;
                     }
-                    while (first < last)
-                        this->push_back(*first++);
+                    i = temp1.size();
                     while (j < i)
-                        this->push_back(temp[j++]);
+                        this->push_back(temp1[j++]);
+                    j = 0;
+                    i = temp2.size();
+                    while (j < i)
+                        this->push_back(temp2[j++]);
                 }
                 return (iterator(_end));
             };

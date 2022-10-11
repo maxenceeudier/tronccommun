@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/03 11:55:08 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/11 19:35:28 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ namespace ft
             pair<Tkey, Tvalue>(const Tkey &key, const Tvalue &val) : first(key), \
             second(val) {};
             ~pair<Tkey, Tvalue>(void) {};
-            pair<Tkey, Tvalue>  &operator=(const pair<Tkey, Tvalue> &pr)
+            pair<Tkey, Tvalue>  &operator=(const pair<Tkey, Tvalue> &pr) 
             {
                 first = pr.first;
                 second = pr.second;
@@ -43,9 +43,11 @@ namespace ft
     };
 
     template<typename Tkey, typename Tvalue>
-    pair<Tkey, Tvalue> make_pair (Tkey x, Tvalue y)
+    ft::pair<Tkey, Tvalue> &make_pair (Tkey x, Tvalue y)
     {
-        return (pair<Tkey ,Tvalue>(x,y));
+        ft::pair<Tkey ,Tvalue> *pr = new ft::pair<Tkey ,Tvalue>(x, y);
+        delete pr;
+        return (*pr);
     }
 
     template<typename Tkey, typename Tvalue>
