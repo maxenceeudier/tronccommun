@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:38:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/10 09:18:10 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/12 15:20:10 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ namespace ft
     {
     public:
 
-        typedef T						value_type;
-        typedef value_type&				reference;
-        typedef const value_type&		const_reference;
-        typedef value_type*				pointer;
-        typedef const value_type*		const_pointer;
-        typedef typename std::ptrdiff_t difference_type;
-        typedef ft::random_access_iterator_tag iterator_category;
+        typedef T						        value_type;
+        typedef value_type&				        reference;
+        typedef const value_type&		        const_reference;
+        typedef value_type*				        pointer;
+        typedef const value_type*		        const_pointer;
+        typedef typename std::ptrdiff_t         difference_type;
+        typedef ft::random_access_iterator_tag  iterator_category;
 
         vectorIterator(void) {};
         vectorIterator(pointer ptr) {_ptr = ptr;};

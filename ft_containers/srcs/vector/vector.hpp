@@ -10,9 +10,6 @@
 #include "../../utils/swap.hpp"
 
 
-#define RED_COLOR   "\033[31m"
-#define RESET       "\033[0m"
-
 namespace ft
 {
     template <class T, class Allocator = std::allocator<T> >

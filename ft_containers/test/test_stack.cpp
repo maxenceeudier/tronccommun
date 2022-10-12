@@ -6,11 +6,12 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:50:29 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 12:35:44 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/12 14:38:27 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../srcs/stack/Stack.hpp"
+#include <vector>
 
 void    test_stack()
 {
@@ -40,6 +41,19 @@ void    test_stack()
 
     std::cout << "size - empty\n";
     std::cout << stack.size() << " - " << stack.empty();
+    std::cout << std::endl << std::endl;
+
+    std::vector<int>    vec(10, 3);
+    ft::stack<int, std::vector<int> >  stack2(vec);
+    std::cout << "vec(10, 3); stack2(vec)\n";
+    std::cout << "while(size) -> top -> pop:\n";
+    i = stack2.size();
+    while (i--)
+    {
+        std::cout << stack2.top();
+        stack2.pop();
+    }
+    std::cout << std::endl << std::endl;
 }
 
 int main()

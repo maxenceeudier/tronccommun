@@ -6,7 +6,7 @@
 #    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/10/12 13:08:13 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/10/12 14:59:12 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,18 +41,15 @@ all: $(NAME)
 %.o:%.cpp
 	$(CC) -c $< -o $@
 
-$(NAME): vector utils rbt satck
-	
+$(NAME): vector utils rbt stack
 
 vector: $(OBJ_VEC_STD) $(OBJ_VEC)
-		if [! -f test_vector] then mkdir test_vector fi;
+		mkdir test_vector
 		$(CC) test/test_vector.o -o test_vector/vectorFt && \
 		$(CC) test/test_vector_std.o -o test_vector/vectorStd;
 		./test_vector/vectorFt > test_vector/vector_ft;
 		./test_vector/vectorStd > test_vector/vector_std;
 		diff test_vector/vector_ft test_vector/vector_std > test_vector/diff;
-		clear;
-		./test_vector/vectorFt
 		
 utils:	$(OBJ_UTL_STD) $(OBJ_UTL)
 		mkdir test_utils
@@ -61,14 +58,10 @@ utils:	$(OBJ_UTL_STD) $(OBJ_UTL)
 		./test_utils/utilsFt > test_utils/utils_ft;
 		./test_utils/utilsStd > test_utils/utils_std;
 		diff test_utils/utils_ft test_utils/utils_std > test_utils/diff;
-		clear && \
-		./test_utils/utilsFt
 
 rbt:	$(OBJ_RBT)
 		mkdir test_RBT;
 		$(CC) test/test_RBT.o -o test_RBT/RBTFt;
-		clear;
-		./test_RBT/RBTFt;
 
 stack:	$(OBJ_STK_STD) $(OBJ_STK)
 		mkdir test_stack
@@ -77,8 +70,6 @@ stack:	$(OBJ_STK_STD) $(OBJ_STK)
 		./test_stack/stackFt > test_stack/stack_ft;
 		./test_stack/stackStd > test_stack/stack_std;
 		diff test_stack/stack_ft test_stack/stack_std > test_stack/diff;
-		clear && \
-		./test_stack/stackFt
 
 clean:
 		rm -rf $(OBJ_UTL) $(OBJ_UTL_STD) $(OBJ_VEC) $(OBJ_VEC_STD) \

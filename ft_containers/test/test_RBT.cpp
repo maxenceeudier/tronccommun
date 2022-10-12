@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:00:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 10:18:25 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/12 16:09:20 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,16 @@
 #include "../utils/swap.hpp"
 #include "../utils/RBTree_impl.hpp"
 #include "../utils/distance.hpp"
-#include "test.h"
+
 
 using namespace ft;
 
 void testRBT()
 {
     /*----------------node-----------------*/
-    std::cout << GREEN;
     std::cout << " --------------- " << std::endl;
     std::cout << "|   node :      |" << std::endl;
     std::cout << " --------------- " << std::endl;
-    std::cout << RESET;
     const std::string                   st("test");
     ft::pair<std::string, int>          pair(st, 3);
     Node<ft::pair<std::string, int> >   *node = new Node<ft::pair<std::string, int> >(pair);
@@ -49,11 +47,9 @@ void testRBT()
     std::cout << std::endl;
     
     /*----------------RBTree-----------------*/
-    std::cout << GREEN;
     std::cout << " --------------- " << std::endl;
     std::cout << "|   RBTree :    |" << std::endl;
     std::cout << " --------------- " << std::endl;
-    std::cout << RESET;
     ft::RBTree<int> tree;
     tree.insertValue(4);
     tree.insertValue(10);
