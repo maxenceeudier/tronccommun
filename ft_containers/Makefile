@@ -6,7 +6,7 @@
 #    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/10/11 18:30:26 by maxenceeudi      ###   ########.fr        #
+#    Updated: 2022/10/12 13:08:13 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,12 @@ OBJ_VEC_STD =	$(VEC_STD:.cpp=.o)
 RBT =	test/test_RBT.cpp
 OBJ_RBT =	$(RBT:.cpp=.o)
 
+#test stack
+STK =	test/test_stack.cpp
+OBJ_STK =	$(STK:.cpp=.o)
+STK_STD =	test/test_stack_std.cpp
+OBJ_STK_STD =	$(STK_STD:.cpp=.o)
+
 NAME = ft_containers
 
 all: $(NAME)
@@ -35,7 +41,7 @@ all: $(NAME)
 %.o:%.cpp
 	$(CC) -c $< -o $@
 
-$(NAME): vector utils rbt
+$(NAME): vector utils rbt satck
 	
 
 vector: $(OBJ_VEC_STD) $(OBJ_VEC)
@@ -64,12 +70,22 @@ rbt:	$(OBJ_RBT)
 		clear;
 		./test_RBT/RBTFt;
 
+stack:	$(OBJ_STK_STD) $(OBJ_STK)
+		mkdir test_stack
+		$(CC) test/test_stack.o -o test_stack/stackFt && \
+		$(CC) test/test_stack_std.o -o test_stack/stackStd;
+		./test_stack/stackFt > test_stack/stack_ft;
+		./test_stack/stackStd > test_stack/stack_std;
+		diff test_stack/stack_ft test_stack/stack_std > test_stack/diff;
+		clear && \
+		./test_stack/stackFt
+
 clean:
 		rm -rf $(OBJ_UTL) $(OBJ_UTL_STD) $(OBJ_VEC) $(OBJ_VEC_STD) \
-		$(OBJ_RBT)
+		$(OBJ_RBT) $(OBJ_STK_STD) $(OBJ_STK)
 
 fclean: clean
-	rm -rf  test_vector test_utils test_RBT;
+	rm -rf  test_vector test_utils test_RBT test_stack;
 
 re: fclean all
 
