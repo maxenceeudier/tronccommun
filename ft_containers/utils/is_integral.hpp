@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_integral.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:25:32 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/09/15 17:00:26 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 16:17:38 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,6 @@ namespace ft
         enum {value = true};
     };
 
-    template<>
-    struct is_integral<char16_t>
-    {
-        enum {value = true};
-    };
-
-    template<>
-    struct is_integral<char32_t>
-    {
-        enum {value = true};
-    };
 
     template<>
     struct is_integral<wchar_t>

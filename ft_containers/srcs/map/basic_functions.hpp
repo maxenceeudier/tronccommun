@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_functions.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:39:00 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 18:08:29 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ namespace ft
 {
 
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map(): _alloc(Allocator()), _comp(Compare()){}
+    map<Key, T, Compare, Allocator>::map(): _comp(Compare()),  _alloc(Allocator()){}
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::map(const Compare& comp, const Allocator& alloc) \
-    : _alloc(alloc), _comp(comp){}
+    :  _comp(comp), _alloc(alloc) {}
 
     
     //template< class InputIt >
     //map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator() );
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map( const map& other ): _alloc(other._alloc), _comp(other._comp)
+    map<Key, T, Compare, Allocator>::map( const map& other ):  _comp(other._comp), _alloc(other._alloc)
     {*this = other;}
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::~map(){_tree.getRoot() = _tree.clearRBTree(_tree.getRoot());}
+    map<Key, T, Compare, Allocator>::~map(){}
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator> &map<Key, T, Compare, Allocator>::operator=( const map& other )

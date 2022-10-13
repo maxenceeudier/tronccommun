@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_utils_std.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:50:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 16:09:38 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 17:15:57 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
+#include <type_traits>
+
 
 int test_utils()
 {
@@ -26,7 +28,6 @@ int test_utils()
     std::cout << "int:                 " << std::is_integral<int>::value << std::endl;
     std::cout << "float :              "  << std::is_integral<float>::value << std::endl;
     std::cout << "char:                "  << std::is_integral<char>::value << std::endl;
-    std::cout << "char32_t:            "  << std::is_integral<char32_t>::value << std::endl;
     std::cout << "unsigned short int : "  << std::is_integral<unsigned short int>::value << std::endl;
     std::cout << std::endl << std::endl;
 

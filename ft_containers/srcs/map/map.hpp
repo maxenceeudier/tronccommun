@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:58:27 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 18:16:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ namespace ft
             
             typedef ft::RBTree<ft::pair<const Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other  >    RBTree;
 
-            friend class ft::RBTree<ft::pair<const Key, T>, typename allocator_type::template rebind<ft::Node<value_type> >::other >;
+            //friend class ft::RBTree<ft::pair<const Key, T>, typename allocator_type::template rebind<ft::Node<value_type> >::other >;
             
         protected:
             key_compare     _comp;
@@ -66,7 +66,7 @@ namespace ft
             
             template< class InputIt >
             map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator(), \
-            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL): _alloc(alloc), _comp(comp)
+            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL):  _comp(comp), _alloc(alloc)
             {insert(first, last);};
             
             map( const map& other );
@@ -130,12 +130,14 @@ namespace ft
                 (void)first;
                 (void)last;
                 _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello1", 1));
+                _tree.insertValue(value_type("hello2", 34));
+                _tree.insertValue(value_type("hello3", 16474));
+                _tree.insertValue(value_type("hello4", 7484));
+                _tree.insertValue(value_type("hello5", -34));
+                _tree.insertValue(value_type("hello6", -4343));
+                _tree.insertValue(value_type("hello7", 55));
+                _tree.insertValue(value_type("hello8", 3));
+                _tree.insertValue(value_type("hello9", 4));
                 _tree.printTree();
             };
 

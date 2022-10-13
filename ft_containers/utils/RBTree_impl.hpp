@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RBTree_impl.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:33:43 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 18:10:07 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ namespace ft
         root->right = clearRBTree(root->right);
         _alloc.destroy(root);
         _alloc.deallocate(root, 1);
-        //delete root;
         return (NULL);
     }
 
@@ -193,7 +192,7 @@ namespace ft
         {
             printTreeBST(node->right, current_level + 1, max_level);
             for (i = 0; i < current_level; i++)
-                std::cout << "    ";
+                std::cout << "                          ";
             if (node->color == RED)
                 std::cout << RED_COLOR;
             std::cout << node->data << RESET << std::endl;
@@ -205,7 +204,7 @@ namespace ft
             {
                 printTreeBST(NULL, current_level + 1, max_level);
                 for (i = 0; i < current_level; i++)
-                    std::cout << "    ";
+                    std::cout << "                          ";
                 std::cout << "..\n";
                 printTreeBST(NULL, current_level + 1, max_level);
             }

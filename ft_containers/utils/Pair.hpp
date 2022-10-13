@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pair.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:55:34 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 18:17:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ namespace ft
         public:
             pair<Tkey, Tvalue>(void) {};
             template <typename U, typename V>
-            pair<Tkey, Tvalue>(const pair<U, V> &pr)
+            pair<Tkey, Tvalue>(const ft::pair<U, V> &pr)
             {
                 first = pr.first;
                 second = pr.second;
@@ -38,16 +38,16 @@ namespace ft
                 second = pr.second;
                 return (*this);
             };
+            
             Tkey    first;
             Tvalue  second;
     };
 
-    template<typename Tkey, typename Tvalue>
-    ft::pair<Tkey, Tvalue> &make_pair (Tkey x, Tvalue y)
+    template<class Tkey, class Tvalue>
+    ft::pair<Tkey, Tvalue> make_pair (Tkey x, Tvalue y)
     {
-        ft::pair<Tkey ,Tvalue> *pr = new ft::pair<Tkey ,Tvalue>(x, y);
-        delete pr;
-        return (*pr);
+        ft::pair<Tkey ,Tvalue> pr(x, y);
+        return (pr);
     }
 
     template<typename Tkey, typename Tvalue>
@@ -65,13 +65,13 @@ namespace ft
     template<typename Tkey, typename Tvalue>
     bool    operator<(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return ((pr1.first < pr2.first));
+        return ((pr1.second < pr2.second));
     }
 
     template<typename Tkey, typename Tvalue>
     bool    operator>(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return (pr1.first > pr2.first);
+        return (pr1.second > pr2.second);
     }
 
     template<typename Tkey, typename Tvalue>

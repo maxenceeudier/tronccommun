@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_function.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 17:32:09 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 16:01:08 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ namespace ft
 
     template <class T, class Allocator>
     vector<T, Allocator>::vector(size_type count, const T &value, const Allocator &alloc)\
-    : _alloc(alloc), _start(nullptr), _end(nullptr), _end_capacity(nullptr)
+    : _alloc(alloc), _start(NULL), _end(NULL), _end_capacity(NULL)
     {this->insert(_end, count, value);}
     
     template <class T, class Allocator>
     vector<T, Allocator>::vector(const vector &cpy)\
-    : _alloc(cpy.get_allocator()), _start(nullptr), _end(nullptr), _end_capacity(nullptr)
+    : _alloc(cpy.get_allocator()), _start(NULL), _end(NULL), _end_capacity(NULL)
     {*this = cpy;}
     
     template <class T, class Allocator>

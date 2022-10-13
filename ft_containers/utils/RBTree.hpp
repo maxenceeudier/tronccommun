@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RBTree.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:59:21 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 17:51:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ namespace ft
             Allocator   _alloc;
             
 
-        protected:
+        public:
             void rotateLeft(Node<T> *);
             void rotateRight(Node<T> *);
             void fixInsertRBTree(Node<T> *);

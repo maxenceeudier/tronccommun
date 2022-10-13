@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   capacity.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:25:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/10 17:02:04 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 16:24:35 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
     {
         if (new_cap > this->max_size())
         {
-            std::string what = std::to_string(new_cap) + " can't be allocate, it's bigger than max_size (" + std::to_string(max_size()) + ")";
+            std::string what = ft::to_string(new_cap) + " can't be allocate, it's bigger than max_size.";// (" + ft::to_string(max_size()) + ")";
             throw std::length_error(what);
         } 
         if (new_cap <= this->capacity())

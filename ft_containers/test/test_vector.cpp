@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_vector.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 15:58:17 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 16:51:13 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,10 @@ int test_vector()
     std::cout << "      -test5.capacity:    " << test5.capacity();
     std::cout << std::endl << std::endl;
     
-    test5.insert(test5.end() - 2, test5.rbegin() , test5.rend() + 3);
-    std::cout << "test5.insert(test5.end() - 2, test5.rbegin(), test5.rend() + 3):\n";
+    test5.insert(test5.end() - 2, test5.rbegin() , test5.rend() - 1);
+    std::cout << "test5.insert(test5.end() - 2, test5.rbegin(), test5.rend() - 1):\n";
     std::cout << "      -test5:             " << test5;
-    std::cout << "      -test5.capacity:    " << test5.capacity();
+    //std::cout << "      -test5.capacity:    " << test5.capacity();
     std::cout << std::endl << std::endl;
     
 

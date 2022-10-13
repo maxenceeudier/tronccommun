@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access_elements.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:21:09 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/10 10:32:29 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 16:14:07 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ namespace ft
     {
         if (pos >= this->size())
         {
-            std::string what = "vector::_M_range_check: __n (which is " + std::to_string(pos) +  ") >= this->size() (which is " + std::to_string(this->size()) + ")";
+            std::string what = "vector::_M_range_check: __n (which is " + ft::to_string(pos) +  ") >= this->size() (which is " + ft::to_string(this->size()) + ")";
             throw std::out_of_range(what);
         }
         return (_start[pos]);
@@ -39,7 +39,7 @@ namespace ft
     {
         if (pos >= this->size())
         {
-            std::string what = "vector::_M_range_check: __n (which is " + std::to_string(pos) +  ") >= this->size() (which is " + std::to_string(this->size()) + ")";
+            std::string what = "vector::_M_range_check: __n (which is " + ft::to_string(pos) +  ") >= this->size() (which is " + ft::to_string(this->size()) + ")";
             throw std::out_of_range(what);
         }
         return (_start[pos]);
