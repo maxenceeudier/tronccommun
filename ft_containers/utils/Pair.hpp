@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/11 19:35:28 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 11:55:34 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ namespace ft
             template <typename U, typename V>
             pair<Tkey, Tvalue>(const pair<U, V> &pr)
             {
-                first = static_cast<Tkey>(pr.first);
-                second = static_cast<Tvalue>(pr.second);
+                first = pr.first;
+                second = pr.second;
                 return ;
             };
             pair<Tkey, Tvalue>(const Tkey &key, const Tvalue &val) : first(key), \
@@ -65,13 +65,13 @@ namespace ft
     template<typename Tkey, typename Tvalue>
     bool    operator<(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return ((pr1.key < pr2.key));
+        return ((pr1.first < pr2.first));
     }
 
     template<typename Tkey, typename Tvalue>
     bool    operator>(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return (pr1.key > pr2.key);
+        return (pr1.first > pr2.first);
     }
 
     template<typename Tkey, typename Tvalue>

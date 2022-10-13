@@ -6,23 +6,26 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/04 15:30:40 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 11:59:21 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RBTREE_HPP
 # define RBTREE_HPP
 #include "Node.hpp"
+#include "swap.hpp"
 #define RED_COLOR   "\033[31m"
 #define RESET       "\033[0m"
 
 namespace ft
 {
-    template <typename T>
+    template <class T, class Allocator = std::allocator<Node<T> > >
     class RBTree
     {
         private:
-            Node<T> *root;
+            Node<T>     *root;
+            Allocator   _alloc;
+            
 
         protected:
             void rotateLeft(Node<T> *);
@@ -45,9 +48,9 @@ namespace ft
         //int getBlackHeight(Node<T> *);
 
         public:
-            RBTree(void);
+            RBTree(const Allocator &alloc = Allocator());
             RBTree(RBTree const &rbt);
-            ~RBTree(void);
+            virtual ~RBTree(void);
             RBTree &operator=(RBTree const &rbt);
                 
             void    insertValue(T);

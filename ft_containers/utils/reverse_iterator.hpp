@@ -6,10 +6,12 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:11:43 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/10 10:09:09 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 11:39:17 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef REVERSE_ITERATOR_HPP
+#define REVERSE_ITERATOR_HPP
 #include "iterator_traits.hpp"
 
 namespace ft
@@ -93,5 +95,6 @@ namespace ft
 
 }
 
+#endif
 
    

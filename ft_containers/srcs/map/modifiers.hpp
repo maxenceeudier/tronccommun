@@ -6,10 +6,8 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 16:07:01 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/13 11:29:14 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MODIFIERS_HPP
-#define MODIFIERS_HPP
-#endif
+#include "map.hpp"
