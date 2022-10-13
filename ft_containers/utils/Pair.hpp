@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 18:17:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/13 21:31:43 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,35 @@
 
 namespace ft
 {
-    template <typename Tkey, typename Tvalue>
-    class pair
+    template <class Tkey, class Tvalue>
+    struct pair
     {
         public:
-            pair<Tkey, Tvalue>(void) {};
-            template <typename U, typename V>
-            pair<Tkey, Tvalue>(const ft::pair<U, V> &pr)
+            pair<Tkey, Tvalue>(void) :first(), second(){};
+            
+            template <class U, class V>
+            pair (const pair<U, V> &pr)
             {
-                first = pr.first;
-                second = pr.second;
+                this->first =  pr.first;
+                this->second = pr.second;
                 return ;
             };
-            pair<Tkey, Tvalue>(const Tkey &key, const Tvalue &val) : first(key), \
-            second(val) {};
+            
+            pair<Tkey, Tvalue>(const Tkey &key, const Tvalue &val) : first(key), second(val) {};
+
             ~pair<Tkey, Tvalue>(void) {};
-            pair<Tkey, Tvalue>  &operator=(const pair<Tkey, Tvalue> &pr) 
+            
+            pair<Tkey, Tvalue>  &operator=( const pair &pr)
             {
-                first = pr.first;
-                second = pr.second;
+                this->first = pr.first;
+                this->second = pr.second;
                 return (*this);
             };
             
             Tkey    first;
             Tvalue  second;
     };
+
 
     template<class Tkey, class Tvalue>
     ft::pair<Tkey, Tvalue> make_pair (Tkey x, Tvalue y)
@@ -65,13 +69,13 @@ namespace ft
     template<typename Tkey, typename Tvalue>
     bool    operator<(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return ((pr1.second < pr2.second));
+        return ((pr1.first < pr2.first));
     }
 
     template<typename Tkey, typename Tvalue>
     bool    operator>(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return (pr1.second > pr2.second);
+        return (pr1.first > pr2.first);
     }
 
     template<typename Tkey, typename Tvalue>

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 18:10:07 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/13 22:30:57 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,20 +97,22 @@ namespace ft
     }
 
     template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::insertBST(Node<T> *root, Node<T> *node)
+    Node<T> *RBTree<T, Allocator>::insertBST(Node<T> *root, Node<T> *node, int *i)
     {
         if (!root)
             return (node);
         if (root->data < node->data)
         {
-            root->right = insertBST(root->right, node);
+            root->right = insertBST(root->right, node, i);
             root->right->parent = root;
         }
         if (root->data > node->data)
         {
-            root->left = insertBST(root->left, node);
+            root->left = insertBST(root->left, node, i);
             root->left->parent = root;
         }
+        if (root->data.first == node->data.first)
+            *i = 0;
         return (root);
     }
 
@@ -176,10 +178,17 @@ namespace ft
     template <typename T, class Allocator>
     void RBTree<T, Allocator>::insertValue(T data)
     {
+        int i = 1;
         Node<T>    *node = _alloc.allocate(1);
         _alloc.construct(node, data);
-        root = insertBST(root, node);
-        fixInsertRBTree(node);
+        root = insertBST(root, node, &i);
+        if (!i)
+        {
+            _alloc.destroy(node);
+            _alloc.deallocate(node, 1);
+        }
+        else
+            fixInsertRBTree(node);
     }
     
    

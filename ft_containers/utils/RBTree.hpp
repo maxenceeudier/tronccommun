@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 17:51:30 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/13 22:30:10 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft
             void setColor(Node<T> *, int);
             Node<T> *minValueNode(Node<T> *);
             Node<T> *maxValueNode(Node<T> *);
-            Node<T> *insertBST(Node<T> *, Node<T> *);
+            Node<T> *insertBST(Node<T> *, Node<T> *, int*);
             Node<T> *deleteBST(Node<T> *, T);
             Node<T> *getRoot(void) const;
             Node<T> *copyTree(Node<T> *root);

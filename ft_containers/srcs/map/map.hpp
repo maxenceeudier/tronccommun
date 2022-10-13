@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 18:16:30 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/13 22:12:34 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,30 @@
 
 namespace ft
 {
-    template<
-        class Key,
-        class T,
-        class Compare = std::less<Key>,
-        class Allocator = std::allocator<ft::pair<const Key, T> > >
-    class map : public ft::RBTree<ft::pair<const Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<const Key, T> > >::other >
+    template< class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<Key, T> > >
+    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >
     {
         public:
             typedef Key                                     key_type;
             typedef T                                       mapped_type;
-            typedef ft::pair<const Key, T>                  value_type;
+            typedef ft::pair<Key, T>                        value_type;
             typedef std::size_t                             size_type;
             typedef std::ptrdiff_t                          difference_type;
             typedef Compare                                 key_compare;
             typedef	Allocator                               allocator_type;
             typedef	value_type&                             reference;
             typedef	const value_type&                       const_reference;
-            typedef typename Allocator::pointer                      pointer;
-            typedef typename Allocator::const_pointer                const_pointer;
+            typedef typename Allocator::pointer             pointer;
+            typedef typename Allocator::const_pointer       const_pointer;
             typedef ft::mapIterator<value_type>             iterator;
             typedef ft::mapIterator<const value_type>       const_iterator;
             typedef	std::reverse_iterator<iterator>         reverse_iterator;
             typedef std::reverse_iterator<const_iterator>   const_reverse_iterator;
             
-            typedef ft::RBTree<ft::pair<const Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other  >    RBTree;
+            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other  >    RBTree;
 
-            //friend class ft::RBTree<ft::pair<const Key, T>, typename allocator_type::template rebind<ft::Node<value_type> >::other >;
+            template <class T1, class T2, class T3, class T4>
+            friend std::ostream	&operator<<(std::ostream &o, ft::map<T1, T2, T3, T4> &map);
             
         protected:
             key_compare     _comp;
@@ -123,22 +120,15 @@ namespace ft
 
             //ft::pair<iterator, bool> insert( const value_type& value );
             //iterator insert( iterator hint, const value_type& value );
+
+            //temporary
+            void  insert(const value_type& val ){_tree.insertValue(val);};
             
             template< class InputIt >
             void insert( InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL )
             {
-                (void)first;
-                (void)last;
-                _tree.insertValue(value_type("hello1", 1));
-                _tree.insertValue(value_type("hello2", 34));
-                _tree.insertValue(value_type("hello3", 16474));
-                _tree.insertValue(value_type("hello4", 7484));
-                _tree.insertValue(value_type("hello5", -34));
-                _tree.insertValue(value_type("hello6", -4343));
-                _tree.insertValue(value_type("hello7", 55));
-                _tree.insertValue(value_type("hello8", 3));
-                _tree.insertValue(value_type("hello9", 4));
-                _tree.printTree();
+                    (void)first;
+                    (void)last;
             };
 
             //iterator erase( iterator pos );
@@ -190,6 +180,7 @@ namespace ft
                     bool operator()( const value_type& lhs, const value_type& rhs ) const
                     {return (comp(lhs.first, rhs.first));};       
             };
+
     };
 }
 
