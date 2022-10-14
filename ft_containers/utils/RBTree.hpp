@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 22:30:10 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/14 11:28:02 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 
 namespace ft
 {
-    template <class T, class Allocator = std::allocator<Node<T> > >
+    template <class T, class Allocator = std::allocator<Node<T> >, class Compare = std::less<T> >
     class RBTree
     {
         private:
             Node<T>     *root;
             Allocator   _alloc;
+            Compare     _comp;
             
 
         public:
@@ -48,7 +49,7 @@ namespace ft
         //int getBlackHeight(Node<T> *);
 
         public:
-            RBTree(const Allocator &alloc = Allocator());
+            RBTree(const Allocator &alloc = Allocator(), const Compare &comp = Compare());
             RBTree(RBTree const &rbt);
             virtual ~RBTree(void);
             RBTree &operator=(RBTree const &rbt);

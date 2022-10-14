@@ -172,9 +172,13 @@ namespace ft
                 }
                 if (pos >= iterator(_start) && pos <= iterator(_end))
                 {
-                    difference_type  distance = ft::distance(pos, this->end());
                     vector<T, Allocator>    temp1(first, last);
                     vector<T, Allocator>    temp2(pos, this->end());
+                    difference_type         distance = ft::distance(pos, this->end());
+                    size_type               n = temp1.size();
+                    if (n > capacity() - size())
+                        reserve(size() + std::max(n, size()));
+                    
                     int i = 0;
                     int j = 0;
                     

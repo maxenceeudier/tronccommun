@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 21:31:43 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/14 18:31:45 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ namespace ft
     template<typename Tkey, typename Tvalue>
     bool    operator==(const pair<Tkey, Tvalue> &pr1, const pair<Tkey, Tvalue> &pr2)
     {
-        return (pr1.first == pr2.first && pr1.second == pr2.second);
+        return (pr1.first == pr2.first);
     }
 
     template<typename Tkey, typename Tvalue>

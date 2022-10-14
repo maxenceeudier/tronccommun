@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modifiers.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:21:24 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/11 16:53:04 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/14 10:05:40 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ namespace ft
         }
         else if (pos >= iterator(_start) && pos <= iterator(_end))
         {
+            if (n > capacity() - size())
+                reserve(size() + std::max(n, size()));
             difference_type distance = ft::distance(pos, this->end());
             ft::vector<T, Allocator>    temp(pos, this->end());
             int i = 0;

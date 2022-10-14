@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 22:12:34 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/14 18:24:42 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ namespace ft
             typedef	const value_type&                       const_reference;
             typedef typename Allocator::pointer             pointer;
             typedef typename Allocator::const_pointer       const_pointer;
-            typedef ft::mapIterator<value_type>             iterator;
-            typedef ft::mapIterator<const value_type>       const_iterator;
+            typedef ft::mapIterator<Key, T>                 iterator;
+            typedef ft::mapIterator<const Key, const T>     const_iterator;
             typedef	std::reverse_iterator<iterator>         reverse_iterator;
             typedef std::reverse_iterator<const_iterator>   const_reverse_iterator;
             
-            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other  >    RBTree;
+            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
 
             template <class T1, class T2, class T3, class T4>
             friend std::ostream	&operator<<(std::ostream &o, ft::map<T1, T2, T3, T4> &map);
@@ -88,12 +88,12 @@ namespace ft
             /*----------------------------------*/
             
             /*-------begin*/
-            //iterator begin();
-            //const_iterator begin() const;
+            iterator begin();
+            const_iterator begin() const;
 
             /*--------end*/
-            //iterator end();
-            //const_iterator end() const;
+            iterator end();
+            const_iterator end() const;
 
             /*--------rbegin*/
             //reverse_iterator rbegin();
@@ -121,14 +121,16 @@ namespace ft
             //ft::pair<iterator, bool> insert( const value_type& value );
             //iterator insert( iterator hint, const value_type& value );
 
-            //temporary
+            //temporary !!!!!!!!!!!!!!!!!!
             void  insert(const value_type& val ){_tree.insertValue(val);};
             
             template< class InputIt >
             void insert( InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL )
             {
-                    (void)first;
-                    (void)last;
+                while (first != last)
+                {
+                    _tree.insertValue((first++)->data);
+                }
             };
 
             //iterator erase( iterator pos );

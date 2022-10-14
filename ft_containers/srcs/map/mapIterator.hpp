@@ -3,94 +3,176 @@
 /*                                                        :::      ::::::::   */
 /*   mapIterator.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 15:23:17 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/14 18:26:13 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAPITERATOR_HPP
 # define MAPITERATOR_HPP
 #include "../../utils/iterator_traits.hpp"
+#include "../../utils/utils.h"
 
 namespace ft
 {
 
-    template <typename T>
+    template <class Tkey, class Tvalue>
     class	mapIterator
     {
     public:
 
-        typedef T						        value_type;
-        typedef value_type&				        reference;
-        typedef const value_type&		        const_reference;
-        typedef value_type*				        pointer;
-        typedef const value_type*		        const_pointer;
-        typedef typename std::ptrdiff_t         difference_type;
-        typedef ft::random_access_iterator_tag  iterator_category;
+        typedef typename ft::pair<Tkey, Tvalue>     pair;
+        typedef typename ft::Node<pair>             value_type;
+        typedef value_type&				            reference;
+        typedef const value_type&		            const_reference;
+        typedef value_type*				            pointer;
+        typedef const value_type*		            const_pointer;
+        typedef typename std::ptrdiff_t             difference_type;
+        typedef ft::random_access_iterator_tag      iterator_category;
 
-        mapIterator(void) {};
-        mapIterator(pointer ptr) {_ptr = ptr;};
-        mapIterator(mapIterator const &src) {*this = src;} ;
+        mapIterator(void) : _is_gost(false) {};
+        mapIterator(pointer ptr) : _is_gost(false) {node = ptr;};
+        mapIterator(mapIterator const &src): _is_gost(src._is_gost)
+        {
+            if (_is_gost)
+                node = new value_type(*(src.node));
+            else
+                node = src.node;
+        } ;
 
-        virtual ~mapIterator() {};
+        virtual ~mapIterator()
+        {
+            if (_is_gost)
+                delete node;
+        };
 
-        mapIterator &operator=(mapIterator const &src) {_ptr = src.operator->(); return (*this); };
-
-        // ARITHMETICS
-        mapIterator operator +(difference_type b) {return (mapIterator(_ptr + b));}; // a + n
-        mapIterator operator -(difference_type b) {return (mapIterator(_ptr - b));}; // a - n
-
-        difference_type operator +(mapIterator b) {return (_ptr + b._ptr); }; // a + b
-        difference_type operator -(mapIterator b) {return (_ptr - b._ptr); }; // a - b
+        mapIterator &operator=(mapIterator const &src) 
+        {
+            if (_is_gost)
+                delete node;
+            node = src.node;
+            return (*this);
+        };
 
         // INCREMENTERS
-        mapIterator operator ++() {_ptr++; return (*this);};			// ++a
-        mapIterator operator ++(int) {_ptr++; return (mapIterator(_ptr - 1));};	// a++
-        mapIterator operator --() {_ptr--; return (*this);};			// --a
-        mapIterator operator --(int) {_ptr--; return (mapIterator(_ptr + 1));};	// a--
+        mapIterator operator ++() 
+        {
+            if (node)
+            {
+                if (_is_the_last(node))
+                {
+                    pointer _gost = new value_type();
+                    _gost->parent = node;
+                    _is_gost = true;
+                    node = _gost;
+                    return (*this);
+                }
 
-        //COMPOUND ASSIGNMENTS
-        void operator +=(difference_type b) {_ptr += b;};	// a += b
-        void operator -=(difference_type b) {_ptr -= b;};	// a -= b
+                if (node->right)
+                    node = _smallest(node->right);
+                else
+                {
+                    if (node->parent && node == node->parent->right)
+                    {
+                        while (node->parent && node == node->parent->right)
+                            node = node->parent;
+                    }
+                    node = node->parent;
+                }
+            } 
+            return (*this);
+        };// ++a
+        
+        
+        mapIterator operator ++(int)
+        {
+            mapIterator temp = *this;
+            ++(*this);
+            return (temp);
+        };// a++
+
+        
+        mapIterator operator --()
+        {
+            mapIterator temp = *this;
+            --(*this);
+            return (temp);
+        };// --a
+
+        
+        mapIterator operator --(int)
+        {
+            pointer temp = node;
+            if (node)
+            {
+                if (node->left)
+                    node = _biggest(node->left);
+                else
+                {
+                    if (node->parent && node == node->parent->left)
+                    {
+                        while (node->parent && node == node->parent->left)
+                            node = node->parent;
+                    }
+                    node = node->parent;
+                }
+            }
+            return (mapIterator(temp));
+        };	// a--
+
 
         //DEREFERENCING & ADDRESS STUFF
-        reference operator*(){ return (*_ptr); };											// *a
-        const_reference operator*() const {return (*_ptr);};								// *a
-        reference operator [](difference_type b) {return (*(_ptr + b));};					// a[]
-        const_reference operator [](difference_type b) const {return (*(_ptr + b));};		// a[]
-        pointer operator->(){return (_ptr);};											// a->b
-        pointer operator->() const {return (_ptr);};											// a->b
+        pair* operator->(){return (&(node->data));};
+        pair* operator->() const {return (&(node->data));};
 
         static const bool input_iter = true;
 
         private:
-            pointer _ptr;
+            pointer _smallest(pointer node)
+            {
+                while (node && node->left)
+                    node = node->left;
+                return (node);
+            };
+            
+            pointer _biggest(pointer node)
+            {
+                while (node && node->right)
+                    node = node->right;
+                return (node);    
+            };
+
+            bool    _is_the_last(pointer node)
+            {
+                pointer temp = node;
+
+                while (node && node->parent)
+                    node = node->parent;
+                return (temp == _biggest(node));
+            };
+
+            bool    _is_the_first(pointer node)
+            {
+                pointer temp = node;
+
+                while (node && node->parent)
+                    node = node->parent;
+                return (temp == _smallest(node));
+            };
+            
+            bool        _is_gost;
+            pointer     node;
     };
 
-    template< class Iterator1, class Iterator2 >
-    bool operator==( const ft::mapIterator<Iterator1>& lhs, \
-    const ft::mapIterator<Iterator2>& rhs ){return (lhs.operator->() == rhs.operator->());};
+    template< class T1, class T2>
+    bool operator==( const ft::mapIterator<T1, T2>& lhs, \
+    const ft::mapIterator<T1, T2>& rhs ){return (lhs.operator->() == rhs.operator->());};
 
-    template< class Iterator1, class Iterator2 >
-    bool operator>( const ft::mapIterator<Iterator1>& lhs, \
-    const ft::mapIterator<Iterator2>& rhs ){return (lhs.operator->() > rhs.operator->());};
+    template< class T1, class T2>
+    bool operator!=( const ft::mapIterator<T1, T2>& lhs, \
+    const ft::mapIterator<T1, T2>& rhs ){return (lhs.operator->() != rhs.operator->());};
 
-    template< class Iterator1, class Iterator2 >
-    bool operator<( const ft::mapIterator<Iterator1>& lhs, \
-    const ft::mapIterator<Iterator2>& rhs ){return (lhs.operator->() < rhs.operator->());};
-
-    template< class Iterator1, class Iterator2 >
-    bool operator>=( const ft::mapIterator<Iterator1>& lhs, \
-    const ft::mapIterator<Iterator2>& rhs ){return (lhs.operator->() >= rhs.operator->());};
-
-    template< class Iterator1, class Iterator2 >
-    bool operator<=( const ft::mapIterator<Iterator1>& lhs, \
-    const ft::mapIterator<Iterator2>& rhs ){return (lhs.operator->() <= rhs.operator->());};
-
-    template< class Iterator1, class Iterator2 >
-    bool operator!=( const ft::mapIterator<Iterator1>& lhs, \
-    const ft::mapIterator<Iterator2>& rhs ){return (lhs.operator->() != rhs.operator->());};
 }
 #endif

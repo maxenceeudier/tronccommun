@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 16:51:13 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/14 10:03:21 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int test_vector()
     test5.insert(test5.end() - 2, test5.rbegin() , test5.rend() - 1);
     std::cout << "test5.insert(test5.end() - 2, test5.rbegin(), test5.rend() - 1):\n";
     std::cout << "      -test5:             " << test5;
-    //std::cout << "      -test5.capacity:    " << test5.capacity();
+    std::cout << "      -test5.capacity:    " << test5.capacity();
     std::cout << std::endl << std::endl;
     
 

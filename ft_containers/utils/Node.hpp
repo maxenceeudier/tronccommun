@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 12:53:00 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/10/14 10:52:05 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ namespace ft
         o << std::endl;
         return (o);
     }
+
+
+    
 }
 
 #endif

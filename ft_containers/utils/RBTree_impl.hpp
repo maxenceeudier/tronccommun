@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 22:30:57 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/14 18:31:33 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 
 namespace ft
 {
-    template <typename T, class Allocator>
-    RBTree<T, Allocator>::RBTree(const Allocator &alloc): root(NULL), _alloc(alloc){}
+    template <typename T, class Allocator, class Compare>
+    RBTree<T, Allocator, Compare>::RBTree(const Allocator &alloc, const Compare &comp): root(NULL), _alloc(alloc), _comp(comp){}
     
-    template <typename T, class Allocator>
-    RBTree<T, Allocator>::RBTree(RBTree const &rbt): _alloc(rbt._alloc){*this = rbt;}
+    template <typename T, class Allocator, class Compare>
+    RBTree<T, Allocator, Compare>::RBTree(RBTree const &rbt): _alloc(rbt._alloc){*this = rbt;}
 
-    template <typename T, class Allocator>
-    RBTree<T, Allocator>::~RBTree(void){root = clearRBTree(root);}
+    template <typename T, class Allocator, class Compare>
+    RBTree<T, Allocator, Compare>::~RBTree(void){root = clearRBTree(root);}
 
-    template <typename T, class Allocator>
-    Node<T>    *RBTree<T, Allocator>::clearRBTree(Node<T> *root)
+    template <typename T, class Allocator, class Compare>
+    Node<T>    *RBTree<T, Allocator, Compare>::clearRBTree(Node<T> *root)
     {
         if (!root)
             return (NULL);
@@ -37,16 +37,16 @@ namespace ft
         return (NULL);
     }
 
-    template <typename T, class Allocator>
-    RBTree<T, Allocator> &RBTree<T, Allocator>::operator=(RBTree<T, Allocator> const &rbt)
+    template <typename T, class Allocator, class Compare>
+    RBTree<T, Allocator, Compare> &RBTree<T, Allocator, Compare>::operator=(RBTree<T, Allocator, Compare> const &rbt)
     {
         _alloc = rbt._alloc;
         root = copyTree(rbt.getRoot());
         return (*this);
     }
 
-    template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::copyTree(Node<T> *root)
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::copyTree(Node<T> *root)
     {
         if (!root)
             return (NULL);
@@ -57,27 +57,27 @@ namespace ft
         return (node);
     }
 
-    template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::getRoot(void) const {return (root);}
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::getRoot(void) const {return (root);}
 
-    template <typename T, class Allocator>
-    int RBTree<T, Allocator>::getColor(Node<T> *node)
+    template <typename T, class Allocator, class Compare>
+    int RBTree<T, Allocator, Compare>::getColor(Node<T> *node)
     {
         if (!node)
             return (BLACK);
         return (node->color);
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::setColor(Node<T> *node, int color)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::setColor(Node<T> *node, int color)
     {
         if (!node)
             return ;
         node->color = color;
     }
     
-    template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::minValueNode(Node<T> *node)
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::minValueNode(Node<T> *node)
     {
         if (!node)
             return (NULL);
@@ -86,8 +86,8 @@ namespace ft
         return (minValueNode(node->left));
     }
 
-    template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::maxValueNode(Node<T> *node)
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::maxValueNode(Node<T> *node)
     {
         if (!node)
             return (NULL);
@@ -96,28 +96,28 @@ namespace ft
         return (maxValueNode(node->right));
     }
 
-    template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::insertBST(Node<T> *root, Node<T> *node, int *i)
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::insertBST(Node<T> *root, Node<T> *node, int *i)
     {
         if (!root)
             return (node);
-        if (root->data < node->data)
+        if (_comp(root->data ,node->data))
         {
             root->right = insertBST(root->right, node, i);
             root->right->parent = root;
         }
-        if (root->data > node->data)
+        if (_comp(node->data, root->data))
         {
             root->left = insertBST(root->left, node, i);
             root->left->parent = root;
         }
-        if (root->data.first == node->data.first)
+        if (root->data == node->data)
             *i = 0;
         return (root);
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::fixInsertRBTree(Node<T> *ptr)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::fixInsertRBTree(Node<T> *ptr)
     {
         Node<T> *parent = NULL;
         Node<T> *grandparent = NULL;
@@ -175,8 +175,8 @@ namespace ft
         setColor(root, BLACK);
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::insertValue(T data)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::insertValue(T data)
     {
         int i = 1;
         Node<T>    *node = _alloc.allocate(1);
@@ -192,8 +192,8 @@ namespace ft
     }
     
    
-    template <typename T, class Allocator>
-    void  RBTree<T, Allocator>::printTreeBST(Node<T> *node, int current_level, int max_level)
+    template <typename T, class Allocator, class Compare>
+    void  RBTree<T, Allocator, Compare>::printTreeBST(Node<T> *node, int current_level, int max_level)
     {
         int i;
         
@@ -220,15 +220,15 @@ namespace ft
         }
     }
     
-    template <typename T, class Allocator>
-    void    RBTree<T, Allocator>::printTree(void)
+    template <typename T, class Allocator, class Compare>
+    void    RBTree<T, Allocator, Compare>::printTree(void)
     {
         std::cout << "print Tree:\n";
         printTreeBST(root, 0, getMaxHeight(root));
     }
 
-    template <typename T, class Allocator>
-    int     RBTree<T, Allocator>::getMaxHeight(Node<T> *root)
+    template <typename T, class Allocator, class Compare>
+    int     RBTree<T, Allocator, Compare>::getMaxHeight(Node<T> *root)
     {
         int height1 = 1;
         int height2 = 1;
@@ -240,8 +240,8 @@ namespace ft
         return (std::max(height1, height2));
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::rotateLeft(Node<T> *node)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::rotateLeft(Node<T> *node)
     {
         if (!node->right)
             return ;
@@ -261,8 +261,8 @@ namespace ft
         node->parent = right_child;
     }
     
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::rotateRight(Node<T> *node)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::rotateRight(Node<T> *node)
     {
        if (!node->left)
             return ;
@@ -283,16 +283,16 @@ namespace ft
     }
 
 
-    template <typename T, class Allocator>
-    Node<T> *RBTree<T, Allocator>::deleteBST(Node<T> *root, T data)
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::deleteBST(Node<T> *root, T data)
     {
         T   temp;
 
         if (!root)
             return (root);
-        if (root->data < data)
+        if (_comp(root->data , data))
             return (deleteBST(root->right, data));
-        if (root->data > data)
+        if (_comp(data, root->data))
             return (deleteBST(root->left, data));
         if (!root->right)
             return (root);
@@ -301,15 +301,15 @@ namespace ft
         return (deleteBST(root->right, temp));
     }
     
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::deleteValue(T data)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::deleteValue(T data)
     {
         Node<T> *node = deleteBST(root, data);
         fixDeleteRBTree(node);
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::fixDeleteRBTree(Node<T> *node)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::fixDeleteRBTree(Node<T> *node)
     {
         if (node == nullptr)
             return;
@@ -441,14 +441,14 @@ namespace ft
     }
     
     /*
-    template <typename T, class Allocator>
-    void    RBTree<T, Allocator>::testRotateR(void){rotateRight(root);}
+    template <typename T, class Allocator, class Compare>
+    void    RBTree<T, Allocator, Compare>::testRotateR(void){rotateRight(root);}
     
-    template <typename T, class Allocator>
-    void    RBTree<T, Allocator>::testRotateL(void){rotateLeft(root);}
+    template <typename T, class Allocator, class Compare>
+    void    RBTree<T, Allocator, Compare>::testRotateL(void){rotateLeft(root);}
     
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::inorderBST(Node<T> *ptr)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::inorderBST(Node<T> *ptr)
     {
         if (!ptr)
             return ;
@@ -457,15 +457,15 @@ namespace ft
         inorderBST(ptr->right);
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::inorder()
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::inorder()
     {
         inorderBST(root);
         std::cout << "-------" << std::endl;
     }
     
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::preorderBST(Node<T> *ptr)
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::preorderBST(Node<T> *ptr)
     {
         if (ptr == nullptr)
             return; 
@@ -474,8 +474,8 @@ namespace ft
         preorderBST(ptr->right);
     }
 
-    template <typename T, class Allocator>
-    void RBTree<T, Allocator>::preorder()
+    template <typename T, class Allocator, class Compare>
+    void RBTree<T, Allocator, Compare>::preorder()
     {
         preorderBST(root);
         std::cout << "-------" << std::endl;
