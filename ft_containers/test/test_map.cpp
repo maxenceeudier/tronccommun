@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 18:23:14 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/17 13:02:10 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,22 @@ void test_map()
     }
 
     //test it en cours
+    std::cout << std::endl << "test it:\n";
     it = map.begin();
     it--;
-    it++;
-    it++;
-    it++;
+    it--;
+ 
     std::cout << "key: " << it->first;
     std::cout << " value: " << it->second;
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
+    it = map.end();
+    it++;
+    it++;
+    it++;
+
+    std::cout << "key: " << it->first;
+    std::cout << " value: " << it->second;
+    std::cout << std::endl << std::endl;
     
     std::cout << map.size();
 
@@ -66,7 +74,25 @@ void test_map()
         itf++;
     }
 
-    std::cout << map2;
+    //std::cout << map2;
+
+    std::cout << std::endl << "test it:\n";
+    itf = map2.begin();
+    itf--;
+    itf--;
+
+    std::cout << "key: " << itf->first;
+    std::cout << " value: " << itf->second;
+    std::cout << std::endl << std::endl;
+
+    itf = map2.end();
+    itf++;
+    itf++;
+    itf++;
+ 
+    std::cout << "key: " << itf->first;
+    std::cout << " value: " << itf->second;
+    std::cout << std::endl << std::endl;
     
 }
 

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 18:26:13 by meudier          ###   ########.fr       */
+/*   Updated: 2022/10/17 13:08:02 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ namespace ft
         mapIterator(pointer ptr) : _is_gost(false) {node = ptr;};
         mapIterator(mapIterator const &src): _is_gost(src._is_gost)
         {
-            if (_is_gost)
+            if (this->_is_gost)
                 node = new value_type(*(src.node));
             else
                 node = src.node;
-        } ;
+        };
 
         virtual ~mapIterator()
         {
@@ -52,7 +52,11 @@ namespace ft
         {
             if (_is_gost)
                 delete node;
-            node = src.node;
+            _is_gost = src._is_gost;
+            if (this->_is_gost)
+                node = new value_type(*(src.node));
+            else
+                node = src.node;
             return (*this);
         };
 
@@ -61,15 +65,22 @@ namespace ft
         {
             if (node)
             {
-                if (_is_the_last(node))
+                if (_is_gost)
                 {
-                    pointer _gost = new value_type();
-                    _gost->parent = node;
-                    _is_gost = true;
-                    node = _gost;
+                    pointer temp = node->parent;
+                    delete node;
+                    node = temp;
+                    _is_gost = false;
                     return (*this);
                 }
-
+                if (_is_the_last(node) == node)
+                {
+                    pointer gost = new value_type();
+                    gost->parent = node;
+                    _is_gost = true;
+                    node = gost;
+                    return (*this);
+                }
                 if (node->right)
                     node = _smallest(node->right);
                 else
@@ -96,17 +107,24 @@ namespace ft
         
         mapIterator operator --()
         {
-            mapIterator temp = *this;
-            --(*this);
-            return (temp);
-        };// --a
-
-        
-        mapIterator operator --(int)
-        {
-            pointer temp = node;
             if (node)
             {
+                if (_is_gost)
+                {
+                    pointer temp = node->parent;
+                    delete node;
+                    node = temp;
+                    _is_gost = false;
+                    return (*this);
+                }
+                if (_is_the_first(node) == node)
+                {
+                    pointer gost = new value_type();
+                    gost->parent = _is_the_last(node);
+                    _is_gost = true;
+                    this->node = gost;
+                    return (*this);
+                }
                 if (node->left)
                     node = _biggest(node->left);
                 else
@@ -119,7 +137,15 @@ namespace ft
                     node = node->parent;
                 }
             }
-            return (mapIterator(temp));
+            return (*this);
+        };// --a
+
+        
+        mapIterator operator --(int)
+        {
+            mapIterator temp = *this;
+            --(*this);
+            return (temp);
         };	// a--
 
 
@@ -128,6 +154,8 @@ namespace ft
         pair* operator->() const {return (&(node->data));};
 
         static const bool input_iter = true;
+
+        void    set_is_gost(bool a){_is_gost = a;};
 
         private:
             pointer _smallest(pointer node)
@@ -144,22 +172,18 @@ namespace ft
                 return (node);    
             };
 
-            bool    _is_the_last(pointer node)
+            pointer    _is_the_last(pointer node)
             {
-                pointer temp = node;
-
                 while (node && node->parent)
                     node = node->parent;
-                return (temp == _biggest(node));
+                return (_biggest(node));
             };
 
-            bool    _is_the_first(pointer node)
+            pointer    _is_the_first(pointer node)
             {
-                pointer temp = node;
-
                 while (node && node->parent)
                     node = node->parent;
-                return (temp == _smallest(node));
+                return (_smallest(node));
             };
             
             bool        _is_gost;
@@ -168,11 +192,12 @@ namespace ft
 
     template< class T1, class T2>
     bool operator==( const ft::mapIterator<T1, T2>& lhs, \
-    const ft::mapIterator<T1, T2>& rhs ){return (lhs.operator->() == rhs.operator->());};
+    const ft::mapIterator<T1, T2>& rhs )
+    {return (*(lhs.operator->()) == *(rhs.operator->()));};
 
     template< class T1, class T2>
     bool operator!=( const ft::mapIterator<T1, T2>& lhs, \
-    const ft::mapIterator<T1, T2>& rhs ){return (lhs.operator->() != rhs.operator->());};
+    const ft::mapIterator<T1, T2>& rhs ){return (!(lhs == rhs));};
 
 }
 #endif
