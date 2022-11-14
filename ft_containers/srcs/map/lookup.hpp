@@ -3,11 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   lookup.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:08 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:29:49 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/14 14:56:58 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
+
+namespace ft
+{
+    template<class Key, class T, class Compare , class Allocator > 
+    typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::find( const Key& key )
+    {
+
+        typename map<Key, T, Compare, Allocator>::iterator it = this->begin();
+        
+        while (it != this->end())
+        {
+            if (it->first == key )
+                break ;
+            it++;
+        }
+        return (it);
+    }
+
+    template<class Key, class T, class Compare , class Allocator > 
+    typename map<Key, T, Compare, Allocator>::const_iterator map<Key, T, Compare, Allocator>::find( const Key& key ) const
+    {
+        typename map<Key, T, Compare, Allocator>::const_iterator it = this->begin();
+        
+        while (it != this->end())
+        {
+            if (it->first == key )
+                break ;
+            it++;
+        }
+        return (it);
+    }
+
+    template<class Key, class T, class Compare , class Allocator > 
+    typename map<Key, T, Compare, Allocator>::size_type  map<Key, T, Compare, Allocator>::count(const Key& key ) const
+    {
+        return (this->find(key) != this->end());    
+    }
+}

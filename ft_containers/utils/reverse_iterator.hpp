@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_iterator.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 13:11:43 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/13 11:39:17 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/14 17:19:37 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ namespace ft
             reference operator [](difference_type b) {return (*(_ptr + b));};					// a[]
             const_reference operator [](difference_type b) const {return (*(_ptr + b));};		// a[]
             pointer operator ->(){return (_ptr);};											// a->b
-            const_pointer operator ->() const {return (_ptr);};											// a->b
+            const_pointer operator ->() const {return (_ptr);}	    						// a->b
+
 
             static const bool input_iter = true;
 

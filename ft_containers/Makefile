@@ -6,11 +6,12 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/10/13 17:12:14 by meudier          ###   ########.fr        #
+#    Updated: 2022/11/14 11:42:41 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++ -Wall -Wextra -Werror -g
+CC = c++ 
+FLAGS = -Wall -Wextra -Werror -g
 STD = -std=c++98
 
 #test utils
@@ -46,29 +47,29 @@ all: $(NAME)
 $(NAME): vector utils rbt stack
 
 vector: $(OBJ_VEC_STD) $(OBJ_VEC)
-		mkdir test_vector
-		$(CC) $(STD) test/test_vector.o -o test_vector/vectorFt && \
-		$(CC) $(STD) test/test_vector_std.o -o test_vector/vectorStd;
+		mkdir -p test_vector
+		$(CC) $(FLAGS) $(STD) test/test_vector.o -o test_vector/vectorFt && \
+		$(CC) $(FLAGS) $(STD) test/test_vector_std.o -o test_vector/vectorStd;
 		./test_vector/vectorFt > test_vector/vector_ft;
 		./test_vector/vectorStd > test_vector/vector_std;
 		diff test_vector/vector_ft test_vector/vector_std > test_vector/diff;
 		
 utils:	$(OBJ_UTL_STD) $(OBJ_UTL)
-		mkdir test_utils
-		$(CC) $(STD) test/test_utils.o -o test_utils/utilsFt && \
-		c++ -Wall -Wextra -Werror -std=c++11 test/test_utils_std.o -o test_utils/utilsStd;
+		mkdir -p test_utils
+		$(CC) $(FLAGS) $(STD) test/test_utils.o -o test_utils/utilsFt && \
+		$(CC) $(FLAGS) -std=c++11 test/test_utils_std.o -o test_utils/utilsStd;
 		./test_utils/utilsStd > test_utils/utils_std;
 		./test_utils/utilsFt > test_utils/utils_ft;
 		diff test_utils/utils_ft test_utils/utils_std > test_utils/diff;
 
 rbt:	$(OBJ_RBT)
-		mkdir test_RBT;
-		$(CC) $(STD) test/test_RBT.o -o test_RBT/RBTFt;
+		mkdir -p test_RBT;
+		$(CC) $(FLAGS) $(STD) test/test_RBT.o -o test_RBT/RBTFt;
 
 stack:	$(OBJ_STK_STD) $(OBJ_STK)
-		mkdir test_stack
-		$(CC) $(STD) test/test_stack.o -o test_stack/stackFt && \
-		$(CC) $(STD) test/test_stack_std.o -o test_stack/stackStd;
+		mkdir -p test_stack
+		$(CC) $(FLAGS) $(STD) test/test_stack.o -o test_stack/stackFt && \
+		$(CC) $(FLAGS) $(STD) test/test_stack_std.o -o test_stack/stackStd;
 		./test_stack/stackFt > test_stack/stack_ft;
 		./test_stack/stackStd > test_stack/stack_std;
 		diff test_stack/stack_ft test_stack/stack_std > test_stack/diff;

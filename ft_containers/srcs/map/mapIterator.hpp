@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/17 13:08:02 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/14 17:09:02 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 namespace ft
 {
 
-    template <class Tkey, class Tvalue>
+    template < class Tkey, class Tvalue>
     class	mapIterator
     {
     public:
@@ -34,7 +34,8 @@ namespace ft
 
         mapIterator(void) : _is_gost(false) {};
         mapIterator(pointer ptr) : _is_gost(false) {node = ptr;};
-        mapIterator(mapIterator const &src): _is_gost(src._is_gost)
+        mapIterator(const_pointer ptr) : _is_gost(false) {node = ptr;};
+        mapIterator(const mapIterator &src): _is_gost(src._is_gost)
         {
             if (this->_is_gost)
                 node = new value_type(*(src.node));
@@ -152,6 +153,10 @@ namespace ft
         //DEREFERENCING & ADDRESS STUFF
         pair* operator->(){return (&(node->data));};
         pair* operator->() const {return (&(node->data));};
+        pair operator*(){return ((node->data));};
+        pair operator*() const {return ((node->data));};
+
+        pointer getNode(){return (node);}
 
         static const bool input_iter = true;
 
@@ -191,12 +196,12 @@ namespace ft
     };
 
     template< class T1, class T2>
-    bool operator==( const ft::mapIterator<T1, T2>& lhs, \
+    bool operator==( const ft::mapIterator< T1, T2>& lhs, \
     const ft::mapIterator<T1, T2>& rhs )
     {return (*(lhs.operator->()) == *(rhs.operator->()));};
 
-    template< class T1, class T2>
-    bool operator!=( const ft::mapIterator<T1, T2>& lhs, \
+    template<class T1, class T2>
+    bool operator!=( const ft::mapIterator< T1, T2>& lhs, \
     const ft::mapIterator<T1, T2>& rhs ){return (!(lhs == rhs));};
 
 }

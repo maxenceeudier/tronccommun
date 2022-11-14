@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 18:31:33 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:18:37 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ namespace ft
     }
     
     template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::minValueNode(Node<T> *node) const
+    {
+        if (!node)
+            return (NULL);
+        if (!node->left)
+            return (node);
+        return (minValueNode(node->left));
+    }
+
+    template <typename T, class Allocator, class Compare>
     Node<T> *RBTree<T, Allocator, Compare>::minValueNode(Node<T> *node)
     {
         if (!node)
@@ -84,6 +94,16 @@ namespace ft
         if (!node->left)
             return (node);
         return (minValueNode(node->left));
+    }
+
+    template <typename T, class Allocator, class Compare>
+    Node<T> *RBTree<T, Allocator, Compare>::maxValueNode(Node<T> *node) const
+    {
+        if (!node)
+            return (NULL);
+        if (!node->right)
+            return (node);
+        return (maxValueNode(node->right));
     }
 
     template <typename T, class Allocator, class Compare>
@@ -311,23 +331,23 @@ namespace ft
     template <typename T, class Allocator, class Compare>
     void RBTree<T, Allocator, Compare>::fixDeleteRBTree(Node<T> *node)
     {
-        if (node == nullptr)
+        if (node == NULL)
             return;
 
         if (node == root)
         {
-            root = nullptr;
+            root = NULL;
             return;
         }
 
         if (getColor(node) == RED || getColor(node->left) == RED || getColor(node->right) == RED)
         {
-            Node<T> *child = node->left != nullptr ? node->left : node->right;
+            Node<T> *child = node->left != NULL ? node->left : node->right;
 
             if (node == node->parent->left)
             {
                 node->parent->left = child;
-                if (child != nullptr)
+                if (child != NULL)
                     child->parent = node->parent;
                 setColor(child, BLACK);
                 _alloc.destroy(node);
@@ -337,7 +357,7 @@ namespace ft
             else
             {
                 node->parent->right = child;
-                if (child != nullptr)
+                if (child != NULL)
                     child->parent = node->parent;
                 setColor(child, BLACK);
                 _alloc.destroy(node);
@@ -347,8 +367,8 @@ namespace ft
         }
         else
         {
-            Node<T> *brother = nullptr;
-            Node<T> *parent = nullptr;
+            Node<T> *brother = NULL;
+            Node<T> *parent = NULL;
             Node<T> *ptr = node;
             setColor(ptr, DOUBLE_BLACK);
             while (ptr != root && getColor(ptr) == DOUBLE_BLACK)
@@ -430,9 +450,9 @@ namespace ft
                 }
             }
             if (node == node->parent->left)
-                node->parent->left = nullptr;
+                node->parent->left = NULL;
             else
-                node->parent->right = nullptr;
+                node->parent->right = NULL;
             _alloc.destroy(node);
             _alloc.deallocate(node, 1);
             //delete(node);
@@ -467,7 +487,7 @@ namespace ft
     template <typename T, class Allocator, class Compare>
     void RBTree<T, Allocator, Compare>::preorderBST(Node<T> *ptr)
     {
-        if (ptr == nullptr)
+        if (ptr == NULL)
             return; 
         std::cout << ptr->data << std::endl;
         preorderBST(ptr->left);

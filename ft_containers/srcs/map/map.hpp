@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 18:24:42 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/14 16:54:22 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include "../../utils/reverse_iterator.hpp"
 #include "../../utils/swap.hpp"
 #include "mapIterator.hpp"
+
+
 
 namespace ft
 {
@@ -39,10 +41,10 @@ namespace ft
             typedef	const value_type&                       const_reference;
             typedef typename Allocator::pointer             pointer;
             typedef typename Allocator::const_pointer       const_pointer;
-            typedef ft::mapIterator<Key, T>                 iterator;
-            typedef ft::mapIterator<const Key, const T>     const_iterator;
-            typedef	std::reverse_iterator<iterator>         reverse_iterator;
-            typedef std::reverse_iterator<const_iterator>   const_reverse_iterator;
+            typedef ft::mapIterator< Key, T>           iterator;
+            typedef ft::mapIterator< Key, T>          const_iterator;
+            typedef	ft::reverse_iterator<iterator>         reverse_iterator;
+            typedef ft::reverse_iterator<const_iterator>   const_reverse_iterator;
             
             typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
 
@@ -78,10 +80,11 @@ namespace ft
             /*           access elements        */
             /*----------------------------------*/
 
-            /*T& at( const Key& key );
+            T& at( const Key& key );
+
             const T& at( const Key& key ) const;
 
-            T& operator[]( const Key& key );*/
+            T& operator[]( const Key& key );
 
             /*----------------------------------*/
             /*           iterators              */
@@ -96,21 +99,21 @@ namespace ft
             const_iterator end() const;
 
             /*--------rbegin*/
-            //reverse_iterator rbegin();
-            //const_reverse_iterator rbegin() const;
+            reverse_iterator rbegin();
+            const_reverse_iterator rbegin() const;
 
             /*--------rend*/
-            //reverse_iterator rend();
-            //const_reverse_iterator rend() const;
+            reverse_iterator rend();
+            const_reverse_iterator rend() const;
 
             /*----------------------------------*/
             /*           capacity               */
             /*----------------------------------*/
-            //bool empty() const;
+            bool empty() const;
 
-            //size_type size() const;
+            size_type size() const;
 
-            //size_type max_size() const;
+            size_type max_size() const;
 
             /*----------------------------------*/
             /*           modifiers              */
@@ -143,11 +146,13 @@ namespace ft
             /*           lookup                 */
             /*----------------------------------*/
 
-            /*size_type count( const Key& key ) const;
+            size_type count( const Key& key ) const;
 
             iterator find( const Key& key );
+            
             const_iterator find( const Key& key ) const;
 
+            /*
             std::pair<iterator,iterator> equal_range( const Key& key );
             std::pair<const_iterator,const_iterator> equal_range( const Key& key ) const;
 
