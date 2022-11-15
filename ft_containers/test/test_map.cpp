@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 16:43:46 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 17:04:45 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void test_map()
     map.insert(std::pair<std::string, int>("hello4", 4));
     rtr = map.insert(std::pair<std::string, int>("hello2", 2));
     std::cout << "rtr : " << rtr.first->first << " " << rtr.second << std::endl;
+    rtr = map.insert(std::pair<std::string, int>("hello2", 2));
+    std::cout << "rtr : " << rtr.first->first << " " << rtr.second << std::endl;
 
 
     std::cout << "/*==========================*/" << std::endl;
@@ -240,6 +242,8 @@ void test_map()
     map2.insert(ft::pair<std::string, int>("hello1", 1));
     map2.insert(ft::pair<std::string, int>("hello3", 3));
     map2.insert(ft::pair<std::string, int>("hello4", 4));
+    rtr2 = map2.insert(ft::pair<std::string, int>("hello2", 2));
+    std::cout << "rtr : " << rtr2.first->first << " " << rtr2.second << std::endl;
     rtr2 = map2.insert(ft::pair<std::string, int>("hello2", 2));
     std::cout << "rtr : " << rtr2.first->first << " " << rtr2.second << std::endl;
     
