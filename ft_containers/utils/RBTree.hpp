@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:48:45 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/14 13:19:02 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:51:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ namespace ft
             Node<T> *insertBST(Node<T> *, Node<T> *, int*);
             Node<T> *deleteBST(Node<T> *, T);
             Node<T> *getRoot(void) const;
+            void    setRoot(Node<T> * node);
             Node<T> *copyTree(Node<T> *root);
             Node<T> *clearRBTree(Node<T> *root);
             int     getMaxHeight(Node<T> *root);

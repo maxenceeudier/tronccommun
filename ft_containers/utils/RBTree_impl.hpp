@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/14 13:18:37 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:52:31 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ namespace ft
 
     template <typename T, class Allocator, class Compare>
     Node<T> *RBTree<T, Allocator, Compare>::getRoot(void) const {return (root);}
+
+    template <typename T, class Allocator, class Compare>
+    void    RBTree<T, Allocator, Compare>::setRoot(Node<T> * node) {root = node;}
 
     template <typename T, class Allocator, class Compare>
     int RBTree<T, Allocator, Compare>::getColor(Node<T> *node)

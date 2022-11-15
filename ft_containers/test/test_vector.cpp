@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 10:03:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 13:45:52 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,12 @@ int test_vector()
     std::cout << "test11 != test10: " << (test11 != test10) << std::endl;
     std::cout << test11;
     std::cout << test10;
+
+    for (ft::vector<int>::const_iterator it = test11.begin(); it != test11.end(); it++)
+    {
+        std::cout << *it;
+    }
+    
     return (0);
 }
 

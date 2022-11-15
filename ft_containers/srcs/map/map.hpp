@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/14 16:54:22 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 16:43:23 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 #include "../../utils/reverse_iterator.hpp"
 #include "../../utils/swap.hpp"
 #include "mapIterator.hpp"
+#include "mapIteratorReverse.hpp"
 
 
 
 namespace ft
 {
     template< class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<Key, T> > >
-    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >
+    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other , Compare>
     {
         public:
             typedef Key                                     key_type;
@@ -41,10 +42,14 @@ namespace ft
             typedef	const value_type&                       const_reference;
             typedef typename Allocator::pointer             pointer;
             typedef typename Allocator::const_pointer       const_pointer;
-            typedef ft::mapIterator< Key, T>           iterator;
-            typedef ft::mapIterator< Key, T>          const_iterator;
-            typedef	ft::reverse_iterator<iterator>         reverse_iterator;
-            typedef ft::reverse_iterator<const_iterator>   const_reverse_iterator;
+            typedef ft::mapIterator< value_type >           iterator;
+            typedef ft::mapIterator< const value_type >     const_iterator;
+            typedef	ft::mapIteratorReverse<value_type>      reverse_iterator;
+            typedef ft::mapIteratorReverse<const value_type>    const_reverse_iterator;
+
+            
+            //typedef	ft::reverse_iterator<iterator>          reverse_iterator;
+            //typedef ft::reverse_iterator<const_iterator>    const_reverse_iterator;
             
             typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
 
@@ -52,6 +57,7 @@ namespace ft
             friend std::ostream	&operator<<(std::ostream &o, ft::map<T1, T2, T3, T4> &map);
             
         protected:
+            T               _T_default;
             key_compare     _comp;
             allocator_type  _alloc;
             RBTree          _tree;
@@ -65,7 +71,7 @@ namespace ft
             
             template< class InputIt >
             map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator(), \
-            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL):  _comp(comp), _alloc(alloc)
+            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL):  _comp(comp), _alloc(alloc), _T_default(T())
             {insert(first, last);};
             
             map( const map& other );
@@ -119,13 +125,15 @@ namespace ft
             /*           modifiers              */
             /*----------------------------------*/
 
-            //void clear();
+            void clear();
 
-            //ft::pair<iterator, bool> insert( const value_type& value );
+            ft::pair<iterator, bool> insert( const value_type& value );
+
+            
             //iterator insert( iterator hint, const value_type& value );
 
             //temporary !!!!!!!!!!!!!!!!!!
-            void  insert(const value_type& val ){_tree.insertValue(val);};
+            //void  insert(const value_type& val ){_tree.insertValue(val);};
             
             template< class InputIt >
             void insert( InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL )

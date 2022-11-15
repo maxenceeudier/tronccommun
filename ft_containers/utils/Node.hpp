@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/17 11:52:02 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 11:49:14 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ namespace ft
     class Node
     {
         public:
-            Node(void){};
+            Node(void)  {};
             Node(T &data) : data(data), color(RED), parent(NULL), left(NULL), right(NULL){};
-            Node(Node const &node)
+            Node(Node const &node) : data(node.data)
             {
-                *this = node;
+                color = node.color;
+                parent = node.parent;
+                left = node.left;
+                right = node.right;
                 return ;
             };
             ~Node(void){};
-            Node &operator=(Node const &node)
+            /*Node &operator=(Node const &node)
             {
                 data = node.data;
                 color = node.color;
@@ -43,7 +46,7 @@ namespace ft
                 left = node.left;
                 right = node.right;
                 return (*this);
-            };
+            };*/
 
             T       data;
             int     color;

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 18:23:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 16:41:47 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ namespace ft
 {
 
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map(): _comp(Compare()),  _alloc(Allocator()){}
+    map<Key, T, Compare, Allocator>::map(): _T_default(T()), _comp(Compare()),  _alloc(Allocator()){}
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::map(const Compare& comp, const Allocator& alloc) \
-    :  _comp(comp), _alloc(alloc) {}
+    :  _T_default(T()), _comp(comp), _alloc(alloc) {}
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map( const map& other ):  _comp(other._comp), _alloc(other._alloc)
+    map<Key, T, Compare, Allocator>::map( const map& other ):  _T_default(T()),  _comp(other._comp), _alloc(other._alloc)
     {*this = other;}
     
     template<class Key, class T, class Compare , class Allocator >

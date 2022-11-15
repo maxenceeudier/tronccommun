@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:37:02 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/14 18:31:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:58:58 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
 
             ~pair<Tkey, Tvalue>(void) {};
             
-            pair<Tkey, Tvalue>  &operator=( const pair &pr)
+            const pair<Tkey, Tvalue>  &operator=( const pair &pr)
             {
                 this->first = pr.first;
                 this->second = pr.second;

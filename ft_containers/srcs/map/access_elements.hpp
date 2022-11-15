@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/14 14:46:12 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 16:48:36 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ namespace ft
     {
         typename map<Key, T, Compare, Allocator>::iterator it = this->find(key);
         if (it == this->end())
-        {
-            std::string what = "vector::_out_of_range_";
-            throw std::out_of_range(what);
-        }
+            return (this->_T_default);
         return (it->second);
     }
 }

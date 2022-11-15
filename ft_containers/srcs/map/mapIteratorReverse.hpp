@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapIterator.hpp                                    :+:      :+:    :+:   */
+/*   mapIteratorReverseReverse.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 15:20:21 by meudier          ###   ########.fr       */
+/*   Created: 2022/10/07 13:11:43 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/11/15 12:11:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAPITERATOR_HPP
-# define MAPITERATOR_HPP
+#ifndef ITERATOREVERSE_HPP
+#define ITERATOREVERSE_HPP
 #include "../../utils/iterator_traits.hpp"
 #include "../../utils/utils.h"
 
 namespace ft
 {
-
     template < class pair>
-    class	mapIterator
+    class	mapIteratorReverse
     {
     public:
 
@@ -36,10 +35,10 @@ namespace ft
         typedef typename std::ptrdiff_t             difference_type;
         typedef ft::random_access_iterator_tag      iterator_category;
 
-        mapIterator(void) : _is_gost(false) {};
-        mapIterator(node_pointer ptr) : _is_gost(false) {node = ptr;};
-        mapIterator(node_const_pointer ptr) : _is_gost(false) {node = ptr;};
-        mapIterator(mapIterator const &src): _is_gost(src._is_gost)
+        mapIteratorReverse(void) : _is_gost(false) {};
+        mapIteratorReverse(node_pointer ptr) : _is_gost(false) {node = ptr;};
+        mapIteratorReverse(node_const_pointer ptr) : _is_gost(false) {node = ptr;};
+        mapIteratorReverse(mapIteratorReverse const &src): _is_gost(src._is_gost)
         {
             if (this->_is_gost)
                 node = new node_type(*(src.node));
@@ -47,13 +46,13 @@ namespace ft
                 node = src.node;
         };
 
-        virtual ~mapIterator()
+        virtual ~mapIteratorReverse()
         {
             if (_is_gost)
                 delete node;
         };
 
-        mapIterator &operator=(mapIterator const &src) 
+        mapIteratorReverse &operator=(mapIteratorReverse const &src) 
         {
             if (_is_gost)
                 delete node;
@@ -66,7 +65,7 @@ namespace ft
         };
 
         // INCREMENTERS
-        mapIterator operator ++() 
+        mapIteratorReverse operator --() 
         {
             if (node)
             {
@@ -102,14 +101,15 @@ namespace ft
         };// ++a
         
         
-        mapIterator operator ++(int)
+        mapIteratorReverse operator --(int)
         {
-            mapIterator temp = *this;
-            ++(*this);
+            mapIteratorReverse temp = *this;
+            --(*this);
             return (temp);
         };// a++
 
-        mapIterator operator+(int n)
+
+        mapIteratorReverse operator-(int n)
         {
             while (n--)
                 ++(*this);
@@ -117,7 +117,7 @@ namespace ft
         };
 
         
-        mapIterator operator --()
+        mapIteratorReverse operator ++()
         {
             if (node)
             {
@@ -153,18 +153,18 @@ namespace ft
         };// --a
 
         
-        mapIterator operator --(int)
+        mapIteratorReverse operator ++(int)
         {
-            mapIterator temp = *this;
-            --(*this);
+            mapIteratorReverse temp = *this;
+            ++(*this);
             return (temp);
         };	// a--
 
 
-        mapIterator operator-(int n)
+        mapIteratorReverse operator+(int n)
         {
             while (n--)
-                --(*this);
+                ++(*this);
             return (*this);
         };
 
@@ -174,10 +174,7 @@ namespace ft
         reference         operator*(){return ((node->data));};
         const_reference   operator*() const {return ((node->data));};
         
-        node_pointer getNode() const {return (node);}
-
-        template< class T1, class T2>
-        friend bool operator==( const ft::mapIterator< T1> & lhs, const ft::mapIterator<T2> & rhs );
+        node_pointer getNode(){return (node);}
 
         static const bool input_iter = true;
 
@@ -216,18 +213,16 @@ namespace ft
             node_pointer    node;
     };
 
-    template< class T1, class T2>
-    bool operator==( const ft::mapIterator< T1> & lhs, \
-    const ft::mapIterator<T2> & rhs )
-    {
-        if (!lhs.getNode())
-            return (true);
-        return (*(lhs.operator->()) == *(rhs.operator->()));
-    };
+    template< class T1>
+    bool operator==( const ft::mapIteratorReverse< T1> & lhs, \
+    const ft::mapIteratorReverse<T1> & rhs )
+    {return (*(lhs.operator->()) == *(rhs.operator->()));};
 
-    template<class T1, class T2>
-    bool operator!=( const ft::mapIterator< T1> & lhs, \
-    const ft::mapIterator<T2>& rhs ){return (!(lhs == rhs));};
-
+    template<class T1>
+    bool operator!=( const ft::mapIteratorReverse< T1> & lhs, \
+    const ft::mapIteratorReverse<T1>& rhs ){return (!(lhs == rhs));};
 }
+
 #endif
+
+   
