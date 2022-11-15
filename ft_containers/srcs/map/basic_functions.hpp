@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 16:41:47 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 17:32:42 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ namespace ft
     :  _T_default(T()), _comp(comp), _alloc(alloc) {}
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map( const map& other ):  _T_default(T()),  _comp(other._comp), _alloc(other._alloc)
+    map<Key, T, Compare, Allocator>::map( const map& other )
     {*this = other;}
     
     template<class Key, class T, class Compare , class Allocator >
@@ -32,9 +32,11 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator> &map<Key, T, Compare, Allocator>::operator=( const map& other )
     {
+        _T_default = other._T_default;
         _alloc = other._alloc;
         _comp = other._comp;
-        _tree.getRoot() = _tree.copyTree(other._tree.getRoot());
+        this->clear();
+        _tree.setRoot(_tree.copyTree(other._tree.getRoot()));
         return (*this);
     }
 

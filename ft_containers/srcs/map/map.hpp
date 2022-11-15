@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 16:43:23 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 17:10:11 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,7 @@ namespace ft
 
             ft::pair<iterator, bool> insert( const value_type& value );
 
-            
             //iterator insert( iterator hint, const value_type& value );
-
-            //temporary !!!!!!!!!!!!!!!!!!
-            //void  insert(const value_type& val ){_tree.insertValue(val);};
             
             template< class InputIt >
             void insert( InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL )
@@ -148,7 +144,7 @@ namespace ft
             //iterator erase( iterator first, iterator last );
             //size_type erase( const Key& key );
 
-            //void swap( map& other );
+            void swap( map& other );
 
             /*----------------------------------*/
             /*           lookup                 */

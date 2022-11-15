@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 17:04:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/15 17:32:28 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,15 @@ void test_map()
     rtr = map.insert(std::pair<std::string, int>("hello2", 2));
     std::cout << "rtr : " << rtr.first->first << " " << rtr.second << std::endl;
 
+    std::cout << "\n\nmapSwap : \n\n";
+    std::map<std::string, int> mapSwap;
+    mapSwap.swap(map);
+    for (std::map<std::string, int>::iterator it = mapSwap.begin(); it != mapSwap.end(); it++)
+    {
+        std::cout << "key: " << (*it).first;
+        std::cout << " value: " << it->second;
+        std::cout << std::endl;
+    }
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          FT              */" << std::endl;
@@ -247,7 +256,15 @@ void test_map()
     rtr2 = map2.insert(ft::pair<std::string, int>("hello2", 2));
     std::cout << "rtr : " << rtr2.first->first << " " << rtr2.second << std::endl;
     
-    
+    /*std::cout << "\n\nmapSwap : \n\n";
+    ft::map<std::string, int> mapSwap2;
+    mapSwap2.swap(map2);
+    for (std::map<std::string, int>::iterator it = mapSwap2.begin(); it != mapSwap2.end(); it++)
+    {
+        std::cout << "key: " << (*it).first;
+        std::cout << " value: " << it->second;
+        std::cout << std::endl;
+    }*/
     
 }
 
