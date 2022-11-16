@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 17:32:53 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 22:18:01 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ namespace ft
         public:
             class ValueCompare;
         
-            typedef Key                                     key_type;
-            typedef T                                       mapped_type;
-            typedef ft::pair<Key, T>                        value_type;
-            typedef std::size_t                             size_type;
-            typedef std::ptrdiff_t                          difference_type;
-            typedef Compare                                 key_compare;
-            typedef ValueCompare                            value_compare;
-            typedef	Allocator                               allocator_type;
-            typedef	value_type&                             reference;
-            typedef	const value_type&                       const_reference;
-            typedef typename Allocator::pointer             pointer;
-            typedef typename Allocator::const_pointer       const_pointer;
-            typedef ft::mapIterator< value_type >           iterator;
-            typedef ft::mapIterator< const value_type >     const_iterator;
-            typedef	ft::mapIteratorReverse<value_type>      reverse_iterator;
+            typedef Key                                         key_type;
+            typedef T                                           mapped_type;
+            typedef ft::pair<Key, T>                            value_type;
+            typedef std::size_t                                 size_type;
+            typedef std::ptrdiff_t                              difference_type;
+            typedef Compare                                     key_compare;
+            typedef ValueCompare                                value_compare;
+            typedef	Allocator                                   allocator_type;
+            typedef	value_type&                                 reference;
+            typedef	const value_type&                           const_reference;
+            typedef typename Allocator::pointer                 pointer;
+            typedef typename Allocator::const_pointer           const_pointer;
+            typedef ft::mapIterator< value_type >               iterator;
+            typedef ft::mapIterator< const value_type >         const_iterator;
+            typedef	ft::mapIteratorReverse<value_type>          reverse_iterator;
             typedef ft::mapIteratorReverse<const value_type>    const_reverse_iterator;
 
             
@@ -73,7 +73,7 @@ namespace ft
             
             template< class InputIt >
             map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator(), \
-            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL): _T_default(T()), _comp(comp), _alloc(alloc)
+            typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true) : _T_default(T()), _comp(comp), _alloc(alloc)
             {insert(first, last);};
             
             map( const map& other );
@@ -134,10 +134,10 @@ namespace ft
             iterator insert( iterator hint, const value_type& value );
             
             template< class InputIt >
-            void insert( InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL )
+            void insert( InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true)
             {
                 while (first != last)
-                    _tree.insertValue((first++)->data);
+                    _tree.insertValue(*(first++));
             };
 
             void erase( iterator pos );
@@ -156,15 +156,15 @@ namespace ft
             
             const_iterator find( const Key& key ) const;
 
-            /*
-            std::pair<iterator,iterator> equal_range( const Key& key );
-            std::pair<const_iterator,const_iterator> equal_range( const Key& key ) const;
-
+            
+            pair<iterator,iterator> equal_range( const Key& key );
+            pair<const_iterator,const_iterator> equal_range( const Key& key ) const;
+            
             iterator lower_bound( const Key& key );
             const_iterator lower_bound( const Key& key ) const;
 
             iterator upper_bound( const Key& key );
-            const_iterator upper_bound( const Key& key ) const;*/
+            const_iterator upper_bound( const Key& key ) const;
 
             /*----------------------------------*/
             /*           observers              */
@@ -181,9 +181,10 @@ namespace ft
             class ValueCompare : std::binary_function<value_type, value_type, bool>
             {
                 protected:
-                    Compare comp;
-                    ValueCompare(): comp(_comp){};
+                    Compare   comp;
+                    ValueCompare(Compare c): comp(c){};
                 public:
+                    friend class map;
                     typedef bool        result_type;
                     typedef value_type  first_argument_type;
                     typedef value_type  second_argument_type;
