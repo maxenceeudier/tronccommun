@@ -6,13 +6,29 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 17:32:28 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:15:39 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../srcs/map/map.h"
 #include <string>
 #include <map>
+
+void print(ft::Node<ft::pair<std::string, int> > *root)
+{
+    if (!root)
+        return ;
+    if (root->parent)
+        std::cout << "parent: " << root->parent->data.first << std::endl;
+    if (root->left)
+        std::cout << "left: " << root->left->data.first << std::endl;
+    if (root->right)
+        std::cout << "rigth: " << root->right->data.first << std::endl;
+    std::cout << "data: " << root->data.first << std::endl;
+    std::cout << std::endl << std::endl;
+    print(root->left);
+    print(root->right);
+}
 
 void test_map()
 {
@@ -138,13 +154,40 @@ void test_map()
         std::cout << " value: " << it->second;
         std::cout << std::endl;
     }
+    std::cout << "\n\n";
+
+    map.swap(mapSwap);
+    std::map<std::string, int>::iterator i = map.begin();
+    i++;
+    i++;
+    
+    i = map.insert(i, std::pair<std::string, int>("hello10", 10));
+    for (std::map<std::string, int>::iterator it = map.begin(); it != map.end(); it++)
+    {
+        std::cout << "key: " << (*it).first;
+        std::cout << " value: " << it->second;
+        std::cout << std::endl;
+    }
+    std::cout << "i: " << i->first << std::endl;
+
+    std::cout << "map.erase(hello10) : " << map.erase("hello10") << std::endl;
+    std::cout << "map.erase(hello10) : " << map.erase("hello10") << std::endl;
+
+    std::cout << "\n\nerase(iterator pos):\n";
+    map.erase(++map.begin());
+    for (std::map<std::string, int>::iterator it = map.begin(); it != map.end(); it++)
+    {
+        std::cout << "key: " << (*it).first;
+        std::cout << " value: " << it->second;
+        std::cout << std::endl;
+    }
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          FT              */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
     ft::map<std::string, int> map2;
-
+    
 
     map2.insert(ft::pair<std::string, int>("hello1", 3));
     map2.insert(ft::pair<std::string, int>("hello1", 10));
@@ -238,7 +281,7 @@ void test_map()
     std::cout << "\nmap.clear()\n";
     map2.clear();
     std::cout << "\n\nbegin() && end() : \n";
-    for (ft::map<std::string, int>::iterator it = map2.begin() + 6; it != map2.end(); it++)
+    for (ft::map<std::string, int>::iterator it = map2.begin() ; it != map2.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
@@ -255,19 +298,56 @@ void test_map()
     std::cout << "rtr : " << rtr2.first->first << " " << rtr2.second << std::endl;
     rtr2 = map2.insert(ft::pair<std::string, int>("hello2", 2));
     std::cout << "rtr : " << rtr2.first->first << " " << rtr2.second << std::endl;
-    
-    /*std::cout << "\n\nmapSwap : \n\n";
-    ft::map<std::string, int> mapSwap2;
-    mapSwap2.swap(map2);
-    for (std::map<std::string, int>::iterator it = mapSwap2.begin(); it != mapSwap2.end(); it++)
+
+    for (ft::map<std::string, int>::iterator it = map2.begin() ; it != map2.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
         std::cout << std::endl;
-    }*/
+    }
     
-}
+    
+    std::cout << "\n\nmapSwap : \n\n";
+    ft::map<std::string, int> mapSwap2;
 
+    mapSwap2.swap(map2);
+
+    
+    std::cout << "mapSwap2: \n";
+    for (ft::map<std::string, int>::iterator it = mapSwap2.begin(); it != mapSwap2.end(); it++)
+    {
+        std::cout << "key: " << it->first << std::endl; 
+    }
+    std::cout << "map2: \n";
+    for (ft::map<std::string, int>::iterator it = map2.begin(); it != map2.end(); it++)
+    {
+        std::cout << "key: " << it->first << std::endl; 
+    }
+
+    map2.swap(mapSwap2);
+    
+    ft::map<std::string, int>::iterator i2 = map2.begin();
+    i2++;
+    i2++;
+    
+    i2 = map2.insert(i2, ft::pair<std::string, int>("hello10", 10));
+    
+    for (ft::map<std::string, int>::iterator it = map2.begin(); it != map2.end(); it++)
+    {
+        std::cout << "key: " << (*it).first;
+        std::cout << " value: " << it->second;
+        std::cout << std::endl;
+    }
+    std::cout << "i2 : " << i2->first << std::endl;
+
+    std::cout << "map.erase(hello10) : " << map2.erase("hello10") << std::endl;
+    std::cout << "map.erase(hello10) : " << map2.erase("hello10") << std::endl;
+    
+    map2.erase(++map2.begin());
+    
+    //std::cout << map2;
+    //print(map2.getTree().getRoot());
+}
     
 
 int main()

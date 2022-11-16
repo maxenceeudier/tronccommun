@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 11:49:14 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 11:28:33 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft
                 return ;
             };
             ~Node(void){};
-            /*Node &operator=(Node const &node)
+            Node &operator=(Node const &node)
             {
                 data = node.data;
                 color = node.color;
@@ -46,7 +46,7 @@ namespace ft
                 left = node.left;
                 right = node.right;
                 return (*this);
-            };*/
+            };
 
             T       data;
             int     color;

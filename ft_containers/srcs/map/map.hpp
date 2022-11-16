@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 17:10:11 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 14:36:29 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 namespace ft
 {
     template< class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<Key, T> > >
-    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other , Compare>
+    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >
     {
         public:
             typedef Key                                     key_type;
@@ -48,9 +48,6 @@ namespace ft
             typedef ft::mapIteratorReverse<const value_type>    const_reverse_iterator;
 
             
-            //typedef	ft::reverse_iterator<iterator>          reverse_iterator;
-            //typedef ft::reverse_iterator<const_iterator>    const_reverse_iterator;
-            
             typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
 
             template <class T1, class T2, class T3, class T4>
@@ -66,12 +63,14 @@ namespace ft
             /*----------------------------------*/
             /*           basic function         */
             /*----------------------------------*/
+            RBTree  &getTree() {return _tree;};
+            
             map();
             explicit map( const Compare& comp, const Allocator& alloc = Allocator() );
             
             template< class InputIt >
             map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator(), \
-            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL):  _comp(comp), _alloc(alloc), _T_default(T())
+            typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL): _T_default(T()), _comp(comp), _alloc(alloc)
             {insert(first, last);};
             
             map( const map& other );
@@ -129,20 +128,18 @@ namespace ft
 
             ft::pair<iterator, bool> insert( const value_type& value );
 
-            //iterator insert( iterator hint, const value_type& value );
+            iterator insert( iterator hint, const value_type& value );
             
             template< class InputIt >
             void insert( InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL )
             {
                 while (first != last)
-                {
                     _tree.insertValue((first++)->data);
-                }
             };
 
-            //iterator erase( iterator pos );
-            //iterator erase( iterator first, iterator last );
-            //size_type erase( const Key& key );
+            iterator erase( iterator pos );
+            iterator erase( iterator first, iterator last );
+            size_type erase( const Key& key );
 
             void swap( map& other );
 

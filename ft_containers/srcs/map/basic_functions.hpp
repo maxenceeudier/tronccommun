@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 17:32:42 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 12:20:59 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ namespace ft
 {
 
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map(): _T_default(T()), _comp(Compare()),  _alloc(Allocator()){}
+    map<Key, T, Compare, Allocator>::map(): _T_default(T()), _comp(Compare()),  _alloc(Allocator()), _tree(RBTree()){}
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::map(const Compare& comp, const Allocator& alloc) \
-    :  _T_default(T()), _comp(comp), _alloc(alloc) {}
+    :  _T_default(T()), _comp(comp), _alloc(alloc), _tree(RBTree()) {}
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map( const map& other )
-    {*this = other;}
+    map<Key, T, Compare, Allocator>::map( const map& other ) :  ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >()
+    {
+        *this = other;
+    }
     
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::~map(){}
@@ -36,7 +38,7 @@ namespace ft
         _alloc = other._alloc;
         _comp = other._comp;
         this->clear();
-        _tree.setRoot(_tree.copyTree(other._tree.getRoot()));
+        this->_tree = other._tree;
         return (*this);
     }
 

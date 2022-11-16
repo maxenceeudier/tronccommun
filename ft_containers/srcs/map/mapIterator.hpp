@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 15:20:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 12:12:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ namespace ft
                     node = _smallest(node->right);
                 else
                 {
-                    if (node->parent && node == node->parent->right)
+                    if (node->parent && node->parent->right && node == node->parent->right)
                     {
-                        while (node->parent && node == node->parent->right)
+                        while (node->parent && node->parent->right  && node == node->parent->right)
                             node = node->parent;
                     }
                     node = node->parent;
@@ -132,7 +132,7 @@ namespace ft
                 if (_is_the_first(node) == node)
                 {
                     node_pointer gost = new node_type();
-                    gost->parent = _is_the_last(node);
+                    gost->parent = node;
                     _is_gost = true;
                     this->node = gost;
                     return (*this);
@@ -141,9 +141,9 @@ namespace ft
                     node = _biggest(node->left);
                 else
                 {
-                    if (node->parent && node == node->parent->left)
+                    if (node->parent && node->parent->left && node == node->parent->left)
                     {
-                        while (node->parent && node == node->parent->left)
+                        while (node->parent && node->parent->left && node == node->parent->left)
                             node = node->parent;
                     }
                     node = node->parent;
@@ -175,6 +175,7 @@ namespace ft
         const_reference   operator*() const {return ((node->data));};
         
         node_pointer getNode() const {return (node);}
+        bool         getGost() const {return (_is_gost);}
 
         template< class T1, class T2>
         friend bool operator==( const ft::mapIterator< T1> & lhs, const ft::mapIterator<T2> & rhs );
@@ -221,6 +222,8 @@ namespace ft
     const ft::mapIterator<T2> & rhs )
     {
         if (!lhs.getNode())
+            return (true);
+        if (lhs.getGost() && rhs.getGost())
             return (true);
         return (*(lhs.operator->()) == *(rhs.operator->()));
     };

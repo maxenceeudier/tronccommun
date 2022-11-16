@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 14:52:31 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:01:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ namespace ft
         _alloc.construct(node, *root);
         node->left = copyTree(root->left);
         node->right = copyTree(root->right);
+        if (node->left)
+            node->left->parent = node;
+        if (node->right)
+            node->right->parent = node;
         return (node);
     }
 
@@ -355,7 +359,6 @@ namespace ft
                 setColor(child, BLACK);
                 _alloc.destroy(node);
                 _alloc.deallocate(node, 1);
-                //delete (node);
             }
             else
             {
@@ -365,7 +368,6 @@ namespace ft
                 setColor(child, BLACK);
                 _alloc.destroy(node);
                 _alloc.deallocate(node, 1);
-                //delete (node);
             }
         }
         else
@@ -458,7 +460,6 @@ namespace ft
                 node->parent->right = NULL;
             _alloc.destroy(node);
             _alloc.deallocate(node, 1);
-            //delete(node);
             setColor(root, BLACK);
         }
     }

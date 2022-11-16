@@ -89,9 +89,9 @@ namespace ft
                     node = _smallest(node->right);
                 else
                 {
-                    if (node->parent && node == node->parent->right)
+                    if (node->parent && node->parent->right && *node == node->parent->right)
                     {
-                        while (node->parent && node == node->parent->right)
+                        while (node->parent && node->parent->right && *node == node->parent->right)
                             node = node->parent;
                     }
                     node = node->parent;
@@ -112,7 +112,7 @@ namespace ft
         mapIteratorReverse operator-(int n)
         {
             while (n--)
-                ++(*this);
+                --(*this);
             return (*this);
         };
 
@@ -132,7 +132,7 @@ namespace ft
                 if (_is_the_first(node) == node)
                 {
                     node_pointer gost = new node_type();
-                    gost->parent = _is_the_last(node);
+                    gost->parent = node;
                     _is_gost = true;
                     this->node = gost;
                     return (*this);
@@ -141,9 +141,9 @@ namespace ft
                     node = _biggest(node->left);
                 else
                 {
-                    if (node->parent && node == node->parent->left)
+                    if (node->parent && node->parent->left && node == node->parent->left)
                     {
-                        while (node->parent && node == node->parent->left)
+                        while (node->parent && node->parent->left && node == node->parent->left)
                             node = node->parent;
                     }
                     node = node->parent;
