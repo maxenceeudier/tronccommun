@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:01:34 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 14:37:49 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:29:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "lookup.hpp"
 #include "access_elements.hpp"
 #include "modifiers.hpp"
+#include "observers.hpp"
 
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 15:15:20 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 16:56:58 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
+#include "../vector/vector.h"
 
 namespace ft
 {
@@ -65,16 +66,18 @@ namespace ft
     }
 
     template<class Key, class T, class Compare , class Allocator >
-    typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::erase( iterator pos )
-    {
-        this->_tree.deleteValue(*pos);
-        return (this->end());
-    }
+    void map<Key, T, Compare, Allocator>::erase( iterator pos )
+    {this->_tree.deleteValue(*pos);}
     
     template<class Key, class T, class Compare , class Allocator >
-    typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::erase( iterator first, iterator last )
+    void map<Key, T, Compare, Allocator>::erase( iterator first, iterator last )
     {
-        
+        ft::vector<ft::pair<Key, T> >  vec;
+        size_t                          i = 0;
+        while (first != last)
+            vec.push_back(*(first++));
+        while (i < vec.size())
+            this->_tree.deleteValue(vec[i++]);
     }
    
     template<class Key, class T, class Compare , class Allocator >

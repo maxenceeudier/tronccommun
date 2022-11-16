@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 14:36:29 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:32:53 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ namespace ft
     class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >
     {
         public:
+            class ValueCompare;
+        
             typedef Key                                     key_type;
             typedef T                                       mapped_type;
             typedef ft::pair<Key, T>                        value_type;
             typedef std::size_t                             size_type;
             typedef std::ptrdiff_t                          difference_type;
             typedef Compare                                 key_compare;
+            typedef ValueCompare                            value_compare;
             typedef	Allocator                               allocator_type;
             typedef	value_type&                             reference;
             typedef	const value_type&                       const_reference;
@@ -137,8 +140,8 @@ namespace ft
                     _tree.insertValue((first++)->data);
             };
 
-            iterator erase( iterator pos );
-            iterator erase( iterator first, iterator last );
+            void erase( iterator pos );
+            void erase( iterator first, iterator last );
             size_type erase( const Key& key );
 
             void swap( map& other );
@@ -167,19 +170,19 @@ namespace ft
             /*           observers              */
             /*----------------------------------*/
 
-            //key_compare key_comp() const;
+            key_compare key_comp() const;
 
-            //std::map::value_compare value_comp() const;
+            value_compare value_comp() const;
             
             /*----------------------------------*/
             /*           member_class           */
             /*----------------------------------*/ 
             
-            class value_compare : std::binary_function<value_type, value_type, bool>
+            class ValueCompare : std::binary_function<value_type, value_type, bool>
             {
                 protected:
                     Compare comp;
-                    value_compare(): comp(_comp){};
+                    ValueCompare(): comp(_comp){};
                 public:
                     typedef bool        result_type;
                     typedef value_type  first_argument_type;

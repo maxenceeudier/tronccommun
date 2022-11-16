@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 15:15:39 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:29:05 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,11 @@ void test_map()
         std::cout << std::endl;
     }
 
+    std::map<std::string, int>::value_compare compV = map.value_comp();
+    std::map<std::string, int>::key_compare compK = map.key_comp();
+    std::cout << "compKey: " <<  (compK("123", "234")) << std::endl;
+    std::cout << "compValue: " <<  (compV(std::pair<std::string, int>("hello3", 3), std::pair<std::string, int>("hello4", 4))) << std::endl;
+
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          FT              */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
@@ -344,8 +349,22 @@ void test_map()
     std::cout << "map.erase(hello10) : " << map2.erase("hello10") << std::endl;
     
     map2.erase(++map2.begin());
-    
     //std::cout << map2;
+    for (ft::map<std::string, int>::iterator it = map2.begin(); it != map2.end(); it++)
+    {
+        std::cout << "key: " << (*it).first;
+        std::cout << " value: " << it->second;
+        std::cout << std::endl;
+    }
+    map2.erase(map2.begin(), map2.end());
+    
+    std::cout << map2;
+
+    ft::map<std::string, int>::value_compare compV2 = map2.value_comp();
+    ft::map<std::string, int>::key_compare compK2 = map2.key_comp();
+    std::cout << "compKey: " <<  (compK2("123", "234")) << std::endl;
+    std::cout << "compValue: " <<  (compV2(ft::pair<std::string, int>("hello3", 3), ft::pair<std::string, int>("hello4", 4))) << std::endl;
+
     //print(map2.getTree().getRoot());
 }
     

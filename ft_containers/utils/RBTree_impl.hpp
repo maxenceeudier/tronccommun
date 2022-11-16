@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 15:01:25 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 16:58:46 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,7 +313,7 @@ namespace ft
     template <typename T, class Allocator, class Compare>
     Node<T> *RBTree<T, Allocator, Compare>::deleteBST(Node<T> *root, T data)
     {
-        T   temp;
+        T       temp;
 
         if (!root)
             return (root);
@@ -323,6 +323,7 @@ namespace ft
             return (deleteBST(root->left, data));
         if (!root->right)
             return (root);
+
         temp = minValueNode(root->right)->data;
         root->data = temp;
         return (deleteBST(root->right, temp));
