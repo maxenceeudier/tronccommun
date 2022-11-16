@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 21:59:18 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 22:25:11 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,12 +275,12 @@ void test_map()
     std::cout << std::endl;
 
     std::cout << "\n\nC_begin() && C_rend() : \n";
-    /*for (ft::map<std::string, int>::const_iterator it = map.begin(); it != map.end(); it++)
+    for (ft::map<std::string, int>::const_iterator it = map.begin(); it != map.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
         std::cout << std::endl;
-    }*/
+    }
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "\n\nCR_begin() && CR_end() : \n";

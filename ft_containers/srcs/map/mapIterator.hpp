@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 12:12:00 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 23:00:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ namespace ft
 
         mapIterator(void) : _is_gost(false) {};
         mapIterator(node_pointer ptr) : _is_gost(false) {node = ptr;};
-        mapIterator(node_const_pointer ptr) : _is_gost(false) {node = ptr;};
         mapIterator(mapIterator const &src): _is_gost(src._is_gost)
         {
             if (this->_is_gost)
@@ -170,9 +169,7 @@ namespace ft
 
         //DEREFERENCING & ADDRESS STUFF
         pointer           operator->(){return (&(node->data));};
-        const_pointer     operator->() const {return (&(node->data));};
         reference         operator*(){return ((node->data));};
-        const_reference   operator*() const {return ((node->data));};
         
         node_pointer getNode() const {return (node);}
         bool         getGost() const {return (_is_gost);}
@@ -184,7 +181,7 @@ namespace ft
 
         void    set_is_gost(bool a){_is_gost = a;};
 
-        private:
+        protected:
             node_pointer _smallest(node_pointer node)
             {
                 while (node && node->left)
@@ -225,12 +222,13 @@ namespace ft
             return (true);
         if (lhs.getGost() && rhs.getGost())
             return (true);
-        return (*(lhs.operator->()) == *(rhs.operator->()));
+        return (*(lhs.getNode()) == *(rhs.getNode()));
     };
 
     template<class T1, class T2>
     bool operator!=( const ft::mapIterator< T1> & lhs, \
     const ft::mapIterator<T2>& rhs ){return (!(lhs == rhs));};
+
 
 }
 #endif

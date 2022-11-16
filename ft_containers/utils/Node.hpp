@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 11:28:33 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/16 22:58:16 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ namespace ft
         return (o);
     }
 
-    template<typename T>
-    bool    operator==(Node<T> &n1, Node<T> &n2)
+    template<typename T1, typename T2>
+    bool    operator==(Node<T1> &n1, Node<T2> &n2)
     {return (n1.data == n2.data);};
 
-    template<typename T>
-    bool    operator!=(Node<T> &n1, Node<T> &n2)
+    template<typename T1, typename T2>
+    bool    operator!=(Node<T1> &n1, Node<T2> &n2)
     {return (!(n1 == n2));};
 
     
