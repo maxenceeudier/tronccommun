@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 22:25:11 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 09:43:25 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 #include <map>
 
-void print(ft::Node<ft::pair<std::string, int> > *root)
+/*void print(ft::Node<ft::pair<std::string, int> > *root)
 {
     if (!root)
         return ;
@@ -28,14 +28,54 @@ void print(ft::Node<ft::pair<std::string, int> > *root)
     std::cout << std::endl << std::endl;
     print(root->left);
     print(root->right);
-}
+}*/
 
 void test_map()
 {
     std::cout << "/*==========================*/" << std::endl;
-    std::cout << "/*          STD             */" << std::endl;
+    std::cout << "/*          MAP             */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*       BASICS FUNCT       */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*       ACCESS ELEMTS      */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         CAPACITY         */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*        ITERATORS         */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
     
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         LOOKUP           */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         MODIFIERS        */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*        OBSERVERS         */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*        OPERATORS         */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
     std::map<std::string, int> map;
     map.insert(std::pair<std::string, int>("hello1", 3));
     map.insert(std::pair<std::string, int>("hello1", 3));
@@ -197,6 +237,24 @@ void test_map()
     std::cout << "pr->first: " << pr.first->first << std::endl;
     std::cout << "pr->second: " << pr.second->first << std::endl;
 
+    std::cout << "\n\noperators" << std::endl;
+    std::map<std::string, int> m1;
+    std::map<std::string, int> m2;
+    m1.insert(std::pair<std::string, int>("hello1", 1));
+    m1.insert(std::pair<std::string, int>("hello2", 2));
+    m1.insert(std::pair<std::string, int>("hello3", 3));
+
+    m2.insert(std::pair<std::string, int>("hello1", 1));
+    m2.insert(std::pair<std::string, int>("hello2", 2));
+    m2.insert(std::pair<std::string, int>("hello3", 4));
+    //m2.insert(std::pair<std::string, int>("hello4", 4));
+
+    std::cout << "== : " << (m1 == m2) <<  std::endl;
+    std::cout << "!= : " << (m1 != m2) <<  std::endl;
+    std::cout << "> : " << (m1 > m2) <<  std::endl;
+    std::cout << ">= : " << (m1 >= m2) <<  std::endl;
+    std::cout << "< : " << (m1 < m2) <<  std::endl;
+    std::cout << "<= : " << (m1 <= m2) <<  std::endl;
     
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          FT              */" << std::endl;
@@ -274,8 +332,10 @@ void test_map()
     std::cout << std::endl;
     std::cout << std::endl;
 
+
+    const ft::map<std::string, int>& cm = map2;
     std::cout << "\n\nC_begin() && C_rend() : \n";
-    for (ft::map<std::string, int>::const_iterator it = map.begin(); it != map.end(); it++)
+    for (ft::map<std::string, int>::const_iterator it = cm.begin(); it != cm.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
@@ -284,12 +344,12 @@ void test_map()
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "\n\nCR_begin() && CR_end() : \n";
-    /*for (ft::map<std::string, int>::const_reverse_iterator it = map.rbegin(); it != map.rend(); it++)
+    for (ft::map<std::string, int>::const_reverse_iterator it = cm.rbegin(); it != cm.rend(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
         std::cout << std::endl;
-    }*/
+    }
     std::cout << std::endl;
     std::cout << std::endl;
 
@@ -389,6 +449,29 @@ void test_map()
     std::cout << "compValue: " <<  (compV2(ft::pair<std::string, int>("hello3", 3), ft::pair<std::string, int>("hello4", 4))) << std::endl;
     std::cout << "compValue: " <<  (compV2(ft::pair<std::string, int>("hello8", 8), ft::pair<std::string, int>("hello4", 4))) << std::endl;
     //print(map2.getTree().getRoot());
+
+
+    std::cout << "\n\noperators" << std::endl;
+    ft::map<std::string, int> m3;
+    ft::map<std::string, int> m4;
+    m3.insert(ft::pair<std::string, int>("hello1", 1));
+    m3.insert(ft::pair<std::string, int>("hello2", 2));
+    m3.insert(ft::pair<std::string, int>("hello3", 3));
+
+    m4.insert(ft::pair<std::string, int>("hello1", 1));
+    m4.insert(ft::pair<std::string, int>("hello2", 2));
+    m4.insert(ft::pair<std::string, int>("hello3", 4));
+    //m4.insert(ft::pair<std::string, int>("hello4", 4));
+
+    std::cout << "== : " << (m3 == m4) <<  std::endl;
+    std::cout << "!= : " << (m3 != m4) <<  std::endl;
+    std::cout << "> : " << (m3 > m4) <<  std::endl;
+    std::cout << ">= : " << (m3 >= m4) <<  std::endl;
+    std::cout << "< : " << (m3 < m4) <<  std::endl;
+    std::cout << "<= : " << (m3 <= m4) <<  std::endl;
+
+
+    
 }
     
 

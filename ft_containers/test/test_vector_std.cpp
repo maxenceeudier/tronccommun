@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:50:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/15 13:45:28 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 09:46:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,40 @@ std::ostream    &operator<<(std::ostream &o, std::vector<T, Alloc> &vec)
 
 int test_vector_std()
 {
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         VECTOR           */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+    
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*       BASICS FUNCT       */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*       ACCESS ELEMTS      */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         CAPACITY         */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*        ITERATORS         */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+    
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         MODIFIERS        */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*        OPERATORS         */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+    
     
     std::cout << " -------------------------------- \n";
     std::cout << "| test push and pop and capacity |\n";

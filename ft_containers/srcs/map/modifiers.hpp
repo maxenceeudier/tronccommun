@@ -6,12 +6,13 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 16:56:58 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 11:55:45 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
 #include "../vector/vector.h"
+//#include "../../Include/include.h"
 
 namespace ft
 {
@@ -41,7 +42,9 @@ namespace ft
             return (it);
 
         hint--;
-        Node<value_type>    *node = new Node<value_type>;
+        typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        Node<value_type>    *node = _allocNode.allocate(1);
+        _allocNode.construct(node, Node<value_type>());
         node->data = value;
         node->color = RED;
         node->left = NULL;

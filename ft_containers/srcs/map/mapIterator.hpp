@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 23:00:25 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 11:56:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define MAPITERATOR_HPP
 #include "../../utils/iterator_traits.hpp"
 #include "../../utils/utils.h"
+//#include "../../Include/include.h"
 
 namespace ft
 {
 
-    template < class pair>
+    template < class pair, class Allocator = std::allocator<ft::Node<pair> > >
     class	mapIterator
     {
     public:
@@ -36,12 +37,16 @@ namespace ft
         typedef typename std::ptrdiff_t             difference_type;
         typedef ft::random_access_iterator_tag      iterator_category;
 
-        mapIterator(void) : _is_gost(false) {};
-        mapIterator(node_pointer ptr) : _is_gost(false) {node = ptr;};
-        mapIterator(mapIterator const &src): _is_gost(src._is_gost)
+        mapIterator(void) : _is_gost(false), _alloc(Allocator()) {};
+        mapIterator(node_pointer ptr) : _is_gost(false), _alloc(Allocator()) {node = ptr;};
+        mapIterator(node_const_pointer ptr) : _is_gost(false) {node = ptr;};
+        mapIterator(mapIterator const &src): _is_gost(src._is_gost), _alloc(Allocator())
         {
             if (this->_is_gost)
-                node = new node_type(*(src.node));
+            {
+                node = _alloc.allocate(1);
+                _alloc.construct(node, node_type(*(src.node)));
+            }
             else
                 node = src.node;
         };
@@ -49,16 +54,28 @@ namespace ft
         virtual ~mapIterator()
         {
             if (_is_gost)
-                delete node;
+            {
+                _alloc.destroy(node);
+                _alloc.deallocate(node, 1);
+            }
+                
         };
 
         mapIterator &operator=(mapIterator const &src) 
         {
+            
             if (_is_gost)
-                delete node;
+            {
+                _alloc.destroy(node);
+                _alloc.deallocate(node, 1);
+            }
+            _alloc = src._alloc;
             _is_gost = src._is_gost;
             if (this->_is_gost)
-                node = new node_type(*(src.node));
+            {
+                node = _alloc.allocate(1);
+                _alloc.construct(node, node_type(*(src.node)));
+            }
             else
                 node = src.node;
             return (*this);
@@ -72,14 +89,16 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    delete node;
+                    _alloc.destroy(node);
+                    _alloc.deallocate(node, 1);
                     node = temp;
                     _is_gost = false;
                     return (*this);
                 }
                 if (_is_the_last(node) == node)
                 {
-                    node_pointer gost = new node_type();
+                    node_pointer gost = _alloc.allocate(1);
+                    _alloc.construct(gost, node_type());
                     gost->parent = node;
                     _is_gost = true;
                     node = gost;
@@ -123,14 +142,16 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    delete node;
+                    _alloc.destroy(node);
+                    _alloc.deallocate(node, 1);
                     node = temp;
                     _is_gost = false;
                     return (*this);
                 }
                 if (_is_the_first(node) == node)
                 {
-                    node_pointer gost = new node_type();
+                    node_pointer gost = _alloc.allocate(1);
+                    _alloc.construct(gost, node_type());
                     gost->parent = node;
                     _is_gost = true;
                     this->node = gost;
@@ -212,6 +233,7 @@ namespace ft
             
             bool            _is_gost;
             node_pointer    node;
+            Allocator       _alloc;
     };
 
     template< class T1, class T2>

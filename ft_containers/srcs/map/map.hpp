@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 22:49:29 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 11:56:13 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "../../utils/swap.hpp"
 #include "mapIterator.hpp"
 #include "mapIteratorReverse.hpp"
-
+//#include "../../Include/include.h"
 
 
 namespace ft
@@ -45,10 +45,10 @@ namespace ft
             typedef	const value_type&                           const_reference;
             typedef typename Allocator::pointer                 pointer;
             typedef typename Allocator::const_pointer           const_pointer;
-            typedef ft::mapIterator< value_type >               iterator;
-            typedef ft::mapIterator< const value_type >         const_iterator;
-            typedef	ft::mapIteratorReverse<value_type>          reverse_iterator;
-            typedef ft::mapIteratorReverse<const value_type>    const_reverse_iterator;
+            typedef ft::mapIterator< value_type , typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other>                     iterator;
+            typedef ft::mapIterator< const value_type , typename Allocator::template rebind<ft::Node<const ft::pair<Key, T> > >::other>         const_iterator;
+            typedef	ft::mapIteratorReverse<value_type, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other>                reverse_iterator;
+            typedef ft::mapIteratorReverse<const value_type, typename Allocator::template rebind<ft::Node<const ft::pair<Key, T> > >::other>    const_reverse_iterator;
 
             
             typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
@@ -66,7 +66,7 @@ namespace ft
             /*----------------------------------*/
             /*           basic function         */
             /*----------------------------------*/
-            RBTree  &getTree() {return _tree;};
+            //RBTree  &getTree() {return _tree;};
             
             map();
             explicit map( const Compare& comp, const Allocator& alloc = Allocator() );

@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Stack.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:21:20 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 13:04:36 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/17 12:00:18 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_HPP
 #define STACK_HPP
-#include "../vector/basic_function.hpp"
-#include "../vector/capacity.hpp"
-#include "../vector/iterators.hpp"
-#include "../vector/modifiers.hpp"
-#include "../vector/access_elements.hpp"
-#include "../vector/operators.hpp"
-#include "../vector/vector.hpp"
-#include <iostream>
+#include "../vector/vector.h"
+
+//#include "../../Include/include.h"
+
 
 namespace ft
 {

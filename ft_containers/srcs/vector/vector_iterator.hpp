@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   vector_iterator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:38:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 15:20:10 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/17 11:53:57 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_ITERATOR_HPP
 # define VECTOR_ITERATOR_HPP
 #include "../../utils/iterator_traits.hpp"
+//#include "../../Include/include.h"
 
 namespace ft
 {

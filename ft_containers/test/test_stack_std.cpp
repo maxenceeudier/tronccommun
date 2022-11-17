@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_stack_std.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:52:48 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 14:38:17 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/17 09:47:00 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 
 void    test_stack()
 {
+    
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*          STACK           */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+    
     std::stack<int> stack;
 
     std::cout << "stack:\n";

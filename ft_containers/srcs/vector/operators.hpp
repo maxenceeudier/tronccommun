@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   operators.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:28:01 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 15:54:50 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/17 11:54:04 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.hpp"
+//#include "../../Include/include.h"
 
 namespace ft
 {
@@ -69,9 +70,11 @@ namespace ft
             itL++;
             itR++;
         }
-        if (itR != rhs.end())
-            return (true);
-        return (false);
+        if (itL == lhs.end() && itR == rhs.end())
+            return (false);
+        else if (itR == rhs.end())
+            return (false);
+        return (*itL < *itR);
     };
 
     template< class T, class Alloc >
