@@ -150,7 +150,7 @@ namespace ft
                 {
                     node_pointer gost = _alloc.allocate(1);
                     _alloc.construct(gost, node_type());
-                    gost->parent = node;
+                    gost->parent = _is_the_last(node);
                     _is_gost = true;
                     this->node = gost;
                     return (*this);

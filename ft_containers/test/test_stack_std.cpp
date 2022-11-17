@@ -6,13 +6,14 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:52:48 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 09:47:00 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 18:13:05 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stack>
 #include <vector>
 #include <iostream>
+#include <ctime>
 
 
 void    test_stack()
@@ -21,6 +22,9 @@ void    test_stack()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          STACK           */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
+
+    std::time_t t0 = std::time(nullptr);
+    std::cout << std::asctime(std::localtime(&t0));
 
     
     std::stack<int> stack;
@@ -63,6 +67,12 @@ void    test_stack()
     }
     std::cout << std::endl << std::endl;
 
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         perfo            */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+    std::time_t t1 = std::time(nullptr);
+    std::cout << std::asctime(std::localtime(&t1));    
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
 }
 
 int main()

@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:56:00 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 15:00:41 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ namespace ft
                 {
                     node_pointer gost = _alloc.allocate(1);
                     _alloc.construct(gost, node_type());
-                    gost->parent = node;
+                    gost->parent = _is_the_last(node);
                     _is_gost = true;
                     this->node = gost;
                     return (*this);
@@ -189,6 +189,22 @@ namespace ft
         };
 
         //DEREFERENCING & ADDRESS STUFF
+        bool operator==(const  mapIterator& m ) const
+        {
+            if (!this->getNode())
+                return (true);
+            if (this->getGost() && m.getGost())
+                return (true);
+            if (this->getGost() || m.getGost())
+                return (false);
+            return (*(reinterpret_cast<Node< const value_type> * >(this->getNode())) == *(reinterpret_cast<Node< const value_type> * >(m.getNode())));
+        };
+
+       
+   
+        bool operator!=( const mapIterator& m) const {return (!(*this == m));};
+
+        
         pointer           operator->(){return (&(node->data));};
         reference         operator*(){return ((node->data));};
         
@@ -236,20 +252,7 @@ namespace ft
             Allocator       _alloc;
     };
 
-    template< class T1, class T2>
-    bool operator==( const ft::mapIterator< T1> & lhs, \
-    const ft::mapIterator<T2> & rhs )
-    {
-        if (!lhs.getNode())
-            return (true);
-        if (lhs.getGost() && rhs.getGost())
-            return (true);
-        return (*(lhs.getNode()) == *(rhs.getNode()));
-    };
 
-    template<class T1, class T2>
-    bool operator!=( const ft::mapIterator< T1> & lhs, \
-    const ft::mapIterator<T2>& rhs ){return (!(lhs == rhs));};
 
 
 }

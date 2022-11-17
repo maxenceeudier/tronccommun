@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:56:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 14:45:07 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     const T& map<Key, T, Compare, Allocator>::at( const Key& key ) const
     {
-        typename map<Key, T, Compare, Allocator>::iterator it = this->find(key);
+        typename map<Key, T, Compare, Allocator>::const_iterator it = this->find(key);
         if (it == this->end())
         {
             std::string what = "vector::_out_of_range_";
@@ -46,7 +46,10 @@ namespace ft
     {
         typename map<Key, T, Compare, Allocator>::iterator it = this->find(key);
         if (it == this->end())
-            return (this->_T_default);
+        {
+            this->insert(value_type(key, T()));
+            return (this->find(key)->second);
+        }
         return (it->second);
     }
 }

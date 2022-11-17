@@ -3,18 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   test_stack.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:50:29 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 14:38:27 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/17 18:13:16 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../srcs/stack/Stack.hpp"
 #include <vector>
+#include <ctime>
+
 
 void    test_stack()
 {
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*          STACK           */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+
+    std::time_t t0 = std::time(nullptr);
+    std::cout << std::asctime(std::localtime(&t0));
+    
+    
     ft::stack<int> stack;
 
     std::cout << "stack:\n";
@@ -54,6 +65,13 @@ void    test_stack()
         stack2.pop();
     }
     std::cout << std::endl << std::endl;
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         perfo            */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+    std::time_t t1 = std::time(nullptr);
+    std::cout << std::asctime(std::localtime(&t1));    
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
 }
 
 int main()

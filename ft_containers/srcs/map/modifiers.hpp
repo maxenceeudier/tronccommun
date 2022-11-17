@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:55:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 15:38:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::insert( iterator hint, const value_type& value )
     {
-        iterator    it = this->find(value.first);
+        /*iterator    it = this->find(value.first);
         if (it != this->end())
             return (it);
 
@@ -64,8 +64,9 @@ namespace ft
         else if (_comp(node->data.first, hint->first))
             node->right = hint.getNode();
 
-        this->_tree.fixInsertRBTree(node);
-        return (this->find(node->data.first));
+        this->_tree.fixInsertRBTree(node);*/
+        this->_tree.insertValue(value);
+        return (this->find(value.first));
     }
 
     template<class Key, class T, class Compare , class Allocator >
@@ -76,11 +77,13 @@ namespace ft
     void map<Key, T, Compare, Allocator>::erase( iterator first, iterator last )
     {
         ft::vector<ft::pair<Key, T> >  vec;
-        size_t                          i = 0;
+        size_t                         i = 0;
         while (first != last)
             vec.push_back(*(first++));
         while (i < vec.size())
+        {
             this->_tree.deleteValue(vec[i++]);
+        }
     }
    
     template<class Key, class T, class Compare , class Allocator >

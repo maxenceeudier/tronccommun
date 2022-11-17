@@ -6,18 +6,19 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:50:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 09:46:00 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 18:11:06 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
 #include <iostream>
 #include <ostream>
+#include <ctime>
 
 template <class T, class Alloc>
 std::ostream    &operator<<(std::ostream &o, std::vector<T, Alloc> &vec)
 {
-     if (vec.empty())
+    if (vec.empty())
     {
         std::string empt = "[empty]\n";
         return (o << empt);
@@ -40,36 +41,183 @@ int test_vector_std()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         VECTOR           */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
-    
+
+    std::time_t t0 = std::time(nullptr);
+    std::cout << std::asctime(std::localtime(&t0));
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*       BASICS FUNCT       */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
+    std::vector<int> vec;
+    std::cout << "\n\nvec():\n";
+    std::cout << vec << std::endl;
+    vec.push_back(10);
+    vec.push_back(-67);
+    vec.push_back(3);
+    std::cout << "\npush some value\n";
+    std::cout << vec << std::endl;
+
+    std::vector<int> vec2;
+    
+    {
+        std::vector<int> vec3(vec);
+        vec2 = vec3;
+    }
+    
+    std::cout << "cpy() and = construct\n";
+    std::cout << vec2;
+
+    std::vector<int> vec3(10,1);
+    std::cout << "\ncpy(size, value)\n";
+    std::cout << vec3;
+
+    std::vector<int> vec4(vec3.begin(), vec3.end());
+    std::cout << "\ncpy(first, last)\n";
+    std::cout << vec4 << std::endl;
+
+    vec4.assign(3, 4);
+    std::cout << "\nassign(size, val)\n";
+    std::cout << vec4 << std::endl;
+
+    vec4.assign(vec.begin(), vec.begin() + 2);
+    std::cout << "\nassign(first, last)\n";
+    std::cout << vec4 << std::endl;
+
+    int * val = vec.get_allocator().allocate(1);
+    vec.get_allocator().construct(val, 3);
+    std::cout << "\ntest get alloc:\n" << *val << std::endl;
+    vec.get_allocator().destroy(val);
+    vec.get_allocator().deallocate(val, 1);
+    
+
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*       ACCESS ELEMTS      */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
+    const std::vector<int> vecConst = vec;
+    std::cout << "\nat():\n";
+    std::cout << vec.at(2) << std::endl;
+    
+    std::cout << "\nat() const :\n";
+    std::cout << vecConst.at(2) << std::endl;
+
+    std::cout << "\nfront():\n";
+    std::cout << vec.front() << std::endl;
+    
+    std::cout << "\nfront() const :\n";
+    std::cout << vecConst.front() << std::endl;
+
+    std::cout << "\nback():\n";
+    std::cout << vec.back() << std::endl;
+    
+    std::cout << "\nback() const :\n";
+    std::cout << vecConst.back() << std::endl;
+
+    std::vector<int> myvector (5);
+    int* p = myvector.data();
+    *p = 10;
+    ++p;
+    *p = 20;
+    p[2] = 100;
+
+    std::cout << "\ntest data(): myvector contains:";
+    for (unsigned i=0; i<myvector.size(); ++i)
+        std::cout << ' ' << myvector[i];
+    std::cout << '\n';
+
+    std::cout << "\n\ntest vec[1] = 2\n";
+    std::cout << vec;
+    vec[1] = 2;
+    std::cout << vec;
+    std::cout << std::endl << std::endl;
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         CAPACITY         */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
+    std::cout << "\n\ntest empty()\n\n";
+    std::cout << vec4 << " empty() : " << vec4.empty() << "\nsize() : " << vec4.size() << "\ncapacity() : " << vec4.capacity();
+    vec4.insert(vec4.end(), vec.begin(), vec.end());
+    vec4.insert(vec4.end(), vec.begin(), vec.end());
+    vec4.insert(vec4.end(), vec4.begin(), vec4.end());
+    std::cout << "\n\nvec4.insetr some value\n" <<  vec4 << " empty() : " <<  vec4.empty() << "\nsize() : " << vec4.size() << "\ncapacity() : " << vec4.capacity();
+    vec4.clear();
+    std::cout << "\n\nvec4.clear()\n" <<  vec4 << " \nempty() : " <<  vec4.empty() << "\nsize() : " << vec4.size() << "\ncapacity() : " << vec4.capacity();
+
+    std::cout << "max_size() : " << vec.max_size();
+    
+    std::cout << std::endl << std::endl;
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*        ITERATORS         */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
     
+    const std::vector<int> vecConst2 = vec;
+    
+    std::cout << "\n\nbegin(), end()\n[ ";
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << " ]";
 
-    std::cout << "/*==========================*/" << std::endl;
-    std::cout << "/*         MODIFIERS        */" << std::endl;
-    std::cout << "/*==========================*/" << std::endl;
+     std::cout << "\n\nrbegin(), rend()\n[ ";
+    for (std::vector<int>::reverse_iterator it = vec.rbegin(); it != vec.rend(); it++)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << " ]";
+
+     std::cout << "\n\ncbegin(), cend()\n[ ";
+    for (std::vector<int>::const_iterator it = vecConst2.begin(); it != vecConst2.end(); it++)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << " ]";
+
+     std::cout << "\n\ncrbegin(), crend()\n[ ";
+    for (std::vector<int>::const_reverse_iterator it = vecConst2.rbegin(); it != vecConst2.rend(); it++)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << " ]\n\n";
+
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*        OPERATORS         */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
+    std::vector<std::string> test9(10, "yo");
+    std::vector<std::string> test10(10, "ya");
     
+    std::cout << "operators:\n";
+    std::cout << "test9 < test10:   " << (test9 < test10) << std::endl;
+    std::cout << "test9 > test10:   " << (test9 > test10) << std::endl;
+    std::cout << "test9 <= test10:  " << (test9 <= test10) << std::endl;
+    std::cout << "test9 >= test10:  " << (test9 >= test10) << std::endl;
+    std::cout << "test9 == test10:  " << (test9 == test10) << std::endl;
+    std::cout << "test9 != test10:  " << (test9 != test10) << std::endl;
+    std::cout << std::endl << std::endl;
+
+    std::vector<std::string>    test11(test10);
+    test11.resize(test11.size() + 5);
+    std::cout << "test11(test10); test11.resize(test11.size() + 1):\n";
+    std::cout << "test11 < test10:  " << (test11 < test10) << std::endl;
+    std::cout << "test11 > test10:  " << (test11 > test10) << std::endl;
+    std::cout << "test11 <= test10: " << (test11 <= test10) << std::endl;
+    std::cout << "test11 >= test10: " << (test11 >= test10) << std::endl;
+    std::cout << "test11 == test10: " << (test11 == test10) << std::endl;
+    std::cout << "test11 != test10: " << (test11 != test10) << std::endl;
+    
+    std::cout << test11;
+    std::cout << test10;
+    std::cout << std::endl << std::endl;
+
+
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         MODIFIERS        */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
     
     std::cout << " -------------------------------- \n";
     std::cout << "| test push and pop and capacity |\n";
@@ -231,7 +379,6 @@ int test_vector_std()
     std::cout << std::endl << std::endl;
     
 
-    
     std::cout << " -------------------------- \n";
     std::cout << "| max_size                 |\n";
     std::cout << "| erase                    |\n";
@@ -260,52 +407,28 @@ int test_vector_std()
     std::cout << std::endl << std::endl;
 
     
-     
     std::cout << " ----------------- \n";
     std::cout << "| swap            |\n";
-    std::cout << "| operator        |\n";
     std::cout << " ----------------- \n" << std::endl;
-    std::vector<int> test9(10, 1);
-    std::vector<int> test10(10, 0);
-    std::cout << "      test9 : " << test9;
-    std::cout << "      test10 : " << test10;
-    test9.swap(test10);
+    std::vector<int> test12(10, 1);
+    std::vector<int> test13(10, 0);
+    std::cout << "      test12 : " << test12;
+    std::cout << "      test13 : " << test13;
+    test12.swap(test13);
     
     std::cout << "swap:\n";
-    std::cout << "      test9 : " << test9;
-    std::cout << "      test10 : " << test10;
+    std::cout << "      test12 : " << test2;
+    std::cout << "      test13 : " << test13;
     std::cout << std::endl << std::endl;
 
-
     
-    std::cout << "operators:\n";
-    std::cout << "test9 < test10:   " << (test9 < test10) << std::endl;
-    std::cout << "test9 > test10:   " << (test9 > test10) << std::endl;
-    std::cout << "test9 <= test10:  " << (test9 <= test10) << std::endl;
-    std::cout << "test9 >= test10:  " << (test9 >= test10) << std::endl;
-    std::cout << "test9 == test10:  " << (test9 == test10) << std::endl;
-    std::cout << "test9 != test10:  " << (test9 != test10) << std::endl;
-    std::cout << std::endl << std::endl;
 
-    std::vector<int>    test11(test10);
-    test11.resize(test11.size() + 1);
-    std::cout << "test11(test10); test11.resize(test11.size() + 1):\n";
-    std::cout << "test11 < test10:  " << (test11 < test10) << std::endl;
-    std::cout << "test11 > test10:  " << (test11 > test10) << std::endl;
-    std::cout << "test11 <= test10: " << (test11 <= test10) << std::endl;
-    std::cout << "test11 >= test10: " << (test11 >= test10) << std::endl;
-    std::cout << "test11 == test10: " << (test11 == test10) << std::endl;
-    std::cout << "test11 != test10: " << (test11 != test10) << std::endl;
-    
-    std::cout << test11;
-    std::cout << test10;
-
-
-    for (std::vector<int>::const_iterator it = test11.begin(); it != test11.end(); it++)
-    {
-        std::cout << *it;
-    }
-    
+    std::cout << "/*==========================*/" << std::endl;
+    std::cout << "/*         perfo            */" << std::endl;
+    std::cout << "/*==========================*/" << std::endl;
+    std::time_t t1 = std::time(nullptr);
+    std::cout << std::asctime(std::localtime(&t1));    
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
     return (0);
 }
 

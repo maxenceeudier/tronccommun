@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:21:09 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:55:15 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/17 17:48:30 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ namespace ft
     {
         if (pos >= this->size())
         {
-            std::string what = "vector::_M_range_check: __n (which is " + ft::to_string(pos) +  ") >= this->size() (which is " + ft::to_string(this->size()) + ")";
+            std::string what = "vector::_M_range_check: __n )";
             throw std::out_of_range(what);
         }
         return (_start[pos]);
@@ -40,7 +40,7 @@ namespace ft
     {
         if (pos >= this->size())
         {
-            std::string what = "vector::_M_range_check: __n (which is " + ft::to_string(pos) +  ") >= this->size() (which is " + ft::to_string(this->size()) + ")";
+            std::string what = "vector::_M_range_check: __n )";
             throw std::out_of_range(what);
         }
         return (_start[pos]);
@@ -56,11 +56,11 @@ namespace ft
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::reference vector<T, Allocator>::back()
-    {return (*_end);}
+    {return (*(_end - 1));}
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::const_reference vector<T, Allocator>::back() const
-    {return (*_end);}
+    {return (*(_end - 1));}
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::value_type* vector<T, Allocator>::data()
