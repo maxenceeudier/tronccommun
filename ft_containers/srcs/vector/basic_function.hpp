@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:55:08 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 17:07:56 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ namespace ft
     void vector<T, Allocator>::assign(size_type count, const T &value)
     {
         this->clear();
+        
         this->insert(_end, count, value);
     }
 

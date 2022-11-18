@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 12:55:45 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 17:27:35 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int test_vector_std()
     std::cout << "\nassign(size, val)\n";
     std::cout << vec4 << std::endl;
 
+
     vec4.assign(vec.begin(), vec.begin() + 2);
     std::cout << "\nassign(first, last)\n";
     std::cout << vec4 << std::endl;
+
 
     int * val = vec.get_allocator().allocate(1);
     vec.get_allocator().construct(val, 3);
@@ -404,7 +406,7 @@ int test_vector_std()
 
 
     ft::vector<long int> perf;
-    long int i = 0;
+    size_t i = 0;
     while (i < 10000)
     {
         perf.push_back(i++);
@@ -415,7 +417,6 @@ int test_vector_std()
         ft::vector<long int> temp;
         temp.insert(temp.begin(), perf.begin(), perf.end());
     }
-
     
     std::time_t t1 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t1));    

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapIterator.hpp                                    :+:      :+:    :+:   */
+/*   mapIteratorConst.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:41 by meudier          ###   ########.fr       */
+/*   Created: 2022/11/18 16:21:48 by meudier           #+#    #+#             */
+/*   Updated: 2022/11/18 16:30:17 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAPITERATOR_HPP
-# define MAPITERATOR_HPP
+#ifndef MAPITERATORCONST_HPP
+# define MAPITERATORCONST_HPP
 #include "../../utils/iterator_traits.hpp"
 #include "../../utils/utils.h"
+#include "./mapIterator.hpp"
 //#include "../../Include/include.h"
 
 namespace ft
 {
 
-    template < class pair, class Allocator = std::allocator<ft::Node<pair> >>
-    class	mapIterator
+    template < class pair, class Allocator = std::allocator<ft::Node<pair> > >
+    class	mapIteratorConst
     {
     public:
 
@@ -37,23 +38,10 @@ namespace ft
         typedef typename std::ptrdiff_t             difference_type;
         typedef ft::random_access_iterator_tag      iterator_category;
 
-        mapIterator(void) : _is_gost(false), _alloc(Allocator()) {};
-        mapIterator(node_pointer ptr) : _is_gost(false), _alloc(Allocator()) {node = ptr;};
-
-        /*template <class T1, class Allocator1>
-        mapIterator(mapIterator<T1, Allocator1> const &src) : _is_gost(src.getGost()), _alloc(Allocator1())
-        {
-            if (this->_is_gost)
-            {
-                node = _alloc.allocate(1);
-                _alloc.construct(node, node_type(*(src.getNode())));
-            }
-            else
-                node = src.node;
-        };*/
-
-        
-        mapIterator(mapIterator const &src): _is_gost(src._is_gost), _alloc(Allocator())
+        mapIteratorConst(void) : _is_gost(false), _alloc(Allocator()) {};
+        mapIteratorConst(node_pointer ptr) : _is_gost(false), _alloc(Allocator()) {node = ptr;};
+        mapIteratorConst(node_const_pointer ptr) : _is_gost(false) {node = ptr;};
+        mapIteratorConst(mapIteratorConst const &src): _is_gost(src._is_gost), _alloc(Allocator())
         {
             if (this->_is_gost)
             {
@@ -64,7 +52,7 @@ namespace ft
                 node = src.node;
         };
 
-        virtual ~mapIterator()
+        virtual ~mapIteratorConst()
         {
             if (_is_gost)
             {
@@ -74,27 +62,7 @@ namespace ft
                 
         };
 
-        template < class pair2, class Allocator2 = Allocator >
-        mapIterator &operator=(mapIterator<pair2, class Alocator2> const &src)
-        {
-            if (_is_gost)
-            {
-                _alloc.destroy(node);
-                _alloc.deallocate(node, 1);
-            }
-            _alloc = src._alloc;
-            _is_gost = src._is_gost;
-            if (this->_is_gost)
-            {
-                node = _alloc.allocate(1);
-                _alloc.construct(node, node_type(*(src.node)));
-            }
-            else
-                node = src.node;
-            return (*this);
-        }
-
-        /*mapIterator &operator=(mapIterator const &src) 
+        mapIteratorConst &operator=(mapIteratorConst const &src) 
         {
             
             if (_is_gost)
@@ -112,10 +80,10 @@ namespace ft
             else
                 node = src.node;
             return (*this);
-        };*/
+        };
 
         // INCREMENTERS
-        mapIterator operator ++() 
+        mapIteratorConst operator ++() 
         {
             if (node)
             {
@@ -153,14 +121,14 @@ namespace ft
         };// ++a
         
         
-        mapIterator operator ++(int)
+        mapIteratorConst operator ++(int)
         {
-            mapIterator temp = *this;
+            mapIteratorConst temp = *this;
             ++(*this);
             return (temp);
         };// a++
 
-        mapIterator operator+(int n)
+        mapIteratorConst operator+(int n)
         {
             while (n--)
                 ++(*this);
@@ -168,7 +136,7 @@ namespace ft
         };
 
         
-        mapIterator operator --()
+        mapIteratorConst operator --()
         {
             if (node)
             {
@@ -206,15 +174,15 @@ namespace ft
         };// --a
 
         
-        mapIterator operator --(int)
+        mapIteratorConst operator --(int)
         {
-            mapIterator temp = *this;
+            mapIteratorConst temp = *this;
             --(*this);
             return (temp);
         };	// a--
 
 
-        mapIterator operator-(int n)
+        mapIteratorConst operator-(int n)
         {
             while (n--)
                 --(*this);
@@ -229,8 +197,11 @@ namespace ft
         bool         getGost() const {return (_is_gost);}
 
         template< class T1, class T2>
-        friend bool operator==( const ft::mapIterator< T1> & lhs, const ft::mapIterator<T2> & rhs );
+        friend bool operator==( const ft::mapIteratorConst< T1> & lhs, const ft::mapIteratorConst<T2> & rhs );
 
+        template< class T1, class T2>
+        friend bool operator==( const ft::mapIteratorConst< T1> & lhs, const ft::mapIterator<T2> & rhs );
+        
         static const bool input_iter = true;
 
         void    set_is_gost(bool a){_is_gost = a;};
@@ -264,13 +235,13 @@ namespace ft
                 return (_smallest(node));
             };
             
-            bool            _is_gost;
-            node_pointer    node;
-            Allocator       _alloc;
+            bool                    _is_gost;
+            node_pointer      node;
+            Allocator               _alloc;
     };
 
     template<class T1, class T2>
-    bool operator==(const  mapIterator<T1>& lhs, const  mapIterator<T2>& rhs)
+    bool operator==(const  mapIteratorConst<T1>& lhs, const  mapIteratorConst<T2>& rhs)
     {
         if (!lhs.getNode())
             return (true);
@@ -283,7 +254,23 @@ namespace ft
 
        
     template<class T1, class T2>
-    bool operator!=( const  mapIterator<T1>& lhs, const  mapIterator<T2>& rhs){return (!(lhs == rhs));};
+    bool operator!=( const  mapIteratorConst<T1>& lhs, const  mapIteratorConst<T2>& rhs){return (!(lhs == rhs));};
 
+
+    template<class T1, class T2>
+    bool operator==(const  mapIteratorConst<T1>& lhs, const  mapIterator<T2>& rhs)
+    {
+        if (!lhs.getNode())
+            return (true);
+        if (lhs.getGost() && rhs.getGost())
+            return (true);
+        if (lhs.getGost() || rhs.getGost())
+            return (false);
+        return (*(lhs.getNode())) == *(rhs.getNode());
+    };
+
+       
+    template<class T1, class T2>
+    bool operator!=( const  mapIteratorConst<T1>& lhs, const  mapIterator<T2>& rhs){return (!(lhs == rhs));};
 }
 #endif

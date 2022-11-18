@@ -159,7 +159,7 @@ namespace ft
             template< class InputIt>
             iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
             {
-                if (!capacity() || _start == _end)
+                if (this->capacity() == 0 )
                 {
                     difference_type n = ft::distance(first, last);
                     _start = _alloc.allocate(n);
@@ -178,6 +178,7 @@ namespace ft
                     vector<T, Allocator>    temp2(pos, this->end());
                     difference_type         distance = ft::distance(pos, this->end());
                     size_type               n = temp1.size();
+
                     if (n > capacity() - size())
                         reserve(size() + std::max(n, size()));
                     
