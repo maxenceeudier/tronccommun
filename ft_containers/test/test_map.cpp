@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:42:22 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/17 18:09:02 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:54:59 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void test_map()
     std::cout << "/*          MAP             */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
-    std::time_t t0 = std::time(nullptr);
+    std::time_t t0 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t0));
 
     std::cout << "/*==========================*/" << std::endl;
@@ -250,14 +250,14 @@ void test_map()
         std::cout << std::endl;
     }
 
-    /*std::cout << "\n\nerase de hello101 a end\n";
+    std::cout << "\n\nerase de hello101 a end\n";
     map2.erase(map2.find("hello101"), map2.end());
     for (ft::map<std::string, int>::iterator it = map2.begin(); it != map2.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
         std::cout << std::endl;
-    }*/
+    }
 
 
     std::cout << "\n\nmapSwap : \n\n";
@@ -326,9 +326,22 @@ void test_map()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
-    std::time_t t1 = std::time(nullptr);
+
+    ft::map<int, int>  perf;
+    int i = 0;
+    while (i++ < 1000)
+        perf.insert(ft::pair<int, int>(i, i + 2));
+    while (i--)
+    {
+        perf.find(i);
+        ft::map<int, int>  temp;
+        temp.insert(perf.begin(), perf.end());
+    }
+
+    
+    std::time_t t1 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t1));    
-    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "s\n";
 }
 
 int main()

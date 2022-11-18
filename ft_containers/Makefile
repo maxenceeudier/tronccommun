@@ -6,13 +6,21 @@
 #    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/11/14 11:42:41 by meudier          ###   ########.fr        #
+#    Updated: 2022/11/18 13:01:37 by meudier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++ 
 FLAGS = -Wall -Wextra -Werror -g
 STD = -std=c++98
+
+SRC =	test/test_map.cpp test/test_map_std.cpp \
+		test/test_utils.cpp test/test_utils_std.cpp \
+		test/test_vector.cpp test/test_vector_std.cpp \
+		test/test_RBT.cpp \
+		test/test_stack.cpp test/test_stack_std.cpp
+
+OBJ =	$(SRC:.cpp=.o)
 
 #test utils
 UTL =	test/test_utils.cpp
@@ -36,50 +44,64 @@ OBJ_STK =	$(STK:.cpp=.o)
 STK_STD =	test/test_stack_std.cpp
 OBJ_STK_STD =	$(STK_STD:.cpp=.o)
 
+#test map
+MAP = test/test_map.cpp
+OBJ_MAP = $(MAP:.cpp=.o)
+MAP_STD = test/test_map_std.cpp
+OBJ_MAP_STD = $(MAP_STD:.cpp=.o)
+
 NAME = ft_containers
 
 all: $(NAME)
 
+%.o:	%.cpp 
+	$(CC) -c  $< -o $@
 
-%.o:%.cpp
-	$(CC) -c $< -o $@
 
-$(NAME): vector utils rbt stack
+$(NAME): $(OBJ) vector map stack utils rbt
 
-vector: $(OBJ_VEC_STD) $(OBJ_VEC)
-		mkdir -p test_vector
-		$(CC) $(FLAGS) $(STD) test/test_vector.o -o test_vector/vectorFt && \
+
+vector:
+		@mkdir -p test_vector
+		$(CC) $(FLAGS) $(STD) test/test_vector.o -o test_vector/vectorFt;
 		$(CC) $(FLAGS) $(STD) test/test_vector_std.o -o test_vector/vectorStd;
 		./test_vector/vectorFt > test_vector/vector_ft;
 		./test_vector/vectorStd > test_vector/vector_std;
-		diff test_vector/vector_ft test_vector/vector_std > test_vector/diff;
+
+
+map: 	
+		@mkdir -p test_map
+		$(CC) $(FLAGS) $(STD) test/test_map.o -o test_map/mapFt;
+		$(CC) $(FLAGS) $(STD) test/test_map_std.o -o test_map/mapStd;
+		./test_map/mapFt > test_map/map_ft;
+		./test_map/mapStd > test_map/map_std;
 		
-utils:	$(OBJ_UTL_STD) $(OBJ_UTL)
-		mkdir -p test_utils
+		
+utils:
+		@mkdir -p test_utils
 		$(CC) $(FLAGS) $(STD) test/test_utils.o -o test_utils/utilsFt && \
 		$(CC) $(FLAGS) -std=c++11 test/test_utils_std.o -o test_utils/utilsStd;
 		./test_utils/utilsStd > test_utils/utils_std;
 		./test_utils/utilsFt > test_utils/utils_ft;
-		diff test_utils/utils_ft test_utils/utils_std > test_utils/diff;
 
-rbt:	$(OBJ_RBT)
-		mkdir -p test_RBT;
+
+rbt:
+		@mkdir -p test_RBT;
 		$(CC) $(FLAGS) $(STD) test/test_RBT.o -o test_RBT/RBTFt;
 
-stack:	$(OBJ_STK_STD) $(OBJ_STK)
-		mkdir -p test_stack
+stack:
+		@mkdir -p test_stack
 		$(CC) $(FLAGS) $(STD) test/test_stack.o -o test_stack/stackFt && \
 		$(CC) $(FLAGS) $(STD) test/test_stack_std.o -o test_stack/stackStd;
 		./test_stack/stackFt > test_stack/stack_ft;
 		./test_stack/stackStd > test_stack/stack_std;
-		diff test_stack/stack_ft test_stack/stack_std > test_stack/diff;
+
 
 clean:
-		rm -rf $(OBJ_UTL) $(OBJ_UTL_STD) $(OBJ_VEC) $(OBJ_VEC_STD) \
-		$(OBJ_RBT) $(OBJ_STK_STD) $(OBJ_STK)
+		rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf  test_vector test_utils test_RBT test_stack;
+		rm -rf  test_vector test_utils test_RBT test_stack test_map;
 
 re: fclean all
 

@@ -159,7 +159,7 @@ namespace ft
             template< class InputIt>
             iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
             {
-                if (!capacity())
+                if (!capacity() || _start == _end)
                 {
                     difference_type n = ft::distance(first, last);
                     _start = _alloc.allocate(n);

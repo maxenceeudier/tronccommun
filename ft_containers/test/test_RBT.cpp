@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_RBT.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
+/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:00:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/12 16:09:20 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/18 12:55:07 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

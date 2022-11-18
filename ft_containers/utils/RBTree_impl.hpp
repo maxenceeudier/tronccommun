@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 16:58:46 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 10:02:49 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,28 +311,106 @@ namespace ft
 
 
     template <typename T, class Allocator, class Compare>
-    Node<T> *RBTree<T, Allocator, Compare>::deleteBST(Node<T> *root, T data)
+    Node<T> *RBTree<T, Allocator, Compare>::deleteBST(Node<T> *rt, T data)
     {
-        T       temp;
+        //T       temp;
 
-        if (!root)
-            return (root);
-        if (_comp(root->data , data))
-            return (deleteBST(root->right, data));
-        if (_comp(data, root->data))
-            return (deleteBST(root->left, data));
-        if (!root->right)
-            return (root);
+        if (!rt)
+            return (rt);
+        if (_comp(rt->data , data))
+            return (deleteBST(rt->right, data));
+        if (_comp(data, rt->data))
+            return (deleteBST(rt->left, data));
+        if (!rt->right)
+            return (rt);
 
-        temp = minValueNode(root->right)->data;
+        Node<T> *tempP = rt->parent;
+        Node<T> *tempL = rt->left;
+        Node<T> *tempR = rt->right;
+        int     tempC  = rt->color;
+
+        Node<T> *minR = minValueNode(rt->right);
+
+        rt->color = minR->color;
+        minR->color = tempC;
+
+        /*std::cout << "===================debug=========================" << std::endl;
+        std::cout << "\nroot info :\n";
+        if (root->parent)
+            std::cout << "p: " << root->parent->data;
+        if (root->right)
+            std::cout << "\nr: " << root->right->data;
+        if (root->left)
+            std::cout << "\nl: " << root->left->data;
+
+        std::cout << "\n\nminR info :\n";
+        if (minR->parent)
+            std::cout << "p: " << minR->parent->data;
+        if (minR->right)
+            std::cout << "\nr: " << minR->right->data;
+        if (minR->left)
+            std::cout << "\nl: " << minR->left->data;
+
+        std::cout << "\n==================================================" << std::endl;*/
+
+        rt->parent = minR->parent;
+        if (minR->parent && minR->parent->left == minR)
+            minR->parent->left = rt;
+        else if (minR->parent)
+            minR->parent->right = rt;
+
+        rt->left = minR->left;
+        if (rt->left)
+            rt->left->parent = rt;
+        
+        rt->right = minR->right;
+        if (rt->right)
+            rt->right->parent = rt;
+
+        minR->parent = tempP;
+        if (tempP && minR->parent->left == rt)
+            minR->parent->left = minR;
+        else if (tempP)
+            minR->parent->right = minR;
+        else
+            this->root = minR;
+
+        minR->left = tempL;
+        if (tempL)
+            minR->left->parent = minR;
+        minR->right = tempR;
+        if (tempR)
+            minR->right->parent = minR;
+
+
+        /*std::cout << "\nroot info :\n";
+        if (root->parent)
+            std::cout << "p: " << root->parent->data;
+        if (root->right)
+            std::cout << "\nr: " << root->right->data;
+        if (root->left)
+            std::cout << "\nl: " << root->left->data;
+
+        std::cout << "\n\nminR info :\n";
+        if (minR->parent)
+            std::cout << "p: " << minR->parent->data;
+        if (minR->right)
+            std::cout << "\nr: " << minR->right->data;
+        if (minR->left)
+            std::cout << "\nl: " << minR->left->data;
+
+        std::cout << "\n=================fin debug========================" << std::endl;*/
+
+        return (deleteBST(minR->right, minR->data));
+        /*temp = minValueNode(root->right)->data;
         root->data = temp;
-        return (deleteBST(root->right, temp));
+        return (deleteBST(root->right, temp));*/
     }
     
     template <typename T, class Allocator, class Compare>
     void RBTree<T, Allocator, Compare>::deleteValue(T data)
     {
-        Node<T> *node = deleteBST(root, data);
+        Node<T> *node = deleteBST(this->root, data);
         fixDeleteRBTree(node);
     }
 

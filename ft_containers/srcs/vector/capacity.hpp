@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:25:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 17:51:30 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 10:57:44 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
     {
         if (new_cap > this->max_size())
         {
-            std::string what = ft::to_string(new_cap) + " can't be allocate, it's bigger than max_size.";// (" + ft::to_string(max_size()) + ")";
+            std::string what = ft::to_string(new_cap) + " can't be allocate, it's bigger than max_size.";
             throw std::length_error(what);
         } 
         if (new_cap <= this->capacity())

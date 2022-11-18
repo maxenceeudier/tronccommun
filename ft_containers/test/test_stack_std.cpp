@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:52:48 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 18:13:05 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:55:16 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,22 @@ void    test_stack()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
+
+    int p = 0;
+    
+    while (p++ < 10000)
+    {
+        int j = 0;
+        std::stack<int> perf;
+        while (j < 10000)
+            perf.push(j++);
+        while (j--)
+            perf.pop();
+    }
+
     std::time_t t1 = std::time(nullptr);
     std::cout << std::asctime(std::localtime(&t1));    
-    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "s\n";
 }
 
 int main()

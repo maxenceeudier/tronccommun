@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:50:29 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 18:13:16 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:55:23 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    test_stack()
     std::cout << "/*          STACK           */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
-    std::time_t t0 = std::time(nullptr);
+    std::time_t t0 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t0));
     
     
@@ -69,9 +69,22 @@ void    test_stack()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
-    std::time_t t1 = std::time(nullptr);
+
+    int p = 0;
+    
+    while (p++ < 10000)
+    {
+        int j = 0;
+        ft::stack<int> perf;
+        while (j < 10000)
+            perf.push(j++);
+        while (j--)
+            perf.pop();
+    }
+        
+    std::time_t t1 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t1));    
-    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "s\n";
 }
 
 int main()

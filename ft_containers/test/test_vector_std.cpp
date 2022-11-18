@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:50:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 18:11:06 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:55:40 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int test_vector_std()
     vec4.clear();
     std::cout << "\n\nvec4.clear()\n" <<  vec4 << " \nempty() : " <<  vec4.empty() << "\nsize() : " << vec4.size() << "\ncapacity() : " << vec4.capacity();
 
-    std::cout << "max_size() : " << vec.max_size();
+    std::cout << "\nmax_size() : " << vec.max_size();
     
     std::cout << std::endl << std::endl;
 
@@ -426,9 +426,24 @@ int test_vector_std()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
+
+    std::vector<long int> perf;
+    long int i = 0;
+    while (i < 10000)
+    {
+        perf.push_back(i++);
+    }
+    i = 0;
+    while (i++ < 10000)
+    {
+        std::vector<long int> temp;
+        temp.insert(temp.begin(), perf.begin(), perf.end());
+    }
+
+    
     std::time_t t1 = std::time(nullptr);
     std::cout << std::asctime(std::localtime(&t1));    
-    std::cout << "\n\nthe programme took: " << t1 - t0 << "ms\n";
+    std::cout << "\n\nthe programme took: " << t1 - t0 << "s\n";
     return (0);
 }
 

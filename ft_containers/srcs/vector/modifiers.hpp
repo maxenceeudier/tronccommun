@@ -6,7 +6,7 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:21:24 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:54:39 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 10:01:34 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ namespace ft
         size_type  n = this->size();
         while (n--)
         {
-            _alloc.destroy(_end);
-            _end--;
+            _alloc.destroy(--_end);
         }
     }
 

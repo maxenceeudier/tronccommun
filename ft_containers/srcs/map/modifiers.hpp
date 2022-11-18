@@ -6,12 +6,13 @@
 /*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 15:38:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/18 09:53:21 by meudier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
 #include "../vector/vector.h"
+#include <vector>
 //#include "../../Include/include.h"
 
 namespace ft
@@ -65,6 +66,7 @@ namespace ft
             node->right = hint.getNode();
 
         this->_tree.fixInsertRBTree(node);*/
+        (void)hint;
         this->_tree.insertValue(value);
         return (this->find(value.first));
     }
@@ -76,10 +78,10 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     void map<Key, T, Compare, Allocator>::erase( iterator first, iterator last )
     {
-        ft::vector<ft::pair<Key, T> >  vec;
+        ft::vector<value_type>  vec;
         size_t                         i = 0;
         while (first != last)
-            vec.push_back(*(first++));
+            vec.push_back((*(first++)));
         while (i < vec.size())
         {
             this->_tree.deleteValue(vec[i++]);
