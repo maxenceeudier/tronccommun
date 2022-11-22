@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iterators.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:44:34 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/17 11:56:26 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/22 13:58:49 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ namespace ft
     
    template<class Key, class T, class Compare , class Allocator > 
     typename ft::map<Key, T, Compare, Allocator>::const_iterator ft::map<Key, T, Compare, Allocator>::begin() const
-    {return (const_iterator(reinterpret_cast<Node< const value_type> * >(_tree.minValueNode(_tree.getRoot()))));}
+    {return (const_iterator((_tree.minValueNode(_tree.getRoot()))));}
     
 
     template<class Key, class T, class Compare , class Allocator > 
@@ -40,10 +40,10 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator > 
     typename ft::map<Key, T, Compare, Allocator>::const_iterator ft::map<Key, T, Compare, Allocator>::end() const
     {
-        typename Allocator::template rebind<ft::Node<const value_type> >::other  _allocNode;
-        Node<const value_type>    *gost = _allocNode.allocate(1);
-        _allocNode.construct(gost, Node<const value_type>());
-        gost->parent = reinterpret_cast<Node< const value_type> * >(_tree.maxValueNode(_tree.getRoot()));
+        typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        Node<value_type>    *gost = _allocNode.allocate(1);
+        _allocNode.construct(gost, Node<value_type>());
+        gost->parent = (_tree.maxValueNode(_tree.getRoot()));
         const_iterator    gost_it = const_iterator(gost);
         gost_it.set_is_gost(1);
         return (gost_it);
@@ -58,7 +58,7 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >  
     typename ft::map<Key, T, Compare, Allocator>::const_reverse_iterator ft::map<Key, T, Compare, Allocator>::rbegin() const
     {
-        return (const_reverse_iterator(reinterpret_cast<Node< const value_type> * >(_tree.maxValueNode(_tree.getRoot()))));
+        return (const_reverse_iterator((_tree.maxValueNode(_tree.getRoot()))));
     }
     
     template<class Key, class T, class Compare , class Allocator >  
@@ -76,10 +76,10 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >  
     typename ft::map<Key, T, Compare, Allocator>::const_reverse_iterator ft::map<Key, T, Compare, Allocator>::rend() const
     {
-        typename Allocator::template rebind<ft::Node<const value_type> >::other  _allocNode;
-        Node<const value_type>    *gost = _allocNode.allocate(1);
-        _allocNode.construct(gost, Node<const value_type>());
-        gost->parent = reinterpret_cast<Node< const value_type> * >(_tree.maxValueNode(_tree.getRoot()));
+        typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        Node<value_type>    *gost = _allocNode.allocate(1);
+        _allocNode.construct(gost, Node<value_type>());
+        gost->parent = (_tree.maxValueNode(_tree.getRoot()));
         const_reverse_iterator    gost_it = const_reverse_iterator(gost);
         gost_it.set_is_gost(1);
         return (gost_it);

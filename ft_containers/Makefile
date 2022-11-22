@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meudier <meudier@student.42.fr>            +#+  +:+       +#+         #
+#    By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 08:30:58 by maxenceeudi       #+#    #+#              #
-#    Updated: 2022/11/18 13:01:37 by meudier          ###   ########.fr        #
+#    Updated: 2022/11/22 12:24:14 by maxenceeudi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ NAME = ft_containers
 all: $(NAME)
 
 %.o:	%.cpp 
-	$(CC) -c  $< -o $@
+	$(CC)  -c  $< -o $@
 
 
 $(NAME): $(OBJ) vector map stack utils rbt

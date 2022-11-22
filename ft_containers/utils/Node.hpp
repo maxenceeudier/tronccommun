@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/21 16:55:32 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/22 07:23:14 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace ft
         public:
             Node(void): color(RED), parent(NULL), left(NULL), right(NULL){};
             Node(T const &data) : data(data), color(RED), parent(NULL), left(NULL), right(NULL){};
-            Node(Node const &node) //: data(node.data)
+            Node(Node const &node) : data(node.data)
             {
                 color = node.color;
                 parent = node.parent;

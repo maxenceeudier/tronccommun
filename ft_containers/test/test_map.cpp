@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:42:22 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/21 17:36:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/22 14:44:53 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void test_map()
         std::cout << " value: " << it->second;
         std::cout << std::endl;
     }
+
     std::cout << std::endl;
     std::cout << std::endl;
 
@@ -93,7 +94,7 @@ void test_map()
     std::cout << "\n\nAT" << std::endl;
     std::cout << "map.at(hello1) : " << map.at("hello1") << std::endl;
     const ft::map<std::string, int> mapConst = map;
-    std::cout << "mapConst.at(hello1) : " << *(mapConst.begin());
+    std::cout << "mapConst.at(hello1) : " << mapConst.at("hello1");
     
 
     std::cout << "\n\n[]\n";
@@ -168,7 +169,7 @@ void test_map()
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "\n\nC_begin() && C_rend() : \n";
-    for (ft::map<std::string, int>::const_iterator it = mapConst.begin(); it != mapConst.end(); it++)
+    for (ft::map<std::string, int>::const_iterator it = map.begin(); it != map.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
@@ -177,7 +178,7 @@ void test_map()
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "\n\nCR_begin() && CR_end() : \n";
-    for (ft::map<std::string, int>::const_reverse_iterator it = mapConst.rbegin(); it != mapConst.rend(); it++)
+    for (ft::map<std::string, int>::const_reverse_iterator it = map.rbegin(); it != map.rend(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
@@ -327,7 +328,7 @@ void test_map()
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
-    ft::map<int, int>  perf;
+    /*ft::map<int, int>  perf;
     int i = 0;
     while (i++ < 1000)
         perf.insert(ft::pair<int, int>(i, i + 2));
@@ -336,7 +337,7 @@ void test_map()
         perf.find(i);
         ft::map<int, int>  temp;
         temp.insert(perf.begin(), perf.end());
-    }
+    }*/
 
     
     std::time_t t1 = std::time(NULL);

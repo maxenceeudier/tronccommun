@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operators.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:55:04 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:55:34 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/22 08:45:37 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

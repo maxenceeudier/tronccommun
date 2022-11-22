@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 16:36:23 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/22 12:38:38 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 #include "../../utils/reverse_iterator.hpp"
 #include "../../utils/swap.hpp"
 #include "mapIterator.hpp"
-#include "mapIteratorConst.hpp"
 #include "mapIteratorReverse.hpp"
 //#include "../../Include/include.h"
 
@@ -46,10 +45,10 @@ namespace ft
             typedef	const value_type&                           const_reference;
             typedef typename Allocator::pointer                 pointer;
             typedef typename Allocator::const_pointer           const_pointer;
-            typedef ft::mapIterator< value_type , typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other>                     iterator;
-            typedef ft::mapIterator< const value_type , typename Allocator::template rebind<ft::Node<const ft::pair<Key, T> > >::other>    const_iterator;
-            typedef	ft::mapIteratorReverse<value_type, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other>                reverse_iterator;
-            typedef ft::mapIteratorReverse<const value_type, typename Allocator::template rebind<ft::Node<const ft::pair<Key, T> > >::other>    const_reverse_iterator;
+            typedef ft::mapIterator< value_type >               iterator;
+            typedef ft::mapIterator< value_type , true>         const_iterator;
+            typedef	ft::mapIteratorReverse<value_type>                reverse_iterator;
+            typedef ft::mapIteratorReverse<value_type,  true>    const_reverse_iterator;
 
             
             typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;

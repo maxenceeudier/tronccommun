@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/21 17:31:22 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/22 15:21:22 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,105 +14,69 @@
 # define MAPITERATOR_HPP
 #include "../../utils/iterator_traits.hpp"
 #include "../../utils/utils.h"
-//#include "../../Include/include.h"
 
 namespace ft
 {
 
-    template < class pair, class Allocator = std::allocator<ft::Node<pair> > >
+    template < class pair, bool B = false >
     class	mapIterator
     {
     public:
 
         typedef pair                                value_type;
         typedef Node<pair>                          node_type;
-        typedef value_type&				            reference;
         typedef node_type&				            node_reference;
         typedef const value_type&		            const_reference;
         typedef const node_type&				    node_const_reference;
-        typedef value_type*				            pointer;
         typedef node_type*				            node_pointer;
         typedef const value_type*		            const_pointer;
         typedef const node_type*				    node_const_pointer;
         typedef typename std::ptrdiff_t             difference_type;
         typedef ft::random_access_iterator_tag      iterator_category;
 
-        mapIterator(void) : _is_gost(false), _alloc(Allocator()) {};
-        mapIterator(node_pointer ptr) : _is_gost(false), _alloc(Allocator()) {node = ptr;};
+        typedef typename ft::conditional<B, const value_type&, value_type&>::type reference;
+        typedef typename ft::conditional<B, const value_type*, value_type*>::type pointer;
 
-        /*template <class T1, class Allocator1>
-        mapIterator(mapIterator<T1, Allocator1> const &src) : _is_gost(src.getGost()), _alloc(Allocator1())
+        mapIterator(void) : _del(true), _is_gost(false), _alloc(std::allocator<Node<value_type> >()), node(NULL){};
+        mapIterator(node_pointer ptr) : _del(true), _is_gost(false), _alloc(std::allocator<Node<value_type> >()) {node = ptr;};
+
+        template <bool B1>
+        mapIterator(mapIterator<pair, B1> const &src) : _alloc(std::allocator<ft::Node<value_type> >())
         {
+            _del = src.getDel();
+            _is_gost = src.getGost();
             if (this->_is_gost)
             {
                 node = _alloc.allocate(1);
                 _alloc.construct(node, node_type(*(src.getNode())));
             }
             else
-                node = src.node;
-        };*/
-
-        
-        mapIterator(mapIterator const &src): _is_gost(src._is_gost), _alloc(Allocator())
-        {
-            if (this->_is_gost)
-            {
-                node = _alloc.allocate(1);
-                _alloc.construct(node, node_type(*(src.node)));
-            }
-            else
-                node = src.node;
+                node = src.getNode();
         };
 
         virtual ~mapIterator()
         {
-            if (_is_gost)
+            if (_is_gost )
             {
-                _alloc.destroy(node);
-                _alloc.deallocate(node, 1);
+               // _alloc.destroy(node);
+               // _alloc.deallocate(node, 1);
             }
                 
         };
-
-        template < class pair2, class Allocator2  >
-        mapIterator &operator=(mapIterator<pair2, Allocator2> const &src)
+        
+        mapIterator &operator=(mapIterator const &src) 
         {
-            if (_is_gost)
-            {
-                _alloc.destroy(node);
-                _alloc.deallocate(node, 1);
-            }
-            _alloc = src._alloc;
             _is_gost = src._is_gost;
-            if (this->_is_gost)
-            {
-                node = _alloc.allocate(1);
-                _alloc.construct(node, node_type(*(src.node)));
-            }
-            else
-                node = src.node;
-            return (*this);
-        }
-
-        /*mapIterator &operator=(mapIterator const &src) 
-        {
             
-            if (_is_gost)
-            {
-                _alloc.destroy(node);
-                _alloc.deallocate(node, 1);
-            }
-            _alloc = src._alloc;
-            _is_gost = src._is_gost;
             if (this->_is_gost)
             {
                 node = _alloc.allocate(1);
-                _alloc.construct(node, node_type(*(src.node)));
+                _alloc.construct(node, node_type(*(src.getNode())));
             }
             else
-                node = src.node;
+                node = src.getNode();
             return (*this);
-        };*/
+        };
 
         // INCREMENTERS
         mapIterator operator ++() 
@@ -122,8 +86,7 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    _alloc.destroy(node);
-                    _alloc.deallocate(node, 1);
+                    delete node;
                     node = temp;
                     _is_gost = false;
                     return (*this);
@@ -134,8 +97,10 @@ namespace ft
                     _alloc.construct(gost, node_type());
                     gost->parent = node;
                     _is_gost = true;
+                    _del = true;
                     node = gost;
                     return (*this);
+               
                 }
                 if (node->right)
                     node = _smallest(node->right);
@@ -151,7 +116,6 @@ namespace ft
             } 
             return (*this);
         };// ++a
-        
         
         mapIterator operator ++(int)
         {
@@ -175,8 +139,7 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    _alloc.destroy(node);
-                    _alloc.deallocate(node, 1);
+                    delete node;
                     node = temp;
                     _is_gost = false;
                     return (*this);
@@ -187,6 +150,7 @@ namespace ft
                     _alloc.construct(gost, node_type());
                     gost->parent = _is_the_last(node);
                     _is_gost = true;
+                    _del = false;
                     this->node = gost;
                     return (*this);
                 }
@@ -225,11 +189,9 @@ namespace ft
         pointer           operator->(){return (&(node->data));};
         reference         operator*(){return ((node->data));};
         
-        node_pointer getNode() const {return (node);}
-        bool         getGost() const {return (_is_gost);}
-
-        template< class T1, class T2>
-        friend bool operator==( const ft::mapIterator< T1> & lhs, const ft::mapIterator<T2> & rhs );
+        node_pointer getNode() const {return (node);};
+        bool         getGost() const {return (_is_gost);};
+        bool         getDel() const {return (_del);};
 
         static const bool input_iter = true;
 
@@ -264,13 +226,14 @@ namespace ft
                 return (_smallest(node));
             };
             
-            bool            _is_gost;
-            node_pointer    node;
-            Allocator       _alloc;
+            bool                                _del;
+            bool                                _is_gost;
+            node_pointer                        node;
+            std::allocator<Node<value_type> >   _alloc;
     };
 
-    template<class T1, class T2>
-    bool operator==(const  mapIterator<T1>& lhs, const  mapIterator<T2>& rhs)
+    template<class T1, bool B1, class T2, bool B2>
+    bool operator==(const  mapIterator<T1,  B1>& lhs, const  mapIterator<T2, B2>& rhs)
     {
         if (!lhs.getNode())
             return (true);
@@ -282,8 +245,8 @@ namespace ft
     };
 
        
-    template<class T1, class T2>
-    bool operator!=( const  mapIterator<T1>& lhs, const  mapIterator<T2>& rhs){return (!(lhs == rhs));};
+    template<class T1,  bool B1, class T2, bool B2>
+    bool operator!=( const  mapIterator<T1, B1>& lhs, const  mapIterator<T2, B2>& rhs){return (!(lhs == rhs));};
 
 }
 #endif

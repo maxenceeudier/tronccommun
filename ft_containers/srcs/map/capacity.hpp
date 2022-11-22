@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   capacity.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:22 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 17:55:11 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/22 14:05:07 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ namespace ft
     {
         size_type  size = 0;
         for (typename map<Key, T, Compare, Allocator>::const_iterator it = this->begin(); it != this->end(); it++)
+        {
             size++;
+        }
         return (size);
     }
 

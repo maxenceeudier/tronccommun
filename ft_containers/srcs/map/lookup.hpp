@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lookup.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:08 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 15:31:13 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/22 12:29:31 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,7 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator > 
     typename map<Key, T, Compare, Allocator>::const_iterator map<Key, T, Compare, Allocator>::find( const Key& key ) const
     {
-        /*typename map<Key, T, Compare, Allocator>::const_iterator it = this->begin();
-        
-        while (it != this->end())
-        {
-            if (it->first == key )
-                break ;
-            it++;
-        }
-        return (it);*/
-
-        Node< const value_type>    *node = reinterpret_cast<Node< const value_type> * >(this->_tree.getRoot());
+        Node< value_type>    *node = (this->_tree.getRoot());
         while (node)
         {
             if (_comp(node->data.first, key))

@@ -1,7 +1,7 @@
 /*==========================*/
 /*          MAP             */
 /*==========================*/
-Mon Nov 21 17:36:20 2022
+Tue Nov 22 15:24:31 2022
 /*==========================*/
 /*       BASICS FUNCT       */
 /*==========================*/
@@ -15,10 +15,10 @@ key: hello4 value: 4
 
 
 map 2 begin() && end() : 
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
+key: hello1 value: 1
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
 
 
 pair : yo / 10
@@ -29,8 +29,7 @@ pair : yo / 10
 
 AT
 map.at(hello1) : 1
-mapConst.at(hello1) : key = , value = 0 
-
+mapConst.at(hello1) : 1
 
 []
 map[hello3] : 3
@@ -95,15 +94,23 @@ key: hello1 value: 1
 
 
 C_begin() && C_rend() : 
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
 
 
 
 
 CR_begin() && CR_end() : 
+key: yo value: 10
+key: hello4 value: 4
+key: hello3 value: 3
+key: hello2 value: 2
+key: hello10 value: 0
+key: hello1 value: 1
 
 
 /*==========================*/
@@ -112,7 +119,8 @@ CR_begin() && CR_end() :
 rslt find (hello1): hello1
 count (hello3): 1
 count (no excist): 0
-count (hello3): 0
+rslt find (hello1): hello1
+count (hello3): 1
 count (no excist): 0
 
 equal_range
@@ -123,10 +131,10 @@ pr->second: hello4
 /*==========================*/
 
 map 2 begin() && end() : 
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
+key: hello1 value: 1
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
 
 
 clear map2
@@ -155,12 +163,12 @@ key: hello10 value: 0
 
 mapSwap : 
 
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
 
 
 map is empty()
@@ -171,12 +179,12 @@ swap again
 
 mapSwap is empty()
 
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
-key:  value: 0
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
 /*==========================*/
 /*        OBSERVERS         */
 /*==========================*/
@@ -204,7 +212,7 @@ operators
 /*==========================*/
 /*         perfo            */
 /*==========================*/
-Mon Nov 21 17:36:21 2022
+Tue Nov 22 15:24:31 2022
 
 
-the programme took: 1s
+the programme took: 0s
