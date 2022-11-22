@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operators.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:28:01 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:54:04 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/21 08:02:55 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 namespace ft
 {
-    template< class T, class Alloc >
-    bool operator==(const ft::vector<T,Alloc>& lhs, \
-    const ft::vector<T,Alloc>& rhs)
+    template< class T1, class Alloc1, class T2, class Alloc2 >
+    bool operator==(const ft::vector<T1,Alloc1>& lhs, \
+    const ft::vector<T2,Alloc2>& rhs)
     {
-        typename ft::vector<T, Alloc>::const_iterator itL = lhs.begin();
-        typename ft::vector<T, Alloc>::const_iterator itR = rhs.begin(); 
+        typename ft::vector<T1, Alloc1>::const_iterator itL = lhs.begin();
+        typename ft::vector<T2, Alloc2>::const_iterator itR = rhs.begin(); 
         while (itL != lhs.end() && itR != rhs.end() && *itL == *itR)
         {
             itL++;
@@ -54,17 +54,17 @@ namespace ft
     };
 
 
-    template< class T, class Alloc >
-    bool operator!=( const ft::vector<T,Alloc>& lhs, \
-    const ft::vector<T,Alloc>& rhs )
+    template< class T1, class Alloc1, class T2, class Alloc2 >
+    bool operator!=( const ft::vector<T1,Alloc1>& lhs, \
+    const ft::vector<T2,Alloc2>& rhs )
     {return (!(lhs == rhs));}
     
-    template< class T, class Alloc >
-    bool operator<( const ft::vector<T,Alloc>& lhs, \
-    const ft::vector<T,Alloc>& rhs )
+    template< class T1, class Alloc1, class T2, class Alloc2>
+    bool operator<( const ft::vector<T1,Alloc1>& lhs, \
+    const ft::vector<T2,Alloc2>& rhs )
     {
-        typename ft::vector<T, Alloc>::const_iterator itL = lhs.begin();
-        typename ft::vector<T, Alloc>::const_iterator itR = rhs.begin(); 
+        typename ft::vector<T1, Alloc1>::const_iterator itL = lhs.begin();
+        typename ft::vector<T2, Alloc2>::const_iterator itR = rhs.begin(); 
         while (itL != lhs.end() && itR != rhs.end() && *itR == *itL)
         {
             itL++;
@@ -77,18 +77,18 @@ namespace ft
         return (*itL < *itR);
     };
 
-    template< class T, class Alloc >
-    bool operator<=( const ft::vector<T,Alloc>& lhs, \
-    const ft::vector<T,Alloc>& rhs )
+    template< class T1, class Alloc1, class T2, class Alloc2>
+    bool operator<=( const ft::vector<T1,Alloc1>& lhs, \
+    const ft::vector<T2,Alloc2>& rhs )
     {return (!(lhs > rhs));};
 
-    template< class T, class Alloc >
-    bool operator>( const ft::vector<T,Alloc>& lhs, \
-    const ft::vector<T,Alloc>& rhs )
+    template< class T1, class Alloc1, class T2, class Alloc2 >
+    bool operator>( const ft::vector<T1,Alloc1>& lhs, \
+    const ft::vector<T2,Alloc2>& rhs )
     {return (!(lhs < rhs) && lhs != rhs);};
 
-    template< class T, class Alloc >
-    bool operator>=( const ft::vector<T,Alloc>& lhs, \
-    const ft::vector<T,Alloc>& rhs )
+    template< class T1, class Alloc1, class T2, class Alloc2 >
+    bool operator>=( const ft::vector<T1,Alloc1>& lhs, \
+    const ft::vector<T2,Alloc2>& rhs )
     {return (!(lhs < rhs));};         
 }

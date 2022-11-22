@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapIterator.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:41 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/21 17:31:22 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 namespace ft
 {
 
-    template < class pair, class Allocator = std::allocator<ft::Node<pair> >>
+    template < class pair, class Allocator = std::allocator<ft::Node<pair> > >
     class	mapIterator
     {
     public:
@@ -74,8 +74,8 @@ namespace ft
                 
         };
 
-        template < class pair2, class Allocator2 = Allocator >
-        mapIterator &operator=(mapIterator<pair2, class Alocator2> const &src)
+        template < class pair2, class Allocator2  >
+        mapIterator &operator=(mapIterator<pair2, Allocator2> const &src)
         {
             if (_is_gost)
             {

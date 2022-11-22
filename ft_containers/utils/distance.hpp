@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:11:41 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/06 15:31:59 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/21 07:53:09 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ namespace ft
 {
     
     template<class InputIterator>
-    typename ft::vectorIterator<InputIterator>::difference_type
+    typename InputIterator::difference_type
     distance (InputIterator first, InputIterator last)
     {
-        typename ft::vectorIterator<InputIterator>::difference_type rtn = 0;
+        typename InputIterator::difference_type rtn = 0;
         while (first != last)
         {
             first++;

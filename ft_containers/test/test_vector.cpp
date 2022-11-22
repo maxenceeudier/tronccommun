@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_vector.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:06:42 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 17:27:35 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/21 09:30:24 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,14 @@ int test_vector_std()
     std::cout << " ]";
 
      std::cout << "\n\ncbegin(), cend()\n[ ";
-    for (ft::vector<int>::const_iterator it = vecConst2.begin(); it != vecConst2.end(); it++)
+    for (ft::vector<int>::const_iterator it = vec.begin(); it != vec.end(); it++)
     {
         std::cout << *it << " ";
     }
     std::cout << " ]";
 
-     std::cout << "\n\ncrbegin(), crend()\n[ ";
-    for (ft::vector<int>::const_reverse_iterator it = vecConst2.rbegin(); it != vecConst2.rend(); it++)
+    std::cout << "\n\ncrbegin(), crend()\n[ ";
+    for (ft::vector<int>::const_reverse_iterator it = vec.rbegin(); it != vec.rend(); it++)
     {
         std::cout << *it << " ";
     }

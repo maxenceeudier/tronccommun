@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   conditional.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 16:00:09 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/21 07:22:40 by maxenceeudi      ###   ########.fr       */
+/*   Created: 2022/11/21 07:14:52 by maxenceeudi       #+#    #+#             */
+/*   Updated: 2022/11/21 07:46:59 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef CONDITIONAL_HPP
+#define CONDITIONAL_HPP
 
-#include "distance.hpp"
-#include "enable_if.hpp"
-#include "equal.hpp"
-#include "is_integral.hpp"
-#include "iterator_traits.hpp"
-#include "Node.hpp"
-#include "Pair.hpp"
-#include "RBTree_impl.hpp"
-#include "RBTree.hpp"
-#include "reverse_iterator.hpp"
-#include "swap.hpp"
-#include "to_string.hpp"
-#include "conditional.hpp"
-#include <string>
-#include <vector>
+namespace ft
+{
+    template <bool B, typename T1, typename T2>
+    struct conditional
+    {
+        typedef  T2 type;
+    };
+
+    template <typename T1, typename T2>
+    struct conditional<true, T1, T2>
+    {
+        typedef  T1 type;
+    };
+    
+}
 
 #endif

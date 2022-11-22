@@ -27,8 +27,8 @@ namespace ft
             typedef const value_type&                               const_reference;
             typedef typename Allocator::pointer                     pointer;
             typedef typename Allocator::const_pointer               const_pointer;
-            typedef ft::vectorIterator<value_type>                  iterator;
-            typedef ft::vectorIterator<const value_type>            const_iterator;
+            typedef ft::vectorIterator<true, value_type>                  iterator;
+            typedef ft::vectorIterator<false, value_type>            const_iterator;
             typedef ft::reverse_iterator<iterator>                  reverse_iterator;
             typedef ft::reverse_iterator<const_iterator>            const_reverse_iterator;
 
@@ -51,7 +51,7 @@ namespace ft
 
             /*this constructor is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template <class InputIt>
-            vector (InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
+            vector (InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<InputIt::input_iter, InputIt>::type* = 0)
             : _alloc(alloc), _start(NULL), _end(NULL), _end_capacity(NULL) {this->insert(_end, first, last);};
 
             vector(const vector &cpy);
@@ -67,7 +67,7 @@ namespace ft
 
             /*this assign is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template<class InputIt>
-            void assign(InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
+            void assign(InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type* = 0)
             {
                 this->clear();
                 this->insert(_end, first, last);
@@ -157,7 +157,7 @@ namespace ft
 
             /*this insert is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template< class InputIt>
-            iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type = NULL)
+            iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type* = 0)
             {
                 if (this->capacity() == 0 )
                 {

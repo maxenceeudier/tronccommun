@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_map_std.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 12:54:35 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/21 08:17:06 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void test_map()
     std::cout << "/*        ITERATORS         */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
     
-    std::cout  << "\n\ntest it:\n";
+    /*std::cout  << "\n\ntest it:\n";
     std::map<std::string, int>::iterator it = map.begin();
     it--;
     it--;
@@ -131,7 +131,7 @@ void test_map()
 
     std::cout << "key: " << it->first;
     std::cout << " value: " << it->second;
-    std::cout << std::endl << std::endl;
+    std::cout << std::endl << std::endl;*/
 
     std::cout << "\n\nbegin() && end() : \n";
     for (std::map<std::string, int>::iterator it = map.begin(); it != map.end(); it++)

@@ -6,12 +6,13 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 12:51:06 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/10/10 09:06:44 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/21 07:57:11 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITERATOR_TRAITS_HPP
 #define ITERATOR_TRAITS_HPP
+#include  <cstddef>
 
 namespace ft
 {

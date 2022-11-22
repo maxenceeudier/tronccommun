@@ -1,0 +1,208 @@
+/*==========================*/
+/*          MAP             */
+/*==========================*/
+Mon Nov 21 17:36:21 2022
+/*==========================*/
+/*       BASICS FUNCT       */
+/*==========================*/
+
+
+map begin() && end() : 
+key: hello1 value: 1
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+
+
+map 2 begin() && end() : 
+key: hello1 value: 1
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+
+
+pair : yo / 10
+/*==========================*/
+/*       ACCESS ELEMTS      */
+/*==========================*/
+
+
+AT
+map.at(hello1) : 1
+mapConst.at(hello1) : 1
+
+[]
+map[hello3] : 3
+map[hello10] : 0
+map[yo] : 10
+
+
+print map:
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
+
+
+/*==========================*/
+/*         CAPACITY         */
+/*==========================*/
+
+
+map.size() : 6
+map.max_size() : 288230376151711743
+map.empty() : 0
+
+
+mapEmpty.size() : 0
+mapEmpty.max_size() : 288230376151711743
+mapEmpty.empty() : 1
+
+/*==========================*/
+/*        ITERATORS         */
+/*==========================*/
+
+
+begin() && end() : 
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
+
+
+
+
+rbegin() && rend() : 
+key: yo value: 10
+key: hello4 value: 4
+key: hello3 value: 3
+key: hello2 value: 2
+key: hello10 value: 0
+key: hello1 value: 1
+
+
+
+
+C_begin() && C_rend() : 
+key: hello1 value: 1
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+
+
+
+
+CR_begin() && CR_end() : 
+key: hello4 value: 4
+key: hello3 value: 3
+key: hello2 value: 2
+key: hello1 value: 1
+
+
+/*==========================*/
+/*         LOOKUP           */
+/*==========================*/
+rslt find (hello1): hello1
+count (hello3): 1
+count (no excist): 0
+rslt find (hello1): hello1
+count (hello3): 1
+count (no excist): 0
+
+equal_range
+pr->first: hello3
+pr->second: hello4
+/*==========================*/
+/*         MODIFIERS        */
+/*==========================*/
+
+map 2 begin() && end() : 
+key: hello1 value: 1
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+
+
+clear map2
+
+
+map2 is empty()
+
+
+map 2 insert beg hello3
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+
+
+map 2 insert  pos = hello10 new value
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello101 value: 333
+key: hello2 value: 2
+
+
+erase de hello101 a end
+key: hello1 value: 1
+key: hello10 value: 0
+
+
+mapSwap : 
+
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
+
+
+map is empty()
+
+
+swap again
+
+
+mapSwap is empty()
+
+key: hello1 value: 1
+key: hello10 value: 0
+key: hello2 value: 2
+key: hello3 value: 3
+key: hello4 value: 4
+key: yo value: 10
+/*==========================*/
+/*        OBSERVERS         */
+/*==========================*/
+
+
+compKey: 123 / 234 : 1
+compKey: 123 / 123 : 0
+compKey: 123 / 12 : 0
+compValue: (hello3:3) / (hello4: 3) : 1
+compValue: (hello3:3) / (hello2: 3) : 0
+compValue: (hello8:8) / (hello8:8) : 0
+
+/*==========================*/
+/*        OPERATORS         */
+/*==========================*/
+
+
+operators
+== : 0
+!= : 1
+> : 0
+>= : 0
+< : 1
+<= : 1
+/*==========================*/
+/*         perfo            */
+/*==========================*/
+Mon Nov 21 17:36:21 2022
+
+
+the programme took: 0s

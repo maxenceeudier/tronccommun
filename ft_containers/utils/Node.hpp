@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:53:33 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/16 22:58:16 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/21 16:55:32 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ namespace ft
     class Node
     {
         public:
-            Node(void)  {};
-            Node(T &data) : data(data), color(RED), parent(NULL), left(NULL), right(NULL){};
-            Node(Node const &node) : data(node.data)
+            Node(void): color(RED), parent(NULL), left(NULL), right(NULL){};
+            Node(T const &data) : data(data), color(RED), parent(NULL), left(NULL), right(NULL){};
+            Node(Node const &node) //: data(node.data)
             {
                 color = node.color;
                 parent = node.parent;

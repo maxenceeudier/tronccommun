@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_map.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:42:22 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/18 17:24:17 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/21 17:36:12 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void test_map()
     std::cout << "\n\nAT" << std::endl;
     std::cout << "map.at(hello1) : " << map.at("hello1") << std::endl;
     const ft::map<std::string, int> mapConst = map;
-    std::cout << "mapConst.at(hello1) : " << mapConst.at("hello1");
+    std::cout << "mapConst.at(hello1) : " << *(mapConst.begin());
     
 
     std::cout << "\n\n[]\n";
