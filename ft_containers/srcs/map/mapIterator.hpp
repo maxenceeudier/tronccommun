@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/22 15:21:22 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/23 08:40:58 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,30 @@ namespace ft
         typedef typename ft::conditional<B, const value_type&, value_type&>::type reference;
         typedef typename ft::conditional<B, const value_type*, value_type*>::type pointer;
 
-        mapIterator(void) : _del(true), _is_gost(false), _alloc(std::allocator<Node<value_type> >()), node(NULL){};
-        mapIterator(node_pointer ptr) : _del(true), _is_gost(false), _alloc(std::allocator<Node<value_type> >()) {node = ptr;};
+        mapIterator(void) : _del(false), _is_gost(false), _alloc(std::allocator<Node<value_type> >()), node(NULL){};
+        mapIterator(node_pointer ptr) : _del(false), _is_gost(false), _alloc(std::allocator<Node<value_type> >()) {node = ptr;};
 
         template <bool B1>
         mapIterator(mapIterator<pair, B1> const &src) : _alloc(std::allocator<ft::Node<value_type> >())
         {
             _del = src.getDel();
             _is_gost = src.getGost();
-            if (this->_is_gost)
+            /*if (this->_is_gost)
             {
                 node = _alloc.allocate(1);
                 _alloc.construct(node, node_type(*(src.getNode())));
             }
-            else
+            else*/
                 node = src.getNode();
         };
 
         virtual ~mapIterator()
         {
-            if (_is_gost )
+            /*if (_is_gost && _del )
             {
-               // _alloc.destroy(node);
-               // _alloc.deallocate(node, 1);
-            }
+                _alloc.destroy(node);
+                _alloc.deallocate(node, 1);
+            }*/
                 
         };
         
@@ -68,12 +68,12 @@ namespace ft
         {
             _is_gost = src._is_gost;
             
-            if (this->_is_gost)
+            /*if (this->_is_gost)
             {
                 node = _alloc.allocate(1);
                 _alloc.construct(node, node_type(*(src.getNode())));
             }
-            else
+            else*/
                 node = src.getNode();
             return (*this);
         };
@@ -86,19 +86,19 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    delete node;
+                    //delete node;
                     node = temp;
                     _is_gost = false;
                     return (*this);
                 }
-                if (_is_the_last(node) == node)
+                if (_is_the_last(node) == node->right)
                 {
-                    node_pointer gost = _alloc.allocate(1);
-                    _alloc.construct(gost, node_type());
-                    gost->parent = node;
+                    //node_pointer gost = _alloc.allocate(1);
+                    //_alloc.construct(gost, node_type());
+                    //gost->parent = node;
                     _is_gost = true;
                     _del = true;
-                    node = gost;
+                    node = node->right;
                     return (*this);
                
                 }
@@ -139,19 +139,19 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    delete node;
+                    //delete node;
                     node = temp;
                     _is_gost = false;
                     return (*this);
                 }
                 if (_is_the_first(node) == node)
                 {
-                    node_pointer gost = _alloc.allocate(1);
-                    _alloc.construct(gost, node_type());
-                    gost->parent = _is_the_last(node);
-                    _is_gost = true;
-                    _del = false;
-                    this->node = gost;
+                    //node_pointer gost = _alloc.allocate(1);
+                    //_alloc.construct(gost, node_type());
+                    //gost->parent = _is_the_last(node);
+                    //_is_gost = true;
+                    //_del = true;
+                    this->node = _is_the_last(node);
                     return (*this);
                 }
                 if (node->left)

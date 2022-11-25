@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/22 12:38:38 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/24 17:46:12 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ namespace ft
             typedef	ft::mapIteratorReverse<value_type>                reverse_iterator;
             typedef ft::mapIteratorReverse<value_type,  true>    const_reverse_iterator;
 
+            typedef typename Allocator::template rebind<ft::Node<value_type> >::other  AllocNode;
             
             typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
 
@@ -57,10 +58,12 @@ namespace ft
             friend std::ostream	&operator<<(std::ostream &o, ft::map<T1, T2, T3, T4> &map);
             
         protected:
-            T               _T_default;
-            key_compare     _comp;
-            allocator_type  _alloc;
-            RBTree          _tree;
+            T                   _T_default;
+            key_compare         _comp;
+            allocator_type      _alloc;
+            RBTree              _tree;
+            Node<value_type>    *_gost;
+            AllocNode           _allocNode;
 
         public:
             /*----------------------------------*/
@@ -74,7 +77,13 @@ namespace ft
             template< class InputIt >
             map( InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator(), \
             typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true) : _T_default(T()), _comp(comp), _alloc(alloc)
-            {insert(first, last);};
+            {
+                //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+                _gost = _allocNode.allocate(1);
+                _allocNode.construct(_gost, Node<value_type>());
+
+                insert(first, last);
+            };
             
             map( const map& other );
             
@@ -136,8 +145,18 @@ namespace ft
             template< class InputIt >
             void insert( InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true)
             {
+                if (_gost->parent)
+                    _gost->parent->right = NULL;
+
                 while (first != last)
-                    _tree.insertValue(*(first++));
+                {
+                    if (this->find(first->first) == this->end())
+                        _tree.insertValue(*(first++));
+                }
+                   
+
+                _gost->parent = _tree.maxValueNode(_tree.getRoot());
+                _gost->parent->right = _gost;
             };
 
             void erase( iterator pos );

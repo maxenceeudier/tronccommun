@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:42:22 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/22 14:44:53 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/24 17:53:25 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,17 @@ void test_map()
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          MAP             */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
-
+    
     std::time_t t0 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t0));
-
+    
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*       BASICS FUNCT       */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
     ft::map<std::string, int> map;
     map.insert(ft::pair<std::string, int>("hello1", 1));
+    
     map.insert(ft::pair<std::string, int>("hello1", 3));
     map.insert(ft::pair<std::string, int>("hello3", 3));
     map.insert(ft::pair<std::string, int>("hello4", 4));
@@ -59,6 +60,7 @@ void test_map()
         map2 = map3;
     }
 
+    
     std::cout << "\n\nmap begin() && end() : \n";
     for (ft::map<std::string, int>::iterator it = map.begin(); it != map.end(); it++)
     {
@@ -85,7 +87,6 @@ void test_map()
     std::cout << "pair : " << pair->first << " / " << pair->second << std::endl;
     map2.get_allocator().destroy(pair);
     map2.get_allocator().deallocate(pair, 1);
-
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*       ACCESS ELEMTS      */" << std::endl;
@@ -261,7 +262,7 @@ void test_map()
     }
 
 
-    std::cout << "\n\nmapSwap : \n\n";
+   std::cout << "\n\nmapSwap : \n\n";
     ft::map<std::string, int> mapSwap;
     mapSwap.swap(map);
     for (ft::map<std::string, int>::iterator it = mapSwap.begin(); it != mapSwap.end(); it++)
@@ -328,16 +329,16 @@ void test_map()
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
-    /*ft::map<int, int>  perf;
+    ft::map<int, int>  perf;
     int i = 0;
-    while (i++ < 1000)
+    while (i++ < 100)
         perf.insert(ft::pair<int, int>(i, i + 2));
     while (i--)
     {
         perf.find(i);
         ft::map<int, int>  temp;
         temp.insert(perf.begin(), perf.end());
-    }*/
+    }
 
     
     std::time_t t1 = std::time(NULL);

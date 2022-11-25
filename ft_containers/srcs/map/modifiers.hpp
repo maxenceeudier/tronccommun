@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modifiers.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 09:53:21 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:46:56 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     void     map<Key, T, Compare, Allocator>::clear(void)
     {
+        if (_gost->parent)
+            _gost->parent->right = NULL;
+        
         this->_tree.setRoot(this->_tree.clearRBTree(this->_tree.getRoot()));
+        
+        //===================================
+        _gost->parent = NULL;
     }
 
     template<class Key, class T, class Compare , class Allocator >
@@ -29,9 +35,17 @@ namespace ft
         bool b = false;
         if ((this->find(value.first)) == this->end())
         {
+            if (_gost->parent)
+                _gost->parent->right = NULL;
+            
             _tree.insertValue(value);
             b = true;
+            
+            //============================================
+            _gost->parent =  _tree.maxValueNode(_tree.getRoot());
+            _gost->parent->right = _gost;
         }
+        
         return (pair<iterator, bool>((this->find(value.first)), b));
     }
 
@@ -66,26 +80,61 @@ namespace ft
             node->right = hint.getNode();
 
         this->_tree.fixInsertRBTree(node);*/
-        (void)hint;
-        this->_tree.insertValue(value);
+        if (this->find(value.first) == this->end())
+        {
+            if (_gost->parent)
+                _gost->parent->right = NULL;
+            
+            (void)hint;
+            this->_tree.insertValue(value);
+        
+            //======================================
+            _gost->parent = _tree.maxValueNode(_tree.getRoot());
+            _gost->parent->right = _gost;
+        }
         return (this->find(value.first));
     }
 
     template<class Key, class T, class Compare , class Allocator >
     void map<Key, T, Compare, Allocator>::erase( iterator pos )
-    {this->_tree.deleteValue(*pos);}
+    {
+        if (_gost->parent)
+            _gost->parent->right = NULL;
+        
+        this->_tree.deleteValue(*pos);
+
+        //============================
+        _gost->parent = _tree.maxValueNode(_tree.getRoot());
+        if (_gost->parent)
+            _gost->parent->right = _gost;
+    }
     
     template<class Key, class T, class Compare , class Allocator >
     void map<Key, T, Compare, Allocator>::erase( iterator first, iterator last )
     {
         ft::vector<value_type>  vec;
-        size_t                         i = 0;
+        size_t                  i = 0;
+
+
         while (first != last)
+        {
             vec.push_back((*(first++)));
+        }
+
+        if (_gost->parent)
+            _gost->parent->right = NULL;
+        
+        
         while (i < vec.size())
         {
             this->_tree.deleteValue(vec[i++]);
         }
+        
+        //============================
+        _gost->parent = _tree.maxValueNode(_tree.getRoot());
+        if (_gost->parent)
+            _gost->parent->right = _gost;
+        
     }
    
     template<class Key, class T, class Compare , class Allocator >
@@ -94,14 +143,30 @@ namespace ft
         iterator    it = this->find(key);
         if (it == this->end())
             return (0);
+
+        if (_gost->parent)
+            _gost->parent->right = NULL;   
         
         this->_tree.deleteValue(*it);
+
+        //============================
+        _gost->parent = _tree.maxValueNode(_tree.getRoot());
+        if (_gost->parent)
+            _gost->parent->right = _gost;
+        
         return (1);
     }
 
     template<class Key, class T, class Compare , class Allocator >
     void map<Key, T, Compare, Allocator>::swap( map& other )
     {
+        /*if (_gost->parent)
+            _gost->parent->right = NULL;  
+        
         ft::swap(*this, other);
+
+         //============================
+        _gost->parent = _tree.maxValueNode(_tree.getRoot());
+        _gost->parent->right = _gost;*/
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_functions.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 11:56:39 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:39:11 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,70 @@ namespace ft
 {
 
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map(): _T_default(T()), _comp(Compare()),  _alloc(Allocator()), _tree(RBTree()){}
+    map<Key, T, Compare, Allocator>::map(): _T_default(T()), _comp(Compare()),  _alloc(Allocator()), _tree(RBTree())
+    {
+        //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        _gost = _allocNode.allocate(1);
+        _allocNode.construct(_gost, Node<value_type>());
+        //_gost->parent = _tree.maxValueNode(_tree.getRoot());
+        //_gost->parent->right = _gost;
+        
+    }
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::map(const Compare& comp, const Allocator& alloc) \
-    :  _T_default(T()), _comp(comp), _alloc(alloc), _tree(RBTree()) {}
+    :  _T_default(T()), _comp(comp), _alloc(alloc), _tree(RBTree())
+    {
+        //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        _gost = _allocNode.allocate(1);
+        _allocNode.construct(_gost, Node<value_type>());
+        //_gost->parent = _tree.maxValueNode(_tree.getRoot());
+        //_gost->parent->right = _gost;
+    }
     
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::map( const map& other ) :  ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >()
     {
+        //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        _gost = _allocNode.allocate(1);
+        _allocNode.construct(_gost, Node<value_type>());
+    
         *this = other;
     }
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::~map(){}
+    map<Key, T, Compare, Allocator>::~map()
+    {
+        if (_gost->parent)
+            _gost->parent->right = NULL;
+        
+        //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        _allocNode.destroy(_gost);
+        _allocNode.deallocate(_gost, 1);
+        
+    }
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator> &map<Key, T, Compare, Allocator>::operator=( const map& other )
     {
+        
         _T_default = other._T_default;
+        
         _alloc = other._alloc;
         _comp = other._comp;
+
+        if (_gost->parent)
+            _gost->parent->right = NULL;
+        if (other._gost->parent)
+            other._gost->parent->right = NULL;
+    
         this->clear();
         this->_tree = other._tree;
+
+        //==========================
+        _gost->parent = _tree.maxValueNode(_tree.getRoot());
+        if (_gost->parent)
+            _gost->parent->right = _gost;
         return (*this);
     }
 

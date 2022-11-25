@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RBTree_impl.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 10:02:49 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:24:31 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,6 +324,8 @@ namespace ft
         if (!rt->right)
             return (rt);
 
+            
+        
         Node<T> *tempP = rt->parent;
         Node<T> *tempL = rt->left;
         Node<T> *tempR = rt->right;
@@ -353,11 +355,19 @@ namespace ft
 
         std::cout << "\n==================================================" << std::endl;*/
 
-        rt->parent = minR->parent;
-        if (minR->parent && minR->parent->left == minR)
-            minR->parent->left = rt;
-        else if (minR->parent)
-            minR->parent->right = rt;
+        if (minR->parent == rt)
+        {
+            rt->parent = minR;
+        }
+        else
+        {
+            rt->parent = minR->parent;
+            if (minR->parent && minR->parent->left == minR)
+                minR->parent->left = rt;
+            else if (minR->parent)
+                minR->parent->right = rt;
+        }
+            
 
         rt->left = minR->left;
         if (rt->left)
@@ -378,29 +388,16 @@ namespace ft
         minR->left = tempL;
         if (tempL)
             minR->left->parent = minR;
-        minR->right = tempR;
-        if (tempR)
-            minR->right->parent = minR;
-
-
-        /*std::cout << "\nroot info :\n";
-        if (root->parent)
-            std::cout << "p: " << root->parent->data;
-        if (root->right)
-            std::cout << "\nr: " << root->right->data;
-        if (root->left)
-            std::cout << "\nl: " << root->left->data;
-
-        std::cout << "\n\nminR info :\n";
-        if (minR->parent)
-            std::cout << "p: " << minR->parent->data;
-        if (minR->right)
-            std::cout << "\nr: " << minR->right->data;
-        if (minR->left)
-            std::cout << "\nl: " << minR->left->data;
-
-        std::cout << "\n=================fin debug========================" << std::endl;*/
-
+            
+        if (rt->parent == minR)
+            minR->right = rt;
+        else
+        {
+            minR->right = tempR;
+            if (tempR)
+                minR->right->parent = minR;
+        }
+        
         return (deleteBST(minR->right, minR->data));
         /*temp = minValueNode(root->right)->data;
         root->data = temp;
@@ -422,6 +419,7 @@ namespace ft
 
         if (node == root)
         {
+            std::cout << "ooooookkkkkk\n";
             root = NULL;
             return;
         }
@@ -438,6 +436,7 @@ namespace ft
                 setColor(child, BLACK);
                 _alloc.destroy(node);
                 _alloc.deallocate(node, 1);
+                node = NULL;
             }
             else
             {
@@ -447,6 +446,7 @@ namespace ft
                 setColor(child, BLACK);
                 _alloc.destroy(node);
                 _alloc.deallocate(node, 1);
+                node = NULL;
             }
         }
         else
@@ -540,6 +540,7 @@ namespace ft
             _alloc.destroy(node);
             _alloc.deallocate(node, 1);
             setColor(root, BLACK);
+            node = NULL;
         }
     }
     

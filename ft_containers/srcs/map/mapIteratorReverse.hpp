@@ -275,12 +275,7 @@ namespace ft
 
 
         virtual ~mapIteratorReverse()
-        {
-            if (_is_gost)
-            {
-                //delete node;
-            }
-                
+        {       
         };
 
         mapIteratorReverse &operator=(mapIteratorReverse const &src) 
@@ -298,18 +293,18 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    delete node;
+                    //delete node;
                     node = temp;
                     _is_gost = false;
                     return (*this);
                 }
-                if (_is_the_last(node) == node)
+                if (_is_the_last(node) == node->right)
                 {
-                    node_pointer gost = _alloc.allocate(1);
-                    _alloc.construct(gost, node_type());
-                    gost->parent = node;
+                    //node_pointer gost = _alloc.allocate(1);
+                    //_alloc.construct(gost, node_type());
+                    //gost->parent = node;
                     _is_gost = true;
-                    node = gost;
+                    node = node->right;
                     return (*this);
                 }
                 if (node->right)
@@ -350,18 +345,18 @@ namespace ft
                 if (_is_gost)
                 {
                     node_pointer temp = node->parent;
-                    delete node;
+                    //delete node;
                     node = temp;
                     _is_gost = false;
                     return (*this);
                 }
                 if (_is_the_first(node) == node)
                 {
-                    node_pointer gost = _alloc.allocate(1);
-                    _alloc.construct(gost, node_type());
-                    gost->parent = _is_the_last(node);
+                    //node_pointer gost = _alloc.allocate(1);
+                    //_alloc.construct(gost, node_type());
+                    //gost->parent = _is_the_last(node);
                     _is_gost = true;
-                    this->node = gost;
+                    this->node = _is_the_last(node);;
                     return (*this);
                 }
                 if (node->left)

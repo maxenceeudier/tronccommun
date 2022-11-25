@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:08 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/22 12:29:31 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/23 09:54:21 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator > 
     typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::find( const Key& key )
     {
-
-        /*typename map<Key, T, Compare, Allocator>::iterator it = this->begin();
-        
-        while (it != this->end())
-        {
-            if (it->first == key )
-                break ;
-            it++;
-        }
-        return (it);*/
-
         Node<value_type>    *node = this->_tree.getRoot();
         while (node)
         {
@@ -48,6 +37,9 @@ namespace ft
     typename map<Key, T, Compare, Allocator>::const_iterator map<Key, T, Compare, Allocator>::find( const Key& key ) const
     {
         Node< value_type>    *node = (this->_tree.getRoot());
+        if (_gost->parent)
+            _gost->parent->right = NULL;
+            
         while (node)
         {
             if (_comp(node->data.first, key))
@@ -57,6 +49,9 @@ namespace ft
             if (node && node->data.first == key)
                 break;
         }
+        
+        _gost->parent->right = _gost;
+         
         if (node)
             return (const_iterator(node));
         return (this->end());

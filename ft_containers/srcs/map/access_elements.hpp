@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access_elements.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:59 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 14:45:07 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/23 09:45:32 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,15 @@ namespace ft
         typename map<Key, T, Compare, Allocator>::iterator it = this->find(key);
         if (it == this->end())
         {
+            //if (_gost->parent)
+            //    _gost->parent->right = NULL;  
+
             this->insert(value_type(key, T()));
+
+            //============================
+            //_gost->parent = _tree.maxValueNode(_tree.getRoot());
+            //_gost->parent->right = _gost;
+
             return (this->find(key)->second);
         }
         return (it->second);
