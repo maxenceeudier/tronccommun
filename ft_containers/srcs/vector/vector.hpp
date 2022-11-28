@@ -1,6 +1,6 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
-#include <memory>
+/*#include <memory>
 #include <string>
 #include <iostream>
 #include "vector_iterator.hpp"
@@ -8,7 +8,10 @@
 #include "../../utils/distance.hpp"
 #include "../../utils/reverse_iterator.hpp"
 #include "../../utils/swap.hpp"
-#include "../../utils/to_string.hpp"
+#include "../../utils/to_string.hpp"*/
+
+#include "vector.h"
+#include "../../utils/utils.h"
 
 //#include "../../Include/include.h"
 

@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/23 08:40:58 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 07:20:03 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ namespace ft
                     //_alloc.construct(gost, node_type());
                     //gost->parent = node;
                     _is_gost = true;
-                    _del = true;
                     node = node->right;
                     return (*this);
                

@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:42:22 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/24 17:53:25 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 07:24:21 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void test_map()
 
     ft::map<std::string, int> map;
     map.insert(ft::pair<std::string, int>("hello1", 1));
-    
     map.insert(ft::pair<std::string, int>("hello1", 3));
     map.insert(ft::pair<std::string, int>("hello3", 3));
     map.insert(ft::pair<std::string, int>("hello4", 4));
@@ -68,6 +67,8 @@ void test_map()
         std::cout << " value: " << it->second;
         std::cout << std::endl;
     }
+    
+    
 
     std::cout << std::endl;
     std::cout << std::endl;
@@ -133,7 +134,7 @@ void test_map()
     std::cout << "/*==========================*/" << std::endl;
     
     std::cout  << "\n\ntest it:\n";
-    ft::map<std::string, int>::iterator it = map.begin();
+    /*ft::map<std::string, int>::iterator it = map.begin();
     it--;
     it--;
  
@@ -149,7 +150,7 @@ void test_map()
 
     std::cout << "key: " << it->first;
     std::cout << " value: " << it->second;
-    std::cout << std::endl << std::endl;
+    std::cout << std::endl << std::endl;*/
 
     std::cout << "\n\nbegin() && end() : \n";
     for (ft::map<std::string, int>::iterator it = map.begin(); it != map.end(); it++)

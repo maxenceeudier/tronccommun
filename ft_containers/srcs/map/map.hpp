@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/24 17:46:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 08:51:31 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,8 @@ namespace ft
                    
 
                 _gost->parent = _tree.maxValueNode(_tree.getRoot());
-                _gost->parent->right = _gost;
+                if (_gost->parent)
+                    _gost->parent->right = _gost;
             };
 
             void erase( iterator pos );

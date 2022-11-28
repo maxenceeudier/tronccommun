@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/24 17:46:56 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 07:29:32 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ namespace ft
             
             //============================================
             _gost->parent =  _tree.maxValueNode(_tree.getRoot());
-            _gost->parent->right = _gost;
+            if (_gost->parent)
+                _gost->parent->right = _gost;
         }
-        
         return (pair<iterator, bool>((this->find(value.first)), b));
     }
 
@@ -90,7 +90,8 @@ namespace ft
         
             //======================================
             _gost->parent = _tree.maxValueNode(_tree.getRoot());
-            _gost->parent->right = _gost;
+            if (_gost->parent)
+                _gost->parent->right = _gost;
         }
         return (this->find(value.first));
     }
@@ -160,13 +161,6 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     void map<Key, T, Compare, Allocator>::swap( map& other )
     {
-        /*if (_gost->parent)
-            _gost->parent->right = NULL;  
-        
         ft::swap(*this, other);
-
-         //============================
-        _gost->parent = _tree.maxValueNode(_tree.getRoot());
-        _gost->parent->right = _gost;*/
     }
 }

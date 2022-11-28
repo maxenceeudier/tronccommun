@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/24 17:39:11 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 07:24:02 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator> &map<Key, T, Compare, Allocator>::operator=( const map& other )
     {
-        
-        _T_default = other._T_default;
-        
         _alloc = other._alloc;
         _comp = other._comp;
 
@@ -78,6 +75,10 @@ namespace ft
         this->_tree = other._tree;
 
         //==========================
+        other._gost->parent = other._tree.maxValueNode(other._tree.getRoot());
+        if (other._gost->parent)
+            other._gost->parent->right = other._gost;
+            
         _gost->parent = _tree.maxValueNode(_tree.getRoot());
         if (_gost->parent)
             _gost->parent->right = _gost;

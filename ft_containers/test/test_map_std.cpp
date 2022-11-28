@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:49:27 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/21 08:17:06 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 06:35:35 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@
 
 void test_map()
 {
-    std::cout << "/*==========================*/" << std::endl;
+   std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*          MAP             */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
-
-
-    std::time_t t0 = std::time(nullptr);
+    
+    std::time_t t0 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t0));
-
+    
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*       BASICS FUNCT       */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
     std::map<std::string, int> map;
     map.insert(std::pair<std::string, int>("hello1", 1));
+    
     map.insert(std::pair<std::string, int>("hello1", 3));
     map.insert(std::pair<std::string, int>("hello3", 3));
     map.insert(std::pair<std::string, int>("hello4", 4));
@@ -43,6 +43,7 @@ void test_map()
         map2 = map3;
     }
 
+    
     std::cout << "\n\nmap begin() && end() : \n";
     for (std::map<std::string, int>::iterator it = map.begin(); it != map.end(); it++)
     {
@@ -50,6 +51,7 @@ void test_map()
         std::cout << " value: " << it->second;
         std::cout << std::endl;
     }
+
     std::cout << std::endl;
     std::cout << std::endl;
 
@@ -68,7 +70,6 @@ void test_map()
     std::cout << "pair : " << pair->first << " / " << pair->second << std::endl;
     map2.get_allocator().destroy(pair);
     map2.get_allocator().deallocate(pair, 1);
-
 
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*       ACCESS ELEMTS      */" << std::endl;
@@ -114,8 +115,8 @@ void test_map()
     std::cout << "/*        ITERATORS         */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
     
-    /*std::cout  << "\n\ntest it:\n";
-    std::map<std::string, int>::iterator it = map.begin();
+    std::cout  << "\n\ntest it:\n";
+    /*std::map<std::string, int>::iterator it = map.begin();
     it--;
     it--;
  
@@ -152,7 +153,7 @@ void test_map()
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "\n\nC_begin() && C_rend() : \n";
-    for (std::map<std::string, int>::const_iterator it = mapConst.begin(); it != mapConst.end(); it++)
+    for (std::map<std::string, int>::const_iterator it = map.begin(); it != map.end(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
@@ -161,7 +162,7 @@ void test_map()
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "\n\nCR_begin() && CR_end() : \n";
-    for (std::map<std::string, int>::const_reverse_iterator it = mapConst.rbegin(); it != mapConst.rend(); it++)
+    for (std::map<std::string, int>::const_reverse_iterator it = map.rbegin(); it != map.rend(); it++)
     {
         std::cout << "key: " << (*it).first;
         std::cout << " value: " << it->second;
@@ -244,7 +245,7 @@ void test_map()
     }
 
 
-    std::cout << "\n\nmapSwap : \n\n";
+   std::cout << "\n\nmapSwap : \n\n";
     std::map<std::string, int> mapSwap;
     mapSwap.swap(map);
     for (std::map<std::string, int>::iterator it = mapSwap.begin(); it != mapSwap.end(); it++)
@@ -307,14 +308,13 @@ void test_map()
     std::cout << "< : " << (m1 < m2) <<  std::endl;
     std::cout << "<= : " << (m1 <= m2) <<  std::endl;
 
-
     std::cout << "/*==========================*/" << std::endl;
     std::cout << "/*         perfo            */" << std::endl;
     std::cout << "/*==========================*/" << std::endl;
 
     std::map<int, int>  perf;
     int i = 0;
-    while (i++ < 1000)
+    while (i++ < 100)
         perf.insert(std::pair<int, int>(i, i + 2));
     while (i--)
     {
@@ -324,11 +324,10 @@ void test_map()
     }
 
     
-    std::time_t t1 = std::time(nullptr);
+    std::time_t t1 = std::time(NULL);
     std::cout << std::asctime(std::localtime(&t1));    
     std::cout << "\n\nthe programme took: " << t1 - t0 << "s\n";
 }
-
 
 int main()
 {
