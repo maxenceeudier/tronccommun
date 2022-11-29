@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:38:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/21 10:05:45 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 15:34:55 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ namespace ft
         difference_type operator -(vectorIterator b) const {return (_ptr - b._ptr); }; // a - b
 
         // INCREMENTERS
-        vectorIterator operator ++() {_ptr++; return (*this);};			// ++a
+        vectorIterator &operator ++() {_ptr++; return (*this);};			// ++a
         vectorIterator operator ++(int) {_ptr++; return (vectorIterator(_ptr - 1));};	// a++
-        vectorIterator operator --() {_ptr--; return (*this);};			// --a
+        vectorIterator &operator --() {_ptr--; return (*this);};			// --a
         vectorIterator operator --(int) {_ptr--; return (vectorIterator(_ptr + 1));};	// a--
 
         //COMPOUND ASSIGNMENTS

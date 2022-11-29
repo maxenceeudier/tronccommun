@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lookup.hpp                                         :+:      :+:    :+:   */
+/*   map_lookup.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:08 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/23 09:54:21 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 11:53:18 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,59 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator > 
     typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::lower_bound( const Key& key )
     {
-        return (this->find(key));
+        iterator gotIt = this->find(key);
+        if (gotIt == this->end())
+        {
+            for (iterator it = this->begin(); it != this->end(); it++)
+            {
+                if (it->first > key)
+                    return (it);
+            }
+        }
+        return (gotIt);
     }
     
     template<class Key, class T, class Compare , class Allocator > 
     typename map<Key, T, Compare, Allocator>::const_iterator map<Key, T, Compare, Allocator>::lower_bound( const Key& key ) const
     {
-        return (this->find(key));
+        const_iterator gotIt = this->find(key);
+        if (gotIt == this->end())
+        {
+            for (const_iterator it = this->begin(); it != this->end(); it++)
+            {
+                if (it->first > key)
+                    return (it);
+            }
+        }
+        return (gotIt);
     }
 
     template<class Key, class T, class Compare , class Allocator > 
     typename map<Key, T, Compare, Allocator>::iterator map<Key, T, Compare, Allocator>::upper_bound( const Key& key )
     {
-        return (++(this->find(key)));
+        iterator gotIt = this->find(key);
+        
+        for (iterator it = this->begin(); it != this->end(); it++)
+        {
+            if (it->first > key)
+                return (it);
+        }
+        
+        return (this->end());
     }
             
     template<class Key, class T, class Compare , class Allocator > 
     typename map<Key, T, Compare, Allocator>::const_iterator map<Key, T, Compare, Allocator>::upper_bound( const Key& key ) const
     {
-         return (++(this->find(key)));
+        const_iterator gotIt = this->find(key);
+        
+        for (const_iterator it = this->begin(); it != this->end(); it++)
+        {
+            if (it->first > key)
+                return (it);
+        }
+        
+        return (this->end());
     }
 
 

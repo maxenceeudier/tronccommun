@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   capacity.hpp                                       :+:      :+:    :+:   */
+/*   map_capacity.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:22 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/22 14:05:07 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 12:40:17 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.hpp"
-# include "map.h"
+//#include "map.hpp"
+# include "map.hpp"
 //#include "../../Include/include.h"
 
 namespace ft
@@ -36,6 +36,6 @@ namespace ft
     template<class Key, class T, class Compare , class Allocator >
     typename map<Key, T, Compare, Allocator>::size_type map<Key, T, Compare, Allocator>::max_size() const
     {
-        return (_alloc.max_size());
+        return (_allocNode.max_size());
     }
 }

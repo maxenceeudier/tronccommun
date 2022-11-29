@@ -6,13 +6,13 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:21:20 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 08:59:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 09:58:32 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_HPP
 #define STACK_HPP
-#include "../vector/vector.h"
+#include "../vector/vector.hpp"
 
 //#include "../../Include/include.h"
 

@@ -6,12 +6,12 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:42:22 by meudier           #+#    #+#             */
-/*   Updated: 2022/11/28 07:24:21 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 12:40:30 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../srcs/map/map.h"
+#include "../Include/include.h"
 #include <string>
 #include <map>
 #include <ctime>
@@ -277,7 +277,8 @@ void test_map()
         std::cout << "\n\nmap is empty()\n";
     
     std::cout << "\n\nswap again\n";
-    map.swap(mapSwap);
+    //map.swap(mapSwap);
+    ft::swap(map, mapSwap);
     
     if (mapSwap.empty())
         std::cout << "\n\nmapSwap is empty()\n\n";

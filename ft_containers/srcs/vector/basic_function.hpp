@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   basic_function.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 17:07:56 by meudier          ###   ########.fr       */
+/*   Updated: 2022/11/28 10:03:23 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.hpp"
+#include "vectorHeader.hpp"
 #include "../../utils/enable_if.hpp"
 #include "../../utils/is_integral.hpp"
 #include "../../utils/distance.hpp"

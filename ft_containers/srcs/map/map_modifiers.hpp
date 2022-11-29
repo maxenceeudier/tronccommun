@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modifiers.hpp                                      :+:      :+:    :+:   */
+/*   map_modifiers.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:06:46 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 07:29:32 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 17:13:15 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.hpp"
-#include "../vector/vector.h"
 #include <vector>
 //#include "../../Include/include.h"
 
@@ -115,7 +114,6 @@ namespace ft
     {
         ft::vector<value_type>  vec;
         size_t                  i = 0;
-
 
         while (first != last)
         {

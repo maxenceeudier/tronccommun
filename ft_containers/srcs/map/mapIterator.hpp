@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 07:20:03 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 17:47:27 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MAPITERATOR_HPP
 #include "../../utils/iterator_traits.hpp"
 #include "../../utils/utils.h"
+//#include "mapIteratorReverse.hpp"
+
 
 namespace ft
 {
@@ -22,7 +24,7 @@ namespace ft
     class	mapIterator
     {
     public:
-
+        //class	mapIteratorReverse;
         typedef pair                                value_type;
         typedef Node<pair>                          node_type;
         typedef node_type&				            node_reference;
@@ -37,22 +39,22 @@ namespace ft
         typedef typename ft::conditional<B, const value_type&, value_type&>::type reference;
         typedef typename ft::conditional<B, const value_type*, value_type*>::type pointer;
 
-        mapIterator(void) : _del(false), _is_gost(false), _alloc(std::allocator<Node<value_type> >()), node(NULL){};
+        mapIterator(void) : _del(false), _is_gost(false), node(NULL), _alloc(std::allocator<Node<value_type> >()){};
         mapIterator(node_pointer ptr) : _del(false), _is_gost(false), _alloc(std::allocator<Node<value_type> >()) {node = ptr;};
 
         template <bool B1>
         mapIterator(mapIterator<pair, B1> const &src) : _alloc(std::allocator<ft::Node<value_type> >())
         {
-            _del = src.getDel();
             _is_gost = src.getGost();
-            /*if (this->_is_gost)
-            {
-                node = _alloc.allocate(1);
-                _alloc.construct(node, node_type(*(src.getNode())));
-            }
-            else*/
-                node = src.getNode();
+            node = src.getNode();
         };
+
+        /*template <bool B1>
+        mapIterator(mapIteratorReverse<pair, B1> const &src) : _alloc(std::allocator<ft::Node<value_type> >())
+        {
+            _is_gost = src.getGost();
+            node = src.getNode();
+        };*/
 
         virtual ~mapIterator()
         {
@@ -79,7 +81,7 @@ namespace ft
         };
 
         // INCREMENTERS
-        mapIterator operator ++() 
+        mapIterator &operator++() 
         {
             if (node)
             {
@@ -131,15 +133,15 @@ namespace ft
         };
 
         
-        mapIterator operator --()
+        mapIterator &operator--()
         {
             if (node)
             {
                 if (_is_gost)
                 {
-                    node_pointer temp = node->parent;
+                    
                     //delete node;
-                    node = temp;
+                    node = node->parent;
                     _is_gost = false;
                     return (*this);
                 }
@@ -157,6 +159,7 @@ namespace ft
                     node = _biggest(node->left);
                 else
                 {
+                    
                     if (node->parent && node->parent->left && node == node->parent->left)
                     {
                         while (node->parent && node->parent->left && node == node->parent->left)
@@ -185,8 +188,10 @@ namespace ft
         };
 
         //DEREFERENCING & ADDRESS STUFF
-        pointer           operator->(){return (&(node->data));};
-        reference         operator*(){return ((node->data));};
+        const_pointer     operator->() const {return (&(node->data));};
+        pointer           operator->()  {return (&(node->data));};
+        reference         operator*() {return ((node->data));};
+        const_reference   operator*() const {return ((node->data));};
         
         node_pointer getNode() const {return (node);};
         bool         getGost() const {return (_is_gost);};

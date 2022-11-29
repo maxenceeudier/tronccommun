@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/24 17:24:31 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/28 17:14:07 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,8 +313,6 @@ namespace ft
     template <typename T, class Allocator, class Compare>
     Node<T> *RBTree<T, Allocator, Compare>::deleteBST(Node<T> *rt, T data)
     {
-        //T       temp;
-
         if (!rt)
             return (rt);
         if (_comp(rt->data , data))
@@ -322,10 +320,10 @@ namespace ft
         if (_comp(data, rt->data))
             return (deleteBST(rt->left, data));
         if (!rt->right)
+        {
             return (rt);
+        }
 
-            
-        
         Node<T> *tempP = rt->parent;
         Node<T> *tempL = rt->left;
         Node<T> *tempR = rt->right;
@@ -338,12 +336,15 @@ namespace ft
 
         /*std::cout << "===================debug=========================" << std::endl;
         std::cout << "\nroot info :\n";
-        if (root->parent)
-            std::cout << "p: " << root->parent->data;
-        if (root->right)
-            std::cout << "\nr: " << root->right->data;
-        if (root->left)
-            std::cout << "\nl: " << root->left->data;
+        if (rt->parent)
+            std::cout << "p: " << rt->parent->data;
+        if (rt->right)
+            std::cout << "\nr: " << rt->right->data;
+        if (rt->left)
+            std::cout << "\nl: " << rt->left->data;
+        if (rt)
+            std::cout << "\ndata: " << rt->data;
+        std::cout << "\ndata rchr: " << data;
 
         std::cout << "\n\nminR info :\n";
         if (minR->parent)
@@ -398,7 +399,7 @@ namespace ft
                 minR->right->parent = minR;
         }
         
-        return (deleteBST(minR->right, minR->data));
+        return (deleteBST(minR->right, rt->data));
         /*temp = minValueNode(root->right)->data;
         root->data = temp;
         return (deleteBST(root->right, temp));*/
@@ -419,8 +420,14 @@ namespace ft
 
         if (node == root)
         {
-            std::cout << "ooooookkkkkk\n";
-            root = NULL;
+            root = node->left;
+            if (root)
+            {
+                root->parent = NULL;
+                root->color = BLACK;
+            }
+            _alloc.destroy(node);
+            _alloc.deallocate(node, 1);
             return;
         }
 
