@@ -14,7 +14,7 @@
 #define ITERATOREVERSE_HPP
 #include "../../utils/iterator_traits.hpp"
 #include "../../utils/utils.h"
-//#include "mapIterator.hpp"
+#include "mapIterator.hpp"
 //#include "../../Include/include.h"
 
 
@@ -40,7 +40,7 @@ namespace ft
         typedef typename ft::conditional<B, const value_type&, value_type&>::type reference;
         typedef typename ft::conditional<B, const value_type*, value_type*>::type pointer;
 
-        mapIteratorReverse(void) : _is_gost(false), _alloc(std::allocator<Node<value_type> >()), node(NULL){};
+        mapIteratorReverse(void) : _is_gost(false), node(NULL), _alloc(std::allocator<Node<value_type> >()){};
         mapIteratorReverse(node_pointer ptr) : _is_gost(false), _alloc(std::allocator<Node<value_type> >()) {node = ptr;};
 
         template <bool B1>
@@ -50,12 +50,12 @@ namespace ft
             node = src.getNode();
         };
 
-        /*template <bool B1>
+        template <bool B1>
         mapIteratorReverse(ft::mapIterator<pair, B1> const &src) : _alloc(std::allocator<ft::Node<value_type> >())
         {
             _is_gost = src.getGost();
             node = src.getNode();
-        };*/
+        };
 
 
 
@@ -77,9 +77,7 @@ namespace ft
             {
                 if (_is_gost)
                 {
-                    node_pointer temp = node->parent;
-                    //delete node;
-                    node = temp;
+                    node = node->parent;
                     _is_gost = false;
                     return (*this);
                 }
@@ -129,9 +127,7 @@ namespace ft
             {
                 if (_is_gost)
                 {
-                    node_pointer temp = node->parent;
-                    //delete node;
-                    node = temp;
+                    node = node->parent;
                     _is_gost = false;
                     return (*this);
                 }
@@ -176,16 +172,18 @@ namespace ft
         };
 
         //DEREFERENCING & ADDRESS STUFF
-        const_pointer           operator->() const {return (&(node->data));};
-        pointer                 operator->()  {return (&(node->data));};
-        reference               operator*() {return ((node->data));};
-        const_reference         operator*() const {return ((node->data));};
+        const_pointer           operator->() const {return (&(this->operator*()));};
+        pointer                 operator->()  {return (&(this->operator*()));};
+        reference               operator*() {return (mapIteratorReverse(*this) + 1).getNode()->data;};
+        const_reference         operator*() const {return (mapIteratorReverse(*this) + 1).getNode()->data;};
         
         node_pointer getNode() const {return (node);};
         bool         getGost() const {return (_is_gost);};
-        //mapIterator  base() const {return (mapIterator(*this));};
+        mapIterator<pair, B>  base() const {return (mapIterator<pair, B>(node));};
 
         static const bool input_iter = true;
+        /*friend mapIteratorReverse	operator+(difference_type n, const mapIteratorReverse &rhs)
+		{ return rhs.operator+(n); };*/
 
         void    set_is_gost(bool a){_is_gost = a;};
 
@@ -218,8 +216,8 @@ namespace ft
                 return (_smallest(node));
             };
             
-            bool            _is_gost;
-            node_pointer    node;
+            bool                                    _is_gost;
+            node_pointer                            node;
             std::allocator<Node<value_type> >       _alloc;
     };
 

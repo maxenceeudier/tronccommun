@@ -9,6 +9,7 @@
 #include "../../utils/reverse_iterator.hpp"
 #include "../../utils/swap.hpp"
 #include "../../utils/to_string.hpp"
+#include "../../utils/is_integral.hpp"
 
 //#include "vector.h"
 //#include "../../utils/utils.h"
@@ -54,7 +55,7 @@ namespace ft
 
             /*this constructor is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template <class InputIt>
-            vector (InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<InputIt::input_iter, InputIt>::type* = 0)
+            vector (InputIt first, InputIt last, const Allocator& alloc = Allocator(), typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true)
             : _alloc(alloc), _start(NULL), _end(NULL), _end_capacity(NULL) {this->insert(_end, first, last);};
 
             vector(const vector &cpy);
@@ -70,10 +71,10 @@ namespace ft
 
             /*this assign is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template<class InputIt>
-            void assign(InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type* = 0)
-            {
+            void assign(InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true)
+            {    
                 this->clear();
-                this->insert(_end, first, last);
+                this->insert(this->end(), first, last);
             };
 
             /*-----------get_alocator*/
@@ -160,7 +161,7 @@ namespace ft
 
             /*this insert is declare here because of "enable_if" to make shure inputIt is an itterator*/
             template< class InputIt>
-            iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<InputIt::input_iter, InputIt>::type* = 0)
+            iterator insert(iterator pos, InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type = true)
             {
                 if (this->capacity() == 0 )
                 {
@@ -222,5 +223,11 @@ namespace ft
             void swap(vector& other);
     };
 }
+
+template< class T1,  class Allocator1>
+void    swap(ft::vector< T1,  Allocator1>& lhs, ft::vector<T1,  Allocator1>& rhs )
+{
+    lhs.swap(rhs);
+};
 
 #endif

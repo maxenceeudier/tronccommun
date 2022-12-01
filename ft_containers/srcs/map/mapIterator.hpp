@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 17:47:27 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/01 10:43:06 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
         mapIterator(node_pointer ptr) : _del(false), _is_gost(false), _alloc(std::allocator<Node<value_type> >()) {node = ptr;};
 
         template <bool B1>
-        mapIterator(mapIterator<pair, B1> const &src) : _alloc(std::allocator<ft::Node<value_type> >())
+        mapIterator(mapIterator<pair, B1> const &src, typename enable_if<!B1>::type* = 0) : _alloc(std::allocator<ft::Node<value_type> >())
         {
             _is_gost = src.getGost();
             node = src.getNode();
@@ -76,7 +76,7 @@ namespace ft
                 _alloc.construct(node, node_type(*(src.getNode())));
             }
             else*/
-                node = src.getNode();
+            node = src.getNode();
             return (*this);
         };
 
@@ -200,6 +200,8 @@ namespace ft
         static const bool input_iter = true;
 
         void    set_is_gost(bool a){_is_gost = a;};
+        /*friend mapIterator	operator+(difference_type n, const mapIterator &rhs)
+		{ return rhs.operator+(n); };*/
 
         protected:
             node_pointer _smallest(node_pointer node)

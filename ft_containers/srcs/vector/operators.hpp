@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:28:01 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/21 08:02:55 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/30 21:14:17 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ namespace ft
             return (false);
         else if (itR == rhs.end())
             return (false);
+        else if (itL == lhs.end())
+        {
+            return (true);
+        }
+            
         return (*itL < *itR);
     };
 

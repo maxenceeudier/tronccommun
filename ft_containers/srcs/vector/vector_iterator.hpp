@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:38:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 15:34:55 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/01 09:58:42 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,38 @@ namespace ft
     
         virtual ~vectorIterator() {};
 
-        vectorIterator &operator=(vectorIterator const &src) {_ptr = src.operator->(); return (*this); };
+        vectorIterator &operator=(vectorIterator const &src) {_ptr = src.getPtr(); return (*this); };
 
         // ARITHMETICS
         vectorIterator operator +(difference_type b) const {return (vectorIterator(_ptr + b));}; // a + n
         vectorIterator operator -(difference_type b) const {return (vectorIterator(_ptr - b));}; // a - n
 
-        difference_type operator +(vectorIterator b) const {return (_ptr + b._ptr); }; // a + b
-        difference_type operator -(vectorIterator b) const {return (_ptr - b._ptr); }; // a - b
+        template < bool B1>
+        difference_type operator +(vectorIterator<B1, T> b) const {return (_ptr + b.getPtr()); }; // a + b
+        
+        template < bool B1>
+        difference_type operator -(vectorIterator<B1, T> b) const {return (_ptr - b.getPtr()); }; // a - b
 
         // INCREMENTERS
-        vectorIterator &operator ++() {_ptr++; return (*this);};			// ++a
-        vectorIterator operator ++(int) {_ptr++; return (vectorIterator(_ptr - 1));};	// a++
-        vectorIterator &operator --() {_ptr--; return (*this);};			// --a
-        vectorIterator operator --(int) {_ptr--; return (vectorIterator(_ptr + 1));};	// a--
+        vectorIterator &operator ++() {++_ptr; return (*this);};			// ++a
+        vectorIterator operator ++(int) {++_ptr; return (vectorIterator(_ptr - 1));};	// a++
+        vectorIterator &operator --() {--_ptr; return (*this);};			// --a
+        vectorIterator operator --(int) {--_ptr; return (vectorIterator(_ptr + 1));};	// a--
 
         //COMPOUND ASSIGNMENTS
-        void operator +=(difference_type b) {_ptr += b;};	// a += b
-        void operator -=(difference_type b) {_ptr -= b;};	// a -= b
+        vectorIterator &operator +=(difference_type b) {_ptr += b; return (*this);};	// a += b
+        vectorIterator &operator -=(difference_type b) {_ptr -= b; return (*this);};	// a -= b
 
+        friend vectorIterator	operator+	(int n, const vectorIterator & x)		{ return (x.getPtr() + n); }
         //DEREFERENCING & ADDRESS STUFF
         reference operator*(){ return (*_ptr); };											// *a
         const_reference operator*() const {return (*_ptr);};								// *a
         reference operator [](difference_type b) {return (*(_ptr + b));};					// a[]
         const_reference operator [](difference_type b) const {return (*(_ptr + b));};		// a[]
         pointer operator->(){return (_ptr);};											    // a->b
-        pointer operator->() const {return (_ptr);};										// a->b
+        const_pointer operator->() const {return (_ptr);};										// a->b
 
+        value_type *			getPtr		(void) const							{ return (_ptr); }
 
         //comparator
         template< bool B2, typename T2 >
@@ -99,7 +104,6 @@ namespace ft
         private:
             pointer _ptr;
     };
-
 }
 #endif
 

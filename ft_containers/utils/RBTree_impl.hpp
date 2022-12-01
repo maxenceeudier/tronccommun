@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:00:56 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 17:14:07 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/29 07:52:54 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,12 @@ namespace ft
     {
         if (!root)
             return (node);
-        if (_comp(root->data ,node->data))
+        if (_comp(root->data.first ,node->data.first))
         {
             root->right = insertBST(root->right, node, i);
             root->right->parent = root;
         }
-        if (_comp(node->data, root->data))
+        if (_comp(node->data.first, root->data.first))
         {
             root->left = insertBST(root->left, node, i);
             root->left->parent = root;
@@ -315,9 +315,9 @@ namespace ft
     {
         if (!rt)
             return (rt);
-        if (_comp(rt->data , data))
+        if (_comp(rt->data.first , data.first))
             return (deleteBST(rt->right, data));
-        if (_comp(data, rt->data))
+        if (_comp(data.first, rt->data.first))
             return (deleteBST(rt->left, data));
         if (!rt->right)
         {

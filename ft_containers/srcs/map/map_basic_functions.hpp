@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_functions.hpp                                :+:      :+:    :+:   */
+/*   map_basic_functions.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 07:24:02 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/29 08:18:43 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace ft
 
     template<class Key, class T, class Compare , class Allocator >
     map<Key, T, Compare, Allocator>::map(const Compare& comp, const Allocator& alloc) \
-    :  _T_default(T()), _comp(comp), _alloc(alloc), _tree(RBTree())
+    :  _comp(comp), _alloc(alloc), _tree(RBTree())
     {
         //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
         _gost = _allocNode.allocate(1);
@@ -39,9 +39,9 @@ namespace ft
     }
     
     template<class Key, class T, class Compare , class Allocator >
-    map<Key, T, Compare, Allocator>::map( const map& other ) :  ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >()
+    map<Key, T, Compare, Allocator>::map( const map& other ) :  ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other, Compare >()
     {
-        //typename Allocator::template rebind<ft::Node<value_type> >::other  _allocNode;
+        
         _gost = _allocNode.allocate(1);
         _allocNode.construct(_gost, Node<value_type>());
     
@@ -71,7 +71,7 @@ namespace ft
         if (other._gost->parent)
             other._gost->parent->right = NULL;
     
-        this->clear();
+        //this->clear();
         this->_tree = other._tree;
 
         //==========================

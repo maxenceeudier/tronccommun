@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:03 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 10:03:23 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/01 13:27:15 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,43 @@ namespace ft
         if (this->capacity())
             _alloc.deallocate(_start, this->capacity());
     }
+
+    
+
             
     template <class T, class Allocator>  
-    vector<T, Allocator>  &vector<T, Allocator>::operator=(const vector &cpy)
+    vector<T, Allocator>  &vector<T, Allocator>::operator=(const vector &rhs)
     {
+        /*if (this == &rhs)
+		    return (*this);
+        //this->clear();
+        const_iterator first = rhs.begin();
+        const_iterator last = rhs.end();
+    
+        vector  temp;
+        size_type len = ft::distance(first, last);
+
+        temp._alloc = this->_alloc;
+        temp._start = temp._alloc.allocate(len > this->capacity() ? len : this->capacity());
+        temp._end = temp._start + len;
+        temp._end_capacity = temp._start + (len > this->capacity() ? len : this->capacity());
+        for (size_type i = 0; first != last; ++first)
+            temp._alloc.construct(&temp._start[i++], *first);
+        
         this->clear();
-        this->insert(_end, cpy.begin(), cpy.end());
+	    this->_alloc.deallocate(this->_start, this->capacity());
+	    this->_start = NULL; this->_end = NULL; this->_end_capacity = NULL;
+
+        this->_start = temp._start;
+        this->_end = temp._end;
+        this->_end_capacity = temp._end_capacity;
+
+        temp._start = NULL; temp._end = NULL; temp._end_capacity = NULL;*/
+
+        this->clear();
+        this->insert(_end, rhs.begin(), rhs.end());
+
+        
         return (*this);
     }
 
@@ -52,8 +83,7 @@ namespace ft
     void vector<T, Allocator>::assign(size_type count, const T &value)
     {
         this->clear();
-        
-        this->insert(_end, count, value);
+        this->insert(this->end(), count, value);
     }
 
     template <class T, class Allocator>

@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:55:04 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 10:43:14 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/29 08:55:04 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,5 @@ namespace ft
         return (!(lhs < rhs));
     };
 
-    template< class Key, class T, class Compare, class Alloc >
-    void    swap(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
-    {
-        swap(lhs, rhs);
-    };
-
-    
+  
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iterators.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:10:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/17 17:42:59 by meudier          ###   ########.fr       */
+/*   Updated: 2022/12/01 10:25:17 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,24 @@ namespace ft
     template <class T, class Allocator>
     typename vector<T, Allocator>::reverse_iterator  vector<T, Allocator>::rbegin()
     {
-        return (reverse_iterator(_end - 1));
+        return (reverse_iterator(_end));
     }
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::const_reverse_iterator  vector<T, Allocator>::rbegin() const
     {
-        return (const_reverse_iterator(_end - 1));
+        return (const_reverse_iterator(_end));
     }
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::reverse_iterator  vector<T, Allocator>::rend()
     {
-        return (reverse_iterator(_start - 1));
+        return (reverse_iterator(_start));
     }
 
     template <class T, class Allocator>
     typename vector<T, Allocator>::const_reverse_iterator  vector<T, Allocator>::rend() const
     {
-        return (const_reverse_iterator(_start - 1));
+        return (const_reverse_iterator(_start));
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   capacity.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:25:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 10:57:44 by meudier          ###   ########.fr       */
+/*   Updated: 2022/12/01 12:57:05 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

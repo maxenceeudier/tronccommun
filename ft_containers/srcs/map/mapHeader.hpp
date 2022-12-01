@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/28 12:20:46 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/11/29 13:48:12 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 namespace ft
 {
     template< class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<Key, T> > >
-    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >
+    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other, Compare>
     {
         public:
             class ValueCompare;
@@ -52,11 +52,13 @@ namespace ft
 
             typedef typename Allocator::template rebind<ft::Node<value_type> >::other  AllocNode;
             
-            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other >    RBTree;
+            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other, Compare >    RBTree;
 
             template <class T1, class T2, class T3, class T4>
             friend std::ostream	&operator<<(std::ostream &o, ft::map<T1, T2, T3, T4> &map);
             
+            
+
         protected:
             T                   _T_default;
             key_compare         _comp;
@@ -215,7 +217,14 @@ namespace ft
                     {return (comp(lhs.first, rhs.first));};       
             };
 
+            
     };
 }
+
+template< class Key1, class T1 , class Allocator1, class Compare1>
+void    swap(ft::map<Key1, T1, Compare1, Allocator1>& lhs, ft::map<Key1,T1, Compare1, Allocator1>& rhs )
+{
+    lhs.swap(rhs);
+};
 
 #endif
