@@ -173,8 +173,8 @@ namespace ft
 
         //DEREFERENCING & ADDRESS STUFF
         const_pointer           operator->() const {return (&(this->operator*()));};
-        pointer                 operator->()  {return (&(this->operator*()));};
-        reference               operator*() {return (setIteratorReverse(*this) + 1).getNode()->data;};
+        //pointer                 operator->()  {return (&(this->operator*()));};
+        //reference               operator*() {return (setIteratorReverse(*this) + 1).getNode()->data;};
         const_reference         operator*() const {return (setIteratorReverse(*this) + 1).getNode()->data;};
         
         node_pointer getNode() const {return (node);};

@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:50 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/29 13:48:12 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/02 10:00:57 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 namespace ft
 {
     template< class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<Key, T> > >
-    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other, Compare>
+    class map : public ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other >
     {
         public:
             class ValueCompare;
@@ -47,16 +47,17 @@ namespace ft
             typedef typename Allocator::const_pointer           const_pointer;
             typedef ft::mapIterator< value_type >               iterator;
             typedef ft::mapIterator< value_type , true>         const_iterator;
-            typedef	ft::mapIteratorReverse<value_type>                reverse_iterator;
-            typedef ft::mapIteratorReverse<value_type,  true>    const_reverse_iterator;
+            typedef	ft::mapIteratorReverse<value_type>          reverse_iterator;
+            typedef ft::mapIteratorReverse<value_type,  true>   const_reverse_iterator;
 
             typedef typename Allocator::template rebind<ft::Node<value_type> >::other  AllocNode;
             
-            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other, Compare >    RBTree;
+            typedef ft::RBTree<ft::pair< Key, T>,  typename allocator_type::template rebind<ft::Node<value_type> >::other, ValueCompare >    RBTree;
 
             template <class T1, class T2, class T3, class T4>
             friend std::ostream	&operator<<(std::ostream &o, ft::map<T1, T2, T3, T4> &map);
             
+            friend class ValueCompare;
             
 
         protected:
@@ -213,6 +214,10 @@ namespace ft
                     typedef value_type  first_argument_type;
                     typedef value_type  second_argument_type;
 
+                    ValueCompare(void)
+                    {
+                        comp = Compare();
+                    }
                     bool operator()( const value_type& lhs, const value_type& rhs ) const
                     {return (comp(lhs.first, rhs.first));};       
             };

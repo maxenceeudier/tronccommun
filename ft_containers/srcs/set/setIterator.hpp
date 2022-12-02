@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/12/01 17:36:17 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/02 11:11:29 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,8 @@ namespace ft
 
         //DEREFERENCING & ADDRESS STUFF
         const_pointer     operator->() const {return (&(node->data));};
-        pointer           operator->()  {return (&(node->data));};
-        reference         operator*() {return ((node->data));};
+        //pointer           operator->()  {return (&(node->data));};
+        //reference         operator*() {return ((node->data));};
         const_reference   operator*() const {return ((node->data));};
         
         node_pointer getNode() const {return (node);};

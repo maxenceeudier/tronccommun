@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:39 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/12/01 17:19:24 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/02 10:01:55 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ namespace ft
     }
     
     template<class Key, class Compare , class Allocator >
-    set<Key, Compare, Allocator>::set( const set& other ) :  ft::RBTree<ft::pair<Key, T>, typename Allocator::template rebind<ft::Node<ft::pair<Key, T> > >::other, Compare >()
+    set<Key, Compare, Allocator>::set( const set& other ) :  ft::RBTree<Key, typename Allocator::template rebind<ft::Node<Key> >::other, Compare >()
     {
         _gost = _allocNode.allocate(1);
         _allocNode.construct(_gost, Node<value_type>());

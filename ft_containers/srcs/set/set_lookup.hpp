@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:07:08 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/12/01 17:46:04 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/02 09:01:00 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ namespace ft
         {
             for (iterator it = this->begin(); it != this->end(); it++)
             {
-                if (it->first > key)
+                if (*it > key)
                     return (it);
             }
         }
@@ -86,7 +86,7 @@ namespace ft
         {
             for (const_iterator it = this->begin(); it != this->end(); it++)
             {
-                if (*it key)
+                if (*it > key)
                     return (it);
             }
         }

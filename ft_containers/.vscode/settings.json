@@ -69,7 +69,8 @@
         "iomanip": "cpp",
         "list": "cpp",
         "queue": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "memory_resource": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }
