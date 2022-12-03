@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:22:31 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/12/01 10:43:06 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/02 20:45:50 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,8 +238,8 @@ namespace ft
             std::allocator<Node<value_type> >   _alloc;
     };
 
-    template<class T1, bool B1, class T2, bool B2>
-    bool operator==(const  mapIterator<T1,  B1>& lhs, const  mapIterator<T2, B2>& rhs)
+    template<class T1, bool B1, bool B2>
+    bool operator==(const  mapIterator<T1,  B1>& lhs, const  mapIterator<T1, B2>& rhs)
     {
         if (!lhs.getNode())
             return (true);
@@ -251,8 +251,8 @@ namespace ft
     };
 
        
-    template<class T1,  bool B1, class T2, bool B2>
-    bool operator!=( const  mapIterator<T1, B1>& lhs, const  mapIterator<T2, B2>& rhs){return (!(lhs == rhs));};
+    template<class T1,  bool B1, bool B2>
+    bool operator!=( const  mapIterator<T1, B1>& lhs, const  mapIterator<T1, B2>& rhs){return (!(lhs == rhs));};
 
 }
 #endif

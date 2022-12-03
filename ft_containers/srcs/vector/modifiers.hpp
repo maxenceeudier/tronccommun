@@ -6,7 +6,7 @@
 /*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 15:21:24 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/12/01 13:29:24 by maxenceeudi      ###   ########.fr       */
+/*   Updated: 2022/12/02 21:32:14 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ namespace ft
             
             if (n > capacity() - size())
             {
-                reserve(size() + std::max(n, size()));
+                reserve(capacity() + std::max(n, capacity()));
             }
                 
             int i = 0;

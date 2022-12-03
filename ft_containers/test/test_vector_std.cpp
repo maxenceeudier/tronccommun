@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_vector_std.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meudier <meudier@student.42.fr>            +#+  +:+       +#+        */
+/*   By: maxenceeudier <maxenceeudier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:50:00 by maxenceeudi       #+#    #+#             */
-/*   Updated: 2022/11/18 12:55:40 by meudier          ###   ########.fr       */
+/*   Updated: 2022/12/02 21:34:07 by maxenceeudi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

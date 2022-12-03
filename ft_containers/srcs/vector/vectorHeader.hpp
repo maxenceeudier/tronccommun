@@ -184,7 +184,10 @@ namespace ft
                     size_type               n = temp1.size();
 
                     if (n > capacity() - size())
-                        reserve(size() + std::max(n, size()));
+                    {
+                        reserve(capacity() + std::max(n, capacity()));
+                    }
+                        
                     
                     int i = 0;
                     int j = 0;
